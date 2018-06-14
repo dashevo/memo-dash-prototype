@@ -6,7 +6,11 @@
     "@dashevo/dash-schema": "git+ssh://git@github.com/dashevo/dash-schema.git#v3_develop",
     "react": "^16.4.1",
     "react-dom": "^16.4.1",
-    "react-scripts": "1.1.4"
+    "react-redux": "^5.0.7",
+    "react-scripts": "1.1.4",
+    "redux": "^4.0.0",
+    "redux-devtools-extension": "^2.13.2",
+    "redux-logger": "^3.0.6"
   },
   "scripts": {
     "start": "react-scripts start",
