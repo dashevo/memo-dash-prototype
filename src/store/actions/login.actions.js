@@ -1,3 +1,5 @@
+import { push } from 'connected-react-router'
+
 const LoginActionTypes = {
   LOGIN_ERROR: 'LOGIN_ERROR',
   LOGIN_SUCCESSFULL: 'LOGIN_SUCCESSFULL'
@@ -17,12 +19,13 @@ const login = blockchainUsername => async (dispatch, getState) => {
     dispatch(loginError(`User ${blockchainUsername} not found on blockchain`))
     return
   }
-  
+
   blockchainUser = blockchainUser[0]
 
   try {
     await memoDashLib.login({ blockchainUsername: blockchainUser.name })
     dispatch(loginSuccessfull(blockchainUser.name))
+    dispatch(push('/home'))
   } catch (error) {
     dispatch(loginError(error.message))
   }
