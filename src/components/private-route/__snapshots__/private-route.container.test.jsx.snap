@@ -1,0 +1,7 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<PrivateRouteContainer /> Shallow rendering renders without crashing 1`] = `
+<PrivateRouteComponent
+  isLoggedIn={false}
+/>
+`;
