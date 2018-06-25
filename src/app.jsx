@@ -5,7 +5,7 @@ import { connect } from 'react-redux'
 import routes from './routes'
 import { initMemoDashClient } from './store/actions'
 
-class MemoDashApp extends Component {
+export class AppComponent extends Component {
   async componentDidMount() {
     await this.props.init()
   }
@@ -42,5 +42,5 @@ export default withRouter(
   connect(
     mapStateToProps,
     mapDispatchToProps
-  )(MemoDashApp)
+  )(AppComponent)
 )
