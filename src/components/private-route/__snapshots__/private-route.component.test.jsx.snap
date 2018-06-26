@@ -1,0 +1,8 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<PrivateRouteComponent /> renders without crashing 1`] = `
+<Route
+  isLoggedIn={false}
+  render={[Function]}
+/>
+`;

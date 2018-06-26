@@ -1,0 +1,165 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<LoginViewComponent /> renders error message if login failed 1`] = `
+<div
+  className="login-form"
+>
+  <Grid
+    className="login-form-grid"
+    textAlign="center"
+    verticalAlign="middle"
+  >
+    <GridColumn
+      style={
+        Object {
+          "maxWidth": 450,
+        }
+      }
+    >
+      <Grid>
+        <GridRow
+          columns={2}
+        >
+          <GridColumn
+            textAlign="right"
+            verticalAlign="middle"
+            width={4}
+          >
+            <Logo />
+          </GridColumn>
+          <GridColumn
+            textAlign="left"
+            verticalAlign="middle"
+            width={12}
+          >
+            <Header
+              as="h2"
+              color="blue"
+            >
+              Log-in to your account
+            </Header>
+          </GridColumn>
+        </GridRow>
+      </Grid>
+      <Form
+        as="form"
+        onSubmit={[Function]}
+        size="large"
+      >
+        <Segment
+          stacked={true}
+        >
+          <FormInput
+            as={[Function]}
+            control={[Function]}
+            fluid={true}
+            icon="user"
+            iconPosition="left"
+            name="username"
+            onChange={[Function]}
+            placeholder="Username"
+            required={true}
+            value="alice"
+          />
+          <Button
+            as="button"
+            color="blue"
+            fluid={true}
+            role="button"
+            size="large"
+          >
+            Login
+          </Button>
+        </Segment>
+      </Form>
+      <Message
+        hidden={false}
+        negative={true}
+      >
+        LoginError
+      </Message>
+    </GridColumn>
+  </Grid>
+</div>
+`;
+
+exports[`<LoginViewComponent /> renders without crashing 1`] = `
+<div
+  className="login-form"
+>
+  <Grid
+    className="login-form-grid"
+    textAlign="center"
+    verticalAlign="middle"
+  >
+    <GridColumn
+      style={
+        Object {
+          "maxWidth": 450,
+        }
+      }
+    >
+      <Grid>
+        <GridRow
+          columns={2}
+        >
+          <GridColumn
+            textAlign="right"
+            verticalAlign="middle"
+            width={4}
+          >
+            <Logo />
+          </GridColumn>
+          <GridColumn
+            textAlign="left"
+            verticalAlign="middle"
+            width={12}
+          >
+            <Header
+              as="h2"
+              color="blue"
+            >
+              Log-in to your account
+            </Header>
+          </GridColumn>
+        </GridRow>
+      </Grid>
+      <Form
+        as="form"
+        onSubmit={[Function]}
+        size="large"
+      >
+        <Segment
+          stacked={true}
+        >
+          <FormInput
+            as={[Function]}
+            control={[Function]}
+            fluid={true}
+            icon="user"
+            iconPosition="left"
+            name="username"
+            onChange={[Function]}
+            placeholder="Username"
+            required={true}
+            value="alice"
+          />
+          <Button
+            as="button"
+            color="blue"
+            fluid={true}
+            role="button"
+            size="large"
+          >
+            Login
+          </Button>
+        </Segment>
+      </Form>
+      <Message
+        hidden={true}
+        negative={true}
+      />
+    </GridColumn>
+  </Grid>
+</div>
+`;
