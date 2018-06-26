@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.com/dashevo/memo-dash.svg?token=LLMKe1m3G4EayS2BCYBb&branch=configure-ci)](https://travis-ci.com/dashevo/memo-dash)
+
 # Memo Dash Prototype
 
 Prototype application for the MemoDash DAP on Dash Evolution.
