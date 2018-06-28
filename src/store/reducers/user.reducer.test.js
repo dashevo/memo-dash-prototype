@@ -1,7 +1,7 @@
-import reducer, { initialState } from './login.reducer'
+import reducer, { initialState } from './user.reducer'
 import { loginError, loginSuccessfull } from '../actions'
 
-describe('login reducer', () => {
+describe('user reducer', () => {
   it('should return the initial state', () => {
     expect(reducer(undefined, {})).toEqual(initialState)
   })

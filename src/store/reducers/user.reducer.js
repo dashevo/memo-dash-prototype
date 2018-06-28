@@ -1,4 +1,4 @@
-import { LoginActionTypes } from '../actions'
+import { AuthActionTypes } from '../actions'
 
 export const initialState = {
   currentUser: {
@@ -12,13 +12,13 @@ export const initialState = {
 
 export default (state = initialState, action) => {
   switch (action.type) {
-    case LoginActionTypes.LOGIN_ERROR:
+    case AuthActionTypes.LOGIN_ERROR:
       return {
         ...state,
         loginError: action.payload
       }
 
-    case LoginActionTypes.LOGIN_SUCCESSFULL:
+    case AuthActionTypes.LOGIN_SUCCESSFULL:
       return {
         ...state,
         loginError: undefined,
