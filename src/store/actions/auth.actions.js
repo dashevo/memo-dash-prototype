@@ -1,6 +1,6 @@
 import { push } from 'connected-react-router'
 
-const LoginActionTypes = {
+const AuthActionTypes = {
   LOGIN_ERROR: 'LOGIN_ERROR',
   LOGIN_SUCCESSFULL: 'LOGIN_SUCCESSFULL'
 }
@@ -31,7 +31,7 @@ const login = blockchainUsername => async (dispatch, getState) => {
   }
 }
 
-const loginError = message => ({ type: LoginActionTypes.LOGIN_ERROR, payload: message })
-const loginSuccessfull = userName => ({ type: LoginActionTypes.LOGIN_SUCCESSFULL, payload: userName })
+const loginError = message => ({ type: AuthActionTypes.LOGIN_ERROR, payload: message })
+const loginSuccessfull = userName => ({ type: AuthActionTypes.LOGIN_SUCCESSFULL, payload: userName })
 
-export { LoginActionTypes, login, loginError, loginSuccessfull }
+export { AuthActionTypes, login, loginError, loginSuccessfull }

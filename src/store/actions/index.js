@@ -1,2 +1,2 @@
-export * from './login.actions'
+export * from './auth.actions'
 export * from './init.actions'

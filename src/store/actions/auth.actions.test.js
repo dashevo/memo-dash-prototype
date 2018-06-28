@@ -1,14 +1,14 @@
-import { loginError, loginSuccessfull, login, LoginActionTypes } from './login.actions'
+import { loginError, loginSuccessfull, login, AuthActionTypes } from './auth.actions'
 import { verifyAction, mockStoreAndDispatch, getAction } from '../../test-utils/actions.test-helper'
 
-describe('login actions', () => {
+describe('auth actions', () => {
   describe('should create an action', () => {
     it('to indicate a login error', () => {
-      verifyAction(LoginActionTypes.LOGIN_ERROR, 'LoginError', loginError)
+      verifyAction(AuthActionTypes.LOGIN_ERROR, 'LoginError', loginError)
     })
 
     it('to indicate a successfull login', () => {
-      verifyAction(LoginActionTypes.LOGIN_SUCCESSFULL, 'User1', loginSuccessfull)
+      verifyAction(AuthActionTypes.LOGIN_SUCCESSFULL, 'User1', loginSuccessfull)
     })
   })
 
@@ -19,7 +19,7 @@ describe('login actions', () => {
         const state = { root: { memoDashLib: undefined } }
 
         const actions = await mockStoreAndDispatch(state, login('blockchainUsername'))
-        expect(await getAction(actions, LoginActionTypes.LOGIN_ERROR)).toEqual(loginError(errorMessage))
+        expect(await getAction(actions, AuthActionTypes.LOGIN_ERROR)).toEqual(loginError(errorMessage))
       })
     })
 
@@ -49,9 +49,9 @@ describe('login actions', () => {
         it('should dispatch loginError', async () => {
           const errorMessage = `User blockchainUsername not found on blockchain`
           memoDashLib.searchBlockchainUsers.mockReturnValue([])
-  
+
           const actions = await mockStoreAndDispatch(state, login('blockchainUsername'))
-          expect(await getAction(actions, LoginActionTypes.LOGIN_ERROR)).toEqual(loginError(errorMessage))
+          expect(await getAction(actions, AuthActionTypes.LOGIN_ERROR)).toEqual(loginError(errorMessage))
         })
       })
 
@@ -64,7 +64,7 @@ describe('login actions', () => {
       it('should dispatch loginSuccessfull if the login was successfull', async () => {
         memoDashLib.searchBlockchainUsers.mockReturnValue([{ name: 'Name' }])
         const actions = await mockStoreAndDispatch(state, login('blockchainUsername'))
-        expect(await getAction(actions, LoginActionTypes.LOGIN_SUCCESSFULL)).toEqual(loginSuccessfull('Name'))
+        expect(await getAction(actions, AuthActionTypes.LOGIN_SUCCESSFULL)).toEqual(loginSuccessfull('Name'))
       })
 
       it('should dispatch loginError if the login was not successfull', async () => {
@@ -72,7 +72,7 @@ describe('login actions', () => {
         memoDashLib.login = jest.fn().mockImplementation(() => Promise.reject(new Error('LoginError')))
 
         const actions = await mockStoreAndDispatch(state, login('blockchainUsername'))
-        expect(await getAction(actions, LoginActionTypes.LOGIN_ERROR)).toEqual(loginError('LoginError'))
+        expect(await getAction(actions, AuthActionTypes.LOGIN_ERROR)).toEqual(loginError('LoginError'))
       })
     })
   })
