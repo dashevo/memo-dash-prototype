@@ -30,7 +30,8 @@ describe('auth actions', () => {
       beforeEach(() => {
         memoDashLib = {
           searchBlockchainUsers: jest.fn(),
-          login: jest.fn()
+          login: jest.fn(),
+          getUserProfile: jest.fn()
         }
         state = { root: { memoDashLib } }
       })

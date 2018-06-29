@@ -1,10 +1,10 @@
 import { AuthActionTypes } from '../actions'
+import { UserActionTypes } from '../actions/user.actions'
 
 export const initialState = {
   currentUser: {
     userName: undefined,
-    myContacts: [],
-    searchResults: []
+    profile: undefined
   },
   loginError: undefined,
   isLoggedIn: false
@@ -26,6 +26,14 @@ export default (state = initialState, action) => {
         currentUser: {
           ...state.currentUser,
           userName: action.payload
+        }
+      }
+    case UserActionTypes.USER_PROFILE_RECEIVED:
+      return {
+        ...state,
+        currentUser: {
+          ...state.currentUser,
+          profile: action.payload
         }
       }
     default:

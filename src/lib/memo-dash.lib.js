@@ -32,6 +32,9 @@ export default class MemoDashLib {
    */
   async login(config) {
     await this.MemoDashClient.login(config.blockchainUsername)
-    await this.MemoDashClient.login(config.blockchainUsername);
+  }
+
+  async getUserProfile() {
+    return await this.MemoDashClient.getOwnProfile()
   }
 }

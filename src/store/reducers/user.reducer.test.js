@@ -1,5 +1,6 @@
 import reducer, { initialState } from './user.reducer'
 import { loginError, loginSuccessfull } from '../actions'
+import { userProfileReceived } from '../actions/user.actions'
 
 describe('user reducer', () => {
   it('should return the initial state', () => {
@@ -27,6 +28,15 @@ describe('user reducer', () => {
         },
         isLoggedIn: true,
         loginError: undefined
+      })
+    })
+
+    it('should handle USER_PROFILE_RECEIVED', () => {
+      const profile = 'Profile'
+      expect(reducer([], userProfileReceived(profile))).toEqual({
+        currentUser: {
+          profile: profile
+        }
       })
     })
   })
