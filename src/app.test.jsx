@@ -12,12 +12,20 @@ describe('App', () => {
   let store
   let mockStore
 
+  const createMockStore = (isLoggedIn = false, currentUser = undefined) =>
+    mockStore({
+      user: { isLoggedIn, currentUser },
+      router: {
+        location: {
+          pathname: '/'
+        }
+      }
+    })
+
   beforeEach(() => {
     // Mock store
     mockStore = configureStore()
-    store = mockStore({
-      user: { isLoggedIn: false }
-    })
+    store = createMockStore()
 
     const div = document.createElement('div')
     document.body.appendChild(div)
@@ -47,9 +55,7 @@ describe('App', () => {
     })
 
     it('should not redirect to login if user is logged in', () => {
-      store = mockStore({
-        user: { currentUser: { userName: 'alice' }, isLoggedIn: true }
-      })
+      store = createMockStore(true, { profile: {} })
       const wrapper = createWrapper(['/home'])
       expect(wrapper.find(HomeViewContainer)).toHaveLength(1)
       expect(wrapper.find(LoginViewContainer)).toHaveLength(0)
