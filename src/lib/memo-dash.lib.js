@@ -1,4 +1,6 @@
 import Schema from '@dashevo/dash-schema'
+import { MemoDashClient } from '@dashevo/dash-schema/vmn'
+
 import generateTestData from './test-data-generator'
 
 const debug = require('debug')('memo-dash:MemoDashClient')
@@ -7,11 +9,12 @@ export default class MemoDashLib {
   constructor() {
     Schema.VMN.Util.reset()
 
-    this.MemoDashClient = new Schema.VMN.MemoDashClient()
     debug('MemoDashClient')
   }
 
   async init() {
+    this.MemoDashClient = new MemoDashClient()
+
     await generateTestData(this.MemoDashClient)
   }
 
@@ -32,6 +35,10 @@ export default class MemoDashLib {
    */
   async login(config) {
     await this.MemoDashClient.login(config.blockchainUsername)
+  }
+
+  async logout() {
+    await this.MemoDashClient.logout()
   }
 
   async getUserProfile() {

@@ -1,5 +1,5 @@
 import reducer, { initialState } from './user.reducer'
-import { loginError, loginSuccessfull } from '../actions'
+import { loginError, loginSuccessfull, logoutError, logoutSuccessfull } from '../actions'
 import { userProfileReceived } from '../actions/user.actions'
 
 describe('user reducer', () => {
@@ -20,13 +20,29 @@ describe('user reducer', () => {
       expect(reducer([], loginError(error))).toEqual({ authError: error })
     })
 
-    it('should handle LOGIN_SUCESSFULL', () => {
+    it('should handle LOGOUT_ERROR', () => {
+      const error = 'LogoutError'
+      expect(reducer([], logoutError(error))).toEqual({ authError: error })
+    })
+
+    it('should handle LOGIN_SUCCESSFULL', () => {
       const userName = 'UserName'
       expect(reducer([], loginSuccessfull(userName))).toEqual({
         currentUser: {
           userName: userName
         },
         isLoggedIn: true,
+        authError: undefined
+      })
+    })
+
+    it('should handle LOGOUT_SUCCESSFULL', () => {
+      expect(reducer([], logoutSuccessfull())).toEqual({
+        currentUser: {
+          userName: undefined,
+          profile: undefined
+        },
+        isLoggedIn: false,
         authError: undefined
       })
     })

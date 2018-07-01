@@ -1,4 +1,12 @@
-import { loginError, loginSuccessfull, login, AuthActionTypes } from './auth.actions'
+import {
+  loginError,
+  loginSuccessfull,
+  login,
+  logoutError,
+  logoutSuccessfull,
+  logout,
+  AuthActionTypes
+} from './auth.actions'
 import { verifyAction, mockStoreAndDispatch, getAction } from '../../test-utils/actions.test-helper'
 
 describe('auth actions', () => {
@@ -10,10 +18,18 @@ describe('auth actions', () => {
     it('to indicate a successfull login', () => {
       verifyAction(AuthActionTypes.LOGIN_SUCCESSFULL, 'User1', loginSuccessfull)
     })
+
+    it('to indicate a logout error', () => {
+      verifyAction(AuthActionTypes.LOGOUT_ERROR, 'LogoutError', logoutError)
+    })
+
+    it('to indicate a successfull logout', () => {
+      verifyAction(AuthActionTypes.LOGOUT_SUCCESSFULL, undefined, logoutSuccessfull)
+    })
   })
 
-  describe('when dispatching login action', () => {
-    describe('memoDashLib wasnt initialized yet', () => {
+  describe('memoDashLib wasnt initialized yet', () => {
+    describe('when dispatching login action', () => {
       it('should dispatch loginError', async () => {
         const errorMessage = 'MemoDashLib isnt initialized yet'
         const state = { root: { memoDashLib: undefined } }
@@ -23,19 +39,51 @@ describe('auth actions', () => {
       })
     })
 
-    describe('memoDashLib already initialized', () => {
-      let memoDashLib
-      let state
+    describe('when dispatching logout action', () => {
+      it('should dispatch loginError', async () => {
+        const errorMessage = 'MemoDashLib isnt initialized yet'
+        const state = { root: { memoDashLib: undefined } }
 
-      beforeEach(() => {
-        memoDashLib = {
-          searchBlockchainUsers: jest.fn(),
-          login: jest.fn(),
-          getUserProfile: jest.fn()
-        }
-        state = { root: { memoDashLib } }
+        const actions = await mockStoreAndDispatch(state, logout())
+        expect(await getAction(actions, AuthActionTypes.LOGOUT_ERROR)).toEqual(logoutError(errorMessage))
+      })
+    })
+  })
+
+  describe('memoDashLib already initialized', () => {
+    let memoDashLib
+    let state
+
+    beforeEach(() => {
+      memoDashLib = {
+        searchBlockchainUsers: jest.fn(),
+        login: jest.fn(),
+        logout: jest.fn(),
+        getUserProfile: jest.fn()
+      }
+      state = { root: { memoDashLib } }
+    })
+
+    describe('when dispatching logout action', () => {
+      it('should call memoDashLib.logout', async () => {
+        await mockStoreAndDispatch(state, logout())
+        expect(memoDashLib.logout).toHaveBeenCalled()
       })
 
+      it('should dispatch logoutSuccessfull if the logout was successfull', async () => {
+        const actions = await mockStoreAndDispatch(state, logout())
+        expect(await getAction(actions, AuthActionTypes.LOGOUT_SUCCESSFULL)).toEqual(logoutSuccessfull())
+      })
+
+      it('should dispatch logoutError if the logout was not successfull', async () => {
+        memoDashLib.logout = jest.fn().mockImplementation(() => Promise.reject(new Error('LogoutError')))
+
+        const actions = await mockStoreAndDispatch(state, logout())
+        expect(await getAction(actions, AuthActionTypes.LOGOUT_ERROR)).toEqual(logoutError('LogoutError'))
+      })
+    })
+
+    describe('when dispatching login action', () => {
       it('should call memoDashLib.searchBlockchainUsers', async () => {
         await mockStoreAndDispatch(state, login('blockchainUsername'))
         expect(memoDashLib.searchBlockchainUsers).toHaveBeenCalled()

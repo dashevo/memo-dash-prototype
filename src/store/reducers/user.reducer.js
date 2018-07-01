@@ -13,6 +13,7 @@ export const initialState = {
 export default (state = initialState, action) => {
   switch (action.type) {
     case AuthActionTypes.LOGIN_ERROR:
+    case AuthActionTypes.LOGOUT_ERROR:
       return {
         ...state,
         authError: action.payload
@@ -26,6 +27,17 @@ export default (state = initialState, action) => {
         currentUser: {
           ...state.currentUser,
           userName: action.payload
+        }
+      }
+
+    case AuthActionTypes.LOGOUT_SUCCESSFULL:
+      return {
+        ...state,
+        authError: undefined,
+        isLoggedIn: false,
+        currentUser: {
+          userName: undefined,
+          profile: undefined
         }
       }
     case UserActionTypes.USER_PROFILE_RECEIVED:
