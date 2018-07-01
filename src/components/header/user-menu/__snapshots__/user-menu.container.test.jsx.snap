@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<UserMenuContainer /> Shallow rendering renders without crashing 1`] = `
+<UserMenuComponent
+  avatar="avatarUrl"
+  location="/"
+  onProfileClicked={[Function]}
+  onSignOutClicked={[Function]}
+  username="username"
+/>
+`;
