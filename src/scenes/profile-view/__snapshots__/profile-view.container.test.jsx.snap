@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<ProfileViewContainer /> Shallow rendering renders without crashing 1`] = `
+<ProfileViewComponent
+  profile={
+    Object {
+      "avatarUrl": "AvatarUrl",
+      "bio": "Bio",
+      "followersCount": 1,
+      "followingCount": 1,
+      "username": "Username",
+    }
+  }
+/>
+`;
