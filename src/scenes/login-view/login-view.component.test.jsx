@@ -16,7 +16,7 @@ describe('<LoginViewComponent />', () => {
   })
 
   it('renders error message if login failed', () => {
-    wrapper = shallow(<LoginViewComponent loginError="LoginError" />)
+    wrapper = shallow(<LoginViewComponent authError="LoginError" />)
     expect(wrapper).toMatchSnapshot()
   })
 })

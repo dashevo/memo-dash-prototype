@@ -10,8 +10,7 @@ describe('<LoginViewContainer />', () => {
     // Mock store
     const mockStore = configureStore()
     store = mockStore({
-      user: { loginError: 'LoginError' },
-      router: {}
+      user: { authError: 'LoginError' }
     })
 
     const div = document.createElement('div')

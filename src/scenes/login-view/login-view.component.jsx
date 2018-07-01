@@ -61,8 +61,8 @@ export default class LoginViewComponent extends Component {
                 </Button>
               </Segment>
             </Form>
-            <Message negative hidden={!this.props.loginError}>
-              {this.props.loginError}
+            <Message negative hidden={!this.props.authError}>
+              {this.props.authError}
             </Message>
             {/* <Message>
               New to us? <a href="#">Sign Up</a>

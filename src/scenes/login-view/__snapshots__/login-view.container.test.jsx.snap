@@ -2,7 +2,7 @@
 
 exports[`<LoginViewContainer /> Shallow rendering renders without crashing 1`] = `
 <LoginViewComponent
-  loginError="LoginError"
+  authError="LoginError"
   onLoginClick={[Function]}
 />
 `;

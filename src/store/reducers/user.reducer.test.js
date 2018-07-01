@@ -17,7 +17,7 @@ describe('user reducer', () => {
   describe('relevant actions', () => {
     it('should handle LOGIN_ERROR', () => {
       const error = 'LoginError'
-      expect(reducer([], loginError(error))).toEqual({ loginError: error })
+      expect(reducer([], loginError(error))).toEqual({ authError: error })
     })
 
     it('should handle LOGIN_SUCESSFULL', () => {
@@ -27,7 +27,7 @@ describe('user reducer', () => {
           userName: userName
         },
         isLoggedIn: true,
-        loginError: undefined
+        authError: undefined
       })
     })
 
