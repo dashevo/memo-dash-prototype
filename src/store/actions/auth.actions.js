@@ -27,8 +27,8 @@ const login = blockchainUsername => async (dispatch, getState) => {
 
   try {
     await memoDashLib.login({ blockchainUsername: blockchainUser.name })
+    await dispatch(getUserProfile())
     dispatch(loginSuccessfull(blockchainUser.name))
-    dispatch(getUserProfile())
     dispatch(push('/home'))
   } catch (error) {
     dispatch(loginError(error.message))
