@@ -1,7 +1,9 @@
-import data from '@dashevo/dash-schema/daps/memodash/memodash-client-fixtures'
-import dashMemoSchema from '@dashevo/dash-schema/daps/memodash/memodash-schema'
+import data from '@dashevo/dash-schema/dash-core-daps/memodash/memodash-client-fixtures'
+import Schema from '@dashevo/dash-schema/lib'
+import MemoDashClient from '@dashevo/dash-schema/dash-core-daps/memodash/memodash-client'
+import dashMemoSchema from '@dashevo/dash-schema/dash-core-daps/memodash/memodash-schema'
+
 import faker from 'faker'
-import { MemoDashClient, Schema } from '@dashevo/dash-schema/vmn'
 
 const generateTestData = async client => {
   let dapid = null
@@ -36,8 +38,8 @@ const createUsers = async (client, ...users) => {
 
     // First user create's DAP contract and loads it
     if (i == 0) {
-      console.log('Schema.Daps[title]', Schema.Daps[title])
-      dapid = await client.createDap(Schema.Daps[title])
+      console.log('Schema.Daps[title]', dashMemoSchema)
+      dapid = await client.createDap(dashMemoSchema)
       dapContract = await client.getDap(dapid)
       client.setDap(dapContract)
     }
