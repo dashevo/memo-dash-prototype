@@ -1,0 +1,16 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<HomeViewComponent /> renders without crashing 1`] = `
+<React.Fragment>
+  <Container
+    style={
+      Object {
+        "marginTop": "7em",
+      }
+    }
+    text={true}
+  >
+    Home
+  </Container>
+</React.Fragment>
+`;

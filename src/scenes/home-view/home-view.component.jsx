@@ -1,9 +1,15 @@
-import React, { Component } from 'react'
+import React from 'react'
+import { Container } from 'semantic-ui-react'
+import './styles.css'
 
-export default class HomeViewComponent extends Component {
-  render() {
-    return (
-      <div>Welcome {this.props.userName}</div>
-    )
-  }
+const HomeViewComponent = () => {
+  return (
+    <React.Fragment>
+      <Container text style={{ marginTop: '7em' }}>
+        Home
+      </Container>
+    </React.Fragment>
+  )
 }
+
+export default HomeViewComponent

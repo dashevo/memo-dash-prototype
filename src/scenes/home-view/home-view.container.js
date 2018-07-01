@@ -3,14 +3,12 @@ import HomeViewComponent from './home-view.component'
 
 const mapStateToProps = state => {
   return {
-    userName: state.user.currentUser.userName
+    currentUser: state.user.currentUser
   }
 }
 
 const mapDispatchToProps = dispatch => {
-  return {
-    
-  }
+  return {}
 }
 
 export default connect(
