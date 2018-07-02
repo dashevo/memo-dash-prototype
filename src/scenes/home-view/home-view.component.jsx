@@ -1,9 +1,22 @@
 import React, { Component } from 'react'
+import { Container } from 'semantic-ui-react'
+import './styles.css'
+import MemosContainer from '../../components/memo/memos.container'
 
-export default class HomeViewComponent extends Component {
+export class HomeViewComponent extends Component {
+  componentDidMount() {
+    this.props.getAllMemos()
+  }
+
   render() {
     return (
-      <div>Welcome {this.props.userName}</div>
+      <React.Fragment>
+        <Container text style={{ marginTop: '7em' }}>
+          <MemosContainer memos={this.props.memos} />
+        </Container>
+      </React.Fragment>
     )
   }
 }
+
+export default HomeViewComponent

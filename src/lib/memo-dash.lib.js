@@ -1,6 +1,7 @@
-import Schema from '@dashevo/dash-schema'
-import data from '@dashevo/dash-schema/daps/memodash/memodash-client-fixtures'
-import dashMemoSchema from '@dashevo/dash-schema/daps/memodash/memodash-schema'
+import Schema from '@dashevo/dash-schema/lib'
+import MemoDashClient from '@dashevo/dash-schema/dash-core-daps/memodash/memodash-client'
+
+import generateTestData from './test-data-generator'
 
 const debug = require('debug')('memo-dash:MemoDashClient')
 
@@ -8,23 +9,13 @@ export default class MemoDashLib {
   constructor() {
     Schema.VMN.Util.reset()
 
-    this.MemoDashClient = new Schema.VMN.MemoDashClient()
     debug('MemoDashClient')
   }
 
   async init() {
-    await this._createUser(data.alice_subtx_1)
-    await this._createUser(data.bob_subtx_1)
-    await this._createUser(data.charlie_subtx_1)
+    this.MemoDashClient = new MemoDashClient()
 
-    await this.MemoDashClient.createDap(dashMemoSchema);
-    this.MemoDashClient.logout()
-  }
-
-  async _createUser(user) {
-    this.MemoDashClient.DAPI.CreateUser(user);
-    this.MemoDashClient.DAPI.DashCore.mineBlock();
-    await this.MemoDashClient.login(user.subtx.uname);
+    await generateTestData(this.MemoDashClient)
   }
 
   /**
@@ -34,8 +25,8 @@ export default class MemoDashLib {
    * @returns {array} Array of matching blockchain user accounts
    */
   async searchBlockchainUsers(pattern) {
-    let users = await this.MemoDashClient.searchUsers(pattern);
-    return users;
+    let users = await this.MemoDashClient.searchUsers(pattern)
+    return users
   }
 
   /**
@@ -43,6 +34,22 @@ export default class MemoDashLib {
    * @param {object} config - Configuration object { blockchainUsername: "usernameGoesHere" }
    */
   async login(config) {
-    await this.MemoDashClient.login(config.blockchainUsername);
+    await this.MemoDashClient.login(config.blockchainUsername)
+  }
+
+  async logout() {
+    await this.MemoDashClient.logout()
+  }
+
+  async getUserProfile() {
+    return await this.MemoDashClient.getOwnProfile()
+  }
+
+  async getOwnMemos() {
+    return await this.MemoDashClient.getAllOwnMemos()
+  }
+
+  async getAllMemos() {
+    return await this.MemoDashClient.getMemos()
   }
 }

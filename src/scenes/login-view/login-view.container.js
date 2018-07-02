@@ -5,7 +5,7 @@ import { login } from '../../store/actions'
 
 const mapStateToProps = state => {
   return {
-    loginError: state.user.loginError
+    authError: state.user.authError
   }
 }
 

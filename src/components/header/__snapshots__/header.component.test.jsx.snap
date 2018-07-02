@@ -1,0 +1,30 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<HeaderComponent /> renders without crashing 1`] = `
+<Menu
+  color="blue"
+  fixed="top"
+>
+  <Container>
+    <MenuItem
+      as="a"
+      header={true}
+    >
+      <Logo />
+      MemoDash
+    </MenuItem>
+    <MenuItem
+      active={false}
+      as="a"
+      onClick={[Function]}
+    >
+      Home
+    </MenuItem>
+    <MenuMenu
+      position="right"
+    >
+      <Connect(UserMenuComponent) />
+    </MenuMenu>
+  </Container>
+</Menu>
+`;

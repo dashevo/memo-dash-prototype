@@ -19,10 +19,11 @@ const mockStoreAndDispatch = async (state, actionCreator) => {
 
 const findAction = (actions, type) => actions.find(action => action.type === type)
 
-const getAction = (actions, type) => {
+const getAction = (actions, type, state) => {
   const action = findAction(actions, type)
   if (action) return Promise.resolve(action)
 
+  const store = mockStore(state)
   return new Promise(resolve => {
     store.subscribe(() => {
       const action = findAction(store, type)

@@ -1,19 +1,17 @@
 import { connect } from 'react-redux'
-import HomeViewComponent from './home-view.component'
+import PrivateRouteComponent from './private-route.component'
 
 const mapStateToProps = state => {
   return {
-    userName: state.user.currentUser.userName
+    isLoggedIn: state.user.isLoggedIn
   }
 }
 
 const mapDispatchToProps = dispatch => {
-  return {
-    
-  }
+  return {}
 }
 
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(HomeViewComponent)
+)(PrivateRouteComponent)

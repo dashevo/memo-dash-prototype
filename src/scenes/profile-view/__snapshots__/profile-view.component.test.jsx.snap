@@ -1,0 +1,68 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<ProfileViewComponent /> renders without crashing 1`] = `
+<React.Fragment>
+  <Container
+    style={
+      Object {
+        "marginTop": "7em",
+      }
+    }
+  >
+    <Grid>
+      <GridRow>
+        <GridColumn
+          width={4}
+        >
+          <Image
+            as="img"
+            circular={true}
+            size="medium"
+            src="AvatarUrl"
+            ui={true}
+          />
+          <Header
+            as="h1"
+          >
+            Username
+          </Header>
+          <Segment>
+            Bio
+          </Segment>
+        </GridColumn>
+        <GridColumn
+          width={12}
+        >
+          <Menu>
+            <MenuItem
+              active={true}
+              as="a"
+            >
+              Memos (
+              0
+              )
+            </MenuItem>
+            <MenuItem
+              as="a"
+            >
+              Followers (
+              1
+              )
+            </MenuItem>
+            <MenuItem
+              as="a"
+            >
+              Following (
+              1
+              )
+            </MenuItem>
+          </Menu>
+          <Container>
+            <Connect(MemosComponent) />
+          </Container>
+        </GridColumn>
+      </GridRow>
+    </Grid>
+  </Container>
+</React.Fragment>
+`;

@@ -1,16 +1,26 @@
 import React from 'react'
 import configureStore from 'redux-mock-store'
 import { shallow } from 'enzyme'
-import LoginViewContainer from './login-view.container'
+import ProfileViewContainer from './profile-view.container'
 
-describe('<LoginViewContainer />', () => {
+describe('<ProfileViewContainer />', () => {
   let store
 
   beforeEach(() => {
     // Mock store
     const mockStore = configureStore()
     store = mockStore({
-      user: { authError: 'LoginError' }
+      user: {
+        currentUser: {
+          profile: {
+            avatarUrl: 'AvatarUrl',
+            username: 'Username',
+            bio: 'Bio',
+            followersCount: 1,
+            followingCount: 1
+          }
+        }
+      }
     })
 
     const div = document.createElement('div')
@@ -19,7 +29,7 @@ describe('<LoginViewContainer />', () => {
 
   describe('Shallow rendering', () => {
     it('renders without crashing', () => {
-      const wrapper = shallow(<LoginViewContainer />, { context: { store } })
+      const wrapper = shallow(<ProfileViewContainer />, { context: { store } })
       expect(wrapper).toMatchSnapshot()
     })
   })
