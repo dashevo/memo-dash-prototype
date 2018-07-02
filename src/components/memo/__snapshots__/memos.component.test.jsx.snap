@@ -1,0 +1,56 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<MemosComponent /> renders without crashing 1`] = `
+<React.Fragment>
+  <CommentGroup
+    size="large"
+  >
+    <MemoComponent
+      key="NaN"
+      memo={
+        Object {
+          "key": "1",
+          "memoText": "MemoText",
+        }
+      }
+    />
+  </CommentGroup>
+</React.Fragment>
+`;
+
+exports[`<MemosComponent /> should render memos 1`] = `
+<React.Fragment>
+  <CommentGroup
+    size="large"
+  >
+    <MemoComponent
+      key="1alice"
+      memo={
+        Object {
+          "idx": 1,
+          "memoDatetime": "2018-07-02T14:18:42.728Z",
+          "memoLikesCount": 0,
+          "memoRepliesCount": 0,
+          "memoText": "Iusto possimus quidem modi quis.",
+          "memoTipTotal": 0,
+          "username": "alice",
+        }
+      }
+    />
+    <MemoComponent
+      key="2alice"
+      memo={
+        Object {
+          "idx": 2,
+          "memoDatetime": "2018-07-02T14:24:05.359Z",
+          "memoLikesCount": 1,
+          "memoRepliesCount": 2,
+          "memoText": "Quo eligendi velit velit commodi.",
+          "memoTipTotal": 3,
+          "username": "alice",
+        }
+      }
+    />
+  </CommentGroup>
+</React.Fragment>
+`;

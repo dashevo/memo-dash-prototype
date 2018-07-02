@@ -10,7 +10,7 @@ exports[`<HomeViewComponent /> renders without crashing 1`] = `
     }
     text={true}
   >
-    Home
+    <Connect(MemosComponent) />
   </Container>
 </React.Fragment>
 `;

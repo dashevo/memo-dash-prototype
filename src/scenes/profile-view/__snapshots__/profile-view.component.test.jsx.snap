@@ -34,15 +34,32 @@ exports[`<ProfileViewComponent /> renders without crashing 1`] = `
           width={12}
         >
           <Menu>
-            <MenuItem>
-              Followers 
-              1
+            <MenuItem
+              active={true}
+              as="a"
+            >
+              Memos (
+              0
+              )
             </MenuItem>
-            <MenuItem>
-              Following 
+            <MenuItem
+              as="a"
+            >
+              Followers (
               1
+              )
+            </MenuItem>
+            <MenuItem
+              as="a"
+            >
+              Following (
+              1
+              )
             </MenuItem>
           </Menu>
+          <Container>
+            <Connect(MemosComponent) />
+          </Container>
         </GridColumn>
       </GridRow>
     </Grid>

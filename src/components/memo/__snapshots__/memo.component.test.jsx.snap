@@ -1,0 +1,81 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<MemoComponent /> renders without crashing 1`] = `
+<Segment>
+  <Comment>
+    <CommentContent>
+      <CommentAuthor
+        as="a"
+      />
+      <CommentMetadata>
+        <span />
+      </CommentMetadata>
+      <CommentText />
+      <CommentActions>
+        <a>
+          <Icon
+            as="i"
+            name="reply"
+          />
+          <span />
+        </a>
+        <a>
+          <Icon
+            as="i"
+            name="like"
+          />
+          <span />
+        </a>
+        <span>
+          <Icon
+            as="i"
+            color="grey"
+            name="btc"
+          />
+          <span />
+        </span>
+      </CommentActions>
+    </CommentContent>
+  </Comment>
+</Segment>
+`;
+
+exports[`<MemoComponent /> should render memo 1`] = `
+<Segment>
+  <Comment>
+    <CommentContent>
+      <CommentAuthor
+        as="a"
+      />
+      <CommentMetadata>
+        <span />
+      </CommentMetadata>
+      <CommentText />
+      <CommentActions>
+        <a>
+          <Icon
+            as="i"
+            name="reply"
+          />
+          <span />
+        </a>
+        <a>
+          <Icon
+            as="i"
+            name="like"
+          />
+          <span />
+        </a>
+        <span>
+          <Icon
+            as="i"
+            color="grey"
+            name="btc"
+          />
+          <span />
+        </span>
+      </CommentActions>
+    </CommentContent>
+  </Comment>
+</Segment>
+`;
