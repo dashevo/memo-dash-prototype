@@ -1,6 +1,4 @@
 import data from '@dashevo/dash-schema/dash-core-daps/memodash/memodash-client-fixtures'
-import Schema from '@dashevo/dash-schema/lib'
-import MemoDashClient from '@dashevo/dash-schema/dash-core-daps/memodash/memodash-client'
 import dashMemoSchema from '@dashevo/dash-schema/dash-core-daps/memodash/memodash-schema'
 
 import faker from 'faker'

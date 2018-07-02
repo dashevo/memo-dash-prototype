@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React from 'react'
 import { Menu, Container } from 'semantic-ui-react'
 import Logo from '../logo'
 import UserMenuContainer from './user-menu/user-menu.container'
