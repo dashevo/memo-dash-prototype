@@ -19,7 +19,7 @@ git clone https://github.com/dashevo/memo-dash
 Install npm packages:
 
 ```
-cd evo-contact-list && npm install
+cd memo-dash && npm install
 ```
 
 Start the server
@@ -27,8 +27,6 @@ Start the server
 ```
 npm start
 ```
-
-(`yarn` is also fine for the main project, but dash-schema only works with `npm`.)
 
 ## Running the tests
 
