@@ -44,4 +44,12 @@ export default class MemoDashLib {
   async getUserProfile() {
     return await this.MemoDashClient.getOwnProfile()
   }
+
+  async getOwnMemos() {
+    return await this.MemoDashClient.getAllOwnMemos()
+  }
+
+  async getAllMemos() {
+    return await this.MemoDashClient.getMemos()
+  }
 }

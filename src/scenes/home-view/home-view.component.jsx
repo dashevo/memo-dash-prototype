@@ -1,8 +1,13 @@
-import React from 'react'
+import React, { Component } from 'react'
 import { Container } from 'semantic-ui-react'
 import './styles.css'
 
-const HomeViewComponent = () => {
+export class HomeViewComponent extends Component {
+  componentDidMount() {
+    this.props.getAllMemos()
+  }
+
+  render() {
   return (
     <React.Fragment>
       <Container text style={{ marginTop: '7em' }}>
@@ -10,6 +15,7 @@ const HomeViewComponent = () => {
       </Container>
     </React.Fragment>
   )
+}
 }
 
 export default HomeViewComponent

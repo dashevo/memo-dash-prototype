@@ -8,6 +8,9 @@ import LoginViewContainer from './scenes/login-view/login-view.container'
 import App, { AppComponent } from './app'
 import NoMatchComponent from './components/no-match/no-match.component'
 
+jest.mock('./scenes/home-view/home-view.container')
+jest.mock('./scenes/login-view/login-view.container')
+
 describe('App', () => {
   let store
   let mockStore
@@ -55,7 +58,7 @@ describe('App', () => {
     })
 
     it('should not redirect to login if user is logged in', () => {
-      store = createMockStore(true, { profile: {} })
+      store = createMockStore(true, { profile: {}, memos: {} })
       const wrapper = createWrapper(['/home'])
       expect(wrapper.find(HomeViewContainer)).toHaveLength(1)
       expect(wrapper.find(LoginViewContainer)).toHaveLength(0)

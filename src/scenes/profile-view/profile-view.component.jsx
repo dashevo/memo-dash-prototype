@@ -1,7 +1,14 @@
-import React from 'react'
+import React, { Component } from 'react'
 import { Container, Image, Grid, Menu, Segment, Header } from 'semantic-ui-react'
 
-const ProfileViewComponent = props => {
+export class ProfileViewComponent extends Component {
+  componentDidMount() {
+    this.props.getOwnMemos()
+  }
+
+  render() {
+    const { profile, memos } = this.props
+
   return (
     <React.Fragment>
       <Container style={{ marginTop: '7em' }}>

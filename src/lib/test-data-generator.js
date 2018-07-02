@@ -51,6 +51,10 @@ const createUsers = async (client, ...users) => {
       name: faker.name.firstName()
     })
 
+    for (let i = 0; i < 3; i++) {
+      await client.postMemo(faker.lorem.sentence())
+    }
+
     client.logout()
   }
   client.log('generated test data for ' + title)

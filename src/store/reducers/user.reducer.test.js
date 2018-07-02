@@ -1,6 +1,6 @@
 import reducer, { initialState } from './user.reducer'
 import { loginError, loginSuccessfull, logoutError, logoutSuccessfull } from '../actions'
-import { userProfileReceived } from '../actions/user.actions'
+import { userProfileReceived, ownMemosReceived, allMemosReceived } from '../actions/user.actions'
 
 describe('user reducer', () => {
   it('should return the initial state', () => {
@@ -53,6 +53,22 @@ describe('user reducer', () => {
         currentUser: {
           profile: profile
         }
+      })
+    })
+
+    it('should handle OWN_MEMOS_RECEIVED', () => {
+      const memos = 'Memos'
+      expect(reducer([], ownMemosReceived(memos))).toEqual({
+        currentUser: {
+          memos
+        }
+      })
+    })
+
+    it('should handle ALL_MEMOS_RECEIVED', () => {
+      const memos = 'Memos'
+      expect(reducer([], allMemosReceived(memos))).toEqual({
+        memos
       })
     })
   })

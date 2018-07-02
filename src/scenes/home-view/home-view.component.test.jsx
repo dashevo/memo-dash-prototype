@@ -8,7 +8,7 @@ describe('<HomeViewComponent />', () => {
   beforeEach(() => {
     const div = document.createElement('div')
     document.body.appendChild(div)
-    wrapper = shallow(<HomeViewComponent />)
+    wrapper = shallow(<HomeViewComponent getAllMemos={jest.fn()} />)
   })
 
   it('renders without crashing', () => {

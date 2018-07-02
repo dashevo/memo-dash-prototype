@@ -2,6 +2,7 @@
 
 exports[`<ProfileViewContainer /> Shallow rendering renders without crashing 1`] = `
 <ProfileViewComponent
+  getOwnMemos={[Function]}
   profile={
     Object {
       "avatarUrl": "AvatarUrl",

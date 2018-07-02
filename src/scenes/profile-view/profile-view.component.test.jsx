@@ -15,7 +15,7 @@ describe('<ProfileViewComponent />', () => {
       followersCount: 1,
       followingCount: 1
     }
-    wrapper = shallow(<ProfileViewComponent profile={profile} />)
+    wrapper = shallow(<ProfileViewComponent profile={profile} getOwnMemos={jest.fn()} />)
   })
 
   it('renders without crashing', () => {

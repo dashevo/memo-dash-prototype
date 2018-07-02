@@ -7,5 +7,6 @@ exports[`<HomeViewContainer /> Shallow rendering renders without crashing 1`] = 
       "username": "Username",
     }
   }
+  getAllMemos={[Function]}
 />
 `;
