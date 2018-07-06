@@ -13,9 +13,9 @@ export default class MemoDashLib {
   }
 
   async init() {
-    this.MemoDashClient = new MemoDashClient()
+    this.memoDashClient = new MemoDashClient()
 
-    await generateTestData(this.MemoDashClient)
+    await generateTestData(this.memoDashClient)
   }
 
   /**
@@ -25,7 +25,7 @@ export default class MemoDashLib {
    * @returns {array} Array of matching blockchain user accounts
    */
   async searchBlockchainUsers(pattern) {
-    let users = await this.MemoDashClient.searchUsers(pattern)
+    let users = await this.memoDashClient.searchUsers(pattern)
     return users
   }
 
@@ -34,22 +34,45 @@ export default class MemoDashLib {
    * @param {object} config - Configuration object { blockchainUsername: "usernameGoesHere" }
    */
   async login(config) {
-    await this.MemoDashClient.login(config.blockchainUsername)
+    await this.memoDashClient.login(config.blockchainUsername)
   }
 
   async logout() {
-    await this.MemoDashClient.logout()
+    await this.memoDashClient.logout()
   }
 
   async getUserProfile() {
-    return await this.MemoDashClient.getOwnProfile()
+    return await this.memoDashClient.getOwnProfile()
   }
 
   async getOwnMemos() {
-    return await this.MemoDashClient.getAllOwnMemos()
+    const memos = await this.memoDashClient.getAllOwnMemos()
+    return await this._enrichMemosWithAvatarUrl(memos)
   }
 
   async getAllMemos() {
-    return await this.MemoDashClient.getMemos()
+    const memos = await this.memoDashClient.getMemos()
+    return await this._enrichMemosWithAvatarUrl(memos)
+  }
+
+  _isIterable = object => object && Symbol.iterator in Object(object)
+
+  _enrichMemosWithAvatarUrl = async memos => {
+    const userAvatars = new Map()
+
+    if (this._isIterable(memos)) {
+      const enrichedMemos = []
+      for (const memo of memos) {
+        if (!userAvatars.has(memo.username)) {
+          const userProfile = await this.memoDashClient.getUserProfile(memo.username)
+          if (userProfile) userAvatars.set(memo.username, userProfile.avatarUrl)
+        }
+
+        enrichedMemos.push({ ...memo, avatarUrl: userAvatars.get(memo.username) })
+      }
+      return enrichedMemos
+    }
+
+    return memos
   }
 }
