@@ -3,6 +3,9 @@
 exports[`<MemoComponent /> renders without crashing 1`] = `
 <Segment>
   <Comment>
+    <CommentAvatar
+      as="a"
+    />
     <CommentContent>
       <CommentAuthor
         as="a"
@@ -43,6 +46,9 @@ exports[`<MemoComponent /> renders without crashing 1`] = `
 exports[`<MemoComponent /> should render memo 1`] = `
 <Segment>
   <Comment>
+    <CommentAvatar
+      as="a"
+    />
     <CommentContent>
       <CommentAuthor
         as="a"

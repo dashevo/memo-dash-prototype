@@ -24,7 +24,8 @@ describe('<MemoComponent />', () => {
         memoRepliesCount: 0,
         memoText: 'Iusto possimus quidem modi quis.',
         memoTipTotal: 0,
-        username: 'alice'
+        username: 'alice',
+        avatarUrl: 'AvatarUrl'
       }
     ]
 

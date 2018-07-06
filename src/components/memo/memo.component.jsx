@@ -6,7 +6,7 @@ const MemoComponent = props => {
   return (
     <Segment>
       <Comment>
-        {/* <Comment.Avatar as="a" src={getAvatarForUsername(memo.username)} /> */}
+        <Comment.Avatar as="a" src={memo.avatarUrl} />
         <Comment.Content>
           <Comment.Author as="a">{memo.username}</Comment.Author>
           <Comment.Metadata>
