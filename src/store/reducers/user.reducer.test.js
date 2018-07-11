@@ -31,18 +31,13 @@ describe('user reducer', () => {
         currentUser: {
           userName: userName
         },
-        isLoggedIn: true,
         authError: undefined
       })
     })
 
     it('should handle LOGOUT_SUCCESSFULL', () => {
       expect(reducer([], logoutSuccessfull())).toEqual({
-        currentUser: {
-          userName: undefined,
-          profile: undefined
-        },
-        isLoggedIn: false,
+        currentUser: undefined,
         authError: undefined
       })
     })

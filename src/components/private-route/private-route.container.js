@@ -3,7 +3,7 @@ import PrivateRouteComponent from './private-route.component'
 
 const mapStateToProps = state => {
   return {
-    isLoggedIn: state.user.isLoggedIn
+    isLoggedIn: !!state.user.currentUser
   }
 }
 

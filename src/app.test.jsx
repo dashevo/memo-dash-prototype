@@ -15,9 +15,9 @@ describe('App', () => {
   let store
   let mockStore
 
-  const createMockStore = (isLoggedIn = false, currentUser = undefined) =>
+  const createMockStore = (currentUser = undefined) =>
     mockStore({
-      user: { isLoggedIn, currentUser },
+      user: { currentUser },
       router: {
         location: {
           pathname: '/'

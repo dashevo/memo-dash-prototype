@@ -6,9 +6,12 @@ import { logout } from '../../../store/actions'
 import UserMenuComponent from './user-menu.component'
 
 const mapStateToProps = state => {
+  const {
+    currentUser: { profile }
+  } = state.user
   return {
-    avatar: state.user.currentUser.profile.avatarUrl,
-    username: state.user.currentUser.profile.username,
+    avatar: profile ? profile.avatarUrl : undefined,
+    username: profile ? profile.username : undefined,
     location: state.router.location.pathname
   }
 }
