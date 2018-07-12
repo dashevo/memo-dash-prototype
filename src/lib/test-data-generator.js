@@ -4,42 +4,39 @@ import dashMemoSchema from '@dashevo/dash-schema/dash-core-daps/memodash/memodas
 import faker from 'faker'
 
 const generateTestData = async client => {
-  let dapid = null
-  const title = 'MemoDash'
-
-  let o = await client.searchDaps(title)
-  console.log('found daps', o)
-  if (o.length > 0) {
-    return client.getDap(o[0].dapcontract.meta.dapid)
+  let availableDap = await client.searchDaps(dashMemoSchema.title)
+  if (availableDap.length > 0) {
+    console.log('Dap already available -> skip creation', availableDap[0])
+    const dapId = availableDap[0].dapcontract.meta.dapid
+    await loadDapContract(client, dapId)
+  } else {
+    console.log('No Dap available -> create one', availableDap[0])
+    try {
+      await createUsers(client, data.alice_subtx_1.subtx.uname, data.bob_subtx_1.subtx.uname)
+      await followMutually(client, data.alice_subtx_1.subtx.uname, data.bob_subtx_1.subtx.uname)
+    } catch (e) {
+      client.log('error generating test data', e)
+      throw new Error(e)
+    }
   }
+}
 
-  try {
-    await createUsers(client, data.alice_subtx_1.subtx.uname, data.bob_subtx_1.subtx.uname)
-    await followMutually(client, data.alice_subtx_1.subtx.uname, data.bob_subtx_1.subtx.uname)
-  } catch (e) {
-    let m = 'error generating test data'
-    client.log(m, e)
-    throw new Error(e)
-  }
-  return client.getDap(dapid)
+const loadDapContract = async (client, dapId) => {
+  const dapContract = await client.getDap(dapId)
+  client.setDap(dapContract)
 }
 
 const createUsers = async (client, ...users) => {
-  let dapContract = null
-  let dapid = null
-  const title = 'MemoDash'
   for (let i in users) {
-    // testUsers.forEach(async (testUser, i) => {
     // Create blockchain user & login to the Client
     await client.createBlockchainUser(users[i])
     await client.login(users[i])
 
     // First user create's DAP contract and loads it
-    if (i == 0) {
-      console.log('Schema.Daps[title]', dashMemoSchema)
-      dapid = await client.createDap(dashMemoSchema)
-      dapContract = await client.getDap(dapid)
-      client.setDap(dapContract)
+    if (i === '0') {
+      console.log('Create DAP')
+      const dapid = await client.createDap(dashMemoSchema)
+      await loadDapContract(client, dapid)
     }
 
     await client.signup({
@@ -55,7 +52,7 @@ const createUsers = async (client, ...users) => {
 
     client.logout()
   }
-  client.log('generated test data for ' + title)
+  client.log('generated test data for ' + dashMemoSchema.title)
 }
 
 const followMutually = async (client, ...users) => {

@@ -1,17 +1,8 @@
-import Schema from '@dashevo/dash-schema/lib'
 import MemoDashClient from '@dashevo/dash-schema/dash-core-daps/memodash/memodash-client'
 
 import generateTestData from './test-data-generator'
 
-const debug = require('debug')('memo-dash:MemoDashClient')
-
 export default class MemoDashLib {
-  constructor() {
-    Schema.VMN.Util.reset()
-
-    debug('MemoDashClient')
-  }
-
   async init() {
     this.memoDashClient = new MemoDashClient()
 
