@@ -5,6 +5,7 @@ import { LoginViewContainer, HomeViewContainer, ProfileViewContainer } from '../
 import {} from '../scenes/'
 import { NoMatch } from '../components'
 import HeaderContainer from '../components/header/header.container'
+import FooterContainer from '../components/footer/footer.container'
 
 const withHeader = WrappedComponent => props => (
   <React.Fragment>
@@ -13,13 +14,20 @@ const withHeader = WrappedComponent => props => (
   </React.Fragment>
 )
 
+const withFooter = WrappedComponent => props => (
+  <React.Fragment>
+    <WrappedComponent {...props} />
+    <FooterContainer />
+  </React.Fragment>
+)
+
 const routes = (
   <div>
     <Switch>
-      <Route exact path="/" component={LoginViewContainer} />
-      <Route path="/login" component={LoginViewContainer} />
-      <PrivateRoute path="/home" component={withHeader(HomeViewContainer)} />
-      <PrivateRoute path="/profile" component={withHeader(ProfileViewContainer)} />
+      <Route exact path="/" component={withFooter(LoginViewContainer)} />
+      <Route path="/login" component={withFooter(LoginViewContainer)} />
+      <PrivateRoute path="/home" component={withHeader(withFooter(HomeViewContainer))} />
+      <PrivateRoute path="/profile" component={withHeader(withFooter(ProfileViewContainer))} />
       <Route component={NoMatch} />
     </Switch>
   </div>
