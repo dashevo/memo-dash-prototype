@@ -5,15 +5,21 @@ import { composeWithDevTools } from 'redux-devtools-extension'
 import logger from 'redux-logger'
 import thunk from 'redux-thunk'
 import rootReducer from './reducers'
+
 const history = createBrowserHistory()
+const middlewares = [routerMiddleware(history), thunk, logger]
+const initialState = {}
 
-const createStoreInstance = initialState => {
-  const middlewares = [routerMiddleware(history), thunk, logger]
+const store = createStore(
+  connectRouter(history)(rootReducer),
+  initialState,
+  compose(composeWithDevTools(applyMiddleware(...middlewares)))
+)
 
-  return createStore(
-    connectRouter(history)(rootReducer),
-    initialState,
-    compose(composeWithDevTools(applyMiddleware(...middlewares)))
-  )
+if (module.hot) {
+  module.hot.accept('./reducers', () => {
+    store.replaceReducer(connectRouter(history)(rootReducer))
+  })
 }
-export { createStoreInstance as createStore, history }
+
+export { store, history }
