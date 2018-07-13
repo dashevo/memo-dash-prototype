@@ -11,22 +11,13 @@ export class AppComponent extends Component {
   }
 
   render() {
-    return (
-      <React.Fragment>
-        {routes}
-        <footer className="site-footer" key="site-footer">
-          <a href="/block-explorer.html" target="_blank">
-            block explorer
-          </a>
-        </footer>
-      </React.Fragment>
-    )
+    return <React.Fragment>{routes}</React.Fragment>
   }
 }
 
 const mapStateToProps = state => {
   return {
-    isLoggedIn: state.isLoggedIn
+    isLoggedIn: !!state.user.currentUser
   }
 }
 

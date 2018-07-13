@@ -3,20 +3,32 @@ import ReactDOM from 'react-dom'
 import { Provider } from 'react-redux'
 import 'semantic-ui-css/semantic.min.css'
 import registerServiceWorker from './registerServiceWorker'
-import { createStore, history } from './store'
+import { history, store } from './store'
 import App from './app'
 import { ConnectedRouter } from 'connected-react-router'
-
-const store = createStore()
+import { AppContainer } from 'react-hot-loader'
 
 console.log('CREATE_STORE', store.getState())
 
-ReactDOM.render(
-  <Provider store={store}>
-    <ConnectedRouter history={history}>
-      <App />
-    </ConnectedRouter>
-  </Provider>,
-  document.getElementById('root')
-)
+const render = Component => {
+  ReactDOM.render(
+    <AppContainer>
+      <Provider store={store}>
+        <ConnectedRouter history={history}>
+          <Component />
+        </ConnectedRouter>
+      </Provider>
+    </AppContainer>,
+    document.getElementById('root')
+  )
+}
+
 registerServiceWorker()
+
+render(App)
+
+if (module.hot) {
+  module.hot.accept('./app', () => {
+    render(App)
+  })
+}

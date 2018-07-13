@@ -2,7 +2,7 @@ import React from 'react'
 import configureStore from 'redux-mock-store'
 import { shallow, mount } from 'enzyme'
 import PrivateRouteContainer from './private-route.container'
-import {MemoryRouter} from 'react-router-dom'
+import { MemoryRouter } from 'react-router-dom'
 
 describe('<PrivateRouteContainer />', () => {
   let store
@@ -11,9 +11,7 @@ describe('<PrivateRouteContainer />', () => {
     // Mock store
     const mockStore = configureStore()
     store = mockStore({
-      user: {
-        isLoggedIn: false
-      },
+      user: {},
       router: {}
     })
 
@@ -27,5 +25,4 @@ describe('<PrivateRouteContainer />', () => {
       expect(wrapper).toMatchSnapshot()
     })
   })
-
 })
