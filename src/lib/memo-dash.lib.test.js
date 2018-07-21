@@ -1,6 +1,6 @@
 import MemoDashLib from './memo-dash.lib'
 
-jest.mock('@dashevo/dash-schema/lib')
+jest.mock('@dashevo/dash-schema/dash-schema-lib')
 
 describe('MemoDashLib', () => {
   let memoDashLib
