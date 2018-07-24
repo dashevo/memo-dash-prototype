@@ -32,12 +32,12 @@ export default class MemoDashLib {
     await this.memoDashClient.logout()
   }
 
-  async getUserProfile() {
-    return await this.memoDashClient.getOwnProfile()
+  async getUserProfile(username) {
+    return await this.memoDashClient.getUserProfile(username)
   }
 
-  async getOwnMemos() {
-    const memos = await this.memoDashClient.getAllOwnMemos()
+  async getMemosForUser(username) {
+    const memos = await this.memoDashClient.getMemosByUsername(username)
     return await this._enrichMemosWithAvatarUrl(memos)
   }
 

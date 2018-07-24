@@ -2,8 +2,8 @@ import {
   UserActionTypes,
   getUserProfile,
   userProfileReceived,
-  getOwnMemos,
-  ownMemosReceived,
+  getMemosForUser,
+  memosForUserReceived,
   getAllMemos,
   allMemosReceived
 } from './user.actions'
@@ -18,19 +18,19 @@ describe('user actions', () => {
 
   describe('when dispatching getUserProfile action', () => {
     let getUserProfileSpy
-    let getOwnMemosSpy
+    let getMemosForUserSpy
     let getAllMemosSpy
     let state
 
     beforeEach(async () => {
       getUserProfileSpy = jest.fn()
-      getOwnMemosSpy = jest.fn()
+      getMemosForUserSpy = jest.fn()
       getAllMemosSpy = jest.fn()
       state = {
         root: {
           memoDashLib: {
             getUserProfile: getUserProfileSpy,
-            getOwnMemos: getOwnMemosSpy,
+            getMemosForUser: getMemosForUserSpy,
             getAllMemos: getAllMemosSpy
           }
         }
@@ -55,15 +55,18 @@ describe('user actions', () => {
 
     describe('Memos', () => {
       it('should call memoDashLib.getOwnMemos', async () => {
-        await mockStoreAndDispatch(state, getOwnMemos())
-        expect(getOwnMemosSpy).toHaveBeenCalled()
+        await mockStoreAndDispatch(state, getMemosForUser())
+        expect(getMemosForUserSpy).toHaveBeenCalled()
       })
 
-      it('should dispatch ownMemosReceived', async () => {
+      it('should dispatch memosForUserReceived', async () => {
         const memos = 'memos'
-        state.root.memoDashLib.getOwnMemos.mockReturnValue(memos)
-        const actions = await mockStoreAndDispatch(state, getOwnMemos())
-        expect(await getAction(actions, UserActionTypes.OWN_MEMOS_RECEIVED)).toEqual(ownMemosReceived(memos))
+        const username = 'username'
+        state.root.memoDashLib.getMemosForUser.mockReturnValue(memos)
+        const actions = await mockStoreAndDispatch(state, getMemosForUser(username))
+        expect(await getAction(actions, UserActionTypes.MEMOS_FOR_USER_RECEIVED)).toEqual(
+          memosForUserReceived(username, memos)
+        )
       })
 
       it('should call memoDashLib.getAllMemos', async () => {
