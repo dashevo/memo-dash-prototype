@@ -1,6 +1,6 @@
 import reducer, { initialState } from './user.reducer'
 import { loginError, loginSuccessfull, logoutError, logoutSuccessfull } from '../actions'
-import { userProfileReceived, ownMemosReceived, allMemosReceived } from '../actions/user.actions'
+import { userProfileReceived, memosForUserReceived, allMemosReceived } from '../actions/user.actions'
 
 describe('user reducer', () => {
   it('should return the initial state', () => {
@@ -26,44 +26,41 @@ describe('user reducer', () => {
     })
 
     it('should handle LOGIN_SUCCESSFULL', () => {
-      const userName = 'UserName'
-      expect(reducer([], loginSuccessfull(userName))).toEqual({
-        currentUser: {
-          userName: userName
-        },
-        authError: undefined
+      const username = 'UserName'
+      expect(reducer(undefined, loginSuccessfull(username))).toEqual({
+        ...initialState,
+        currentUser: username
       })
     })
 
     it('should handle LOGOUT_SUCCESSFULL', () => {
-      expect(reducer([], logoutSuccessfull())).toEqual({
-        currentUser: undefined,
-        authError: undefined
+      expect(reducer(undefined, logoutSuccessfull())).toEqual({
+        ...initialState
       })
     })
 
     it('should handle USER_PROFILE_RECEIVED', () => {
-      const profile = 'Profile'
-      expect(reducer([], userProfileReceived(profile))).toEqual({
-        currentUser: {
-          profile: profile
-        }
+      const profile = { username: 'Username' }
+      expect(reducer(undefined, userProfileReceived(profile))).toEqual({
+        ...initialState,
+        users: [{ profile, username: profile.username }]
       })
     })
 
-    it('should handle OWN_MEMOS_RECEIVED', () => {
+    it('should handle MEMOS_FOR_USER_RECEIVED', () => {
+      const username = 'Username'
       const memos = 'Memos'
-      expect(reducer([], ownMemosReceived(memos))).toEqual({
-        currentUser: {
-          memos
-        }
+      expect(reducer(undefined, memosForUserReceived(username, memos))).toEqual({
+        ...initialState,
+        users: [{ username, memos }]
       })
     })
 
     it('should handle ALL_MEMOS_RECEIVED', () => {
-      const memos = 'Memos'
-      expect(reducer([], allMemosReceived(memos))).toEqual({
-        memos
+      const allMemos = 'Memos'
+      expect(reducer(undefined, allMemosReceived(allMemos))).toEqual({
+        ...initialState,
+        allMemos
       })
     })
   })
