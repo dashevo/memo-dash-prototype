@@ -2,14 +2,13 @@
 
 exports[`<ProfileViewContainer /> Shallow rendering renders without crashing 1`] = `
 <ProfileViewComponent
-  getOwnMemos={[Function]}
-  profile={
+  getMemosForUser={[Function]}
+  getUserProfile={[Function]}
+  match={
     Object {
-      "avatarUrl": "AvatarUrl",
-      "bio": "Bio",
-      "followersCount": 1,
-      "followingCount": 1,
-      "username": "Username",
+      "params": Object {
+        "username": "username",
+      },
     }
   }
 />

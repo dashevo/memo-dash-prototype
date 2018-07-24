@@ -5,10 +5,13 @@ exports[`<MemoComponent /> renders without crashing 1`] = `
   <Comment>
     <CommentAvatar
       as="a"
+      className="avatar"
+      onClick={[Function]}
     />
     <CommentContent>
       <CommentAuthor
         as="a"
+        onClick={[Function]}
       />
       <CommentMetadata>
         <span />
@@ -48,10 +51,13 @@ exports[`<MemoComponent /> should render memo 1`] = `
   <Comment>
     <CommentAvatar
       as="a"
+      className="avatar"
+      onClick={[Function]}
     />
     <CommentContent>
       <CommentAuthor
         as="a"
+        onClick={[Function]}
       />
       <CommentMetadata>
         <span />

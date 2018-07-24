@@ -5,7 +5,7 @@ exports[`<MemosComponent /> renders without crashing 1`] = `
   <CommentGroup
     size="large"
   >
-    <MemoComponent
+    <Connect(MemoComponent)
       key="NaN"
       memo={
         Object {
@@ -23,7 +23,7 @@ exports[`<MemosComponent /> should render memos 1`] = `
   <CommentGroup
     size="large"
   >
-    <MemoComponent
+    <Connect(MemoComponent)
       key="1alice"
       memo={
         Object {
@@ -37,7 +37,7 @@ exports[`<MemosComponent /> should render memos 1`] = `
         }
       }
     />
-    <MemoComponent
+    <Connect(MemoComponent)
       key="2alice"
       memo={
         Object {

@@ -3,22 +3,39 @@ import { shallow } from 'enzyme'
 import ProfileViewComponent from './profile-view.component'
 
 describe('<ProfileViewComponent />', () => {
-  let wrapper
+  let profile
+  let match
 
   beforeEach(() => {
     const div = document.createElement('div')
     document.body.appendChild(div)
-    const profile = {
+
+    profile = {
       avatarUrl: 'AvatarUrl',
       username: 'Username',
       bio: 'Bio',
       followersCount: 1,
       followingCount: 1
     }
-    wrapper = shallow(<ProfileViewComponent profile={profile} getOwnMemos={jest.fn()} />)
+    match = { params: { username: 'username' } }
   })
 
-  it('renders without crashing', () => {
+  it('renders loader without crashing', () => {
+    const wrapper = shallow(
+      <ProfileViewComponent
+        profile={undefined}
+        match={match}
+        memos={undefined}
+        getUserProfile={jest.fn()}
+        getMemosForUser={jest.fn()}
+      />
+    )
+    expect(wrapper).toMatchSnapshot()
+  })
+
+  it('renders memos without crashing', () => {
+    const memos = [{ message: 'message', createdAt: 'createdAt' }]
+    const wrapper = shallow(<ProfileViewComponent profile={profile} match={match} memos={memos} />)
     expect(wrapper).toMatchSnapshot()
   })
 })

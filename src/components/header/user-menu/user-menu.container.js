@@ -4,22 +4,20 @@ import { push } from 'connected-react-router'
 import { logout } from '../../../store/actions'
 
 import UserMenuComponent from './user-menu.component'
+import { filterUser } from '../../../lib/helpers'
 
 const mapStateToProps = state => {
-  const {
-    currentUser: { profile }
-  } = state.user
+  const user = filterUser(state.user.currentUser, state.user.users)
   return {
-    avatar: profile ? profile.avatarUrl : undefined,
-    username: profile ? profile.username : undefined,
-    location: state.router.location.pathname
+    username: user.username,
+    avatarUrl: user.profile.avatarUrl
   }
 }
 
 const mapDispatchToProps = dispatch => {
   return {
-    onProfileClicked: () => {
-      dispatch(push('/profile'))
+    onProfileClicked: username => {
+      dispatch(push(`/profile/${username}`))
     },
     onSignOutClicked: () => {
       dispatch(logout())

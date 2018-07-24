@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from 'react'
-import MemoComponent from './memo.component'
+import MemoContainer from './memo.container'
 import { Comment } from 'semantic-ui-react'
 
 export default class MemosComponent extends Component {
@@ -9,7 +9,7 @@ export default class MemosComponent extends Component {
       <Fragment>
         {memos ? (
           <Comment.Group size="large">
-            {memos.map(memo => <MemoComponent key={memo.idx + memo.username} memo={memo} />)}
+            {memos.map(memo => <MemoContainer key={memo.idx + memo.username} memo={memo} />)}
           </Comment.Group>
         ) : (
           'No memos available'

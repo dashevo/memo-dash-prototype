@@ -36,7 +36,7 @@ const login = blockchainUsername => async (dispatch, getState) => {
 }
 
 const loginError = message => ({ type: AuthActionTypes.LOGIN_ERROR, payload: message })
-const loginSuccessfull = userName => ({ type: AuthActionTypes.LOGIN_SUCCESSFULL, payload: userName })
+const loginSuccessfull = username => ({ type: AuthActionTypes.LOGIN_SUCCESSFULL, payload: username })
 
 const logout = () => async (dispatch, getState) => {
   const {

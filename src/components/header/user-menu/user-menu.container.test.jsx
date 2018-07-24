@@ -3,6 +3,8 @@ import configureStore from 'redux-mock-store'
 import { shallow } from 'enzyme'
 import UserMenuContainer from './user-menu.container'
 
+jest.mock('../../../lib/helpers')
+
 describe('<UserMenuContainer />', () => {
   let store
 
@@ -11,12 +13,8 @@ describe('<UserMenuContainer />', () => {
     const mockStore = configureStore()
     store = mockStore({
       user: {
-        currentUser: {
-          profile: {
-            avatarUrl: 'avatarUrl',
-            username: 'username'
-          }
-        }
+        currentUser: 'User1',
+        users: []
       },
       router: { location: { pathname: '/' } }
     })

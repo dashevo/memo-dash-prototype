@@ -1,6 +1,21 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<ProfileViewComponent /> renders without crashing 1`] = `
+exports[`<ProfileViewComponent /> renders loader without crashing 1`] = `
+<React.Fragment>
+  <Dimmer
+    active={true}
+    inverted={true}
+  >
+    <Loader
+      size="small"
+    >
+      Loading
+    </Loader>
+  </Dimmer>
+</React.Fragment>
+`;
+
+exports[`<ProfileViewComponent /> renders memos without crashing 1`] = `
 <React.Fragment>
   <Container
     style={
@@ -39,7 +54,7 @@ exports[`<ProfileViewComponent /> renders without crashing 1`] = `
               as="a"
             >
               Memos (
-              0
+              1
               )
             </MenuItem>
             <MenuItem
@@ -58,7 +73,16 @@ exports[`<ProfileViewComponent /> renders without crashing 1`] = `
             </MenuItem>
           </Menu>
           <Container>
-            <Connect(MemosComponent) />
+            <Connect(MemosComponent)
+              memos={
+                Array [
+                  Object {
+                    "createdAt": "createdAt",
+                    "message": "message",
+                  },
+                ]
+              }
+            />
           </Container>
         </GridColumn>
       </GridRow>
