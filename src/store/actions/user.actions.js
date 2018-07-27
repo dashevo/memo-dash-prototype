@@ -1,5 +1,4 @@
-const UserActionTypes = {
-  USER_PROFILE_RECEIVED: 'USER_PROFILE_RECEIVED',
+export const UserActionTypes = {
   MEMOS_FOR_USER_RECEIVED: 'MEMOS_FOR_USER_RECEIVED',
   ALL_MEMOS_RECEIVED: 'ALL_MEMOS_RECEIVED'
 }
@@ -12,9 +11,9 @@ const memoDashLib = getState => {
   return memoDashLib
 }
 
-const getUserProfile = username => async (dispatch, getState) => {
-  const userProfile = await memoDashLib(getState).getUserProfile(username)
-  dispatch(userProfileReceived(userProfile))
+export const getUser = username => async (dispatch, getState) => {
+  const user = await memoDashLib(getState).getUser(username)
+  dispatch(userReceived(user))
 }
 
 const userProfileReceived = userProfile => ({
@@ -22,7 +21,11 @@ const userProfileReceived = userProfile => ({
   payload: userProfile
 })
 
-const getMemosForUser = username => async (dispatch, getState) => {
+export const userReceived = user => ({
+  type: UserActionTypes.USER_RECEIVED,
+  payload: user
+})
+
   const memos = await memoDashLib(getState).getMemosForUser(username)
   dispatch(memosForUserReceived(username, memos))
 }

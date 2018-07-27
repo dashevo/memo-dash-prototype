@@ -12,7 +12,7 @@ export class ProfileViewComponent extends Component {
       profile
     } = this.props
 
-    if (!profile) this.props.getUserProfile(username)
+    if (!profile) this.props.getUser(username)
     if (!memos) this.props.getMemosForUser(username)
   }
 

@@ -3,7 +3,7 @@
 exports[`<ProfileViewContainer /> Shallow rendering renders without crashing 1`] = `
 <ProfileViewComponent
   getMemosForUser={[Function]}
-  getUserProfile={[Function]}
+  getUser={[Function]}
   match={
     Object {
       "params": Object {

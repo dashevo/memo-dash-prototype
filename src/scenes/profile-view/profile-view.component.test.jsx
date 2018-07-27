@@ -26,7 +26,7 @@ describe('<ProfileViewComponent />', () => {
         profile={undefined}
         match={match}
         memos={undefined}
-        getUserProfile={jest.fn()}
+        getUser={jest.fn()}
         getMemosForUser={jest.fn()}
       />
     )

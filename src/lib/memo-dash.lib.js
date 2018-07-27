@@ -32,8 +32,17 @@ export default class MemoDashLib {
     await this.memoDashClient.logout()
   }
 
-  async getUserProfile(username) {
-    return await this.memoDashClient.getUserProfile(username)
+  async getUser(username) {
+    const [profile, userId] = await Promise.all([
+      this.memoDashClient.getUserProfile(username),
+      this.memoDashClient.getUserId(username)
+    ])
+
+    return {
+      username,
+      profile,
+      userId
+  }
   }
 
   async getMemosForUser(username) {

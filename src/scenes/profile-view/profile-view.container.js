@@ -1,6 +1,6 @@
 import { connect } from 'react-redux'
 import ProfileViewComponent from './profile-view.component'
-import { getMemosForUser, getUserProfile } from '../../store/actions'
+import { getMemosForUser, getUser } from '../../store/actions'
 
 const mapStateToProps = (state, ownProps) => {
   const {
@@ -27,8 +27,8 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    getUserProfile: username => {
-      dispatch(getUserProfile(username))
+    getUser: username => {
+      dispatch(getUser(username))
     },
     getMemosForUser: username => {
       dispatch(getMemosForUser(username))
