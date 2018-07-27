@@ -2,9 +2,9 @@
 
 exports[`<UserMenuContainer /> Shallow rendering renders without crashing 1`] = `
 <UserMenuComponent
-  avatarUrl="avatarUrl"
+  avatarUrl="https://s3.amazonaws.com/uifaces/faces/twitter/madcampos/128.jpg"
   onProfileClicked={[Function]}
   onSignOutClicked={[Function]}
-  username="User1"
+  username="alice"
 />
 `;

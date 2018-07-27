@@ -13,7 +13,7 @@ describe('<UserMenuContainer />', () => {
     const mockStore = configureStore()
     store = mockStore({
       user: {
-        currentUser: 'User1',
+        currentUser: 'alice',
         users: []
       },
       router: { location: { pathname: '/' } }

@@ -59,7 +59,7 @@ describe('App', () => {
     })
 
     it('should not redirect to login if user is logged in', () => {
-      store = createMockStore('user1')
+      store = createMockStore('alice')
       const wrapper = createWrapper(['/home'])
       expect(wrapper.find(HomeViewContainer)).toHaveLength(1)
       expect(wrapper.find(LoginViewContainer)).toHaveLength(0)
