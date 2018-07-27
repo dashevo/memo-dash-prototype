@@ -11,7 +11,6 @@ export default (state = initialState, action) => {
         ...state,
         memoDashLib: action.payload
       }
-
     default:
       return state
   }

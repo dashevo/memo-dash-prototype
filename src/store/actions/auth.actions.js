@@ -1,5 +1,5 @@
 import { push } from 'connected-react-router'
-import { getUserProfile } from './user.actions'
+import { getUser, getAllOwnLikes } from './user.actions'
 
 const AuthActionTypes = {
   LOGIN_ERROR: 'LOGIN_ERROR',
@@ -29,6 +29,7 @@ const login = blockchainUsername => async (dispatch, getState) => {
     await memoDashLib.login({ blockchainUsername: blockchainUser.name })
     await dispatch(loginSuccessfull(blockchainUser.name))
     await dispatch(getUser(blockchainUser.name))
+    await dispatch(getAllOwnLikes())
     dispatch(push('/home'))
   } catch (error) {
     dispatch(loginError(error.message))

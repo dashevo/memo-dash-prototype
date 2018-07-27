@@ -12,8 +12,9 @@ const generateTestData = async client => {
   } else {
     console.log('No Dap available -> create one', availableDap[0])
     try {
-      await createUsers(client, data.alice_subtx_1.subtx.uname, data.bob_subtx_1.subtx.uname)
-      await followMutually(client, data.alice_subtx_1.subtx.uname, data.bob_subtx_1.subtx.uname)
+      const users = [data.alice_subtx_1.subtx.uname, data.bob_subtx_1.subtx.uname]
+      await createUsers(client, ...users)
+      await connectMutually(client, ...users)
     } catch (e) {
       client.log('error generating test data', e)
       throw new Error(e)
@@ -28,9 +29,10 @@ const loadDapContract = async (client, dapId) => {
 
 const createUsers = async (client, ...users) => {
   for (let i in users) {
+    const username = users[i]
     // Create blockchain user & login to the Client
-    await client.createBlockchainUser(users[i])
-    await client.login(users[i])
+    await client.createBlockchainUser(username)
+    await client.login(username)
 
     // First user create's DAP contract and loads it
     if (i === '0') {
@@ -46,6 +48,7 @@ const createUsers = async (client, ...users) => {
       name: faker.name.firstName()
     })
 
+    // post memos
     for (let i = 0; i < 3; i++) {
       await client.postMemo(faker.lorem.sentence())
     }
@@ -55,12 +58,21 @@ const createUsers = async (client, ...users) => {
   client.log('generated test data for ' + dashMemoSchema.title)
 }
 
-const followMutually = async (client, ...users) => {
+const connectMutually = async (client, ...users) => {
   for (const user of users) {
-    const usersToFollow = users.filter(async userToFollow => userToFollow !== user)
-    for (const userToFollow of usersToFollow) {
+    for (const otherUser of users) {
+      if (user === otherUser) continue
+
       await client.login(user)
-      await client.followUser(userToFollow)
+
+      //follow
+      await client.followUser(otherUser)
+
+      //like first memo
+      const memos = await client.getMemosByUsername(otherUser)
+      if (memos && memos.length > 0) {
+        await client.likeMemo(memos[0].username, memos[0].idx)
+      }
       client.logout()
     }
   }

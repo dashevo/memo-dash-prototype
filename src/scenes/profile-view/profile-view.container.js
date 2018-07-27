@@ -1,6 +1,7 @@
 import { connect } from 'react-redux'
 import ProfileViewComponent from './profile-view.component'
 import { getMemosForUser, getUser } from '../../store/actions'
+import { filterUser } from '../../lib/helpers'
 
 const mapStateToProps = (state, ownProps) => {
   const {
@@ -13,12 +14,12 @@ const mapStateToProps = (state, ownProps) => {
     user: { users }
   } = state
 
-  const filteredUsers = users.filter(user => user.username === username)
+  const user = filterUser(username, users)
 
-  if (filteredUsers.length > 0) {
+  if (user) {
     return {
-      profile: filteredUsers[0].profile,
-      memos: filteredUsers[0].memos
+      profile: user.profile,
+      memos: user.memos
     }
   } else {
     return {}
