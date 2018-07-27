@@ -27,7 +27,7 @@ const routes = (
       <Route exact path="/" component={withFooter(LoginViewContainer)} />
       <Route path="/login" component={withFooter(LoginViewContainer)} />
       <PrivateRoute path="/home" component={withHeader(withFooter(HomeViewContainer))} />
-      <PrivateRoute path="/profile" component={withHeader(withFooter(ProfileViewContainer))} />
+      <PrivateRoute path="/profile/:username" component={withHeader(withFooter(ProfileViewContainer))} />
       <Route component={NoMatch} />
     </Switch>
   </div>

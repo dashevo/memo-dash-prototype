@@ -39,7 +39,6 @@ export default class LoginViewComponent extends Component {
             <Form
               size="large"
               onSubmit={async event => {
-                console.log('EVENT', event)
                 this.props.onLoginClick(this.state.username)
               }}
             >

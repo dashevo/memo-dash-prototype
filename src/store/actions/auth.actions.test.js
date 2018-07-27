@@ -59,7 +59,7 @@ describe('auth actions', () => {
         searchBlockchainUsers: jest.fn(),
         login: jest.fn(),
         logout: jest.fn(),
-        getUserProfile: jest.fn()
+        getUser: jest.fn()
       }
       state = { root: { memoDashLib } }
     })

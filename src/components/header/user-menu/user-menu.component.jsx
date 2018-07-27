@@ -8,9 +8,12 @@ const trigger = (username, avatarUrl) => (
 )
 
 const UserMenuComponent = props => (
-  <Dropdown item simple trigger={trigger(props.username, props.avatar)}>
+  <Dropdown item simple trigger={trigger(props.username, props.avatarUrl)}>
     <Dropdown.Menu>
-      <Dropdown.Item onClick={props.onProfileClicked} active={props.location === '/profile'}>
+      <Dropdown.Item
+        onClick={() => props.onProfileClicked(props.username)}
+        active={props.location === '/profile'}
+      >
         Your Profile
       </Dropdown.Item>
       <Dropdown.Divider />

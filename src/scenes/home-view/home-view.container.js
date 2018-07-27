@@ -5,7 +5,7 @@ import { getAllMemos } from '../../store/actions'
 const mapStateToProps = state => {
   return {
     currentUser: state.user.currentUser,
-    memos: state.user.memos
+    memos: state.user.allMemos
   }
 }
 

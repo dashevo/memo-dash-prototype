@@ -1,18 +1,38 @@
 import { connect } from 'react-redux'
 import ProfileViewComponent from './profile-view.component'
-import { getOwnMemos } from '../../store/actions'
+import { getMemosForUser, getUser } from '../../store/actions'
+import { filterUser } from '../../lib/helpers'
 
-const mapStateToProps = state => {
-  return {
-    profile: state.user.currentUser.profile,
-    memos: state.user.currentUser.memos
+const mapStateToProps = (state, ownProps) => {
+  const {
+    match: {
+      params: { username }
+    }
+  } = ownProps
+
+  const {
+    user: { users }
+  } = state
+
+  const user = filterUser(username, users)
+
+  if (user) {
+    return {
+      profile: user.profile,
+      memos: user.memos
+    }
+  } else {
+    return {}
   }
 }
 
 const mapDispatchToProps = dispatch => {
   return {
-    getOwnMemos: () => {
-      dispatch(getOwnMemos())
+    getUser: username => {
+      dispatch(getUser(username))
+    },
+    getMemosForUser: username => {
+      dispatch(getMemosForUser(username))
     }
   }
 }

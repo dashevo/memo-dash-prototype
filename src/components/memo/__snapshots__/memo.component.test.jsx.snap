@@ -1,34 +1,42 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`<MemoComponent /> renders without crashing 1`] = `
-<Segment>
+<Segment
+  className="memo"
+>
   <Comment>
     <CommentAvatar
-      as="a"
+      className="avatar"
     />
     <CommentContent>
       <CommentAuthor
         as="a"
+        onClick={[Function]}
       />
       <CommentMetadata>
         <span />
       </CommentMetadata>
       <CommentText />
       <CommentActions>
-        <a>
+        <CommentAction
+          as="a"
+        >
           <Icon
             as="i"
             name="reply"
           />
           <span />
-        </a>
-        <a>
+        </CommentAction>
+        <CommentAction
+          as="span"
+        >
           <Icon
             as="i"
+            color="grey"
             name="like"
           />
           <span />
-        </a>
+        </CommentAction>
         <span>
           <Icon
             as="i"
@@ -44,34 +52,42 @@ exports[`<MemoComponent /> renders without crashing 1`] = `
 `;
 
 exports[`<MemoComponent /> should render memo 1`] = `
-<Segment>
+<Segment
+  className="memo"
+>
   <Comment>
     <CommentAvatar
-      as="a"
+      className="avatar"
     />
     <CommentContent>
       <CommentAuthor
         as="a"
+        onClick={[Function]}
       />
       <CommentMetadata>
         <span />
       </CommentMetadata>
       <CommentText />
       <CommentActions>
-        <a>
+        <CommentAction
+          as="a"
+        >
           <Icon
             as="i"
             name="reply"
           />
           <span />
-        </a>
-        <a>
+        </CommentAction>
+        <CommentAction
+          as="span"
+        >
           <Icon
             as="i"
+            color="grey"
             name="like"
           />
           <span />
-        </a>
+        </CommentAction>
         <span>
           <Icon
             as="i"
