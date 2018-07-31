@@ -41,18 +41,13 @@ describe('user actions', () => {
         likeMemo: jest.fn(),
         removeLike: jest.fn(),
         getMemo: jest.fn(),
-        getAllOwnLikes: jest.fn()
+        getAllOwnLikes: jest.fn(),
+        replyToMemo: jest.fn()
       }
       state = {
         root: {
           memoDashLib: {
-            getUser: spies.getUser,
-            getMemosForUser: spies.getMemosForUser,
-            getAllMemos: spies.getAllMemos,
-            likeMemo: spies.likeMemo,
-            removeLike: spies.removeLike,
-            getMemo: spies.getMemo,
-            getAllOwnLikes: spies.getAllOwnLikes
+            ...spies
           }
         },
         user: { currentUser: username, users: testUsers }
@@ -176,6 +171,33 @@ describe('user actions', () => {
           const actions = await mockStoreAndDispatch(
             state,
             userActions.removeLike(alice.username, likeToRemove.relation.index)
+          )
+          expect(await getAction(actions, UserActionTypes.MEMO_UPDATED)).toEqual(
+            userActions.memoUpdated(memo)
+          )
+        })
+      })
+
+      describe('replyToMemo(username, memoId, message)', () => {
+        const alice = filterUser('alice')
+        const memo = alice.memos[0]
+        const replyMessage = 'replyMessage'
+
+        it('should call memoDashLib.removeLike', async () => {
+          await mockStoreAndDispatch(state, userActions.replyToMemo(alice.username, memo.idx, replyMessage))
+          expect(spies.replyToMemo).toHaveBeenCalledWith(alice.username, memo.idx, replyMessage)
+        })
+
+        it('should call memoDashLib.getMemo', async () => {
+          await mockStoreAndDispatch(state, userActions.replyToMemo(alice.username, memo.idx, replyMessage))
+          expect(spies.getMemo).toHaveBeenCalledWith(alice.username, memo.idx)
+        })
+
+        it('should dispatch memoUpdated', async () => {
+          state.root.memoDashLib.getMemo.mockReturnValue(memo)
+          const actions = await mockStoreAndDispatch(
+            state,
+            userActions.replyToMemo(alice.username, memo.idx, replyMessage)
           )
           expect(await getAction(actions, UserActionTypes.MEMO_UPDATED)).toEqual(
             userActions.memoUpdated(memo)

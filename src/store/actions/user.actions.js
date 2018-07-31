@@ -86,6 +86,13 @@ export const removeLike = (username, memoId) => async (dispatch, getState) => {
   }
 }
 
+export const replyToMemo = (username, memoId, message) => async (dispatch, getState) => {
+  const lib = memoDashLib(getState)
+  await lib.replyToMemo(username, memoId, message)
+  const memo = await lib.getMemo(username, memoId)
+  dispatch(memoUpdated(memo))
+}
+
 export const likeRemoved = likeId => ({
   type: UserActionTypes.LIKE_REMOVED,
   payload: likeId
