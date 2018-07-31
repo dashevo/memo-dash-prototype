@@ -1,0 +1,23 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<ReplyFormContainer /> Shallow rendering renders without crashing 1`] = `
+<Formik
+  enableReinitialize={false}
+  handleSubmit={[Function]}
+  initialValues={
+    Object {
+      "memoId": 1,
+      "message": "",
+      "username": "alice",
+    }
+  }
+  isInitialValid={false}
+  memoId={1}
+  onSubmit={[Function]}
+  render={[Function]}
+  username="alice"
+  validateOnBlur={true}
+  validateOnChange={true}
+  validationSchema={[Function]}
+/>
+`;

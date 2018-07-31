@@ -1,0 +1,12 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<MemoContainer /> Shallow rendering renders without crashing 1`] = `
+<MemoComponent
+  currentUser="alice"
+  likedByMe={false}
+  onGoToProfileClicked={[Function]}
+  onLikeMemoClicked={[Function]}
+  onRemoveLikeClicked={[Function]}
+  onReplyClicked={[Function]}
+/>
+`;

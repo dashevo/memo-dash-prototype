@@ -2,7 +2,7 @@ import { connect } from 'react-redux'
 import { push } from 'connected-react-router'
 
 import MemoComponent from './memo.component'
-import { likeMemo, removeLike } from '../../store/actions/user.actions'
+import { likeMemo, removeLike, replyToMemo } from '../../store/actions/user.actions'
 import { isMemoLikedByUsername } from '../../lib/helpers'
 
 const mapStateToProps = (state, ownProps) => {
@@ -26,6 +26,9 @@ const mapDispatchToProps = dispatch => {
     },
     onRemoveLikeClicked: (username, memoId) => {
       dispatch(removeLike(username, memoId))
+    },
+    onReplyClicked: (username, memoId, message) => {
+      dispatch(replyToMemo(username, memoId, message))
     }
   }
 }
