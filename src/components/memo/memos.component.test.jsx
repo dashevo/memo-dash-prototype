@@ -1,11 +1,16 @@
 import React from 'react'
 import { shallow } from 'enzyme'
 import MemosComponent from './memos.component'
+import { filterUser } from '../../lib/helpers'
+
+jest.mock('../../lib/helpers')
 
 describe('<MemosComponent />', () => {
   let wrapper
+  let testUser
 
   beforeEach(() => {
+    testUser = filterUser('alice')
     const div = document.createElement('div')
     document.body.appendChild(div)
   })
@@ -16,28 +21,7 @@ describe('<MemosComponent />', () => {
   })
 
   it('should render memos', () => {
-    const memos = [
-      {
-        idx: 1,
-        memoDatetime: '2018-07-02T14:18:42.728Z',
-        memoLikesCount: 0,
-        memoRepliesCount: 0,
-        memoText: 'Iusto possimus quidem modi quis.',
-        memoTipTotal: 0,
-        username: 'alice'
-      },
-      {
-        idx: 2,
-        memoDatetime: '2018-07-02T14:24:05.359Z',
-        memoLikesCount: 1,
-        memoRepliesCount: 2,
-        memoText: 'Quo eligendi velit velit commodi.',
-        memoTipTotal: 3,
-        username: 'alice'
-      }
-    ]
-
-    wrapper = shallow(<MemosComponent memos={memos} getOwnMemos={jest.fn()} />)
+    wrapper = shallow(<MemosComponent memos={testUser.memos} getOwnMemos={jest.fn()} />)
     expect(wrapper).toMatchSnapshot()
   })
 })

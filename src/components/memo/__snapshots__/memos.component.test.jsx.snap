@@ -27,11 +27,12 @@ exports[`<MemosComponent /> should render memos 1`] = `
       key="1alice"
       memo={
         Object {
+          "avatarUrl": "https://s3.amazonaws.com/uifaces/faces/twitter/chaabane_wail/128.jpg",
           "idx": 1,
-          "memoDatetime": "2018-07-02T14:18:42.728Z",
-          "memoLikesCount": 0,
+          "memoDatetime": "2018-07-26T16:44:56.000Z",
+          "memoLikesCount": 1,
           "memoRepliesCount": 0,
-          "memoText": "Iusto possimus quidem modi quis.",
+          "memoText": "Suscipit vel nobis.",
           "memoTipTotal": 0,
           "username": "alice",
         }
@@ -41,12 +42,13 @@ exports[`<MemosComponent /> should render memos 1`] = `
       key="2alice"
       memo={
         Object {
+          "avatarUrl": "https://s3.amazonaws.com/uifaces/faces/twitter/chaabane_wail/128.jpg",
           "idx": 2,
-          "memoDatetime": "2018-07-02T14:24:05.359Z",
-          "memoLikesCount": 1,
-          "memoRepliesCount": 2,
-          "memoText": "Quo eligendi velit velit commodi.",
-          "memoTipTotal": 3,
+          "memoDatetime": "2018-07-26T16:44:58.620Z",
+          "memoLikesCount": 0,
+          "memoRepliesCount": 0,
+          "memoText": "Praesentium libero est repudiandae et repudiandae.",
+          "memoTipTotal": 0,
           "username": "alice",
         }
       }

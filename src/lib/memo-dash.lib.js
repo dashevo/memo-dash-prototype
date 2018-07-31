@@ -104,6 +104,40 @@ export default class MemoDashLib {
   }
 
   /**
+   * Reply to a given memo
+   *
+   * @param {*} username - username of user who posted the memo
+   * @param {*} memoId - memo id
+   * @param {*} message - reply message
+   * @memberof MemoDashLib
+   */
+  async replyToMemo(username, memoId, message) {
+    const answer = await this.memoDashClient.replyToMemo(username, memoId, message)
+    console.log(answer)
+    return answer
+  }
+
+  /**
+   *
+   *
+   * @param {*} username
+   * @param {*} memoId
+   * @returns
+   * [{
+   *   username,
+   *   memoDatetime,
+   *   memoText,
+   *   memoLikesCount,
+   *   memoTipTotal,
+   *   memoRepliesCount
+   * }]
+   * @memberof MemoDashLib
+   */
+  async getMemoReplies(username, memoId) {
+    return await this.memoDashClient.getMemoReplies(username, memoId)
+  }
+
+  /**
    * Remove like from memo
    *
    * @param {string} likeId

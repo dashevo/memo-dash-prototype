@@ -1,0 +1,27 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<ReplyFormComponent /> renders without crashing 1`] = `
+<Form
+  as="form"
+  reply={true}
+>
+  <FormTextArea
+    as={[Function]}
+    autoFocus={true}
+    className=" error"
+    control={[Function]}
+    name="message"
+    value="replyMessage"
+  />
+  <Button
+    as="button"
+    content="Add Reply"
+    disabled={true}
+    icon="edit"
+    labelPosition="left"
+    primary={true}
+    role="button"
+    type="submit"
+  />
+</Form>
+`;
