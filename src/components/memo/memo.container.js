@@ -3,16 +3,16 @@ import { push } from 'connected-react-router'
 
 import MemoComponent from './memo.component'
 import { likeMemo, removeLike, replyToMemo } from '../../store/actions/user.actions'
-import { isMemoLikedByUsername } from '../../lib/helpers'
+import { isMemoLikedByCurrentUser } from '../../store/selectors/memos.selector'
 
 const mapStateToProps = (state, ownProps) => {
   const {
-    user: { currentUser, users }
+    user: { currentUser }
   } = state
 
   return {
     currentUser,
-    likedByMe: isMemoLikedByUsername(ownProps.memo, currentUser, users)
+    likedByMe: isMemoLikedByCurrentUser(ownProps.memo)(state)
   }
 }
 

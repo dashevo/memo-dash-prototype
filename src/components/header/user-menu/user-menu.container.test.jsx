@@ -2,19 +2,19 @@ import React from 'react'
 import configureStore from 'redux-mock-store'
 import { shallow } from 'enzyme'
 import UserMenuContainer from './user-menu.container'
-
-jest.mock('../../../lib/helpers')
+import testUsers from '../../../test-utils/test-users'
 
 describe('<UserMenuContainer />', () => {
   let store
 
   beforeEach(() => {
+    const testUser = testUsers['alice']
     // Mock store
     const mockStore = configureStore()
     store = mockStore({
       user: {
-        currentUser: 'alice',
-        users: []
+        currentUser: testUser.username,
+        users: { [testUser.username]: testUser }
       },
       router: { location: { pathname: '/' } }
     })

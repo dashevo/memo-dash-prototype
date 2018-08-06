@@ -1,9 +1,10 @@
 import { connect } from 'react-redux'
 import PrivateRouteComponent from './private-route.component'
+import { isAuthenticated } from '../../store/selectors/user.selector'
 
 const mapStateToProps = state => {
   return {
-    isLoggedIn: !!state.user.currentUser
+    isLoggedIn: isAuthenticated(state)
   }
 }
 

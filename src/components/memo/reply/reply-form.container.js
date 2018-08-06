@@ -1,5 +1,5 @@
 import ReplyFormComponent from './reply-form.component'
-import { withFormik, Formik } from 'formik'
+import { withFormik } from 'formik'
 import * as yup from 'yup'
 
 const mapPropsToValues = ({ username, memoId }) => ({

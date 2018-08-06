@@ -1,14 +1,12 @@
 import React from 'react'
 import { shallow } from 'enzyme'
 import ReplyFormContainer from './reply-form.container'
-import { filterUser } from '../../../lib/helpers'
-
-jest.mock('../../../lib/helpers')
+import testUsers from '../../../test-utils/test-users'
 
 describe('<ReplyFormContainer />', () => {
   let testUser
   beforeEach(() => {
-    testUser = filterUser('alice')
+    testUser = testUsers['alice']
   })
 
   describe('Shallow rendering', () => {

@@ -1,3 +1,5 @@
+import { getUserByUsername, getCurrentUser } from '../selectors/users.selector'
+
 export const UserActionTypes = {
   USER_RECEIVED: 'USER_RECEIVED',
   MEMOS_FOR_USER_RECEIVED: 'MEMOS_FOR_USER_RECEIVED',
@@ -68,12 +70,9 @@ export const likeMemo = (username, memoId) => async (dispatch, getState) => {
 }
 
 export const removeLike = (username, memoId) => async (dispatch, getState) => {
-  const {
-    user: { currentUser, users }
-  } = getState()
   const lib = memoDashLib(getState)
 
-  const user = users.find(user => user.username === currentUser)
+  const user = getCurrentUser(getState())
   if (user) {
     const like = user.ownLikes.find(like => like.relation.index === memoId)
     if (like) {

@@ -2,9 +2,6 @@ import * as userActions from './user.actions'
 import { UserActionTypes } from './user.actions'
 import { verifyAction, mockStoreAndDispatch, getAction } from '../../test-utils/actions.test-helper'
 import testUsers from '../../test-utils/test-users'
-import { filterUser } from '../../lib/helpers'
-
-jest.mock('../../lib/helpers')
 
 describe('user actions', () => {
   let username = 'alice'
@@ -136,7 +133,7 @@ describe('user actions', () => {
       })
 
       describe('removeLike(likeId)', () => {
-        const alice = filterUser('alice')
+        const alice = testUsers['alice']
         const likeToRemove = alice.ownLikes[0]
 
         it('should call memoDashLib.removeLike', async () => {
@@ -179,7 +176,7 @@ describe('user actions', () => {
       })
 
       describe('replyToMemo(username, memoId, message)', () => {
-        const alice = filterUser('alice')
+        const alice = testUsers['alice']
         const memo = alice.memos[0]
         const replyMessage = 'replyMessage'
 

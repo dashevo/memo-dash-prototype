@@ -7,24 +7,32 @@ import HomeViewContainer from './scenes/home-view/home-view.container'
 import LoginViewContainer from './scenes/login-view/login-view.container'
 import App, { AppComponent } from './app'
 import NoMatchComponent from './components/no-match/no-match.component'
+import testUsers from './test-utils/test-users'
+import { initialState } from './store/reducers/user.reducer'
 
 jest.mock('./scenes/home-view/home-view.container')
 jest.mock('./scenes/login-view/login-view.container')
-jest.mock('./lib/helpers')
 
 describe('App', () => {
   let store
   let mockStore
 
-  const createMockStore = (currentUser = undefined) =>
-    mockStore({
-      user: { currentUser },
+  const createMockStore = (username = undefined) => {
+    let user = initialState
+    if (username) {
+      const testUser = testUsers[username]
+      user = { currentUser: testUser.username, users: { [testUser.username]: testUser } }
+    }
+
+    return mockStore({
+      user,
       router: {
         location: {
           pathname: '/'
         }
       }
     })
+  }
 
   beforeEach(() => {
     // Mock store

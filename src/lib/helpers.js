@@ -1,10 +1,7 @@
-export const filterUser = (username, users) => {
-  if (!users || users.length === 0) return undefined
-  return users.find(user => user.username === username)
-}
+import { getUserByUsername } from '../store/selectors/users.selector'
 
 export const isMemoLikedByUsername = (memo, username, users) => {
-  const currentUser = filterUser(username, users)
+  const currentUser = getUserByUsername(username)()
   if (!currentUser) return false
 
   return currentUser.ownLikes.some(like => memo.username !== username && like.relation.index === memo.idx)

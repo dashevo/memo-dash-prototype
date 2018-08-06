@@ -1,5 +1,5 @@
-export default [
-  {
+export default {
+  alice: {
     username: 'alice',
     profile: {
       avatarUrl: 'https://s3.amazonaws.com/uifaces/faces/twitter/madcampos/128.jpg',
@@ -33,7 +33,7 @@ export default [
       }
     ]
   },
-  {
+  bob: {
     username: 'bob',
     profile: {
       avatarUrl: 'https://s3.amazonaws.com/uifaces/faces/twitter/madcampos/129.jpg',
@@ -67,4 +67,4 @@ export default [
       }
     ]
   }
-]
+}

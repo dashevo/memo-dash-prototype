@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Comment, Icon, Segment, Form, Button } from 'semantic-ui-react'
+import { Comment, Icon, Segment } from 'semantic-ui-react'
 
 import './memo.styles.css'
 import ReplyFormContainer from './reply/reply-form.container'

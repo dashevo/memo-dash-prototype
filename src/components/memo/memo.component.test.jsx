@@ -2,14 +2,12 @@ import React from 'react'
 import { shallow } from 'enzyme'
 import { Comment } from 'semantic-ui-react'
 import MemoComponent from './memo.component'
-import { filterUser } from '../../lib/helpers'
-
-jest.mock('../../lib/helpers')
+import testUsers from '../../test-utils/test-users'
 
 describe('<MemoComponent />', () => {
   let wrapper
-  const alice = filterUser('alice')
-  const bob = filterUser('bob')
+  const alice = testUsers['alice']
+  const bob = testUsers['bob']
 
   beforeEach(() => {
     const div = document.createElement('div')

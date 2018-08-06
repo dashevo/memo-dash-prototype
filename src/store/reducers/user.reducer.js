@@ -1,6 +1,6 @@
 import { AuthActionTypes } from '../actions'
 import { UserActionTypes } from '../actions/user.actions'
-import { filterUser } from '../../lib/helpers'
+import { getUserByUsername, getCurrentUser } from '../selectors/users.selector'
 
 export const initialState = {
   currentUser: undefined,
@@ -29,30 +29,29 @@ export default (state = initialState, action) => {
       return initialState
     case UserActionTypes.USER_RECEIVED: {
       const { payload: newUser } = action
-      const existingUser = filterUser(newUser.username, state.users)
+      const existingUser = getUserByUsername(newUser.username)({ user: state })
 
+      let user
       if (existingUser) {
-        const updatedUser = { ...existingUser, ...newUser }
-        return {
-          ...state,
-          users: [...state.users.map(user => (user.username === updatedUser.username ? updatedUser : user))]
-        }
+        user = { ...existingUser, ...newUser }
       } else {
-        return {
-          ...state,
-          users: [...state.users, newUser]
-        }
+        user = newUser
+      }
+
+      return {
+        ...state,
+        users: { ...state.users, [user.username]: user }
       }
     }
     case UserActionTypes.USER_UPDATED: {
       const { username, props } = action.payload
-      const existingUser = filterUser(username, state.users)
+      const existingUser = getUserByUsername(username)({ user: state })
 
       if (existingUser) {
         const updatedUser = { ...existingUser, ...props }
         return {
           ...state,
-          users: [...state.users.map(user => (user.username === username ? updatedUser : user))]
+          users: { ...state.users, [updatedUser.username]: updatedUser }
         }
       } else {
         return state
@@ -60,19 +59,19 @@ export default (state = initialState, action) => {
     }
     case UserActionTypes.MEMOS_FOR_USER_RECEIVED: {
       const { username, memos } = action.payload
-      const user = filterUser(username, state.users)
+      const user = getUserByUsername(username)({ user: state })
 
       if (user) {
         const updatedUser = { ...user, memos }
 
         return {
           ...state,
-          users: [...state.users.filter(user => user.username !== username), updatedUser]
+          users: { ...state.users, [updatedUser.username]: updatedUser }
         }
       } else {
         return {
           ...state,
-          users: [...state.users, { username, memos }]
+          users: { ...state.users, [username]: { username, memos } }
         }
       }
     }
@@ -94,12 +93,12 @@ export default (state = initialState, action) => {
         allMemos: action.payload
       }
     case UserActionTypes.LIKE_REMOVED:
-      const user = filterUser(state.currentUser, state.users)
+      const user = getCurrentUser({ user: state })
       if (user) {
         const updatedUser = { ...user, ownLikes: user.ownLikes.filter(like => like.idx !== action.payload) }
         return {
           ...state,
-          users: [...state.users.map(user => (user.username === state.currentUser ? updatedUser : user))]
+          users: { ...state.users, [updatedUser.username]: updatedUser }
         }
       } else {
         return state

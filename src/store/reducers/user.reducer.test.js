@@ -1,9 +1,7 @@
 import reducer, { initialState } from './user.reducer'
 import { loginError, loginSuccessfull, logoutError, logoutSuccessfull, likeRemoved } from '../actions'
 import { userReceived, allMemosReceived, memoUpdated } from '../actions/user.actions'
-import { filterUser } from '../../lib/helpers'
-
-jest.mock('../../lib/helpers')
+import testUsers from '../../test-utils/test-users'
 
 describe('user reducer', () => {
   it('should return the initial state', () => {
@@ -47,21 +45,40 @@ describe('user reducer', () => {
     describe('User', () => {
       describe('should handle USER_RECEIVED', () => {
         it('for a new user', () => {
-          const user = { username: undefined, ownLikes: [], profile: { avatarUrl: 'avatarUrl' } }
+          const user = testUsers['alice']
           expect(reducer(undefined, userReceived(user))).toEqual({
             ...initialState,
-            users: [user]
+            users: { alice: user }
           })
         })
 
         it('for an existing user', () => {
-          const alice = filterUser('alice')
-          const bob = filterUser('bob')
+          const alice = testUsers['alice']
+          const bob = testUsers['bob']
+
+          const users = {
+            [alice.username]: alice,
+            [bob.username]: bob
+          }
           const receivedUser = { ownLikes: [{}], ...alice }
 
-          expect(reducer({ ...initialState, users: [alice, bob] }, userReceived(receivedUser))).toEqual({
+          expect(
+            reducer(
+              {
+                ...initialState,
+                users: {
+                  [alice.username]: alice,
+                  [bob.username]: bob
+                }
+              },
+              userReceived(receivedUser)
+            )
+          ).toEqual({
             ...initialState,
-            users: [receivedUser, bob]
+            users: {
+              [alice.username]: receivedUser,
+              [bob.username]: bob
+            }
           })
         })
       })
@@ -99,20 +116,20 @@ describe('user reducer', () => {
     describe('Likes', () => {
       describe('handle LIKE_REMOVED', () => {
         it('should return original state if no user found', () => {
-          const state = 'state'
+          const state = { users: {} }
           expect(reducer(state, likeRemoved('1'))).toEqual(state)
         })
 
         it('should remove a like', () => {
-          const alice = filterUser('alice')
+          const alice = testUsers['alice']
           const state = {
             currentUser: alice.username,
-            users: [alice]
+            users: { [alice.username]: alice }
           }
 
           expect(reducer(state, likeRemoved(1))).toEqual({
             ...state,
-            users: [{ ...alice, ownLikes: [alice.ownLikes[1]] }]
+            users: { ...state.users, [alice.username]: { ...alice, ownLikes: [alice.ownLikes[1]] } }
           })
         })
       })

@@ -1,16 +1,14 @@
 import React from 'react'
 import { shallow } from 'enzyme'
 import MemosComponent from './memos.component'
-import { filterUser } from '../../lib/helpers'
-
-jest.mock('../../lib/helpers')
+import testUsers from '../../test-utils/test-users'
 
 describe('<MemosComponent />', () => {
   let wrapper
   let testUser
 
   beforeEach(() => {
-    testUser = filterUser('alice')
+    testUser = testUsers['alice']
     const div = document.createElement('div')
     document.body.appendChild(div)
   })
