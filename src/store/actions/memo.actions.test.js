@@ -51,6 +51,7 @@ describe('memo actions', () => {
         getMemo: jest.fn(),
         replyToMemo: jest.fn(),
         getMemoReplies: jest.fn(),
+        postMemo: jest.fn(),
         getUsers: jest.fn(),
         getAllOwnLikes: jest.fn()
       }
@@ -116,6 +117,20 @@ describe('memo actions', () => {
             const actions = await mockStoreAndDispatch(state, memoActions.getMemos())
             expect(actions.length).toEqual(0)
           })
+        })
+      })
+
+      describe('postMemo(message)', () => {
+        it('should call memoDashLib.postMemo', async () => {
+          const message = 'message'
+          await mockStoreAndDispatch(state, memoActions.postMemo(message))
+          expect(spies.postMemo).toHaveBeenCalledWith(message)
+        })
+
+        it('should dispatch getMemos', async () => {
+          const message = 'message'
+          await mockStoreAndDispatch(state, memoActions.postMemo(message))
+          expect(spies.getMemos).toHaveBeenCalled()
         })
       })
 

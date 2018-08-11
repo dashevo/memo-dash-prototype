@@ -87,3 +87,9 @@ export const memoRepliesReceived = (username, memoId, replies) => ({
   type: MemoActionTypes.MEMO_REPLIES_RECEIVED,
   payload: { username, memoId, replies }
 })
+
+export const postMemo = message => async (dispatch, getState) => {
+  const lib = getMemoDashLib(getState())
+  await lib.postMemo(message)
+  dispatch(getMemos())
+}

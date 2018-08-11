@@ -13,7 +13,8 @@ describe('MemoDashLib', () => {
       getUserId: jest.fn().mockReturnValue(alice.userId),
       getMemosByUsername: jest.fn().mockReturnValue(alice.memos),
       getMemo: jest.fn().mockReturnValue(alice.memos[0]),
-      getAllOwnLikes: jest.fn()
+      getAllOwnLikes: jest.fn(),
+      postMemo: jest.fn()
     }
   })
 
@@ -51,6 +52,14 @@ describe('MemoDashLib', () => {
         const memoId = 1
         memoDashLib.getMemo(alice.username, memoId)
         expect(memoDashLib.memoDashClient.getMemo).toHaveBeenCalledWith(alice.username, memoId)
+      })
+    })
+
+    describe('postMemo(message)', () => {
+      it('should post memo', () => {
+        const message = 'message'
+        memoDashLib.postMemo(message)
+        expect(memoDashLib.memoDashClient.postMemo).toHaveBeenCalledWith(message)
       })
     })
   })

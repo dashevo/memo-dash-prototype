@@ -10,6 +10,7 @@ exports[`<HomeViewComponent /> renders without crashing 1`] = `
     }
     text={true}
   >
+    <Connect(WithFormik(PostMemoComponent)) />
     <Connect(MemosComponent) />
   </Container>
 </React.Fragment>
