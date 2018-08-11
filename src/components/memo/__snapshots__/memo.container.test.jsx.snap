@@ -1,12 +1,64 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<MemoContainer /> Shallow rendering renders without crashing 1`] = `
+exports[`<MemoContainer /> Shallow rendering should render memo with replies 1`] = `
 <MemoComponent
-  currentUser="alice"
-  likedByMe={false}
-  onGoToProfileClicked={[Function]}
-  onLikeMemoClicked={[Function]}
-  onRemoveLikeClicked={[Function]}
-  onReplyClicked={[Function]}
+  memo={
+    Object {
+      "avatarUrl": "https://s3.amazonaws.com/uifaces/faces/twitter/madcampos/128.jpg",
+      "idx": 1,
+      "memoDatetime": "2018-07-26T16:44:56.000Z",
+      "memoLikesCount": 1,
+      "memoRepliesCount": 0,
+      "memoText": "Suscipit vel nobis.",
+      "memoTipTotal": 0,
+      "replyIds": Array [
+        "[bob][1]",
+      ],
+      "username": "alice",
+    }
+  }
+  onLoadReplies={[Function]}
+  onModalOpenClicked={[Function]}
+  replies={
+    Array [
+      Object {
+        "avatarUrl": "https://s3.amazonaws.com/uifaces/faces/twitter/rangafangs/128.jpg",
+        "idx": 1,
+        "memoDatetime": "2018-07-26T16:45:08.218Z",
+        "memoLikesCount": 0,
+        "memoRepliesCount": 0,
+        "memoText": "Qui magnam maiores laboriosam animi sit aut.",
+        "memoTipTotal": 0,
+        "username": "bob",
+      },
+    ]
+  }
+  showReplies={true}
+/>
+`;
+
+exports[`<MemoContainer /> Shallow rendering should render memo without replies 1`] = `
+<MemoComponent
+  memo={
+    Object {
+      "avatarUrl": "https://s3.amazonaws.com/uifaces/faces/twitter/madcampos/128.jpg",
+      "idx": 1,
+      "memoDatetime": "2018-07-26T16:44:56.000Z",
+      "memoLikesCount": 1,
+      "memoRepliesCount": 0,
+      "memoText": "Suscipit vel nobis.",
+      "memoTipTotal": 0,
+      "username": "alice",
+    }
+  }
+  onLoadReplies={[Function]}
+  onModalOpenClicked={[Function]}
+/>
+`;
+
+exports[`<MemoContainer /> Shallow rendering should render without crashing 1`] = `
+<MemoComponent
+  onLoadReplies={[Function]}
+  onModalOpenClicked={[Function]}
 />
 `;

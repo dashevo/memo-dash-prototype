@@ -1,0 +1,49 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<MemoModalComponent /> should render not render memo if not opened 1`] = `""`;
+
+exports[`<MemoModalComponent /> should render render memo if opened 1`] = `
+<Segment
+  className="memo"
+>
+  <CommentGroup
+    threaded={true}
+  >
+    <Modal
+      centered={false}
+      className="memo-modal"
+      closeIcon={true}
+      closeOnDimmerClick={true}
+      closeOnDocumentClick={false}
+      dimmer={true}
+      eventPool="Modal"
+      open={true}
+    >
+      <ModalHeader>
+        Memo
+      </ModalHeader>
+      <ModalContent>
+        <CommentGroup>
+          <Connect(MemoComponent)
+            memo={
+              Object {
+                "avatarUrl": "https://s3.amazonaws.com/uifaces/faces/twitter/madcampos/128.jpg",
+                "idx": 1,
+                "memoDatetime": "2018-07-26T16:44:56.000Z",
+                "memoLikesCount": 1,
+                "memoRepliesCount": 0,
+                "memoText": "Suscipit vel nobis.",
+                "memoTipTotal": 0,
+                "username": "alice",
+              }
+            }
+            showReplies={true}
+          />
+        </CommentGroup>
+      </ModalContent>
+    </Modal>
+  </CommentGroup>
+</Segment>
+`;
+
+exports[`<MemoModalComponent /> should render without crashing 1`] = `""`;

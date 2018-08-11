@@ -1,8 +1,8 @@
 import React from 'react'
 import configureStore from 'redux-mock-store'
-import { shallow, mount } from 'enzyme'
+import { shallow } from 'enzyme'
 import PrivateRouteContainer from './private-route.container'
-import { MemoryRouter } from 'react-router-dom'
+import { initialState } from '../../store/reducers/user.reducer'
 
 describe('<PrivateRouteContainer />', () => {
   let store
@@ -11,7 +11,7 @@ describe('<PrivateRouteContainer />', () => {
     // Mock store
     const mockStore = configureStore()
     store = mockStore({
-      user: {},
+      user: initialState,
       router: {}
     })
 

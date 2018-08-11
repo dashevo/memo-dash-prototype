@@ -1,18 +1,18 @@
 import { connect } from 'react-redux'
 import HomeViewComponent from './home-view.component'
-import { getAllMemos } from '../../store/actions'
+import { getMemos } from '../../store/actions'
+import { getMemos as getMemosFromState } from '../../store/selectors'
 
 const mapStateToProps = state => {
   return {
-    currentUser: state.user.currentUser,
-    memos: state.user.allMemos
+    memos: getMemosFromState(state)
   }
 }
 
 const mapDispatchToProps = dispatch => {
   return {
-    getAllMemos: () => {
-      dispatch(getAllMemos())
+    getMemos: () => {
+      dispatch(getMemos())
     }
   }
 }

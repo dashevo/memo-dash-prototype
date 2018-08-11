@@ -1,0 +1,45 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<MemoActionsContainer /> Shallow rendering foreign memo 1`] = `
+<MemoComponent
+  isMemoOfCurrentUser={false}
+  likedByCurrentUser={false}
+  memo={
+    Object {
+      "avatarUrl": "https://s3.amazonaws.com/uifaces/faces/twitter/rangafangs/128.jpg",
+      "idx": 1,
+      "memoDatetime": "2018-07-26T16:45:08.218Z",
+      "memoLikesCount": 0,
+      "memoRepliesCount": 0,
+      "memoText": "Qui magnam maiores laboriosam animi sit aut.",
+      "memoTipTotal": 0,
+      "username": "bob",
+    }
+  }
+  onLikeMemoClicked={[Function]}
+  onRemoveLikeClicked={[Function]}
+  onReplyClicked={[Function]}
+/>
+`;
+
+exports[`<MemoActionsContainer /> Shallow rendering renders without crashing 1`] = `
+<MemoComponent
+  isMemoOfCurrentUser={true}
+  likedByCurrentUser={false}
+  memo={
+    Object {
+      "avatarUrl": "https://s3.amazonaws.com/uifaces/faces/twitter/madcampos/128.jpg",
+      "idx": 1,
+      "memoDatetime": "2018-07-26T16:44:56.000Z",
+      "memoLikesCount": 1,
+      "memoRepliesCount": 0,
+      "memoText": "Suscipit vel nobis.",
+      "memoTipTotal": 0,
+      "username": "alice",
+    }
+  }
+  onLikeMemoClicked={[Function]}
+  onRemoveLikeClicked={[Function]}
+  onReplyClicked={[Function]}
+/>
+`;

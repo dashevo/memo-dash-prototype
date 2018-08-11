@@ -2,29 +2,58 @@ import React from 'react'
 import configureStore from 'redux-mock-store'
 import { shallow } from 'enzyme'
 import MemoContainer from './memo.container'
-import { filterUser } from '../../lib/helpers'
 
-jest.mock('../../lib/helpers')
+import testUsers from '../../test-utils/test-users'
+import { combineMemoId } from '../../store/reducers/memo.reducer'
 
 describe('<MemoContainer />', () => {
   let store
-  let testUser
-  beforeEach(() => {
-    testUser = filterUser('alice')
-    // Mock store
-    const mockStore = configureStore()
-    store = mockStore({
-      user: { currentUser: testUser.username, likedByMe: false }
-    })
+  let wrapper
+  let mockStore
+  let memo
+  const alice = testUsers['alice']
+  const bob = testUsers['bob']
 
+  beforeEach(() => {
+    // Mock store
+    mockStore = configureStore()
+    memo = alice.memos[0]
     const div = document.createElement('div')
     document.body.appendChild(div)
   })
 
   describe('Shallow rendering', () => {
-    it('renders without crashing', () => {
-      const wrapper = shallow(<MemoContainer />, { context: { store } })
-      expect(wrapper).toMatchSnapshot()
+    describe('should render', () => {
+      it('without crashing', () => {
+        store = mockStore({})
+        wrapper = shallow(<MemoContainer />, { context: { store } })
+        expect(wrapper).toMatchSnapshot()
+      })
+
+      it('memo without replies', () => {
+        store = mockStore({})
+        wrapper = shallow(<MemoContainer memo={memo} />, { context: { store } })
+        expect(wrapper).toMatchSnapshot()
+      })
+
+      it('memo with replies', () => {
+        const reply = bob.memos[0]
+        memo.replyIds = [combineMemoId(reply.username, reply.idx)]
+
+        store = mockStore({
+          memo: {
+            memos: {
+              [combineMemoId(memo.username, memo.idx)]: memo,
+              [combineMemoId(reply.username, reply.idx)]: reply
+            }
+          }
+        })
+
+        wrapper = shallow(<MemoContainer showReplies={true} memo={memo} />, {
+          context: { store }
+        })
+        expect(wrapper).toMatchSnapshot()
+      })
     })
   })
 })

@@ -10,7 +10,8 @@ describe('<HomeViewContainer />', () => {
     // Mock store
     const mockStore = configureStore()
     store = mockStore({
-      user: { currentUser: { username: 'Username' } }
+      user: { currentUser: { username: 'Username' } },
+      memo: { memos: {} }
     })
 
     const div = document.createElement('div')

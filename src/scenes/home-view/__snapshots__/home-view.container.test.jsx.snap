@@ -2,11 +2,7 @@
 
 exports[`<HomeViewContainer /> Shallow rendering renders without crashing 1`] = `
 <HomeViewComponent
-  currentUser={
-    Object {
-      "username": "Username",
-    }
-  }
-  getAllMemos={[Function]}
+  getMemos={[Function]}
+  memos={Object {}}
 />
 `;

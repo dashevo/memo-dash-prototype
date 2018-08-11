@@ -1,6 +1,7 @@
 import React, { Fragment } from 'react'
 import MemoContainer from './memo.container'
-import { Comment } from 'semantic-ui-react'
+import { Comment, Segment } from 'semantic-ui-react'
+import MemoModalContainer from './modal/memo-modal.container'
 
 const MemosComponent = props => {
   const { memos } = props
@@ -8,7 +9,12 @@ const MemosComponent = props => {
     <Fragment>
       {memos ? (
         <Comment.Group size="large">
-          {memos.map(memo => <MemoContainer key={memo.idx + memo.username} memo={memo} />)}
+          {Object.values(memos).map(memo => (
+            <Segment className="memo" key={memo.idx + memo.username}>
+              <MemoContainer openModalOnClick={true} showReplies={false} memo={memo} />
+            </Segment>
+          ))}
+          <MemoModalContainer />
         </Comment.Group>
       ) : (
         'No memos available'

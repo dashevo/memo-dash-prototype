@@ -5,15 +5,7 @@ exports[`<MemosComponent /> renders without crashing 1`] = `
   <CommentGroup
     size="large"
   >
-    <Connect(MemoComponent)
-      key="NaN"
-      memo={
-        Object {
-          "key": "1",
-          "memoText": "MemoText",
-        }
-      }
-    />
+    <Connect(MemoModalComponent) />
   </CommentGroup>
 </React.Fragment>
 `;
@@ -23,36 +15,49 @@ exports[`<MemosComponent /> should render memos 1`] = `
   <CommentGroup
     size="large"
   >
-    <Connect(MemoComponent)
+    <Segment
+      className="memo"
       key="1alice"
-      memo={
-        Object {
-          "avatarUrl": "https://s3.amazonaws.com/uifaces/faces/twitter/chaabane_wail/128.jpg",
-          "idx": 1,
-          "memoDatetime": "2018-07-26T16:44:56.000Z",
-          "memoLikesCount": 1,
-          "memoRepliesCount": 0,
-          "memoText": "Suscipit vel nobis.",
-          "memoTipTotal": 0,
-          "username": "alice",
+    >
+      <Connect(MemoComponent)
+        memo={
+          Object {
+            "avatarUrl": "https://s3.amazonaws.com/uifaces/faces/twitter/madcampos/128.jpg",
+            "idx": 1,
+            "memoDatetime": "2018-07-26T16:44:56.000Z",
+            "memoLikesCount": 1,
+            "memoRepliesCount": 0,
+            "memoText": "Suscipit vel nobis.",
+            "memoTipTotal": 0,
+            "username": "alice",
+          }
         }
-      }
-    />
-    <Connect(MemoComponent)
+        openModalOnClick={true}
+        showReplies={false}
+      />
+    </Segment>
+    <Segment
+      className="memo"
       key="2alice"
-      memo={
-        Object {
-          "avatarUrl": "https://s3.amazonaws.com/uifaces/faces/twitter/chaabane_wail/128.jpg",
-          "idx": 2,
-          "memoDatetime": "2018-07-26T16:44:58.620Z",
-          "memoLikesCount": 0,
-          "memoRepliesCount": 0,
-          "memoText": "Praesentium libero est repudiandae et repudiandae.",
-          "memoTipTotal": 0,
-          "username": "alice",
+    >
+      <Connect(MemoComponent)
+        memo={
+          Object {
+            "avatarUrl": "https://s3.amazonaws.com/uifaces/faces/twitter/madcampos/128.jpg",
+            "idx": 2,
+            "memoDatetime": "2018-07-26T16:44:58.620Z",
+            "memoLikesCount": 0,
+            "memoRepliesCount": 0,
+            "memoText": "Praesentium libero est repudiandae et repudiandae.",
+            "memoTipTotal": 0,
+            "username": "alice",
+          }
         }
-      }
-    />
+        openModalOnClick={true}
+        showReplies={false}
+      />
+    </Segment>
+    <Connect(MemoModalComponent) />
   </CommentGroup>
 </React.Fragment>
 `;

@@ -1,0 +1,27 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<MemoModalContainer /> Shallow rendering should render opened modal 1`] = `
+<MemoModalComponent
+  memo={
+    Object {
+      "avatarUrl": "https://s3.amazonaws.com/uifaces/faces/twitter/madcampos/128.jpg",
+      "idx": 1,
+      "memoDatetime": "2018-07-26T16:44:56.000Z",
+      "memoLikesCount": 1,
+      "memoRepliesCount": 0,
+      "memoText": "Suscipit vel nobis.",
+      "memoTipTotal": 0,
+      "username": "alice",
+    }
+  }
+  onModalCloseClicked={[Function]}
+  opened={true}
+/>
+`;
+
+exports[`<MemoModalContainer /> Shallow rendering should render without crashing 1`] = `
+<MemoModalComponent
+  onModalCloseClicked={[Function]}
+  opened={false}
+/>
+`;

@@ -32,6 +32,39 @@ export default class MemoDashLib {
     await this.memoDashClient.logout()
   }
 
+  /**
+   * Get an array with users
+   *
+   * @param usernames
+   * @return {Promise<Array<{
+   * {
+   *   username,
+   *   { username, bio, avatarUrl, followersCount, followingCount, likesCount },
+   *   userId
+   * }
+   * }>>}
+   * @memberof MemoDashLib
+   */
+  async getUsers(usernames) {
+    const getUserPromises = []
+    for (const username of usernames) {
+      getUserPromises.push(this.getUser(username))
+    }
+
+    return await Promise.all(getUserPromises)
+  }
+
+  /**
+   * Get a single user
+   *
+   * @param username
+   * @returns
+   * {
+   *   username,
+   *   { username, bio, avatarUrl, followersCount, followingCount, likesCount },
+   *   userId
+   * }
+   */
   async getUser(username) {
     const [profile, userId] = await Promise.all([
       this.memoDashClient.getUserProfile(username),
@@ -46,7 +79,7 @@ export default class MemoDashLib {
   }
 
   /**
-   * Returns all memos for a user enriched with user's avatar URL
+   * Returns all memos for a user
    *
    * @param {string} username
    * @return {Promise<Array<{
@@ -55,14 +88,12 @@ export default class MemoDashLib {
    *   memoText,
    *   memoLikesCount,
    *   memoTipTotal,
-   *   memoRepliesCount,
-   *   avatarUrl
+   *   memoRepliesCount
    * }>>}
    * @memberof MemoDashLib
    */
   async getMemosForUser(username) {
-    const memos = await this.memoDashClient.getMemosByUsername(username)
-    return await this._enrichMemosWithAvatarUrl(memos)
+    return await this.memoDashClient.getMemosByUsername(username)
   }
 
   /**
@@ -82,14 +113,11 @@ export default class MemoDashLib {
    * }>
    */
   async getMemo(username, memoId) {
-    const memo = await this.memoDashClient.getMemo(username, memoId)
-    const memosWithAvatarUrl = await this._enrichMemosWithAvatarUrl([memo])
-    return memosWithAvatarUrl[0]
+    return await this.memoDashClient.getMemo(username, memoId)
   }
 
-  async getAllMemos() {
-    const memos = await this.memoDashClient.getMemos()
-    return await this._enrichMemosWithAvatarUrl(memos)
+  async getMemos() {
+    return await this.memoDashClient.getMemos()
   }
 
   /**
@@ -161,26 +189,4 @@ export default class MemoDashLib {
   }
 
   _isIterable = object => object && Symbol.iterator in Object(object)
-
-  _enrichMemosWithAvatarUrl = async memos => {
-    const userAvatars = new Map()
-    if (this._isIterable(memos)) {
-      const enrichedMemos = []
-
-      for (const memo of memos) {
-        if (!userAvatars.has(memo.username)) {
-          const userProfile = await this.memoDashClient.getUserProfile(memo.username)
-          if (userProfile) userAvatars.set(memo.username, userProfile.avatarUrl)
-        }
-
-        enrichedMemos.push({
-          ...memo,
-          avatarUrl: userAvatars.get(memo.username)
-        })
-      }
-      return enrichedMemos
-    }
-
-    return memos
-  }
 }
