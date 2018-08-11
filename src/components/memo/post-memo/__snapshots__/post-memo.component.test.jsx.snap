@@ -1,0 +1,38 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<PostMemoComponent /> renders without crashing 1`] = `
+<Segment
+  className="post-memo"
+  color="blue"
+>
+  <Form
+    as="form"
+    reply={true}
+  >
+    <FormTextArea
+      as={[Function]}
+      autoHeight={true}
+      className=" error"
+      control={[Function]}
+      name="message"
+      placeholder="Your Message"
+      style={
+        Object {
+          "minHeight": 20,
+        }
+      }
+      value="message"
+    />
+    <Button
+      as="button"
+      content="Post Memo"
+      disabled={true}
+      icon="edit"
+      labelPosition="left"
+      primary={true}
+      role="button"
+      type="submit"
+    />
+  </Form>
+</Segment>
+`;
