@@ -165,6 +165,10 @@ export default class MemoDashLib {
     return await this.memoDashClient.getMemoReplies(username, memoId)
   }
 
+  async postMemo(message) {
+    await this.memoDashClient.postMemo(message)
+  }
+
   /**
    * Remove like from memo
    *
