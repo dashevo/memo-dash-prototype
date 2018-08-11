@@ -11,6 +11,7 @@ const ReplyFormComponent = props => {
         value={values.message}
         onChange={handleChange}
         onBlur={handleBlur}
+        onClick={e => e.stopPropagation()}
         className={errors.message && touched.message ? ' error' : ''}
         disabled={isSubmitting}
       />
@@ -21,6 +22,7 @@ const ReplyFormComponent = props => {
         icon="edit"
         primary
         disabled={isSubmitting || !!errors.message || !values.message}
+        onClick={e => e.stopPropagation()}
       />
     </Form>
   )
