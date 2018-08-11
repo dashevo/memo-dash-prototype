@@ -32,6 +32,39 @@ export default class MemoDashLib {
     await this.memoDashClient.logout()
   }
 
+  /**
+   * Get an array with users
+   *
+   * @param usernames
+   * @return {Promise<Array<{
+   * {
+   *   username,
+   *   { username, bio, avatarUrl, followersCount, followingCount, likesCount },
+   *   userId
+   * }
+   * }>>}
+   * @memberof MemoDashLib
+   */
+  async getUsers(usernames) {
+    const getUserPromises = []
+    for (const username of usernames) {
+      getUserPromises.push(this.getUser(username))
+    }
+
+    return await Promise.all(getUserPromises)
+  }
+
+  /**
+   * Get a single user
+   *
+   * @param username
+   * @returns
+   * {
+   *   username,
+   *   { username, bio, avatarUrl, followersCount, followingCount, likesCount },
+   *   userId
+   * }
+   */
   async getUser(username) {
     const [profile, userId] = await Promise.all([
       this.memoDashClient.getUserProfile(username),
