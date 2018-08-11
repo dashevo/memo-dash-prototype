@@ -1,0 +1,14 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<MemoContentComponent /> should render without crashing 1`] = `
+<CommentContent>
+  <CommentAuthor
+    as="a"
+    onClick={[Function]}
+  />
+  <CommentMetadata>
+    <span />
+  </CommentMetadata>
+  <CommentText />
+</CommentContent>
+`;

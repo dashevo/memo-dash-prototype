@@ -1,0 +1,27 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<MemoAvatarComponent /> should render foreign memo 1`] = `
+<React.Fragment>
+  <CommentAvatar
+    as="a"
+    onClick={[Function]}
+  />
+</React.Fragment>
+`;
+
+exports[`<MemoAvatarComponent /> should render own memo 1`] = `
+<React.Fragment>
+  <CommentAvatar
+    className="avatar"
+  />
+</React.Fragment>
+`;
+
+exports[`<MemoAvatarComponent /> should render without crashing 1`] = `
+<React.Fragment>
+  <CommentAvatar
+    as="a"
+    onClick={[Function]}
+  />
+</React.Fragment>
+`;

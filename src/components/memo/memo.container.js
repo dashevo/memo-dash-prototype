@@ -1,35 +1,19 @@
 import { connect } from 'react-redux'
-import { push } from 'connected-react-router'
 
 import MemoComponent from './memo.component'
-import { likeMemo, removeLike, replyToMemo } from '../../store/actions/user.actions'
-import { isMemoLikedByCurrentUser } from '../../store/selectors/memos.selector'
+import { openMemoModal, getMemoReplies } from '../../store/actions'
+import { getMemosByCombinedIds } from '../../store/selectors'
 
 const mapStateToProps = (state, ownProps) => {
-  const {
-    user: { currentUser }
-  } = state
-
-  return {
-    currentUser,
-    likedByMe: isMemoLikedByCurrentUser(ownProps.memo)(state)
-  }
+  if (ownProps.showReplies) {
+    return { replies: getMemosByCombinedIds(ownProps.memo.replyIds)(state) }
+  } else return {}
 }
 
 const mapDispatchToProps = dispatch => {
   return {
-    onGoToProfileClicked: username => {
-      dispatch(push(`/profile/${username}`))
-    },
-    onLikeMemoClicked: (username, memoId) => {
-      dispatch(likeMemo(username, memoId))
-    },
-    onRemoveLikeClicked: (username, memoId) => {
-      dispatch(removeLike(username, memoId))
-    },
-    onReplyClicked: (username, memoId, message) => {
-      dispatch(replyToMemo(username, memoId, message))
-    }
+    onModalOpenClicked: memo => dispatch(openMemoModal(memo)),
+    onLoadReplies: memo => dispatch(getMemoReplies(memo.username, memo.idx))
   }
 }
 

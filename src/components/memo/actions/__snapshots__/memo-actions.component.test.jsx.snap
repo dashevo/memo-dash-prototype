@@ -1,0 +1,240 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<MemoActionsComponent /> should render foreign memo 1`] = `
+<React.Fragment>
+  <CommentActions>
+    <CommentAction
+      as="a"
+      name="replyAction"
+      onClick={[Function]}
+    >
+      <Icon
+        as="i"
+        name="reply"
+      />
+      <span>
+        0
+      </span>
+    </CommentAction>
+    <CommentAction
+      as="a"
+      name="likeAction"
+      onClick={[Function]}
+    >
+      <Icon
+        as="i"
+        color="grey"
+        name="like"
+      />
+      <span>
+        1
+      </span>
+    </CommentAction>
+    <CommentAction
+      as="a"
+      name="tipAction"
+    >
+      <Icon
+        as="i"
+        color="grey"
+        name="btc"
+      />
+      <span>
+        0
+      </span>
+    </CommentAction>
+  </CommentActions>
+</React.Fragment>
+`;
+
+exports[`<MemoActionsComponent /> should render foreign memo liked by current user 1`] = `
+<React.Fragment>
+  <CommentActions>
+    <CommentAction
+      as="a"
+      name="replyAction"
+      onClick={[Function]}
+    >
+      <Icon
+        as="i"
+        name="reply"
+      />
+      <span>
+        0
+      </span>
+    </CommentAction>
+    <CommentAction
+      as="a"
+      name="likeAction"
+      onClick={[Function]}
+    >
+      <Icon
+        as="i"
+        color="red"
+        name="like"
+      />
+      <span>
+        1
+      </span>
+    </CommentAction>
+    <CommentAction
+      as="a"
+      name="tipAction"
+    >
+      <Icon
+        as="i"
+        color="grey"
+        name="btc"
+      />
+      <span>
+        0
+      </span>
+    </CommentAction>
+  </CommentActions>
+</React.Fragment>
+`;
+
+exports[`<MemoActionsComponent /> should render memo with reply form 1`] = `
+<React.Fragment>
+  <CommentActions>
+    <CommentAction
+      as="a"
+      name="replyAction"
+      onClick={[Function]}
+    >
+      <Icon
+        as="i"
+        name="reply"
+      />
+      <span>
+        0
+      </span>
+    </CommentAction>
+    <CommentAction
+      as="a"
+      name="likeAction"
+      onClick={[Function]}
+    >
+      <Icon
+        as="i"
+        color="grey"
+        name="like"
+      />
+      <span>
+        1
+      </span>
+    </CommentAction>
+    <CommentAction
+      as="a"
+      name="tipAction"
+    >
+      <Icon
+        as="i"
+        color="grey"
+        name="btc"
+      />
+      <span>
+        0
+      </span>
+    </CommentAction>
+  </CommentActions>
+  <WithFormik(ReplyFormComponent)
+    memoId={1}
+    onReplySubmitted={[Function]}
+    username="alice"
+  />
+</React.Fragment>
+`;
+
+exports[`<MemoActionsComponent /> should render own memo 1`] = `
+<React.Fragment>
+  <CommentActions>
+    <CommentAction
+      as="span"
+      name="replyAction"
+    >
+      <Icon
+        as="i"
+        name="reply"
+      />
+      <span>
+        0
+      </span>
+    </CommentAction>
+    <CommentAction
+      as="span"
+      name="likeAction"
+      onClick={[Function]}
+    >
+      <Icon
+        as="i"
+        color="grey"
+        name="like"
+      />
+      <span>
+        1
+      </span>
+    </CommentAction>
+    <CommentAction
+      as="a"
+      name="tipAction"
+    >
+      <Icon
+        as="i"
+        color="grey"
+        name="btc"
+      />
+      <span>
+        0
+      </span>
+    </CommentAction>
+  </CommentActions>
+</React.Fragment>
+`;
+
+exports[`<MemoActionsComponent /> should render without crashing 1`] = `
+<React.Fragment>
+  <CommentActions>
+    <CommentAction
+      as="a"
+      name="replyAction"
+      onClick={[Function]}
+    >
+      <Icon
+        as="i"
+        name="reply"
+      />
+      <span>
+        0
+      </span>
+    </CommentAction>
+    <CommentAction
+      as="a"
+      name="likeAction"
+      onClick={[Function]}
+    >
+      <Icon
+        as="i"
+        color="grey"
+        name="like"
+      />
+      <span>
+        1
+      </span>
+    </CommentAction>
+    <CommentAction
+      as="a"
+      name="tipAction"
+    >
+      <Icon
+        as="i"
+        color="grey"
+        name="btc"
+      />
+      <span>
+        0
+      </span>
+    </CommentAction>
+  </CommentActions>
+</React.Fragment>
+`;

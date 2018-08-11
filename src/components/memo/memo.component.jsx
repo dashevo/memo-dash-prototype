@@ -1,100 +1,35 @@
 import React, { Component } from 'react'
-import { Comment, Icon, Segment } from 'semantic-ui-react'
-
+import { Comment } from 'semantic-ui-react'
+import MemoActionsContainer from './actions/memo-actions.container'
+import MemoAvatarContainer from './avatar/memo-avatar.container'
+import MemoContentContainer from './content/memo-content.container'
 import './memo.styles.css'
-import ReplyFormContainer from './reply/reply-form.container'
+import MemoContainer from './memo.container'
 
-const isMemoOfCurrentUser = (currentUser, memo) => currentUser === memo.username
-
-class MemoComponent extends Component {
-  constructor(props) {
-    super(props)
-    this.state = { replyingToMemo: false }
-  }
-
-  onReplyClicked = (username, memo, message) => {
-    this.props.onReplyClicked(username, memo, message)
-    this.setState({ replyingToMemo: false })
+export default class MemoComponent extends Component {
+  componentDidMount() {
+    const { memo, showReplies, onLoadReplies } = this.props
+    if (showReplies && memo.memoRepliesCount > 0) {
+      onLoadReplies(memo)
+    }
   }
 
   render() {
-    const {
-      currentUser,
-      likedByMe,
-      memo,
-      onGoToProfileClicked,
-      onRemoveLikeClicked,
-      onLikeMemoClicked
-    } = this.props
-
-    const { replyingToMemo } = this.state
-
+    const { memo, showReplies, replies, openModalOnClick, onModalOpenClicked } = this.props
     return (
-      <Segment className="memo">
-        <Comment>
-          {isMemoOfCurrentUser(currentUser, memo) ? (
-            <Comment.Avatar className="avatar" src={memo.avatarUrl} />
-          ) : (
-            <Comment.Avatar as="a" src={memo.avatarUrl} onClick={() => onGoToProfileClicked(memo.username)} />
+      <Comment onClick={!!openModalOnClick ? () => onModalOpenClicked(memo) : undefined}>
+        <MemoAvatarContainer memo={memo} />
+        <Comment.Content>
+          <MemoContentContainer memo={memo} />
+          <MemoActionsContainer memo={memo} />
+        </Comment.Content>
+        {showReplies &&
+          !!replies && (
+            <Comment.Group>
+              {replies.map(reply => <MemoContainer showReplies={true} memo={reply} key={reply.idx} />)}
+            </Comment.Group>
           )}
-          <Comment.Content>
-            <Comment.Author as="a" onClick={() => onGoToProfileClicked(memo.username)}>
-              {memo.username}
-            </Comment.Author>
-            <Comment.Metadata>
-              <span>{memo.memoDatetime}</span>
-            </Comment.Metadata>
-            <Comment.Text>{memo.memoText}</Comment.Text>
-            <Comment.Actions>
-              {isMemoOfCurrentUser(currentUser, memo) ? (
-                <Comment.Action as="span" name="replyAction">
-                  <Icon name="reply" />
-                  <span>{memo.memoRepliesCount}</span>
-                </Comment.Action>
-              ) : (
-                <Comment.Action
-                  as="a"
-                  name="replyAction"
-                  onClick={() => this.setState({ replyingToMemo: true })}
-                >
-                  <Icon name="reply" />
-                  <span>{memo.memoRepliesCount}</span>
-                </Comment.Action>
-              )}
-              <Comment.Action
-                name="likeAction"
-                as={!isMemoOfCurrentUser(currentUser, memo) ? 'a' : 'span'}
-                onClick={
-                  !isMemoOfCurrentUser(currentUser, memo)
-                    ? () =>
-                        likedByMe
-                          ? onRemoveLikeClicked(memo.username, memo.idx)
-                          : onLikeMemoClicked(memo.username, memo.idx)
-                    : undefined
-                }
-              >
-                <Icon name="like" color={likedByMe ? 'red' : 'grey'} />
-                <span>{memo.memoLikesCount}</span>
-              </Comment.Action>
-              <Comment.Action name="tipAction">
-                <Icon name="btc" color="grey" />
-                <span>{memo.memoTipTotal}</span>
-              </Comment.Action>
-            </Comment.Actions>
-            {replyingToMemo ? (
-              <ReplyFormContainer
-                memoId={memo.idx}
-                username={memo.username}
-                onReplyClicked={this.onReplyClicked}
-              />
-            ) : (
-              ''
-            )}
-          </Comment.Content>
-        </Comment>
-      </Segment>
+      </Comment>
     )
   }
 }
-
-export default MemoComponent
