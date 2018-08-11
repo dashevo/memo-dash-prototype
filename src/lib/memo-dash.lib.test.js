@@ -22,46 +22,14 @@ describe('MemoDashLib', () => {
         memoDashLib.getMemosForUser(username)
         expect(memoDashLib.memoDashClient.getMemosByUsername).toHaveBeenCalledWith(username)
       })
-
-      it('should enrich memos with avatarUrl', async () => {
-        memoDashLib._enrichMemosWithAvatarUrl = jest.fn()
-        await memoDashLib.getMemosForUser('username')
-        expect(memoDashLib._enrichMemosWithAvatarUrl).toHaveBeenCalledWith(memos)
       })
-    })
 
     describe('getMemo(username, memoId)', () => {
       it('should get memo from client', () => {
         const username = 'username'
         const memoId = 1
-        memoDashLib.getMemo(username, memoId)
-        expect(memoDashLib.memoDashClient.getMemo).toHaveBeenCalledWith(username, memoId)
-      })
-
-      it('should enrich memo with avatarUrl', async () => {
-        memoDashLib._enrichMemosWithAvatarUrl = jest.fn().mockReturnValue(memos)
-        const memo = await memoDashLib.getMemo('username', 1)
-        expect(memoDashLib._enrichMemosWithAvatarUrl).toHaveBeenCalledWith([memo])
-      })
-    })
-
-    describe('enrich with avatarUrl', () => {
-      const memos = [
-        { name: 'should return undefined if memos is undefined', given: undefined, expected: undefined },
-        { name: 'should return null if memos is null', given: null, expected: null },
-        { name: 'should handle correct if memos is not iterable', given: {}, expected: {} },
-        {
-          name: 'should add avatarUrl if memos are present',
-          given: [{}, {}],
-          expected: [{ avatarUrl: 'avatarUrl' }, { avatarUrl: 'avatarUrl' }]
-        }
-      ]
-
-      for (const memo of memos) {
-        it(memo.name, async () => {
-          expect(await memoDashLib._enrichMemosWithAvatarUrl(memo.given)).toEqual(memo.expected)
+        expect(memoDashLib.memoDashClient.getMemo).toHaveBeenCalledWith(alice.username, memoId)
         })
-      }
     })
   })
 
