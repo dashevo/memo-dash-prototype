@@ -7,7 +7,9 @@ exports[`<MemoContentComponent /> should render without crashing 1`] = `
     onClick={[Function]}
   />
   <CommentMetadata>
-    <span />
+    <span>
+      a few seconds ago
+    </span>
   </CommentMetadata>
   <CommentText />
 </CommentContent>
