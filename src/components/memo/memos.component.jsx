@@ -9,11 +9,13 @@ const MemosComponent = props => {
     <Fragment>
       {memos ? (
         <Comment.Group size="large">
-          {Object.values(memos).map(memo => (
-            <Segment className="memo" key={memo.idx + memo.username}>
-              <MemoContainer openModalOnClick={true} showReplies={false} memo={memo} />
-            </Segment>
-          ))}
+          {Object.values(memos)
+            .sort((a, b) => a.memoDatetime < b.memoDatetime)
+            .map(memo => (
+              <Segment className="memo" key={memo.idx + memo.username}>
+                <MemoContainer openModalOnClick={true} showReplies={false} memo={memo} />
+              </Segment>
+            ))}
           <MemoModalContainer />
         </Comment.Group>
       ) : (

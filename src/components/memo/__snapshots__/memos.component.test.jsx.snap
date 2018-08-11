@@ -17,27 +17,6 @@ exports[`<MemosComponent /> should render memos 1`] = `
   >
     <Segment
       className="memo"
-      key="1alice"
-    >
-      <Connect(MemoComponent)
-        memo={
-          Object {
-            "avatarUrl": "https://s3.amazonaws.com/uifaces/faces/twitter/madcampos/128.jpg",
-            "idx": 1,
-            "memoDatetime": "2018-07-26T16:44:56.000Z",
-            "memoLikesCount": 1,
-            "memoRepliesCount": 0,
-            "memoText": "Suscipit vel nobis.",
-            "memoTipTotal": 0,
-            "username": "alice",
-          }
-        }
-        openModalOnClick={true}
-        showReplies={false}
-      />
-    </Segment>
-    <Segment
-      className="memo"
       key="2alice"
     >
       <Connect(MemoComponent)
@@ -49,6 +28,27 @@ exports[`<MemosComponent /> should render memos 1`] = `
             "memoLikesCount": 0,
             "memoRepliesCount": 0,
             "memoText": "Praesentium libero est repudiandae et repudiandae.",
+            "memoTipTotal": 0,
+            "username": "alice",
+          }
+        }
+        openModalOnClick={true}
+        showReplies={false}
+      />
+    </Segment>
+    <Segment
+      className="memo"
+      key="1alice"
+    >
+      <Connect(MemoComponent)
+        memo={
+          Object {
+            "avatarUrl": "https://s3.amazonaws.com/uifaces/faces/twitter/madcampos/128.jpg",
+            "idx": 1,
+            "memoDatetime": "2018-07-26T16:44:56.000Z",
+            "memoLikesCount": 1,
+            "memoRepliesCount": 0,
+            "memoText": "Suscipit vel nobis.",
             "memoTipTotal": 0,
             "username": "alice",
           }
