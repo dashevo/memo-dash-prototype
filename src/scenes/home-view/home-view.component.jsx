@@ -5,7 +5,7 @@ import MemosContainer from '../../components/memo/memos.container'
 
 export class HomeViewComponent extends Component {
   componentDidMount() {
-    this.props.getAllMemos()
+    this.props.getMemos()
   }
 
   render() {

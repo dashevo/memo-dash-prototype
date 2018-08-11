@@ -87,9 +87,7 @@ export default class MemoDashLib {
     return memosWithAvatarUrl[0]
   }
 
-  async getAllMemos() {
-    const memos = await this.memoDashClient.getMemos()
-    return await this._enrichMemosWithAvatarUrl(memos)
+  async getMemos() {
   }
 
   /**
