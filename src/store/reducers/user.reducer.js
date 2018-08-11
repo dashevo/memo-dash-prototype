@@ -1,12 +1,12 @@
 import { AuthActionTypes } from '../actions'
 import { UserActionTypes } from '../actions/user.actions'
-import { getUserByUsername, getCurrentUser } from '../selectors/users.selector'
+import { getCurrentUser } from '../selectors'
 
 export const initialState = {
   currentUser: undefined,
-  allMemos: undefined,
+  memos: undefined,
   authError: undefined,
-  users: []
+  users: undefined
 }
 
 export default (state = initialState, action) => {
@@ -27,71 +27,43 @@ export default (state = initialState, action) => {
 
     case AuthActionTypes.LOGOUT_SUCCESSFULL:
       return initialState
-    case UserActionTypes.USER_RECEIVED: {
-      const { payload: newUser } = action
-      const existingUser = getUserByUsername(newUser.username)({ user: state })
+    case UserActionTypes.USERS_RECEIVED:
+      const users = { ...state.users }
+      const receivedUsers = action.payload
 
-      let user
-      if (existingUser) {
-        user = { ...existingUser, ...newUser }
-      } else {
-        user = newUser
-      }
+      receivedUsers.forEach(receivedUser => (users[receivedUser.username] = receivedUser))
 
       return {
         ...state,
-        users: { ...state.users, [user.username]: user }
+        users
+      }
+
+    case UserActionTypes.USER_RECEIVED: {
+      const users = { ...state.users }
+      const receivedUser = action.payload
+
+      users[receivedUser.username] = receivedUser
+
+      return {
+        ...state,
+        users
       }
     }
     case UserActionTypes.USER_UPDATED: {
+      const users = { ...state.users }
       const { username, props } = action.payload
-      const existingUser = getUserByUsername(username)({ user: state })
 
-      if (existingUser) {
-        const updatedUser = { ...existingUser, ...props }
+      if (users[username]) {
+        const updatedUser = { ...users[username], ...props }
         return {
           ...state,
-          users: { ...state.users, [updatedUser.username]: updatedUser }
+          users: { ...state.users, [username]: updatedUser }
         }
       } else {
         return state
       }
     }
-    case UserActionTypes.MEMOS_FOR_USER_RECEIVED: {
-      const { username, memos } = action.payload
-      const user = getUserByUsername(username)({ user: state })
 
-      if (user) {
-        const updatedUser = { ...user, memos }
-
-        return {
-          ...state,
-          users: { ...state.users, [updatedUser.username]: updatedUser }
-        }
-      } else {
-        return {
-          ...state,
-          users: { ...state.users, [username]: { username, memos } }
-        }
-      }
-    }
-    case UserActionTypes.MEMO_UPDATED:
-      const { username, idx } = action.payload
-
-      return {
-        ...state,
-        allMemos: [
-          ...state.allMemos.map(
-            memo => (memo.username === username && memo.idx === idx ? action.payload : memo)
-          )
-        ]
-      }
-
-    case UserActionTypes.ALL_MEMOS_RECEIVED:
-      return {
-        ...state,
-        allMemos: action.payload
-      }
     case UserActionTypes.LIKE_REMOVED:
       const user = getCurrentUser({ user: state })
       if (user) {
@@ -103,6 +75,7 @@ export default (state = initialState, action) => {
       } else {
         return state
       }
+
     default:
       return state
   }
