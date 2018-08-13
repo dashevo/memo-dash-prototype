@@ -1,9 +1,9 @@
 import React from 'react'
 import { Route, Switch } from 'react-router'
-import PrivateRoute from '../components/private-route/private-route.container'
+
 import { LoginViewContainer, HomeViewContainer, ProfileViewContainer } from '../scenes/'
-import {} from '../scenes/'
-import { NoMatch } from '../components'
+import PrivateRoute from '../components/private-route/private-route.container'
+import NoMatch from '../components/no-match/no-match.component'
 import HeaderContainer from '../components/header/header.container'
 import FooterContainer from '../components/footer/footer.container'
 
