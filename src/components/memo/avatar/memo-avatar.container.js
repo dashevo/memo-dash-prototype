@@ -14,7 +14,8 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    onGoToProfileClicked: username => {
+    onGoToProfileClicked: (e, username) => {
+      e.stopPropagation()
       dispatch(push(`/profile/${username}`))
     }
   }

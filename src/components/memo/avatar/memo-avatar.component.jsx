@@ -9,7 +9,7 @@ const MemoAvatarComponent = props => {
       {isMemoOfCurrentUser ? (
         <Comment.Avatar className="avatar" src={avatarUrl} />
       ) : (
-        <Comment.Avatar as="a" src={avatarUrl} onClick={() => onGoToProfileClicked(memo.username)} />
+        <Comment.Avatar as="a" src={avatarUrl} onClick={e => onGoToProfileClicked(e, memo.username)} />
       )}
     </Fragment>
   )

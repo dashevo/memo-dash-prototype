@@ -1,6 +1,6 @@
 import React from 'react'
 import { Menu, Container } from 'semantic-ui-react'
-import Logo from '../logo'
+import Logo from '../logo/logo.component'
 import UserMenuContainer from './user-menu/user-menu.container'
 
 const HeaderComponent = props => {

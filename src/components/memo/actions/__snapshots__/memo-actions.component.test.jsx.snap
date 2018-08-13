@@ -33,6 +33,7 @@ exports[`<MemoActionsComponent /> should render foreign memo 1`] = `
     <CommentAction
       as="a"
       name="tipAction"
+      onClick={[Function]}
     >
       <Icon
         as="i"
@@ -80,6 +81,7 @@ exports[`<MemoActionsComponent /> should render foreign memo liked by current us
     <CommentAction
       as="a"
       name="tipAction"
+      onClick={[Function]}
     >
       <Icon
         as="i"
@@ -127,6 +129,7 @@ exports[`<MemoActionsComponent /> should render memo with reply form 1`] = `
     <CommentAction
       as="a"
       name="tipAction"
+      onClick={[Function]}
     >
       <Icon
         as="i"
@@ -178,6 +181,7 @@ exports[`<MemoActionsComponent /> should render own memo 1`] = `
     <CommentAction
       as="a"
       name="tipAction"
+      onClick={[Function]}
     >
       <Icon
         as="i"
@@ -225,6 +229,7 @@ exports[`<MemoActionsComponent /> should render without crashing 1`] = `
     <CommentAction
       as="a"
       name="tipAction"
+      onClick={[Function]}
     >
       <Icon
         as="i"

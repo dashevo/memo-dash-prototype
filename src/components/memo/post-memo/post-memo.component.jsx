@@ -1,12 +1,11 @@
 import React from 'react'
-// import MemoContainer from '../memo.container'
 import { Button, Segment, Form } from 'semantic-ui-react'
 
 import './post-memo.styles.css'
 
 const PostMemoComponent = props => {
   const { values, touched, errors, isSubmitting, handleBlur, handleSubmit, handleChange } = props
-  console.log(props)
+
   return (
     <Segment color="blue" className="post-memo">
       <Form onSubmit={handleSubmit}>

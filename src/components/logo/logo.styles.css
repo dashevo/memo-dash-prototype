@@ -2,7 +2,8 @@
   position: relative;
   display: inline;
   margin: auto;
+  padding: 5px;
 }
 .logo__image {
-  height: 40px;
+  height: 35px;
 }

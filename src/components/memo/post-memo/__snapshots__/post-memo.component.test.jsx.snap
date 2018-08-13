@@ -7,7 +7,6 @@ exports[`<PostMemoComponent /> renders without crashing 1`] = `
 >
   <Form
     as="form"
-    reply={true}
   >
     <FormTextArea
       as={[Function]}
