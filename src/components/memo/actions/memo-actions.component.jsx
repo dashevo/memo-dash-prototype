@@ -60,7 +60,7 @@ class MemoComponent extends Component {
             <Icon name="like" color={likedByCurrentUser ? 'red' : 'grey'} />
             <span>{memo.memoLikesCount}</span>
           </Comment.Action>
-          <Comment.Action name="tipAction">
+          <Comment.Action name="tipAction" onClick={e => e.stopPropagation()}>
             <Icon name="btc" color="grey" />
             <span>{memo.memoTipTotal}</span>
           </Comment.Action>
