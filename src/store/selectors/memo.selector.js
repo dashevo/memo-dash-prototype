@@ -13,10 +13,10 @@ export const isMemoOfCurrentUser = memo =>
   createSelector([getCurrentUsername], currentUserName => currentUserName === memo.username)
 
 export const isMemoLikedByCurrentUser = memo =>
-  createSelector(
-    [getCurrentUser],
-    currentUser =>
-      currentUser && memo.username !== currentUser.username && currentUser.ownLikes
-        ? currentUser.ownLikes.some(like => like.relation.index === memo.idx)
-        : false
-  )
+  createSelector([getCurrentUser], currentUser => {
+    return currentUser && currentUser.ownLikes && memo.username !== currentUser.username
+      ? currentUser.ownLikes.some(
+          like => like.relation.username === memo.username && like.relation.index === memo.idx
+        )
+      : false
+  })
