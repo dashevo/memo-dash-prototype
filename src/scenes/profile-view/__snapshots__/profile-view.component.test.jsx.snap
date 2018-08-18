@@ -48,42 +48,41 @@ exports[`<ProfileViewComponent /> renders memos without crashing 1`] = `
         <GridColumn
           width={12}
         >
-          <Menu>
-            <MenuItem
-              active={true}
-              as="a"
-            >
-              Memos (
-              1
-              )
-            </MenuItem>
-            <MenuItem
-              as="a"
-            >
-              Followers (
-              1
-              )
-            </MenuItem>
-            <MenuItem
-              as="a"
-            >
-              Following (
-              1
-              )
-            </MenuItem>
-          </Menu>
-          <Container>
-            <Connect(MemosComponent)
-              memos={
-                Array [
-                  Object {
-                    "createdAt": "createdAt",
-                    "message": "message",
-                  },
-                ]
+          <Tab
+            grid={
+              Object {
+                "paneWidth": 12,
+                "tabWidth": 4,
               }
-            />
-          </Container>
+            }
+            menu={
+              Object {
+                "attached": true,
+                "tabular": true,
+              }
+            }
+            onTabChange={[Function]}
+            panes={
+              Array [
+                Object {
+                  "active": false,
+                  "menuItem": "Memos (1)",
+                  "render": [Function],
+                },
+                Object {
+                  "active": false,
+                  "menuItem": "Followers (1)",
+                  "render": [Function],
+                },
+                Object {
+                  "active": false,
+                  "menuItem": "Following (1)",
+                  "render": [Function],
+                },
+              ]
+            }
+            renderActiveOnly={true}
+          />
         </GridColumn>
       </GridRow>
     </Grid>
