@@ -12,15 +12,13 @@ class MemoComponent extends Component {
   }
 
   goToProfile = e => {
+    e.stopPropagation()
     const { memo, onGoToProfileClicked } = this.props
     onGoToProfileClicked(memo.username)
   }
 
   render() {
     const { memo } = this.props
-
-    // 2018-08-11T14:55:53.205Z
-    //.format('{YYYY} MM-DDTHH:mm:ss SSS [Z] A')
 
     return (
       <Comment.Content>
