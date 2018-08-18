@@ -10,11 +10,14 @@ describe('MemoDashLib', () => {
     memoDashLib = new MemoDashLib()
     memoDashLib.memoDashClient = {
       getUserProfile: jest.fn().mockReturnValue(alice.profile),
+      getUsername: jest.fn().mockReturnValue(alice.username),
       getUserId: jest.fn().mockReturnValue(alice.userId),
       getMemosByUsername: jest.fn().mockReturnValue(alice.memos),
       getMemo: jest.fn().mockReturnValue(alice.memos[0]),
-      getAllOwnLikes: jest.fn(),
-      postMemo: jest.fn()
+      getAllOwnLikes: jest.fn().mockReturnValue(alice.ownLikes),
+      postMemo: jest.fn(),
+      getUserFollowers: jest.fn(),
+      getUserFollowing: jest.fn()
     }
   })
 
@@ -69,6 +72,24 @@ describe('MemoDashLib', () => {
       it('should get like for current user from client', () => {
         memoDashLib.getAllOwnLikes()
         expect(memoDashLib.memoDashClient.getAllOwnLikes).toHaveBeenCalled()
+      })
+    })
+  })
+
+  describe('Followers', () => {
+    describe('getUserFollowers(username)', () => {
+      it('should get followers for a user from client', () => {
+        memoDashLib.getUserFollowers(alice.username)
+        expect(memoDashLib.memoDashClient.getUserFollowers).toHaveBeenCalledWith(alice.username)
+      })
+    })
+  })
+
+  describe('Following', () => {
+    describe('getUserFollowing(username)', () => {
+      it('should get users who follows the passed user from client', () => {
+        memoDashLib.getUserFollowing(alice.username)
+        expect(memoDashLib.memoDashClient.getUserFollowing).toHaveBeenCalledWith(alice.username)
       })
     })
   })
