@@ -189,7 +189,36 @@ export default class MemoDashLib {
    * @memberof MemoDashLib
    */
   async getAllOwnLikes() {
-    return await this.memoDashClient.getAllOwnLikes()
+    const likes = await this.memoDashClient.getAllOwnLikes()
+
+    for (const like of likes) {
+      like.relation.username = await this.memoDashClient.getUsername(like.relation.userId)
+    }
+    return likes
+  }
+
+  /**
+   * Get followers of a user
+   * @returns
+   * [{
+   *   username
+   * }]
+   * @memberof MemoDashLib
+   */
+  async getUserFollowers(username) {
+    return await this.memoDashClient.getUserFollowers(username)
+  }
+
+  /**
+   * Get users followed by a user
+   * @returns
+   * [{
+   *   username
+   * }]
+   * @memberof MemoDashLib
+   */
+  async getUserFollowing(username) {
+    return await this.memoDashClient.getUserFollowing(username)
   }
 
   _isIterable = object => object && Symbol.iterator in Object(object)

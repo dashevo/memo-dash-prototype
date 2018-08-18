@@ -11,7 +11,7 @@ jest.mock('./user.actions', () => {
 
 describe('memo actions', () => {
   describe('should create an action', () => {
-    it('to indicate all memos were received', () => {
+    it('to indicate memos were received', () => {
       verifyAction(MemoActionTypes.MEMOS_RECEIVED, 'memos', () => memoActions.memosReceived('memos'))
     })
 

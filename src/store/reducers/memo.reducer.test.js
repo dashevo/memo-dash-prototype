@@ -2,7 +2,7 @@ import reducer, { initialState, combineMemoId } from './memo.reducer'
 import { memosReceived, memoUpdated, memoRepliesReceived } from '../actions/memo.actions'
 import testUsers from '../../test-utils/test-users'
 
-describe('user reducer', () => {
+describe('memo reducer', () => {
   it('should return the initial state', () => {
     expect(reducer(undefined, {})).toEqual(initialState)
   })

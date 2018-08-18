@@ -1,0 +1,44 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<UserProfilesComponent /> renders without crashing 1`] = `
+<React.Fragment>
+  <CardGroup
+    itemsPerRow={3}
+  />
+</React.Fragment>
+`;
+
+exports[`<UserProfilesComponent /> should render memos 1`] = `
+<React.Fragment>
+  <CardGroup
+    itemsPerRow={3}
+  >
+    <Connect(UserProfileComponent)
+      key="alice"
+      userProfile={
+        Object {
+          "avatarUrl": "https://s3.amazonaws.com/uifaces/faces/twitter/madcampos/128.jpg",
+          "bio": "Quod architecto molestias et.",
+          "followersCount": 1,
+          "followingCount": 1,
+          "likesCount": 1,
+          "username": "alice",
+        }
+      }
+    />
+    <Connect(UserProfileComponent)
+      key="bob"
+      userProfile={
+        Object {
+          "avatarUrl": "https://s3.amazonaws.com/uifaces/faces/twitter/madcampos/129.jpg",
+          "bio": "Id qui nisi asperiores vel quo.",
+          "followersCount": 1,
+          "followingCount": 1,
+          "likesCount": 1,
+          "username": "bob",
+        }
+      }
+    />
+  </CardGroup>
+</React.Fragment>
+`;

@@ -2,10 +2,11 @@ import { connect } from 'react-redux'
 import { push } from 'connected-react-router'
 
 import HeaderComponent from './header.component'
+import { getPathname } from '../../store/selectors'
 
 const mapStateToProps = state => {
   return {
-    location: state.router.location.pathname
+    location: getPathname(state)
   }
 }
 
