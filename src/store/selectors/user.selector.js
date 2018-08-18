@@ -29,6 +29,16 @@ export const getUserMemos = username =>
     return user ? user.memos : undefined
   })
 
+export const getUserFollowers = username =>
+  createSelector([getUserByUsername(username), userSelector], (user, users) => {
+    return user && user.followers ? user.followers.map(follower => users[follower]) : undefined
+  })
+
+export const getUserFollowing = username =>
+  createSelector([getUserByUsername(username), userSelector], (user, users) => {
+    return user && user.following ? user.following.map(following => users[following]) : undefined
+  })
+
 export const getMissingUsers = usernames =>
   createSelector([userSelector], availableUsers =>
     usernames

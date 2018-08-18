@@ -38,6 +38,14 @@ describe('user selector', () => {
     expect(selector.getUserMemos(alice.username)(state)).toEqual(alice.memos)
   })
 
+  it('should return user followers', () => {
+    expect(selector.getUserFollowers(alice.username)(state)).toEqual([bob])
+  })
+
+  it('should return user following', () => {
+    expect(selector.getUserFollowing(alice.username)(state)).toEqual([bob])
+  })
+
   describe('missing users', () => {
     it('should return an empty array if all users are available', () => {
       expect(selector.getMissingUsers([alice.username, bob.username])(state)).toEqual([])
