@@ -1,5 +1,5 @@
 import React from 'react'
-import { Route, Switch } from 'react-router'
+import { Route, Switch, Redirect } from 'react-router'
 
 import { LoginViewContainer, HomeViewContainer, ProfileViewContainer } from '../scenes/'
 import PrivateRoute from '../components/private-route/private-route.container'
@@ -27,7 +27,8 @@ const routes = (
       <Route exact path="/" component={withFooter(LoginViewContainer)} />
       <Route path="/login" component={withFooter(LoginViewContainer)} />
       <PrivateRoute path="/home" component={withHeader(withFooter(HomeViewContainer))} />
-      <PrivateRoute path="/profile/:username" component={withHeader(withFooter(ProfileViewContainer))} />
+      <Redirect exact from="/profile/:username" to="/profile/:username/memos" />
+      <PrivateRoute path="/profile/:username/*" component={withHeader(withFooter(ProfileViewContainer))} />
       <Route component={NoMatch} />
     </Switch>
   </div>
