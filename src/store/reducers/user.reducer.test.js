@@ -159,19 +159,20 @@ describe('user reducer', () => {
 
     describe('Likes', () => {
       describe('handle LIKE_REMOVED', () => {
+        const alice = testUsers['alice']
+
         it('should return original state if no user found', () => {
           const state = { users: {} }
-          expect(reducer(state, likeRemoved('1'))).toEqual(state)
+          expect(reducer(state, likeRemoved(alice.ownLikes[0].idx))).toEqual(state)
         })
 
         it('should remove a like', () => {
-          const alice = testUsers['alice']
           const state = {
             currentUser: alice.username,
             users: { [alice.username]: alice }
           }
 
-          expect(reducer(state, likeRemoved(1))).toEqual({
+          expect(reducer(state, likeRemoved(alice.ownLikes[0].idx))).toEqual({
             ...state,
             users: { ...state.users, [alice.username]: { ...alice, ownLikes: [alice.ownLikes[1]] } }
           })
