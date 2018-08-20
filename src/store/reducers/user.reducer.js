@@ -4,7 +4,7 @@ import { getCurrentUser } from '../selectors'
 
 export const initialState = {
   currentUser: undefined,
-  memos: undefined,
+  memoIds: undefined,
   authError: undefined,
   users: undefined
 }

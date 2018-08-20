@@ -1,5 +1,7 @@
 import { createSelector } from 'reselect'
 
+import { getMemos } from './memo.selector'
+
 const userSelector = state => state.user.users
 
 export const isAuthenticated = state => Boolean(getCurrentUser(state))
@@ -25,8 +27,8 @@ export const getUserProfile = username =>
   })
 
 export const getUserMemos = username =>
-  createSelector([getUserByUsername(username)], user => {
-    return user ? user.memos : undefined
+  createSelector([getUserByUsername(username), getMemos], (user, memos) => {
+    return user && user.memoIds ? user.memoIds.map(memoId => memos[memoId]) : undefined
   })
 
 export const getUserFollowers = username =>

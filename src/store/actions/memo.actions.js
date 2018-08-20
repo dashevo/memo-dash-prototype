@@ -1,5 +1,6 @@
 import { getMemoDashLib, getCurrentUser, getMissingUsers, getCurrentUsername } from '../selectors'
 import { userUpdated, getUsers } from './user.actions'
+import { combineMemoId } from '../reducers/memo.reducer'
 
 export const MemoActionTypes = {
   MEMOS_RECEIVED: 'MEMOS_RECEIVED',
@@ -10,7 +11,12 @@ export const MemoActionTypes = {
 
 export const getMemosForUser = username => async (dispatch, getState) => {
   const memos = await getMemoDashLib(getState()).getMemosForUser(username)
-  dispatch(userUpdated(username, { memos }))
+
+  if (memos) {
+    dispatch(memosReceived(memos))
+    const memoIds = memos.map(memo => combineMemoId(memo.username, memo.idx))
+    dispatch(userUpdated(username, { memoIds }))
+  }
 }
 
 export const getMemos = () => async (dispatch, getState) => {
