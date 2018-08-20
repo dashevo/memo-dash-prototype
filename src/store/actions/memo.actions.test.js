@@ -2,7 +2,7 @@ import * as memoActions from './memo.actions'
 import * as userActions from './user.actions'
 import { MemoActionTypes } from './memo.actions'
 import { verifyAction, mockStoreAndDispatch, getAction } from '../../test-utils/actions.test-helper'
-import testUsers from '../../test-utils/test-users'
+import { testUsers, testMemos } from '../../test-utils/test-data'
 
 jest.mock('./user.actions', () => {
   const lib = require.requireActual('./user.actions')
@@ -61,11 +61,18 @@ describe('memo actions', () => {
             ...spies
           }
         },
-        user: { currentUser: username, users: testUsers }
+        user: { currentUser: username, users: testUsers },
+        memo: {
+          memos: testMemos
+        }
       }
     })
 
     describe('Memos', () => {
+      const alice = testUsers['alice']
+      let memos = []
+      alice.memoIds.forEach(memoId => memos.push(testMemos[memoId]))
+
       describe('getMemosForUser(username)', () => {
         it('should call memoDashLib.getMemosForUser', async () => {
           await mockStoreAndDispatch(state, memoActions.getMemosForUser())
@@ -73,12 +80,10 @@ describe('memo actions', () => {
         })
 
         it('should dispatch userUpdated', async () => {
-          const memos = 'memos'
-          const username = 'username'
           state.root.memoDashLib.getMemosForUser.mockReturnValue(memos)
-          const actions = await mockStoreAndDispatch(state, memoActions.getMemosForUser(username))
+          const actions = await mockStoreAndDispatch(state, memoActions.getMemosForUser(alice.username))
           expect(await getAction(actions, userActions.UserActionTypes.USER_UPDATED)).toEqual(
-            userActions.userUpdated(username, { memos })
+            userActions.userUpdated(alice.username, { memoIds: alice.memoIds })
           )
         })
       })
@@ -91,7 +96,6 @@ describe('memo actions', () => {
 
         describe('received memos', () => {
           const user = testUsers['alice']
-          const memos = user.memos
 
           it('should dispatch memosReceived', async () => {
             state.root.memoDashLib.getMemos.mockReturnValue(memos)
@@ -196,8 +200,8 @@ describe('memo actions', () => {
         })
 
         it('should dispatch memoUpdated', async () => {
-          const memo = alice.memos[0]
-          state.root.memoDashLib.getMemo.mockReturnValue(alice.memos[0])
+          const memo = testMemos[alice.memoIds[0]]
+          state.root.memoDashLib.getMemo.mockReturnValue(memo)
           const actions = await mockStoreAndDispatch(
             state,
             memoActions.removeLike(alice.username, likeToRemove.relation.index)
@@ -210,7 +214,7 @@ describe('memo actions', () => {
 
       describe('replyToMemo(username, memoId, message)', () => {
         const alice = testUsers['alice']
-        const memo = alice.memos[0]
+        const memo = testMemos[alice.memoIds[0]]
         const replyMessage = 'replyMessage'
 
         it('should call memoDashLib.removeLike', async () => {
@@ -237,8 +241,7 @@ describe('memo actions', () => {
 
       describe('getMemoReplies(username, memoId)', () => {
         const alice = testUsers['alice']
-        const memo = alice.memos[0]
-        const replyMessage = 'replyMessage'
+        const memo = testMemos[alice.memoIds[0]]
 
         it('should call memoDashLib.getMemoReplies', async () => {
           await mockStoreAndDispatch(state, memoActions.getMemoReplies(alice.username, memo.idx))

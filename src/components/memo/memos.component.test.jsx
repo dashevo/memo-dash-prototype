@@ -1,14 +1,12 @@
 import React from 'react'
 import { shallow } from 'enzyme'
 import MemosComponent from './memos.component'
-import testUsers from '../../test-utils/test-users'
+import { testMemos } from '../../test-utils/test-data'
 
 describe('<MemosComponent />', () => {
   let wrapper
-  let testUser
 
   beforeEach(() => {
-    testUser = testUsers['alice']
     const div = document.createElement('div')
     document.body.appendChild(div)
   })
@@ -19,7 +17,7 @@ describe('<MemosComponent />', () => {
   })
 
   it('should render memos', () => {
-    wrapper = shallow(<MemosComponent memos={testUser.memos} />)
+    wrapper = shallow(<MemosComponent memos={testMemos} />)
     expect(wrapper).toMatchSnapshot()
   })
 })

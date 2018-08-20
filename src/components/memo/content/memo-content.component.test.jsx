@@ -2,7 +2,7 @@ import React from 'react'
 import { shallow } from 'enzyme'
 
 import MemoContentComponent from './memo-content.component'
-import testUsers from '../../../test-utils/test-users'
+import { testUsers } from '../../../test-utils/test-data'
 
 describe('<MemoContentComponent />', () => {
   let wrapper

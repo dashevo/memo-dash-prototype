@@ -1,11 +1,12 @@
 import MemoDashLib from './memo-dash.lib'
-import testUsers from '../test-utils/test-users'
+import { testUsers, testMemos } from '../test-utils/test-data'
 
 jest.mock('@dashevo/dash-schema/dash-schema-lib')
 
 describe('MemoDashLib', () => {
   let memoDashLib
   let alice = testUsers['alice']
+  const memo = testMemos[alice.memoIds[0]]
   beforeEach(() => {
     memoDashLib = new MemoDashLib()
     memoDashLib.memoDashClient = {
@@ -13,7 +14,7 @@ describe('MemoDashLib', () => {
       getUsername: jest.fn().mockReturnValue(alice.username),
       getUserId: jest.fn().mockReturnValue(alice.userId),
       getMemosByUsername: jest.fn().mockReturnValue(alice.memos),
-      getMemo: jest.fn().mockReturnValue(alice.memos[0]),
+      getMemo: jest.fn().mockReturnValue(memo),
       getAllOwnLikes: jest.fn().mockReturnValue(alice.ownLikes),
       postMemo: jest.fn(),
       getUserFollowers: jest.fn(),

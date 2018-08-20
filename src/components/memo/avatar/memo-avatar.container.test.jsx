@@ -3,12 +3,12 @@ import configureStore from 'redux-mock-store'
 import { shallow } from 'enzyme'
 import MemoAvatarContainer from './memo-avatar.container'
 
-import testUsers from '../../../test-utils/test-users'
+import { testUsers, testMemos } from '../../../test-utils/test-data'
 
 describe('<MemoAvatarContainer />', () => {
   let store
   const alice = testUsers['alice']
-  const bob = testUsers['bob']
+  const ownMemo = testMemos[alice.memoIds[0]]
 
   beforeEach(() => {
     // Mock store
@@ -24,12 +24,14 @@ describe('<MemoAvatarContainer />', () => {
 
   describe('Shallow rendering', () => {
     it('renders without crashing', () => {
-      const wrapper = shallow(<MemoAvatarContainer memo={alice.memos[0]} />, { context: { store } })
+      const wrapper = shallow(<MemoAvatarContainer memo={ownMemo} />, { context: { store } })
       expect(wrapper).toMatchSnapshot()
     })
 
     it('foreign memo', () => {
-      const wrapper = shallow(<MemoAvatarContainer memo={bob.memos[0]} />, { context: { store } })
+      const bob = testUsers['bob']
+      const foreignMemo = testMemos[bob.memoIds[0]]
+      const wrapper = shallow(<MemoAvatarContainer memo={foreignMemo} />, { context: { store } })
       expect(wrapper).toMatchSnapshot()
     })
   })

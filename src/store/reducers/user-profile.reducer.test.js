@@ -1,6 +1,6 @@
 import reducer, { initialState, combineMemoId } from './user-profile.reducer'
 import { userProfilesReceived } from '../actions/user-profile.actions'
-import testUsers from '../../test-utils/test-users'
+import { testUsers } from '../../test-utils/test-data'
 
 describe('user profile reducer', () => {
   it('should return the initial state', () => {

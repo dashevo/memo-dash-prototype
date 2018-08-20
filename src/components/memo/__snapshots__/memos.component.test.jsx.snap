@@ -16,6 +16,42 @@ exports[`<MemosComponent /> should render memos 1`] = `
     size="large"
   >
     <Connect(MemoComponent)
+      key="2bob"
+      memo={
+        Object {
+          "avatarUrl": "https://s3.amazonaws.com/uifaces/faces/twitter/rangafangs/128.jpg",
+          "idx": 2,
+          "memoDatetime": "2018-07-26T16:45:10.954Z",
+          "memoLikesCount": 0,
+          "memoRepliesCount": 0,
+          "memoText": "Quia est odio nemo deserunt.",
+          "memoTipTotal": 0,
+          "username": "bob",
+        }
+      }
+      openModalOnClick={true}
+      showBorders={true}
+      showReplies={false}
+    />
+    <Connect(MemoComponent)
+      key="1bob"
+      memo={
+        Object {
+          "avatarUrl": "https://s3.amazonaws.com/uifaces/faces/twitter/rangafangs/128.jpg",
+          "idx": 1,
+          "memoDatetime": "2018-07-26T16:45:08.218Z",
+          "memoLikesCount": 0,
+          "memoRepliesCount": 0,
+          "memoText": "Qui magnam maiores laboriosam animi sit aut.",
+          "memoTipTotal": 0,
+          "username": "bob",
+        }
+      }
+      openModalOnClick={true}
+      showBorders={true}
+      showReplies={false}
+    />
+    <Connect(MemoComponent)
       key="2alice"
       memo={
         Object {

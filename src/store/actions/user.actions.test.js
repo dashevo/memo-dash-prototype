@@ -1,7 +1,7 @@
 import * as userActions from './user.actions'
 import { UserActionTypes } from './user.actions'
 import { verifyAction, mockStoreAndDispatch, getAction } from '../../test-utils/actions.test-helper'
-import testUsers from '../../test-utils/test-users'
+import { testUsers } from '../../test-utils/test-data'
 
 describe('user actions', () => {
   const username = 'alice'

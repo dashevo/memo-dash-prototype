@@ -2,7 +2,7 @@ import React from 'react'
 import configureStore from 'redux-mock-store'
 import { shallow } from 'enzyme'
 import ProfileViewContainer from './profile-view.container'
-import testUsers from '../../test-utils/test-users'
+import { testUsers } from '../../test-utils/test-data'
 
 describe('<ProfileViewContainer />', () => {
   let store
@@ -24,7 +24,8 @@ describe('<ProfileViewContainer />', () => {
         location: {
           pathname: `/profile/${profileOfUser}/memos`
         }
-      }
+      },
+      memo: { memos: {} }
     })
 
   const makeOwnProps = username => ({

@@ -2,7 +2,7 @@ import React from 'react'
 import configureStore from 'redux-mock-store'
 import { shallow } from 'enzyme'
 import UserMenuContainer from './user-menu.container'
-import testUsers from '../../../test-utils/test-users'
+import { testUsers } from '../../../test-utils/test-data'
 
 describe('<UserMenuContainer />', () => {
   let store

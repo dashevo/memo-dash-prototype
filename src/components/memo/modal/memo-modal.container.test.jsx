@@ -4,12 +4,12 @@ import { shallow } from 'enzyme'
 import MemoModalContainer from './memo-modal.container'
 import { combineMemoId } from '../../../store/reducers/memo.reducer'
 
-import testUsers from '../../../test-utils/test-users'
+import { testUsers, testMemos } from '../../../test-utils/test-data'
 
 describe('<MemoModalContainer />', () => {
   let store
   const alice = testUsers['alice']
-  const bob = testUsers['bob']
+  const memo = testMemos[alice.memoIds[0]]
   let mockStore
 
   beforeEach(() => {
@@ -27,19 +27,18 @@ describe('<MemoModalContainer />', () => {
           memo: { memos: [] }
         })
 
-        const wrapper = shallow(<MemoModalContainer memo={alice.memos[0]} />, { context: { store } })
+        const wrapper = shallow(<MemoModalContainer memo={memo} />, { context: { store } })
         expect(wrapper).toMatchSnapshot()
       })
 
       it('opened modal', () => {
-        const memo = alice.memos[0]
         const combinedMemoId = combineMemoId(memo.username, memo.idx)
         store = mockStore({
           memoModal: { opened: true, openedMemo: combinedMemoId },
           memo: { memos: { [combinedMemoId]: memo } }
         })
 
-        const wrapper = shallow(<MemoModalContainer memo={alice.memos[0]} />, { context: { store } })
+        const wrapper = shallow(<MemoModalContainer memo={memo} />, { context: { store } })
         expect(wrapper).toMatchSnapshot()
       })
     })

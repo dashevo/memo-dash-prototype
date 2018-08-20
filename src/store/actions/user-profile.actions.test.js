@@ -2,7 +2,7 @@ import * as userProfileActions from './user-profile.actions'
 import * as userActions from './user.actions'
 import { MemoActionTypes } from './memo.actions'
 import { verifyAction, mockStoreAndDispatch, getAction } from '../../test-utils/actions.test-helper'
-import testUsers from '../../test-utils/test-users'
+import { testUsers } from '../../test-utils/test-data'
 import { UserProfileActionTypes } from './user-profile.actions'
 
 jest.mock('./user.actions', () => {

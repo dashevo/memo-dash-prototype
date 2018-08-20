@@ -1,8 +1,9 @@
-import testUsers from '../../test-utils/test-users'
+import { testUsers, testMemos } from '../../test-utils/test-data'
 import * as selector from './user.selector'
 
 describe('user selector', () => {
   const alice = testUsers['alice']
+  const aliceMemos = alice.memoIds.map(memoId => testMemos[memoId])
   const bob = testUsers['bob']
 
   const state = {
@@ -11,6 +12,9 @@ describe('user selector', () => {
       memos: alice.memos,
       authError: undefined,
       users: { [alice.username]: alice, [bob.username]: bob }
+    },
+    memo: {
+      memos: testMemos
     }
   }
 
@@ -35,7 +39,7 @@ describe('user selector', () => {
   })
 
   it('should return user memos', () => {
-    expect(selector.getUserMemos(alice.username)(state)).toEqual(alice.memos)
+    expect(selector.getUserMemos(alice.username)(state)).toEqual(aliceMemos)
   })
 
   it('should return user followers', () => {

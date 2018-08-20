@@ -11,27 +11,9 @@ exports[`<ProfileViewContainer /> Shallow rendering renders without crashing 1`]
         "following": Array [
           "alice",
         ],
-        "memos": Array [
-          Object {
-            "avatarUrl": "https://s3.amazonaws.com/uifaces/faces/twitter/rangafangs/128.jpg",
-            "idx": 1,
-            "memoDatetime": "2018-07-26T16:45:08.218Z",
-            "memoLikesCount": 0,
-            "memoRepliesCount": 0,
-            "memoText": "Qui magnam maiores laboriosam animi sit aut.",
-            "memoTipTotal": 0,
-            "username": "bob",
-          },
-          Object {
-            "avatarUrl": "https://s3.amazonaws.com/uifaces/faces/twitter/rangafangs/128.jpg",
-            "idx": 2,
-            "memoDatetime": "2018-07-26T16:45:10.954Z",
-            "memoLikesCount": 0,
-            "memoRepliesCount": 0,
-            "memoText": "Quia est odio nemo deserunt.",
-            "memoTipTotal": 0,
-            "username": "bob",
-          },
+        "memoIds": Array [
+          "[bob][1]",
+          "[bob][2]",
         ],
         "ownLikes": Array [
           Object {
@@ -73,27 +55,9 @@ exports[`<ProfileViewContainer /> Shallow rendering renders without crashing 1`]
         "following": Array [
           "alice",
         ],
-        "memos": Array [
-          Object {
-            "avatarUrl": "https://s3.amazonaws.com/uifaces/faces/twitter/rangafangs/128.jpg",
-            "idx": 1,
-            "memoDatetime": "2018-07-26T16:45:08.218Z",
-            "memoLikesCount": 0,
-            "memoRepliesCount": 0,
-            "memoText": "Qui magnam maiores laboriosam animi sit aut.",
-            "memoTipTotal": 0,
-            "username": "bob",
-          },
-          Object {
-            "avatarUrl": "https://s3.amazonaws.com/uifaces/faces/twitter/rangafangs/128.jpg",
-            "idx": 2,
-            "memoDatetime": "2018-07-26T16:45:10.954Z",
-            "memoLikesCount": 0,
-            "memoRepliesCount": 0,
-            "memoText": "Quia est odio nemo deserunt.",
-            "memoTipTotal": 0,
-            "username": "bob",
-          },
+        "memoIds": Array [
+          "[bob][1]",
+          "[bob][2]",
         ],
         "ownLikes": Array [
           Object {
@@ -137,26 +101,8 @@ exports[`<ProfileViewContainer /> Shallow rendering renders without crashing 1`]
   }
   memos={
     Array [
-      Object {
-        "avatarUrl": "https://s3.amazonaws.com/uifaces/faces/twitter/madcampos/128.jpg",
-        "idx": 1,
-        "memoDatetime": "2018-07-26T16:44:56.000Z",
-        "memoLikesCount": 1,
-        "memoRepliesCount": 0,
-        "memoText": "Suscipit vel nobis.",
-        "memoTipTotal": 0,
-        "username": "alice",
-      },
-      Object {
-        "avatarUrl": "https://s3.amazonaws.com/uifaces/faces/twitter/madcampos/128.jpg",
-        "idx": 2,
-        "memoDatetime": "2018-07-26T16:44:58.620Z",
-        "memoLikesCount": 0,
-        "memoRepliesCount": 0,
-        "memoText": "Praesentium libero est repudiandae et repudiandae.",
-        "memoTipTotal": 0,
-        "username": "alice",
-      },
+      undefined,
+      undefined,
     ]
   }
   onFollowersClicked={[Function]}
@@ -188,27 +134,9 @@ exports[`<ProfileViewContainer /> Shallow rendering should render user prfoile t
         "following": Array [
           "bob",
         ],
-        "memos": Array [
-          Object {
-            "avatarUrl": "https://s3.amazonaws.com/uifaces/faces/twitter/madcampos/128.jpg",
-            "idx": 1,
-            "memoDatetime": "2018-07-26T16:44:56.000Z",
-            "memoLikesCount": 1,
-            "memoRepliesCount": 0,
-            "memoText": "Suscipit vel nobis.",
-            "memoTipTotal": 0,
-            "username": "alice",
-          },
-          Object {
-            "avatarUrl": "https://s3.amazonaws.com/uifaces/faces/twitter/madcampos/128.jpg",
-            "idx": 2,
-            "memoDatetime": "2018-07-26T16:44:58.620Z",
-            "memoLikesCount": 0,
-            "memoRepliesCount": 0,
-            "memoText": "Praesentium libero est repudiandae et repudiandae.",
-            "memoTipTotal": 0,
-            "username": "alice",
-          },
+        "memoIds": Array [
+          "[alice][1]",
+          "[alice][2]",
         ],
         "ownLikes": Array [
           Object {
@@ -250,27 +178,9 @@ exports[`<ProfileViewContainer /> Shallow rendering should render user prfoile t
         "following": Array [
           "bob",
         ],
-        "memos": Array [
-          Object {
-            "avatarUrl": "https://s3.amazonaws.com/uifaces/faces/twitter/madcampos/128.jpg",
-            "idx": 1,
-            "memoDatetime": "2018-07-26T16:44:56.000Z",
-            "memoLikesCount": 1,
-            "memoRepliesCount": 0,
-            "memoText": "Suscipit vel nobis.",
-            "memoTipTotal": 0,
-            "username": "alice",
-          },
-          Object {
-            "avatarUrl": "https://s3.amazonaws.com/uifaces/faces/twitter/madcampos/128.jpg",
-            "idx": 2,
-            "memoDatetime": "2018-07-26T16:44:58.620Z",
-            "memoLikesCount": 0,
-            "memoRepliesCount": 0,
-            "memoText": "Praesentium libero est repudiandae et repudiandae.",
-            "memoTipTotal": 0,
-            "username": "alice",
-          },
+        "memoIds": Array [
+          "[alice][1]",
+          "[alice][2]",
         ],
         "ownLikes": Array [
           Object {
@@ -314,26 +224,8 @@ exports[`<ProfileViewContainer /> Shallow rendering should render user prfoile t
   }
   memos={
     Array [
-      Object {
-        "avatarUrl": "https://s3.amazonaws.com/uifaces/faces/twitter/rangafangs/128.jpg",
-        "idx": 1,
-        "memoDatetime": "2018-07-26T16:45:08.218Z",
-        "memoLikesCount": 0,
-        "memoRepliesCount": 0,
-        "memoText": "Qui magnam maiores laboriosam animi sit aut.",
-        "memoTipTotal": 0,
-        "username": "bob",
-      },
-      Object {
-        "avatarUrl": "https://s3.amazonaws.com/uifaces/faces/twitter/rangafangs/128.jpg",
-        "idx": 2,
-        "memoDatetime": "2018-07-26T16:45:10.954Z",
-        "memoLikesCount": 0,
-        "memoRepliesCount": 0,
-        "memoText": "Quia est odio nemo deserunt.",
-        "memoTipTotal": 0,
-        "username": "bob",
-      },
+      undefined,
+      undefined,
     ]
   }
   onFollowersClicked={[Function]}

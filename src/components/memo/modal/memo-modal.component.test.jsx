@@ -3,11 +3,12 @@ import { shallow } from 'enzyme'
 import { Modal } from 'semantic-ui-react'
 
 import MemoModalComponent from './memo-modal.component'
-import testUsers from '../../../test-utils/test-users'
+import { testUsers, testMemos } from '../../../test-utils/test-data'
 
 describe('<MemoModalComponent />', () => {
   let wrapper
   const alice = testUsers['alice']
+  const memo = testMemos[alice.memoIds[0]]
 
   beforeEach(() => {
     const div = document.createElement('div')
@@ -21,12 +22,12 @@ describe('<MemoModalComponent />', () => {
     })
 
     it('not render memo if not opened', () => {
-      wrapper = shallow(<MemoModalComponent memo={alice.memos[0]} opened={false} />)
+      wrapper = shallow(<MemoModalComponent memo={memo} opened={false} />)
       expect(wrapper).toMatchSnapshot()
     })
 
     it('render memo if opened', () => {
-      wrapper = shallow(<MemoModalComponent memo={alice.memos[0]} opened={true} />)
+      wrapper = shallow(<MemoModalComponent memo={memo} opened={true} />)
       expect(wrapper).toMatchSnapshot()
     })
   })
@@ -35,7 +36,7 @@ describe('<MemoModalComponent />', () => {
     it('should call onModalCloseClicked when clicked on close', () => {
       const onModalCloseClicked = jest.fn()
       wrapper = shallow(
-        <MemoModalComponent onModalCloseClicked={onModalCloseClicked} memo={alice.memos[0]} opened={true} />
+        <MemoModalComponent onModalCloseClicked={onModalCloseClicked} memo={memo} opened={true} />
       )
       wrapper.find(Modal).simulate('close')
       expect(onModalCloseClicked).toHaveBeenCalled()
