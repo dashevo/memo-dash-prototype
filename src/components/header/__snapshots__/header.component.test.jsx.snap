@@ -21,6 +21,12 @@ exports[`<HeaderComponent /> renders without crashing 1`] = `
       >
         Home
       </MenuItem>
+      <MenuItem
+        active={false}
+        as="a"
+      >
+        Users
+      </MenuItem>
       <MenuMenu
         position="right"
       >
