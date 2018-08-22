@@ -7,6 +7,11 @@ export const UserActionTypes = {
   LIKE_REMOVED: 'LIKE_REMOVED'
 }
 
+export const getAllUsers = () => async (dispatch, getState) => {
+  const users = await getMemoDashLib(getState()).getAllUsers()
+  dispatch(usersReceived(users))
+}
+
 export const getUsers = usernames => async (dispatch, getState) => {
   const users = await getMemoDashLib(getState()).getUsers(usernames)
   dispatch(usersReceived(users))
