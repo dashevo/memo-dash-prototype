@@ -1,22 +1,21 @@
 import React from 'react'
 import configureStore from 'redux-mock-store'
 import { shallow } from 'enzyme'
-import UserMenuContainer from './user-menu.container'
-import { testUsers } from '../../../test-utils/test-data'
+import UsersViewContainer from './users-view.container'
+import { testUsers } from '../../test-utils/test-data'
 
-describe('<UserMenuContainer />', () => {
+describe('<UsersViewContainer />', () => {
   let store
+  const alice = testUsers['alice']
 
   beforeEach(() => {
-    const testUser = testUsers['alice']
     // Mock store
     const mockStore = configureStore()
     store = mockStore({
       user: {
-        currentUser: testUser.username,
-        users: { [testUser.username]: testUser }
-      },
-      router: { location: { pathname: '/' } }
+        currentUser: alice.username,
+        users: testUsers
+      }
     })
 
     const div = document.createElement('div')
@@ -25,7 +24,7 @@ describe('<UserMenuContainer />', () => {
 
   describe('Shallow rendering', () => {
     it('renders without crashing', () => {
-      const wrapper = shallow(<UserMenuContainer />, { context: { store } })
+      const wrapper = shallow(<UsersViewContainer />, { context: { store } })
       expect(wrapper).toMatchSnapshot()
     })
   })

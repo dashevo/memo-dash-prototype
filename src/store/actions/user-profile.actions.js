@@ -1,15 +1,6 @@
 import { getMemoDashLib, getMissingUsers } from '../selectors'
 import { userUpdated, getUsers } from './user.actions'
 
-export const UserProfileActionTypes = {
-  USER_PROFILE_RECEIVED: 'USER_PROFILE_RECEIVED'
-}
-
-export const userProfilesReceived = userProfiles => ({
-  type: UserProfileActionTypes.USER_PROFILE_RECEIVED,
-  payload: userProfiles
-})
-
 export const getFollowersForUser = username => async (dispatch, getState) => {
   const state = getState()
   const followers = await getMemoDashLib(state).getUserFollowers(username)

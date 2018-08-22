@@ -1,6 +1,6 @@
 import reducer, { initialState, combineMemoId } from './memo.reducer'
 import { memosReceived, memoUpdated, memoRepliesReceived } from '../actions/memo.actions'
-import testUsers from '../../test-utils/test-users'
+import { testUsers, testMemos } from '../../test-utils/test-data'
 
 describe('memo reducer', () => {
   it('should return the initial state', () => {
@@ -15,21 +15,17 @@ describe('memo reducer', () => {
   })
 
   describe('relevant actions', () => {
-    describe('Memos', () => {
-      let memos
-      beforeEach(() => {
-        const user = testUsers['alice']
-        memos = [user.memos[0], user.memos[1]]
-      })
+    let memo
+    beforeEach(() => {
+      memo = testMemos['[alice][1]']
+    })
 
+    describe('Memos', () => {
       describe('should handle MEMOS_RECEIVED', () => {
         it('should add received memos to the state', () => {
-          expect(reducer(undefined, memosReceived(memos))).toEqual({
+          expect(reducer(undefined, memosReceived([memo]))).toEqual({
             ...initialState,
-            memos: {
-              [combineMemoId(memos[0].username, memos[0].idx)]: memos[0],
-              [combineMemoId(memos[1].username, memos[1].idx)]: memos[1]
-            }
+            memos: { ['[alice][1]']: memo }
           })
         })
 
@@ -39,21 +35,22 @@ describe('memo reducer', () => {
       })
 
       it('should handle MEMO_UPDATED', () => {
-        const memo = { ...memos[0], memoLikesCount: 1 }
+        const updatedMemo = { ...memo, memoLikesCount: 1 }
         const state = {
           ...initialState,
-          memos: { [combineMemoId(memos[0].username, memos[0].idx)]: memos[0] }
+          memos: { [combineMemoId(memo.username, memo.idx)]: memo }
         }
 
-        expect(reducer(state, memoUpdated(memo))).toEqual({
+        expect(reducer(state, memoUpdated(updatedMemo))).toEqual({
           ...initialState,
-          memos: { [combineMemoId(memos[0].username, memos[0].idx)]: { ...memo } }
+          memos: {
+            [combineMemoId(updatedMemo.username, updatedMemo.idx)]: { ...updatedMemo }
+          }
         })
       })
       describe('should handle MEMO_REPLIES_RECEIVED', () => {
         it('should add received replies to the state', () => {
-          const memo = memos[0]
-          const replies = [testUsers['bob'].memos[0]]
+          const replies = [testMemos['[bob][1]']]
           const replyId = combineMemoId(replies[0].username, replies[0].idx)
           const state = {
             ...initialState,

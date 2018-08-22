@@ -1,7 +1,7 @@
 import React from 'react'
 import { shallow } from 'enzyme'
 import UserProfilesComponent from './user-profiles.component'
-import testUsers from '../../test-utils/test-users'
+import { testUsers } from '../../test-utils/test-data'
 
 describe('<UserProfilesComponent />', () => {
   let wrapper

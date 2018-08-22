@@ -1,20 +1,22 @@
 import { createSelector } from 'reselect'
 
-const userSelector = state => state.user.users
+import { getMemos } from './memo.selector'
+
+export const getUsers = state => state.user.users
 
 export const isAuthenticated = state => Boolean(getCurrentUser(state))
 export const getCurrentUsername = state => state.user.currentUser
 
-export const getCurrentUser = createSelector([getCurrentUsername, userSelector], (currentUser, users) => {
+export const getCurrentUser = createSelector([getCurrentUsername, getUsers], (currentUser, users) => {
   return users ? users[currentUser] : undefined
 })
 
 export const getUserByUsername = username => {
-  return createSelector(userSelector, users => users[username])
+  return createSelector(getUsers, users => users[username])
 }
 
 export const getAvatarUrl = username =>
-  createSelector([userSelector], users => {
+  createSelector([getUsers], users => {
     const user = users[username]
     return user && user.profile ? user.profile.avatarUrl : undefined
   })
@@ -25,22 +27,22 @@ export const getUserProfile = username =>
   })
 
 export const getUserMemos = username =>
-  createSelector([getUserByUsername(username)], user => {
-    return user ? user.memos : undefined
+  createSelector([getUserByUsername(username), getMemos], (user, memos) => {
+    return user && user.memoIds ? user.memoIds.map(memoId => memos[memoId]) : undefined
   })
 
 export const getUserFollowers = username =>
-  createSelector([getUserByUsername(username), userSelector], (user, users) => {
+  createSelector([getUserByUsername(username), getUsers], (user, users) => {
     return user && user.followers ? user.followers.map(follower => users[follower]) : undefined
   })
 
 export const getUserFollowing = username =>
-  createSelector([getUserByUsername(username), userSelector], (user, users) => {
+  createSelector([getUserByUsername(username), getUsers], (user, users) => {
     return user && user.following ? user.following.map(following => users[following]) : undefined
   })
 
 export const getMissingUsers = usernames =>
-  createSelector([userSelector], availableUsers =>
+  createSelector([getUsers], availableUsers =>
     usernames
       .filter((username, index, self) => self.indexOf(username) === index)
       .filter(username => !availableUsers[username])

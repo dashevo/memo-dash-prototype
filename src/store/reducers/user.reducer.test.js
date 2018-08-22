@@ -1,7 +1,7 @@
 import reducer, { initialState } from './user.reducer'
 import { loginError, loginSuccessfull, logoutError, logoutSuccessfull, likeRemoved } from '../actions'
 import { userReceived, usersReceived, userUpdated } from '../actions/user.actions'
-import testUsers from '../../test-utils/test-users'
+import { testUsers } from '../../test-utils/test-data'
 
 describe('user reducer', () => {
   it('should return the initial state', () => {

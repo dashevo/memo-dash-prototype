@@ -4,5 +4,6 @@ exports[`<HeaderContainer /> Shallow rendering renders without crashing 1`] = `
 <HeaderComponent
   location="/"
   onHomeClicked={[Function]}
+  onUsersClicked={[Function]}
 />
 `;

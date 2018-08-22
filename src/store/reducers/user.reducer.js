@@ -4,7 +4,7 @@ import { getCurrentUser } from '../selectors'
 
 export const initialState = {
   currentUser: undefined,
-  memos: undefined,
+  memoIds: undefined,
   authError: undefined,
   users: undefined
 }
@@ -27,22 +27,24 @@ export default (state = initialState, action) => {
 
     case AuthActionTypes.LOGOUT_SUCCESSFULL:
       return initialState
-    case UserActionTypes.USERS_RECEIVED:
-      const users = { ...state.users }
-      const receivedUsers = action.payload
-
-      receivedUsers.forEach(receivedUser => (users[receivedUser.username] = receivedUser))
-
-      return {
-        ...state,
-        users
-      }
-
     case UserActionTypes.USER_RECEIVED: {
       const users = { ...state.users }
       const receivedUser = action.payload
 
       users[receivedUser.username] = receivedUser
+
+      return {
+        ...state,
+        users
+      }
+    }
+    case UserActionTypes.USERS_RECEIVED: {
+      const users = { ...state.users }
+      const receivedUsers = action.payload
+
+      if (receivedUsers) {
+        receivedUsers.forEach(receivedUser => (users[receivedUser.username] = receivedUser))
+      }
 
       return {
         ...state,

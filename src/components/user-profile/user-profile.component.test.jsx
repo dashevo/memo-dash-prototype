@@ -2,7 +2,7 @@ import React from 'react'
 import { shallow } from 'enzyme'
 import { Card } from 'semantic-ui-react'
 
-import testUsers from '../../test-utils/test-users'
+import { testUsers } from '../../test-utils/test-data'
 import UserProfileComponent from './user-profile.component'
 
 describe('<UserProfileComponent />', () => {

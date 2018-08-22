@@ -3,7 +3,7 @@ import configureStore from 'redux-mock-store'
 import { shallow } from 'enzyme'
 import MemoContentContainer from './memo-content.container'
 
-import testUsers from '../../../test-utils/test-users'
+import { testUsers } from '../../../test-utils/test-data'
 
 describe('<MemoContentContainer />', () => {
   let store

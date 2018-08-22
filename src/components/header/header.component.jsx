@@ -15,7 +15,9 @@ const HeaderComponent = props => {
           <Menu.Item as="a" onClick={props.onHomeClicked} active={props.location === '/home'}>
             Home
           </Menu.Item>
-
+          <Menu.Item as="a" onClick={props.onUsersClicked} active={props.location === '/users'}>
+            Users
+          </Menu.Item>
           <Menu.Menu position="right">
             <UserMenuContainer />
           </Menu.Menu>

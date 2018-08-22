@@ -3,7 +3,7 @@ import configureStore from 'redux-mock-store'
 import { shallow } from 'enzyme'
 import MemoContainer from './memo.container'
 
-import testUsers from '../../test-utils/test-users'
+import { testUsers, testMemos } from '../../test-utils/test-data'
 import { combineMemoId } from '../../store/reducers/memo.reducer'
 
 describe('<MemoContainer />', () => {
@@ -17,7 +17,7 @@ describe('<MemoContainer />', () => {
   beforeEach(() => {
     // Mock store
     mockStore = configureStore()
-    memo = alice.memos[0]
+    memo = testMemos[alice.memoIds[0]]
     const div = document.createElement('div')
     document.body.appendChild(div)
   })
@@ -37,7 +37,7 @@ describe('<MemoContainer />', () => {
       })
 
       it('memo with replies', () => {
-        const reply = bob.memos[0]
+        const reply = testMemos[bob.memoIds[0]]
         memo.replyIds = [combineMemoId(reply.username, reply.idx)]
 
         store = mockStore({

@@ -1,4 +1,4 @@
-export default {
+export const testUsers = {
   alice: {
     username: 'alice',
     profile: {
@@ -28,28 +28,7 @@ export default {
         }
       }
     ],
-    memos: [
-      {
-        avatarUrl: 'https://s3.amazonaws.com/uifaces/faces/twitter/madcampos/128.jpg',
-        idx: 1,
-        memoDatetime: '2018-07-26T16:44:56.000Z',
-        memoLikesCount: 1,
-        memoRepliesCount: 0,
-        memoText: 'Suscipit vel nobis.',
-        memoTipTotal: 0,
-        username: 'alice'
-      },
-      {
-        avatarUrl: 'https://s3.amazonaws.com/uifaces/faces/twitter/madcampos/128.jpg',
-        idx: 2,
-        memoDatetime: '2018-07-26T16:44:58.620Z',
-        memoLikesCount: 0,
-        memoRepliesCount: 0,
-        memoText: 'Praesentium libero est repudiandae et repudiandae.',
-        memoTipTotal: 0,
-        username: 'alice'
-      }
-    ],
+    memoIds: ['[alice][1]', '[alice][2]'],
     followers: ['bob'],
     following: ['bob']
   },
@@ -82,29 +61,51 @@ export default {
         }
       }
     ],
-    memos: [
-      {
-        avatarUrl: 'https://s3.amazonaws.com/uifaces/faces/twitter/rangafangs/128.jpg',
-        idx: 1,
-        memoDatetime: '2018-07-26T16:45:08.218Z',
-        memoLikesCount: 0,
-        memoRepliesCount: 0,
-        memoText: 'Qui magnam maiores laboriosam animi sit aut.',
-        memoTipTotal: 0,
-        username: 'bob'
-      },
-      {
-        avatarUrl: 'https://s3.amazonaws.com/uifaces/faces/twitter/rangafangs/128.jpg',
-        idx: 2,
-        memoDatetime: '2018-07-26T16:45:10.954Z',
-        memoLikesCount: 0,
-        memoRepliesCount: 0,
-        memoText: 'Quia est odio nemo deserunt.',
-        memoTipTotal: 0,
-        username: 'bob'
-      }
-    ],
+    memoIds: ['[bob][1]', '[bob][2]'],
     followers: ['alice'],
     following: ['alice']
+  }
+}
+
+export const testMemos = {
+  '[bob][1]': {
+    avatarUrl: 'https://s3.amazonaws.com/uifaces/faces/twitter/rangafangs/128.jpg',
+    idx: 1,
+    memoDatetime: '2018-07-26T16:45:08.218Z',
+    memoLikesCount: 0,
+    memoRepliesCount: 0,
+    memoText: 'Qui magnam maiores laboriosam animi sit aut.',
+    memoTipTotal: 0,
+    username: 'bob'
+  },
+  '[bob][2]': {
+    avatarUrl: 'https://s3.amazonaws.com/uifaces/faces/twitter/rangafangs/128.jpg',
+    idx: 2,
+    memoDatetime: '2018-07-26T16:45:10.954Z',
+    memoLikesCount: 0,
+    memoRepliesCount: 0,
+    memoText: 'Quia est odio nemo deserunt.',
+    memoTipTotal: 0,
+    username: 'bob'
+  },
+  '[alice][1]': {
+    avatarUrl: 'https://s3.amazonaws.com/uifaces/faces/twitter/madcampos/128.jpg',
+    idx: 1,
+    memoDatetime: '2018-07-26T16:44:56.000Z',
+    memoLikesCount: 1,
+    memoRepliesCount: 0,
+    memoText: 'Suscipit vel nobis.',
+    memoTipTotal: 0,
+    username: 'alice'
+  },
+  '[alice][2]': {
+    avatarUrl: 'https://s3.amazonaws.com/uifaces/faces/twitter/madcampos/128.jpg',
+    idx: 2,
+    memoDatetime: '2018-07-26T16:44:58.620Z',
+    memoLikesCount: 0,
+    memoRepliesCount: 0,
+    memoText: 'Praesentium libero est repudiandae et repudiandae.',
+    memoTipTotal: 0,
+    username: 'alice'
   }
 }

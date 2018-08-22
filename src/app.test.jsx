@@ -7,7 +7,7 @@ import HomeViewContainer from './scenes/home-view/home-view.container'
 import LoginViewContainer from './scenes/login-view/login-view.container'
 import App, { AppComponent } from './app'
 import NoMatchComponent from './components/no-match/no-match.component'
-import testUsers from './test-utils/test-users'
+import { testUsers } from './test-utils/test-data'
 import { initialState } from './store/reducers/user.reducer'
 
 jest.mock('./scenes/home-view/home-view.container')

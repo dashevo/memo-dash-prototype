@@ -27,7 +27,7 @@ exports[`<MemoActionsComponent /> should render foreign memo 1`] = `
         name="like"
       />
       <span>
-        1
+        0
       </span>
     </CommentAction>
     <CommentAction

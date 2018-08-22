@@ -1,18 +1,19 @@
 import * as selector from './memo-modal.selector'
-import testUsers from '../../test-utils/test-users'
+import { testUsers, testMemos } from '../../test-utils/test-data'
 import { combineMemoId } from '../reducers/memo.reducer'
 
 describe('memo-modal selector', () => {
   const alice = testUsers['alice']
+  const memo = testMemos[alice.memoIds[0]]
 
   const state = {
     memoModal: {
       opened: true,
-      openedMemo: combineMemoId(alice.memos[0].username, alice.memos[0].idx)
+      openedMemo: combineMemoId(memo.username, memo.idx)
     },
     memo: {
       memos: {
-        [combineMemoId(alice.memos[0].username, alice.memos[0].idx)]: alice.memos[0]
+        [combineMemoId(memo.username, memo.idx)]: memo
       }
     }
   }
@@ -27,6 +28,6 @@ describe('memo-modal selector', () => {
   })
 
   it('should return opened memo', () => {
-    expect(selector.getOpenedMemo(state)).toEqual(alice.memos[0])
+    expect(selector.getOpenedMemo(state)).toEqual(memo)
   })
 })
