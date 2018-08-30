@@ -17,8 +17,16 @@ describe('MemoDashLib', () => {
       getMemo: jest.fn().mockReturnValue(memo),
       getAllOwnLikes: jest.fn().mockReturnValue(alice.ownLikes),
       postMemo: jest.fn(),
-      getUserFollowers: jest.fn(),
-      getUserFollowing: jest.fn(),
+      getUserFollowers: jest.fn().mockReturnValue(
+        alice.followers.map(follower => ({
+          username: follower
+        }))
+      ),
+      getUserFollowing: jest.fn().mockReturnValue(
+        alice.following.map(following => ({
+          username: following
+        }))
+      ),
       getAllProfiles: jest.fn().mockReturnValue([alice.profile])
     }
   })

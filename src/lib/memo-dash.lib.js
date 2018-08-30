@@ -245,5 +245,23 @@ export default class MemoDashLib {
     return await this.memoDashClient.getUserFollowing(username)
   }
 
+  /**
+   * Follow a user
+   * @param {string} username
+   * @return {Promise<boolean>}
+   */
+  async followUser(username) {
+    return await this.memoDashClient.followUser(username)
+  }
+
+  /**
+   * Unfollow user
+   * @param {string} username
+   * @return {Promise<boolean>}
+   */
+  async unFollowUser(username) {
+    return await this.memoDashClient.unFollowUser(username)
+  }
+
   _isIterable = object => object && Symbol.iterator in Object(object)
 }
