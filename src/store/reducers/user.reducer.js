@@ -24,14 +24,11 @@ export default (state = initialState, action) => {
         authError: undefined,
         currentUser: action.payload
       }
-
-    case AuthActionTypes.LOGOUT_SUCCESSFULL:
-      return initialState
     case UserActionTypes.USER_RECEIVED: {
       const users = { ...state.users }
       const receivedUser = action.payload
 
-      users[receivedUser.username] = receivedUser
+      users[receivedUser.username] = { ...users[receivedUser.username], ...receivedUser }
 
       return {
         ...state,
@@ -43,7 +40,10 @@ export default (state = initialState, action) => {
       const receivedUsers = action.payload
 
       if (receivedUsers) {
-        receivedUsers.forEach(receivedUser => (users[receivedUser.username] = receivedUser))
+        receivedUsers.forEach(
+          receivedUser =>
+            (users[receivedUser.username] = { ...users[receivedUser.username], ...receivedUser })
+        )
       }
 
       return {

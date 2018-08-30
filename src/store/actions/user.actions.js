@@ -19,7 +19,7 @@ export const getUsers = usernames => async (dispatch, getState) => {
 
 export const getUser = username => async (dispatch, getState) => {
   const user = await getMemoDashLib(getState()).getUser(username)
-  dispatch(userReceived(user))
+  await dispatch(userReceived(user))
 }
 
 export const userUpdated = (username, props) => ({

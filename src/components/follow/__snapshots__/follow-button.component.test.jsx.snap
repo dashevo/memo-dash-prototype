@@ -1,0 +1,60 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<FollowButtonComponent /> should render button for user followed by me 1`] = `
+<Fragment>
+  <Button
+    animated="fade"
+    as="button"
+    color="blue"
+    floated="right"
+    onClick={[Function]}
+    role="button"
+    size="mini"
+  >
+    <ButtonContent
+      visible={true}
+    >
+      Following
+    </ButtonContent>
+    <ButtonContent
+      hidden={true}
+    >
+      Unfollow
+    </ButtonContent>
+  </Button>
+</Fragment>
+`;
+
+exports[`<FollowButtonComponent /> should render button for user not followed by me 1`] = `
+<Fragment>
+  <Button
+    as="button"
+    basic={true}
+    color="blue"
+    floated="right"
+    onClick={[Function]}
+    role="button"
+    size="mini"
+  >
+    Follow
+  </Button>
+</Fragment>
+`;
+
+exports[`<FollowButtonComponent /> should render nothing for my user 1`] = `""`;
+
+exports[`<FollowButtonComponent /> should render without crashing 1`] = `
+<Fragment>
+  <Button
+    as="button"
+    basic={true}
+    color="blue"
+    floated="right"
+    onClick={[Function]}
+    role="button"
+    size="mini"
+  >
+    Follow
+  </Button>
+</Fragment>
+`;

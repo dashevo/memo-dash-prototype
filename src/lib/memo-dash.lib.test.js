@@ -17,8 +17,16 @@ describe('MemoDashLib', () => {
       getMemo: jest.fn().mockReturnValue(memo),
       getAllOwnLikes: jest.fn().mockReturnValue(alice.ownLikes),
       postMemo: jest.fn(),
-      getUserFollowers: jest.fn(),
-      getUserFollowing: jest.fn(),
+      getUserFollowers: jest.fn().mockReturnValue(
+        alice.followers.map(follower => ({
+          username: follower
+        }))
+      ),
+      getUserFollowing: jest.fn().mockReturnValue(
+        alice.following.map(following => ({
+          username: following
+        }))
+      ),
       getAllProfiles: jest.fn().mockReturnValue([alice.profile])
     }
   })
@@ -37,12 +45,26 @@ describe('MemoDashLib', () => {
 
       it('should return user with username, profile and userId', async () => {
         const user = await memoDashLib.getUser(alice.username)
-        expect(user).toEqual({ username: alice.username, profile: alice.profile, userId: alice.userId })
+        expect(user).toEqual({
+          username: alice.username,
+          profile: alice.profile,
+          userId: alice.userId,
+          followers: alice.followers,
+          following: alice.following
+        })
       })
 
       it('should return an array with all users ', async () => {
         const user = await memoDashLib.getAllUsers()
-        expect(user).toEqual([{ username: alice.username, profile: alice.profile, userId: alice.userId }])
+        expect(user).toEqual([
+          {
+            username: alice.username,
+            profile: alice.profile,
+            userId: alice.userId,
+            followers: alice.followers,
+            following: alice.following
+          }
+        ])
       })
     })
   })

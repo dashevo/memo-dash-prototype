@@ -69,15 +69,9 @@ export default class MemoDashLib {
   async getAllUsers() {
     const userProfiles = await this.memoDashClient.getAllProfiles()
 
-    const userIds = await Promise.all(
-      userProfiles.map(userProfile => this.memoDashClient.getUserId(userProfile.username))
-    )
+    const users = await Promise.all(userProfiles.map(userProfile => this.getUser(userProfile.username)))
 
-    return userProfiles.map((userProfile, index) => ({
-      username: userProfile.username,
-      profile: userProfile,
-      userId: userIds[index]
-    }))
+    return users
   }
 
   /**
@@ -92,15 +86,19 @@ export default class MemoDashLib {
    * }
    */
   async getUser(username) {
-    const [profile, userId] = await Promise.all([
+    const [profile, userId, followers, following] = await Promise.all([
       this.memoDashClient.getUserProfile(username),
-      this.memoDashClient.getUserId(username)
+      this.memoDashClient.getUserId(username),
+      this.memoDashClient.getUserFollowers(username),
+      this.memoDashClient.getUserFollowing(username)
     ])
 
     return {
       username,
       profile,
-      userId
+      userId,
+      followers: followers ? followers.map(user => user.username) : undefined,
+      following: following ? following.map(user => user.username) : undefined
     }
   }
 
@@ -245,6 +243,24 @@ export default class MemoDashLib {
    */
   async getUserFollowing(username) {
     return await this.memoDashClient.getUserFollowing(username)
+  }
+
+  /**
+   * Follow a user
+   * @param {string} username
+   * @return {Promise<boolean>}
+   */
+  async followUser(username) {
+    return await this.memoDashClient.followUser(username)
+  }
+
+  /**
+   * Unfollow user
+   * @param {string} username
+   * @return {Promise<boolean>}
+   */
+  async unFollowUser(username) {
+    return await this.memoDashClient.unFollowUser(username)
   }
 
   _isIterable = object => object && Symbol.iterator in Object(object)
