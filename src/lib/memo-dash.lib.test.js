@@ -37,12 +37,26 @@ describe('MemoDashLib', () => {
 
       it('should return user with username, profile and userId', async () => {
         const user = await memoDashLib.getUser(alice.username)
-        expect(user).toEqual({ username: alice.username, profile: alice.profile, userId: alice.userId })
+        expect(user).toEqual({
+          username: alice.username,
+          profile: alice.profile,
+          userId: alice.userId,
+          followers: alice.followers,
+          following: alice.following
+        })
       })
 
       it('should return an array with all users ', async () => {
         const user = await memoDashLib.getAllUsers()
-        expect(user).toEqual([{ username: alice.username, profile: alice.profile, userId: alice.userId }])
+        expect(user).toEqual([
+          {
+            username: alice.username,
+            profile: alice.profile,
+            userId: alice.userId,
+            followers: alice.followers,
+            following: alice.following
+          }
+        ])
       })
     })
   })
