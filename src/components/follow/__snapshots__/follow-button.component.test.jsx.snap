@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`<FollowButtonComponent /> should render button for user followed by me 1`] = `
-<React.Fragment>
+<Fragment>
   <Button
     animated="fade"
     as="button"
@@ -22,11 +22,11 @@ exports[`<FollowButtonComponent /> should render button for user followed by me 
       Unfollow
     </ButtonContent>
   </Button>
-</React.Fragment>
+</Fragment>
 `;
 
 exports[`<FollowButtonComponent /> should render button for user not followed by me 1`] = `
-<React.Fragment>
+<Fragment>
   <Button
     as="button"
     basic={true}
@@ -38,13 +38,13 @@ exports[`<FollowButtonComponent /> should render button for user not followed by
   >
     Follow
   </Button>
-</React.Fragment>
+</Fragment>
 `;
 
 exports[`<FollowButtonComponent /> should render nothing for my user 1`] = `""`;
 
 exports[`<FollowButtonComponent /> should render without crashing 1`] = `
-<React.Fragment>
+<Fragment>
   <Button
     as="button"
     basic={true}
@@ -56,5 +56,5 @@ exports[`<FollowButtonComponent /> should render without crashing 1`] = `
   >
     Follow
   </Button>
-</React.Fragment>
+</Fragment>
 `;
