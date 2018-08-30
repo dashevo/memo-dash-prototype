@@ -9,7 +9,14 @@ import {
 } from './auth.actions'
 import { verifyAction, mockStoreAndDispatch, getAction } from '../../test-utils/actions.test-helper'
 
+import * as userActions from './user.actions'
+import * as userProfileActions from './user-profile.actions'
+
+import { testUsers } from '../../test-utils/test-data'
+
 describe('auth actions', () => {
+  const alice = testUsers['alice']
+
   describe('should create an action', () => {
     it('to indicate a login error', () => {
       verifyAction(AuthActionTypes.LOGIN_ERROR, 'LoginError', loginError)
@@ -104,10 +111,41 @@ describe('auth actions', () => {
         })
       })
 
-      it('should call memoDashLib.login if a user was found', async () => {
-        memoDashLib.searchBlockchainUsers.mockReturnValue([{}])
-        await mockStoreAndDispatch(state, login('blockchainUsername'))
-        expect(memoDashLib.login).toHaveBeenCalled()
+      describe('user was found', () => {
+        it('should call memoDashLib.login', async () => {
+          memoDashLib.searchBlockchainUsers.mockReturnValue([{}])
+          await mockStoreAndDispatch(state, login('blockchainUsername'))
+          expect(memoDashLib.login).toHaveBeenCalled()
+        })
+
+        describe('login was successfull', () => {
+          let actions
+
+          beforeEach(async () => {
+            memoDashLib.searchBlockchainUsers.mockReturnValue([{ name: alice.username }])
+
+            userActions.getUser = jest.fn(() => jest.fn())
+            userActions.getAllOwnLikes = jest.fn(() => jest.fn())
+            userProfileActions.getFollowersForUser = jest.fn(() => jest.fn())
+            userProfileActions.getFollowingForUser = jest.fn(() => jest.fn())
+
+            actions = await mockStoreAndDispatch(state, login('blockchainUsername'))
+          })
+
+          it('should dispatch loginSuccessfull', async () => {
+            expect(await getAction(actions, AuthActionTypes.LOGIN_SUCCESSFULL)).toEqual(
+              loginSuccessfull(alice.username)
+            )
+          })
+
+          it('should dispatch getUser', async () => {
+            expect(userActions.getUser).toHaveBeenCalledWith(alice.username)
+          })
+
+          it('should dispatch getAllOwnLikes', async () => {
+            expect(userActions.getAllOwnLikes).toHaveBeenCalled()
+          })
+        })
       })
 
       it('should dispatch loginSuccessfull if the login was successfull', async () => {

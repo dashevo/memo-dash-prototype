@@ -19,6 +19,21 @@ describe('<UserProfileComponent />', () => {
       wrapper = shallow(<UserProfileComponent userProfile={alice.profile} />)
       expect(wrapper).toMatchSnapshot()
     })
+
+    it('user followed by me', () => {
+      wrapper = shallow(<UserProfileComponent userProfile={alice.profile} following={true} />)
+      expect(wrapper).toMatchSnapshot()
+    })
+
+    it('user not followed by me', () => {
+      wrapper = shallow(<UserProfileComponent userProfile={alice.profile} following={false} />)
+      expect(wrapper).toMatchSnapshot()
+    })
+
+    it('my user', () => {
+      wrapper = shallow(<UserProfileComponent userProfile={alice.profile} isProfileOfCurrentUser={true} />)
+      expect(wrapper).toMatchSnapshot()
+    })
   })
 
   describe('interaction', () => {

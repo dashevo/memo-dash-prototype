@@ -50,6 +50,30 @@ describe('user selector', () => {
     expect(selector.getUserFollowing(alice.username)(state)).toEqual([bob])
   })
 
+  describe('amIFollowing', () => {
+    it('should return true if following user', () => {
+      expect(selector.amIFollowing(bob.username)(state)).toEqual(true)
+    })
+
+    it('should return false if not following user', () => {
+      expect(selector.amIFollowing('charlie')(state)).toEqual(false)
+    })
+
+    it('should return false if check for current user', () => {
+      expect(selector.amIFollowing(alice.username)(state)).toEqual(false)
+    })
+  })
+
+  describe('isProfileOfCurrentUser', () => {
+    it('should return true if profile belongs to current user', () => {
+      expect(selector.isProfileOfCurrentUser(alice.profile)(state)).toEqual(true)
+    })
+
+    it('should return false if profile does not belong to current user', () => {
+      expect(selector.isProfileOfCurrentUser(bob.profile)(state)).toEqual(false)
+    })
+  })
+
   describe('missing users', () => {
     it('should return an empty array if all users are available', () => {
       expect(selector.getMissingUsers([alice.username, bob.username])(state)).toEqual([])

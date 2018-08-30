@@ -1,28 +1,38 @@
-import { getMemoDashLib, getMissingUsers } from '../selectors'
-import { userUpdated, getUsers } from './user.actions'
+import {
+  getMemoDashLib,
+  getMissingUsers,
+  getUserFollowers,
+  getUserFollowing,
+  getCurrentUsername
+} from '../selectors'
+import { getUsers } from './user.actions'
 
 export const getFollowersForUser = username => async (dispatch, getState) => {
   const state = getState()
-  const followers = await getMemoDashLib(state).getUserFollowers(username)
+  const followers = getUserFollowers(username)(state)
 
   if (followers && followers.length > 0) {
-    const followerUsernames = followers.map(user => user.username)
-    dispatch(userUpdated(username, { followers: followerUsernames }))
-
-    const missingUsernames = getMissingUsers(followerUsernames)(state)
+    const missingUsernames = getMissingUsers(followers)(state)
     if (missingUsernames && missingUsernames.length > 0) dispatch(getUsers(missingUsernames))
   }
 }
 
 export const getFollowingForUser = username => async (dispatch, getState) => {
   const state = getState()
-  const following = await getMemoDashLib(state).getUserFollowing(username)
+  const following = getUserFollowing(username)(state)
 
   if (following && following.length > 0) {
-    const followingUsernames = following.map(user => user.username)
-    dispatch(userUpdated(username, { following: followingUsernames }))
-
-    const missingUsernames = getMissingUsers(followingUsernames)(state)
+    const missingUsernames = getMissingUsers(following)(state)
     if (missingUsernames && missingUsernames.length > 0) dispatch(getUsers(missingUsernames))
   }
+}
+
+export const followUser = username => async (dispatch, getState) => {
+  await getMemoDashLib(getState()).followUser(username)
+  dispatch(getUsers([username, getCurrentUsername(getState())]))
+}
+
+export const unFollowUser = username => async (dispatch, getState) => {
+  await getMemoDashLib(getState()).unFollowUser(username)
+  dispatch(getUsers([username, getCurrentUsername(getState())]))
 }

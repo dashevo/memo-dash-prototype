@@ -1,5 +1,153 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`<UserProfileComponent /> should render my user 1`] = `
+<Card
+  as="div"
+  link={true}
+  onClick={[Function]}
+>
+  <Image
+    as="img"
+    fluid={true}
+    src="https://s3.amazonaws.com/uifaces/faces/twitter/madcampos/128.jpg"
+    ui={true}
+  />
+  <CardContent>
+    <CardHeader>
+      alice
+    </CardHeader>
+    <CardDescription>
+      Quod architecto molestias et.
+    </CardDescription>
+  </CardContent>
+  <CardContent
+    extra={true}
+  >
+    <Label>
+      Followers
+      <LabelDetail>
+        1
+      </LabelDetail>
+    </Label>
+    <Label>
+      Following
+      <LabelDetail>
+        1
+      </LabelDetail>
+    </Label>
+  </CardContent>
+</Card>
+`;
+
+exports[`<UserProfileComponent /> should render user followed by me 1`] = `
+<Card
+  as="div"
+  link={true}
+  onClick={[Function]}
+>
+  <Image
+    as="img"
+    fluid={true}
+    src="https://s3.amazonaws.com/uifaces/faces/twitter/madcampos/128.jpg"
+    ui={true}
+  />
+  <CardContent>
+    <CardHeader>
+      alice
+      <Button
+        animated="fade"
+        as="button"
+        color="blue"
+        floated="right"
+        onClick={[Function]}
+        role="button"
+        size="mini"
+      >
+        <ButtonContent
+          visible={true}
+        >
+          Following
+        </ButtonContent>
+        <ButtonContent
+          hidden={true}
+        >
+          Unfollow
+        </ButtonContent>
+      </Button>
+    </CardHeader>
+    <CardDescription>
+      Quod architecto molestias et.
+    </CardDescription>
+  </CardContent>
+  <CardContent
+    extra={true}
+  >
+    <Label>
+      Followers
+      <LabelDetail>
+        1
+      </LabelDetail>
+    </Label>
+    <Label>
+      Following
+      <LabelDetail>
+        1
+      </LabelDetail>
+    </Label>
+  </CardContent>
+</Card>
+`;
+
+exports[`<UserProfileComponent /> should render user not followed by me 1`] = `
+<Card
+  as="div"
+  link={true}
+  onClick={[Function]}
+>
+  <Image
+    as="img"
+    fluid={true}
+    src="https://s3.amazonaws.com/uifaces/faces/twitter/madcampos/128.jpg"
+    ui={true}
+  />
+  <CardContent>
+    <CardHeader>
+      alice
+      <Button
+        as="button"
+        basic={true}
+        color="blue"
+        floated="right"
+        onClick={[Function]}
+        role="button"
+        size="mini"
+      >
+        Follow
+      </Button>
+    </CardHeader>
+    <CardDescription>
+      Quod architecto molestias et.
+    </CardDescription>
+  </CardContent>
+  <CardContent
+    extra={true}
+  >
+    <Label>
+      Followers
+      <LabelDetail>
+        1
+      </LabelDetail>
+    </Label>
+    <Label>
+      Following
+      <LabelDetail>
+        1
+      </LabelDetail>
+    </Label>
+  </CardContent>
+</Card>
+`;
+
 exports[`<UserProfileComponent /> should render without crashing 1`] = `
 <Card
   as="div"
@@ -15,6 +163,17 @@ exports[`<UserProfileComponent /> should render without crashing 1`] = `
   <CardContent>
     <CardHeader>
       alice
+      <Button
+        as="button"
+        basic={true}
+        color="blue"
+        floated="right"
+        onClick={[Function]}
+        role="button"
+        size="mini"
+      >
+        Follow
+      </Button>
     </CardHeader>
     <CardDescription>
       Quod architecto molestias et.

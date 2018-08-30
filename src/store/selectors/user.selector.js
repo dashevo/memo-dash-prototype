@@ -47,3 +47,13 @@ export const getMissingUsers = usernames =>
       .filter((username, index, self) => self.indexOf(username) === index)
       .filter(username => !availableUsers[username])
   )
+
+export const amIFollowing = username =>
+  createSelector([getCurrentUser], currentUser => {
+    return currentUser.following ? currentUser.following.some(following => following === username) : undefined
+  })
+
+export const isProfileOfCurrentUser = userProfile =>
+  createSelector([getCurrentUsername], currentUser => {
+    return userProfile.username === currentUser
+  })
