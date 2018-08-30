@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { Dimmer, Loader, Container, Image, Grid, Segment, Header, Tab } from 'semantic-ui-react'
 import MemosContainer from '../../components/memo/memos.container'
 import UserProfilesComponent from '../../components/user-profile/user-profiles.component'
+import FollowButtonContainer from '../../components/follow/follow-button.container'
 
 const TABS = {
   MEMOS: 0,
@@ -116,7 +117,16 @@ export class ProfileViewComponent extends Component {
               <Grid.Row>
                 <Grid.Column width={4}>
                   <Image src={profile.avatarUrl} size="medium" circular />
-                  <Header as="h1">{profile.username}</Header>
+                  <Segment>
+                    <Grid stackable columns={2}>
+                      <Grid.Column>
+                        <Header as="h1">{profile.username}</Header>
+                      </Grid.Column>
+                      <Grid.Column>
+                        <FollowButtonContainer userProfile={profile} />
+                      </Grid.Column>
+                    </Grid>
+                  </Segment>
 
                   <Segment>{profile.bio}</Segment>
                 </Grid.Column>

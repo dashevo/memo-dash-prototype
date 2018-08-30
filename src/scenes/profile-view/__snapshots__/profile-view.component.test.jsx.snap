@@ -36,11 +36,33 @@ exports[`<ProfileViewComponent /> renders memos without crashing 1`] = `
             src="AvatarUrl"
             ui={true}
           />
-          <Header
-            as="h1"
-          >
-            Username
-          </Header>
+          <Segment>
+            <Grid
+              columns={2}
+              stackable={true}
+            >
+              <GridColumn>
+                <Header
+                  as="h1"
+                >
+                  Username
+                </Header>
+              </GridColumn>
+              <GridColumn>
+                <Connect(FollowButtonComponent)
+                  userProfile={
+                    Object {
+                      "avatarUrl": "AvatarUrl",
+                      "bio": "Bio",
+                      "followersCount": 1,
+                      "followingCount": 1,
+                      "username": "Username",
+                    }
+                  }
+                />
+              </GridColumn>
+            </Grid>
+          </Segment>
           <Segment>
             Bio
           </Segment>
