@@ -73,7 +73,7 @@ describe('user reducer', () => {
         it('should overwrite an existing user', () => {
           const availableUsers = {
             [alice.username]: alice,
-            [bob.username]: { ...bob, bio: 'test' }
+            [bob.username]: { ...bob, profile: { ...bob.profile, bio: 'test' } }
           }
 
           const newUsers = [bob]
