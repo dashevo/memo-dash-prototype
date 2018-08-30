@@ -15,6 +15,18 @@ exports[`<UserProfileComponent /> should render my user 1`] = `
   <CardContent>
     <CardHeader>
       alice
+      <Connect(FollowButtonComponent)
+        userProfile={
+          Object {
+            "avatarUrl": "https://s3.amazonaws.com/uifaces/faces/twitter/madcampos/128.jpg",
+            "bio": "Quod architecto molestias et.",
+            "followersCount": 1,
+            "followingCount": 1,
+            "likesCount": 1,
+            "username": "alice",
+          }
+        }
+      />
     </CardHeader>
     <CardDescription>
       Quod architecto molestias et.
@@ -54,26 +66,18 @@ exports[`<UserProfileComponent /> should render user followed by me 1`] = `
   <CardContent>
     <CardHeader>
       alice
-      <Button
-        animated="fade"
-        as="button"
-        color="blue"
-        floated="right"
-        onClick={[Function]}
-        role="button"
-        size="mini"
-      >
-        <ButtonContent
-          visible={true}
-        >
-          Following
-        </ButtonContent>
-        <ButtonContent
-          hidden={true}
-        >
-          Unfollow
-        </ButtonContent>
-      </Button>
+      <Connect(FollowButtonComponent)
+        userProfile={
+          Object {
+            "avatarUrl": "https://s3.amazonaws.com/uifaces/faces/twitter/madcampos/128.jpg",
+            "bio": "Quod architecto molestias et.",
+            "followersCount": 1,
+            "followingCount": 1,
+            "likesCount": 1,
+            "username": "alice",
+          }
+        }
+      />
     </CardHeader>
     <CardDescription>
       Quod architecto molestias et.
@@ -113,17 +117,18 @@ exports[`<UserProfileComponent /> should render user not followed by me 1`] = `
   <CardContent>
     <CardHeader>
       alice
-      <Button
-        as="button"
-        basic={true}
-        color="blue"
-        floated="right"
-        onClick={[Function]}
-        role="button"
-        size="mini"
-      >
-        Follow
-      </Button>
+      <Connect(FollowButtonComponent)
+        userProfile={
+          Object {
+            "avatarUrl": "https://s3.amazonaws.com/uifaces/faces/twitter/madcampos/128.jpg",
+            "bio": "Quod architecto molestias et.",
+            "followersCount": 1,
+            "followingCount": 1,
+            "likesCount": 1,
+            "username": "alice",
+          }
+        }
+      />
     </CardHeader>
     <CardDescription>
       Quod architecto molestias et.
@@ -163,17 +168,18 @@ exports[`<UserProfileComponent /> should render without crashing 1`] = `
   <CardContent>
     <CardHeader>
       alice
-      <Button
-        as="button"
-        basic={true}
-        color="blue"
-        floated="right"
-        onClick={[Function]}
-        role="button"
-        size="mini"
-      >
-        Follow
-      </Button>
+      <Connect(FollowButtonComponent)
+        userProfile={
+          Object {
+            "avatarUrl": "https://s3.amazonaws.com/uifaces/faces/twitter/madcampos/128.jpg",
+            "bio": "Quod architecto molestias et.",
+            "followersCount": 1,
+            "followingCount": 1,
+            "likesCount": 1,
+            "username": "alice",
+          }
+        }
+      />
     </CardHeader>
     <CardDescription>
       Quod architecto molestias et.

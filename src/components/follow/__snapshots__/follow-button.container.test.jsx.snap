@@ -1,0 +1,20 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<FollowButtonContainer /> Shallow rendering renders without crashing 1`] = `
+<FollowButtonComponent
+  following={false}
+  isProfileOfCurrentUser={true}
+  onFollowClicked={[Function]}
+  onUnFollowClicked={[Function]}
+  userProfile={
+    Object {
+      "avatarUrl": "https://s3.amazonaws.com/uifaces/faces/twitter/madcampos/128.jpg",
+      "bio": "Quod architecto molestias et.",
+      "followersCount": 1,
+      "followingCount": 1,
+      "likesCount": 1,
+      "username": "alice",
+    }
+  }
+/>
+`;

@@ -117,6 +117,7 @@ export class ProfileViewComponent extends Component {
                 <Grid.Column width={4}>
                   <Image src={profile.avatarUrl} size="medium" circular />
                   <Header as="h1">{profile.username}</Header>
+
                   <Segment>{profile.bio}</Segment>
                 </Grid.Column>
                 <Grid.Column width={12}>
