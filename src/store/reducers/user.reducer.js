@@ -24,9 +24,6 @@ export default (state = initialState, action) => {
         authError: undefined,
         currentUser: action.payload
       }
-
-    case AuthActionTypes.LOGOUT_SUCCESSFULL:
-      return initialState
     case UserActionTypes.USER_RECEIVED: {
       const users = { ...state.users }
       const receivedUser = action.payload

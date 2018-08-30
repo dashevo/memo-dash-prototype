@@ -4,21 +4,30 @@ import { applyMiddleware, compose, createStore } from 'redux'
 import { composeWithDevTools } from 'redux-devtools-extension'
 import logger from 'redux-logger'
 import thunk from 'redux-thunk'
-import rootReducer from './reducers'
+import appReducer from './reducers'
+import { AuthActionTypes } from './actions'
 
 const history = createBrowserHistory()
 const middlewares = [routerMiddleware(history), thunk, logger]
 const initialState = {}
 
+const logoutReducer = (state, action) => {
+  if (action.type === AuthActionTypes.LOGOUT_SUCCESSFULL) {
+    state = { ...initialState, root: { ...state.root } }
+  }
+
+  return appReducer(state, action)
+}
+
 const store = createStore(
-  connectRouter(history)(rootReducer),
+  connectRouter(history)(logoutReducer),
   initialState,
   compose(composeWithDevTools(applyMiddleware(...middlewares)))
 )
 
 if (module.hot) {
   module.hot.accept('./reducers', () => {
-    store.replaceReducer(connectRouter(history)(rootReducer))
+    store.replaceReducer(connectRouter(history)(appReducer))
   })
 }
 
