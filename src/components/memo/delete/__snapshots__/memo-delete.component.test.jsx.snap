@@ -1,0 +1,84 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<MemoDeleteComponent /> should render button and modal if opened 1`] = `
+<Fragment>
+  <Button
+    as="button"
+    basic={true}
+    color="red"
+    floated="right"
+    icon="trash"
+    onClick={[Function]}
+    role="button"
+    size="mini"
+  />
+  <Modal
+    centered={true}
+    closeOnDimmerClick={true}
+    closeOnDocumentClick={false}
+    dimmer={true}
+    eventPool="Modal"
+    onClose={[Function]}
+    open={true}
+    size="mini"
+  >
+    <ModalHeader>
+      Delete Memo
+    </ModalHeader>
+    <ModalContent>
+      <p>
+        Are you sure you want to delete the memo
+      </p>
+    </ModalContent>
+    <ModalActions>
+      <Button
+        as="button"
+        negative={true}
+        onClick={[Function]}
+        role="button"
+      >
+        No
+      </Button>
+      <Button
+        as="button"
+        content="Yes"
+        icon="checkmark"
+        labelPosition="right"
+        onClick={[Function]}
+        positive={true}
+        role="button"
+      />
+    </ModalActions>
+  </Modal>
+</Fragment>
+`;
+
+exports[`<MemoDeleteComponent /> should render only button if not opened 1`] = `
+<Fragment>
+  <Button
+    as="button"
+    basic={true}
+    color="red"
+    floated="right"
+    icon="trash"
+    onClick={[Function]}
+    role="button"
+    size="mini"
+  />
+</Fragment>
+`;
+
+exports[`<MemoDeleteComponent /> should render without crashing 1`] = `
+<Fragment>
+  <Button
+    as="button"
+    basic={true}
+    color="red"
+    floated="right"
+    icon="trash"
+    onClick={[Function]}
+    role="button"
+    size="mini"
+  />
+</Fragment>
+`;
