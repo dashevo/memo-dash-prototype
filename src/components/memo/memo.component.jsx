@@ -15,7 +15,9 @@ export default class MemoComponent extends Component {
   }
 
   render() {
-    const { memo, showReplies, showBorders, replies, openModalOnClick, onModalOpenClicked } = this.props
+    if (!memo) {
+      return null
+    }
 
     return (
       <Segment

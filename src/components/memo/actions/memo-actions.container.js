@@ -5,6 +5,10 @@ import { likeMemo, removeLike, replyToMemo } from '../../../store/actions'
 import { isMemoLikedByCurrentUser, isMemoOfCurrentUser } from '../../../store/selectors'
 
 const mapStateToProps = (state, ownProps) => {
+  const { memo } = ownProps
+
+  if (!memo) return {}
+
   return {
     likedByCurrentUser: isMemoLikedByCurrentUser(ownProps.memo)(state),
     isMemoOfCurrentUser: isMemoOfCurrentUser(ownProps.memo)(state)

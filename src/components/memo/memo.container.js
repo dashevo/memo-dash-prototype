@@ -5,9 +5,10 @@ import { openMemoModal, getMemoReplies } from '../../store/actions'
 import { getMemosByCombinedIds } from '../../store/selectors'
 
 const mapStateToProps = (state, ownProps) => {
-  if (ownProps.showReplies) {
-    return { replies: getMemosByCombinedIds(ownProps.memo.replyIds)(state) }
-  } else return {}
+  const { memo, showReplies } = ownProps
+
+  if (!memo) return {}
+
 }
 
 const mapDispatchToProps = dispatch => {

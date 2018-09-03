@@ -4,6 +4,8 @@ import { Comment } from 'semantic-ui-react'
 const MemoAvatarComponent = props => {
   const { isMemoOfCurrentUser, memo, avatarUrl, onGoToProfileClicked } = props
 
+  if (!memo) return null
+
   return (
     <Fragment>
       {isMemoOfCurrentUser ? (
