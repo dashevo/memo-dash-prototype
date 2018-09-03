@@ -5,6 +5,7 @@ import MemoAvatarContainer from './avatar/memo-avatar.container'
 import MemoContentContainer from './content/memo-content.container'
 import './memo.styles.css'
 import MemoContainer from './memo.container'
+import MemoDeleteContainer from './delete/memo-delete.container'
 
 export default class MemoComponent extends Component {
   componentDidMount() {
@@ -14,7 +15,23 @@ export default class MemoComponent extends Component {
     }
   }
 
+  componentWillReceiveProps(nextProps) {
+    const { memo, closeModal } = nextProps
+
+    if (!memo) closeModal()
+  }
+
   render() {
+    const {
+      memo,
+      showReplies,
+      showDelete,
+      showBorders,
+      replies,
+      openModalOnClick,
+      onModalOpenClicked
+    } = this.props
+
     if (!memo) {
       return null
     }
@@ -28,6 +45,7 @@ export default class MemoComponent extends Component {
         <Comment>
           <MemoAvatarContainer memo={memo} />
           <Comment.Content>
+            {showDelete ? <MemoDeleteContainer memo={memo} /> : null}
             <MemoContentContainer memo={memo} />
             <MemoActionsContainer memo={memo} />
           </Comment.Content>

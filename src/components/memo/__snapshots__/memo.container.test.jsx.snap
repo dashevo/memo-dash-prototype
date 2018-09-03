@@ -1,7 +1,29 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`<MemoContainer /> Shallow rendering should render foreign memo  1`] = `
+<MemoComponent
+  closeModal={[Function]}
+  memo={
+    Object {
+      "avatarUrl": "https://s3.amazonaws.com/uifaces/faces/twitter/rangafangs/128.jpg",
+      "idx": 1,
+      "memoDatetime": "2018-07-26T16:45:08.218Z",
+      "memoLikesCount": 0,
+      "memoRepliesCount": 0,
+      "memoText": "Qui magnam maiores laboriosam animi sit aut.",
+      "memoTipTotal": 0,
+      "username": "bob",
+    }
+  }
+  onLoadReplies={[Function]}
+  onModalOpenClicked={[Function]}
+  showDelete={false}
+/>
+`;
+
 exports[`<MemoContainer /> Shallow rendering should render memo with replies 1`] = `
 <MemoComponent
+  closeModal={[Function]}
   memo={
     Object {
       "avatarUrl": "https://s3.amazonaws.com/uifaces/faces/twitter/madcampos/128.jpg",
@@ -33,12 +55,14 @@ exports[`<MemoContainer /> Shallow rendering should render memo with replies 1`]
       },
     ]
   }
+  showDelete={true}
   showReplies={true}
 />
 `;
 
 exports[`<MemoContainer /> Shallow rendering should render memo without replies 1`] = `
 <MemoComponent
+  closeModal={[Function]}
   memo={
     Object {
       "avatarUrl": "https://s3.amazonaws.com/uifaces/faces/twitter/madcampos/128.jpg",
@@ -53,11 +77,21 @@ exports[`<MemoContainer /> Shallow rendering should render memo without replies 
   }
   onLoadReplies={[Function]}
   onModalOpenClicked={[Function]}
+  showDelete={true}
+/>
+`;
+
+exports[`<MemoContainer /> Shallow rendering should render non existing memo  1`] = `
+<MemoComponent
+  closeModal={[Function]}
+  onLoadReplies={[Function]}
+  onModalOpenClicked={[Function]}
 />
 `;
 
 exports[`<MemoContainer /> Shallow rendering should render without crashing 1`] = `
 <MemoComponent
+  closeModal={[Function]}
   onLoadReplies={[Function]}
   onModalOpenClicked={[Function]}
 />
