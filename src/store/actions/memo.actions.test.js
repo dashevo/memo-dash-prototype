@@ -3,6 +3,7 @@ import * as userActions from './user.actions'
 import { MemoActionTypes } from './memo.actions'
 import { verifyAction, mockStoreAndDispatch, getAction } from '../../test-utils/actions.test-helper'
 import { testUsers, testMemos } from '../../test-utils/test-data'
+import { combineMemoId } from '../reducers/memo.reducer'
 
 jest.mock('./user.actions', () => {
   const lib = require.requireActual('./user.actions')
@@ -21,6 +22,10 @@ describe('memo actions', () => {
 
     it('to indicate a like was removed', () => {
       verifyAction(MemoActionTypes.LIKE_REMOVED, 'likeId', () => memoActions.likeRemoved('likeId'))
+    })
+
+    it('to indicate a memo was deleted', () => {
+      verifyAction(MemoActionTypes.MEMO_DELETED, 'memoId', () => memoActions.memoDeleted('memoId'))
     })
 
     it('to indicate memo replies were received', () => {
@@ -53,7 +58,8 @@ describe('memo actions', () => {
         getMemoReplies: jest.fn(),
         postMemo: jest.fn(),
         getUsers: jest.fn(),
-        getAllOwnLikes: jest.fn()
+        getAllOwnLikes: jest.fn(),
+        deleteMemo: jest.fn()
       }
       state = {
         root: {
@@ -256,6 +262,24 @@ describe('memo actions', () => {
           )
           expect(await getAction(actions, MemoActionTypes.MEMO_REPLIES_RECEIVED)).toEqual(
             memoActions.memoRepliesReceived(alice.username, memo.idx, [memo])
+          )
+        })
+      })
+
+      describe('deleteMemo(memoId)', () => {
+        const alice = testUsers['alice']
+        const memo = testMemos[alice.memoIds[0]]
+
+        it('should call memoDashLib.deleteMemo', async () => {
+          await mockStoreAndDispatch(state, memoActions.deleteMemo(memo.username, memo.idx))
+          expect(spies.deleteMemo).toHaveBeenCalledWith(memo.idx)
+        })
+
+        it('should dispatch memoDeleted', async () => {
+          const actions = await mockStoreAndDispatch(state, memoActions.deleteMemo(memo.username, memo.idx))
+
+          expect(await getAction(actions, MemoActionTypes.MEMO_DELETED)).toEqual(
+            memoActions.memoDeleted(combineMemoId(memo.username, memo.idx))
           )
         })
       })

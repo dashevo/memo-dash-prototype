@@ -6,6 +6,9 @@ import { isMemoOfCurrentUser, getAvatarUrl } from '../../../store/selectors'
 
 const mapStateToProps = (state, ownProps) => {
   const { memo } = ownProps
+
+  if (!memo) return {}
+
   return {
     isMemoOfCurrentUser: isMemoOfCurrentUser(memo)(state),
     avatarUrl: getAvatarUrl(memo.username)(state)

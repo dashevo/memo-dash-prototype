@@ -61,6 +61,19 @@ export default (state = initialState, action) => {
       }
       return state
     }
+    case MemoActionTypes.MEMO_DELETED: {
+      const memos = { ...state.memos }
+
+      if (memos) {
+        delete memos[action.payload]
+        return {
+          ...state,
+          memos
+        }
+      }
+      return state
+    }
+
     default:
       return state
   }

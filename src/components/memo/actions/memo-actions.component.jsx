@@ -40,6 +40,9 @@ class MemoComponent extends Component {
 
   render() {
     const { memo, likedByCurrentUser, isMemoOfCurrentUser } = this.props
+
+    if (!memo) return null
+
     const { replyingToMemo } = this.state
 
     return (

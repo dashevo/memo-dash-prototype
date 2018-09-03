@@ -1,5 +1,5 @@
 import reducer, { initialState, combineMemoId } from './memo.reducer'
-import { memosReceived, memoUpdated, memoRepliesReceived } from '../actions/memo.actions'
+import { memosReceived, memoUpdated, memoRepliesReceived, memoDeleted } from '../actions/memo.actions'
 import { testUsers, testMemos } from '../../test-utils/test-data'
 
 describe('memo reducer', () => {
@@ -72,6 +72,24 @@ describe('memo reducer', () => {
           expect(reducer(undefined, memoRepliesReceived(undefined, undefined, undefined))).toEqual(
             initialState
           )
+        })
+      })
+
+      it('should handle MEMO_DELETED', () => {
+        const memo = Object.keys(testMemos)[0]
+        const deletedMemoId = combineMemoId(memo.username, memo.idx)
+
+        const state = {
+          ...initialState,
+          memos: testMemos
+        }
+
+        const memos = { ...testMemos }
+        delete memos[deletedMemoId]
+
+        expect(reducer(state, memoDeleted(deletedMemoId))).toEqual({
+          ...initialState,
+          memos
         })
       })
     })

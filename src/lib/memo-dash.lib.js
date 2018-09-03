@@ -189,8 +189,24 @@ export default class MemoDashLib {
     return await this.memoDashClient.getMemoReplies(username, memoId)
   }
 
+  /**
+   * Post memo to your profile.
+   * @param {string} message
+   * @return {Promise<boolean>}
+   * @memberof MemoDashLib
+   */
   async postMemo(message) {
     await this.memoDashClient.postMemo(message)
+  }
+
+  /**
+   * Removes memo context
+   * @param {string} memoId
+   * @return {Promise<boolean>}
+   * @memberof MemoDashLib
+   */
+  async deleteMemo(memoId) {
+    await this.memoDashClient.deleteMemo(memoId)
   }
 
   /**

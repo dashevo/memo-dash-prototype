@@ -20,6 +20,8 @@ class MemoComponent extends Component {
   render() {
     const { memo } = this.props
 
+    if (!memo) return null
+
     return (
       <Comment.Content>
         <Comment.Author as="a" onClick={this.goToProfile}>

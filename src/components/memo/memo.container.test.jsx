@@ -17,6 +17,7 @@ describe('<MemoContainer />', () => {
   beforeEach(() => {
     // Mock store
     mockStore = configureStore()
+    store = { user: { currentUser: alice.username } }
     memo = testMemos[alice.memoIds[0]]
     const div = document.createElement('div')
     document.body.appendChild(div)
@@ -25,14 +26,26 @@ describe('<MemoContainer />', () => {
   describe('Shallow rendering', () => {
     describe('should render', () => {
       it('without crashing', () => {
-        store = mockStore({})
+        store = mockStore(store)
         wrapper = shallow(<MemoContainer />, { context: { store } })
         expect(wrapper).toMatchSnapshot()
       })
 
       it('memo without replies', () => {
-        store = mockStore({})
+        store = mockStore(store)
         wrapper = shallow(<MemoContainer memo={memo} />, { context: { store } })
+        expect(wrapper).toMatchSnapshot()
+      })
+
+      it('foreign memo ', () => {
+        store = mockStore(store)
+        wrapper = shallow(<MemoContainer memo={testMemos[bob.memoIds[0]]} />, { context: { store } })
+        expect(wrapper).toMatchSnapshot()
+      })
+
+      it('non existing memo ', () => {
+        store = mockStore(store)
+        wrapper = shallow(<MemoContainer memo={undefined} />, { context: { store } })
         expect(wrapper).toMatchSnapshot()
       })
 
@@ -41,6 +54,7 @@ describe('<MemoContainer />', () => {
         memo.replyIds = [combineMemoId(reply.username, reply.idx)]
 
         store = mockStore({
+          ...store,
           memo: {
             memos: {
               [combineMemoId(memo.username, memo.idx)]: memo,

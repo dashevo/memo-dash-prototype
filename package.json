@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@dashevo/dash-schema": "git+https://github.com/dashevo/dash-platform.git#v3_develop",
+    "@dashevo/dash-schema": "dashevo/dash-platform.git#v3_develop",
     "connected-react-router": "^4.4.1",
     "dayjs": "^1.7.5",
     "debug": "^3.1.0",

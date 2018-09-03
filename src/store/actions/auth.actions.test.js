@@ -10,7 +10,7 @@ import {
 import { verifyAction, mockStoreAndDispatch, getAction } from '../../test-utils/actions.test-helper'
 
 import * as userActions from './user.actions'
-import * as userProfileActions from './user-profile.actions'
+import * as memoActions from './memo.actions'
 
 import { testUsers } from '../../test-utils/test-data'
 
@@ -126,8 +126,7 @@ describe('auth actions', () => {
 
             userActions.getUser = jest.fn(() => jest.fn())
             userActions.getAllOwnLikes = jest.fn(() => jest.fn())
-            userProfileActions.getFollowersForUser = jest.fn(() => jest.fn())
-            userProfileActions.getFollowingForUser = jest.fn(() => jest.fn())
+            memoActions.getMemosForUser = jest.fn(() => jest.fn())
 
             actions = await mockStoreAndDispatch(state, login('blockchainUsername'))
           })
@@ -144,6 +143,10 @@ describe('auth actions', () => {
 
           it('should dispatch getAllOwnLikes', async () => {
             expect(userActions.getAllOwnLikes).toHaveBeenCalled()
+          })
+
+          it('should dispatch getMemosForUser', async () => {
+            expect(memoActions.getMemosForUser).toHaveBeenCalled()
           })
         })
       })
