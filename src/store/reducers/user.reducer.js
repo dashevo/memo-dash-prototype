@@ -1,6 +1,5 @@
-import { AuthActionTypes } from '../actions'
+import { AuthActionTypes, MemoActionTypes } from '../actions'
 import { UserActionTypes } from '../actions/user.actions'
-import { getCurrentUser } from '../selectors'
 
 export const initialState = {
   currentUser: undefined,
@@ -8,6 +7,8 @@ export const initialState = {
   authError: undefined,
   users: undefined
 }
+
+const getCurrentUser = state => state.users[state.currentUser]
 
 export default (state = initialState, action) => {
   switch (action.type) {
@@ -67,7 +68,7 @@ export default (state = initialState, action) => {
     }
 
     case UserActionTypes.LIKE_REMOVED:
-      const user = getCurrentUser({ user: state })
+      const user = getCurrentUser(state)
       if (user) {
         const updatedUser = { ...user, ownLikes: user.ownLikes.filter(like => like.idx !== action.payload) }
         return {
@@ -77,6 +78,19 @@ export default (state = initialState, action) => {
       } else {
         return state
       }
+
+    case MemoActionTypes.MEMO_DELETED: {
+      const user = getCurrentUser(state)
+      if (user) {
+        const updatedUser = { ...user, memoIds: user.memoIds.filter(memoId => memoId !== action.payload) }
+        return {
+          ...state,
+          users: { ...state.users, [updatedUser.username]: updatedUser }
+        }
+      } else {
+        return state
+      }
+    }
 
     default:
       return state

@@ -1,7 +1,14 @@
 import reducer, { initialState } from './user.reducer'
-import { loginError, loginSuccessfull, logoutError, logoutSuccessfull, likeRemoved } from '../actions'
+import {
+  loginError,
+  loginSuccessfull,
+  logoutError,
+  logoutSuccessfull,
+  likeRemoved,
+  memoDeleted
+} from '../actions'
 import { userReceived, usersReceived, userUpdated } from '../actions/user.actions'
-import { testUsers } from '../../test-utils/test-data'
+import { testUsers, testMemos } from '../../test-utils/test-data'
 
 describe('user reducer', () => {
   it('should return the initial state', () => {
@@ -175,6 +182,36 @@ describe('user reducer', () => {
           expect(reducer(state, likeRemoved(alice.ownLikes[0].idx))).toEqual({
             ...state,
             users: { ...state.users, [alice.username]: { ...alice, ownLikes: [alice.ownLikes[1]] } }
+          })
+        })
+      })
+    })
+
+    describe('Memos', () => {
+      describe('handle MEMO_DELETED', () => {
+        const alice = testUsers['alice']
+        const deletedMemoId = alice.memoIds[0]
+
+        it('should return original state if no user found', () => {
+          const state = { users: {} }
+          expect(reducer(state, memoDeleted(alice.memoIds[0]))).toEqual(state)
+        })
+
+        it('should delete a memo', () => {
+          const state = {
+            currentUser: alice.username,
+            users: { [alice.username]: alice }
+          }
+
+          expect(reducer(state, memoDeleted(deletedMemoId))).toEqual({
+            ...state,
+            users: {
+              ...state.users,
+              [alice.username]: {
+                ...alice,
+                memoIds: alice.memoIds.filter(memoId => memoId !== deletedMemoId)
+              }
+            }
           })
         })
       })

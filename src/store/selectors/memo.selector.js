@@ -10,7 +10,10 @@ export const getMemosByCombinedIds = memoIds =>
   createSelector([getMemos], memos => (memoIds && memos ? memoIds.map(memoId => memos[memoId]) : undefined))
 
 export const isMemoOfCurrentUser = memo =>
-  createSelector([getCurrentUsername], currentUserName => currentUserName === memo.username)
+  createSelector(
+    [getCurrentUsername],
+    currentUserName => (memo ? currentUserName === memo.username : undefined)
+  )
 
 export const isMemoLikedByCurrentUser = memo =>
   createSelector([getCurrentUser], currentUser => {

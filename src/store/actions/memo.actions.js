@@ -6,7 +6,8 @@ export const MemoActionTypes = {
   MEMOS_RECEIVED: 'MEMOS_RECEIVED',
   MEMO_UPDATED: 'MEMO_UPDATED',
   MEMO_REPLIES_RECEIVED: 'MEMO_REPLIES_RECEIVED',
-  LIKE_REMOVED: 'LIKE_REMOVED'
+  LIKE_REMOVED: 'LIKE_REMOVED',
+  MEMO_DELETED: 'MEMO_DELETED'
 }
 
 export const getMemosForUser = username => async (dispatch, getState) => {
@@ -99,3 +100,14 @@ export const postMemo = message => async (dispatch, getState) => {
   await lib.postMemo(message)
   dispatch(getMemos())
 }
+
+export const deleteMemo = (username, memoId) => async (dispatch, getState) => {
+  const lib = getMemoDashLib(getState())
+  await lib.deleteMemo(memoId)
+  dispatch(memoDeleted(combineMemoId(username, memoId)))
+}
+
+export const memoDeleted = memoId => ({
+  type: MemoActionTypes.MEMO_DELETED,
+  payload: memoId
+})
