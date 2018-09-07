@@ -1,9 +1,9 @@
 import React, { Fragment } from 'react'
 import { Card } from 'semantic-ui-react'
 
-import UserProfileContainer from './user-profile.container'
+import ProfileOverviewContainer from './profile-overview.container'
 
-const UserProfilesComponent = props => {
+const ProfileOverviewsComponent = props => {
   const { actualUsername, userProfiles, itemsPerRow } = props
 
   return (
@@ -11,7 +11,7 @@ const UserProfilesComponent = props => {
       {userProfiles ? (
         <Card.Group itemsPerRow={itemsPerRow ? itemsPerRow : 3}>
           {Object.values(userProfiles).map(userProfile => (
-            <UserProfileContainer
+            <ProfileOverviewContainer
               key={userProfile.username}
               actualUsername={actualUsername}
               userProfile={userProfile}
@@ -25,4 +25,4 @@ const UserProfilesComponent = props => {
   )
 }
 
-export default UserProfilesComponent
+export default ProfileOverviewsComponent

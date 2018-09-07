@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Dimmer, Loader, Container, Image, Grid, Segment, Header, Tab } from 'semantic-ui-react'
 import MemosContainer from '../../components/memo/memos.container'
-import UserProfilesComponent from '../../components/user-profile/user-profiles.component'
+import ProfileOverviewsComponent from '../../components/user-profile/overview/profile-overviews.component'
 import FollowButtonContainer from '../../components/follow/follow-button.container'
 
 const TABS = {
@@ -83,7 +83,7 @@ export class ProfileViewComponent extends Component {
   renderFollowers = followers => (
     <Tab.Pane loading={!followers}>
       {followers ? (
-        <UserProfilesComponent
+        <ProfileOverviewsComponent
           actualUsername={this.props.username}
           userProfiles={followers.map(user => user.profile)}
         />
@@ -94,7 +94,7 @@ export class ProfileViewComponent extends Component {
   renderFollowing = following => (
     <Tab.Pane loading={!following}>
       {following ? (
-        <UserProfilesComponent
+        <ProfileOverviewsComponent
           actualUsername={this.props.username}
           userProfiles={following.map(user => user.profile)}
         />

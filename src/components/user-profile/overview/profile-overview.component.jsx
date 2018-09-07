@@ -1,8 +1,8 @@
 import React from 'react'
 import { Card, Image, Label } from 'semantic-ui-react'
-import FollowButtonContainer from '../follow/follow-button.container'
+import FollowButtonContainer from '../../follow/follow-button.container'
 
-const UserProfileComponent = props => {
+const ProfileOverviewComponent = props => {
   const { userProfile } = props
 
   if (!userProfile) return null
@@ -33,4 +33,4 @@ const UserProfileComponent = props => {
   )
 }
 
-export default UserProfileComponent
+export default ProfileOverviewComponent

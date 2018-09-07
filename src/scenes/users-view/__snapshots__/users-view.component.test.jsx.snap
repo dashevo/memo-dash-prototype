@@ -8,7 +8,7 @@ exports[`<UsersViewComponent /> renders user profiles 1`] = `
     }
   }
 >
-  <UserProfilesComponent
+  <ProfileOverviewsComponent
     itemsPerRow={4}
     userProfiles={
       Array [

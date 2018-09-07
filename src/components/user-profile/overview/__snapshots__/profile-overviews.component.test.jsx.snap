@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<UserProfilesComponent /> renders without crashing 1`] = `
+exports[`<ProfileOverviewsComponent /> renders without crashing 1`] = `
 <React.Fragment>
   <CardGroup
     itemsPerRow={3}
@@ -8,12 +8,12 @@ exports[`<UserProfilesComponent /> renders without crashing 1`] = `
 </React.Fragment>
 `;
 
-exports[`<UserProfilesComponent /> should render memos 1`] = `
+exports[`<ProfileOverviewsComponent /> should render memos 1`] = `
 <React.Fragment>
   <CardGroup
     itemsPerRow={3}
   >
-    <Connect(UserProfileComponent)
+    <Connect(ProfileOverviewComponent)
       key="alice"
       userProfile={
         Object {
@@ -26,7 +26,7 @@ exports[`<UserProfilesComponent /> should render memos 1`] = `
         }
       }
     />
-    <Connect(UserProfileComponent)
+    <Connect(ProfileOverviewComponent)
       key="bob"
       userProfile={
         Object {
