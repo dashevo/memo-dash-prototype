@@ -1,0 +1,163 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<ProfileContentComponent /> should render profile 1`] = `
+<Fragment>
+  <Tab
+    grid={
+      Object {
+        "paneWidth": 12,
+        "tabWidth": 4,
+      }
+    }
+    menu={
+      Object {
+        "attached": true,
+        "tabular": true,
+      }
+    }
+    onTabChange={[Function]}
+    panes={
+      Array [
+        Object {
+          "active": false,
+          "menuItem": "Memos",
+          "render": [Function],
+        },
+        Object {
+          "active": false,
+          "menuItem": "Followers (1)",
+          "render": [Function],
+        },
+        Object {
+          "active": false,
+          "menuItem": "Following (1)",
+          "render": [Function],
+        },
+      ]
+    }
+    renderActiveOnly={true}
+  />
+</Fragment>
+`;
+
+exports[`<ProfileContentComponent /> should render tabs followers 1`] = `
+<Fragment>
+  <Tab
+    grid={
+      Object {
+        "paneWidth": 12,
+        "tabWidth": 4,
+      }
+    }
+    menu={
+      Object {
+        "attached": true,
+        "tabular": true,
+      }
+    }
+    onTabChange={[Function]}
+    panes={
+      Array [
+        Object {
+          "active": false,
+          "menuItem": "Memos",
+          "render": [Function],
+        },
+        Object {
+          "active": true,
+          "menuItem": "Followers (1)",
+          "render": [Function],
+        },
+        Object {
+          "active": false,
+          "menuItem": "Following (1)",
+          "render": [Function],
+        },
+      ]
+    }
+    renderActiveOnly={true}
+  />
+</Fragment>
+`;
+
+exports[`<ProfileContentComponent /> should render tabs following 1`] = `
+<Fragment>
+  <Tab
+    grid={
+      Object {
+        "paneWidth": 12,
+        "tabWidth": 4,
+      }
+    }
+    menu={
+      Object {
+        "attached": true,
+        "tabular": true,
+      }
+    }
+    onTabChange={[Function]}
+    panes={
+      Array [
+        Object {
+          "active": false,
+          "menuItem": "Memos",
+          "render": [Function],
+        },
+        Object {
+          "active": false,
+          "menuItem": "Followers (1)",
+          "render": [Function],
+        },
+        Object {
+          "active": true,
+          "menuItem": "Following (1)",
+          "render": [Function],
+        },
+      ]
+    }
+    renderActiveOnly={true}
+  />
+</Fragment>
+`;
+
+exports[`<ProfileContentComponent /> should render tabs memos 1`] = `
+<Fragment>
+  <Tab
+    grid={
+      Object {
+        "paneWidth": 12,
+        "tabWidth": 4,
+      }
+    }
+    menu={
+      Object {
+        "attached": true,
+        "tabular": true,
+      }
+    }
+    onTabChange={[Function]}
+    panes={
+      Array [
+        Object {
+          "active": true,
+          "menuItem": "Memos",
+          "render": [Function],
+        },
+        Object {
+          "active": false,
+          "menuItem": "Followers (1)",
+          "render": [Function],
+        },
+        Object {
+          "active": false,
+          "menuItem": "Following (1)",
+          "render": [Function],
+        },
+      ]
+    }
+    renderActiveOnly={true}
+  />
+</Fragment>
+`;
+
+exports[`<ProfileContentComponent /> should render without crashing 1`] = `<Fragment />`;
