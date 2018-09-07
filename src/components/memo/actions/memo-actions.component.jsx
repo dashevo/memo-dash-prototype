@@ -33,8 +33,12 @@ class MemoComponent extends Component {
     this.setState({ modalOpened: true })
   }
 
-  onReplySubmitted = (username, memo, message) => {
-    this.props.onReplyClicked(username, memo, message)
+  onReplySubmitted = (username, memoId, message) => {
+    this.props.onReplyClicked(username, memoId, message)
+    this.setState({ replyingToMemo: false })
+  }
+
+  onReplyCanceled = () => {
     this.setState({ replyingToMemo: false })
   }
 
@@ -73,6 +77,7 @@ class MemoComponent extends Component {
             memoId={memo.idx}
             username={memo.username}
             onSubmitted={this.onReplySubmitted}
+            onCanceled={this.onReplyCanceled}
             buttonLabel="Add Reply"
           />
         ) : (

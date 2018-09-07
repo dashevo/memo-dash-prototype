@@ -2,12 +2,15 @@ import { connect } from 'react-redux'
 import { push } from 'connected-react-router'
 
 import MemoContentComponent from './memo-content.component'
-import { likeMemo, removeLike, replyToMemo } from '../../../store/actions'
-import { getCurrentUser } from '../../../store/selectors'
+import { editMemo } from '../../../store/actions'
+import { getCurrentUser, isMemoOfCurrentUser } from '../../../store/selectors'
 
-const mapStateToProps = state => {
+const mapStateToProps = (state, ownProps) => {
+  const { memo } = ownProps
+
   return {
-    currentUser: getCurrentUser(state)
+    currentUser: getCurrentUser(state),
+    showEdit: isMemoOfCurrentUser(memo)(state)
   }
 }
 
@@ -16,14 +19,8 @@ const mapDispatchToProps = dispatch => {
     onGoToProfileClicked: username => {
       dispatch(push(`/profile/${username}`))
     },
-    onLikeMemoClicked: (username, memoId) => {
-      dispatch(likeMemo(username, memoId))
-    },
-    onRemoveLikeClicked: (username, memoId) => {
-      dispatch(removeLike(username, memoId))
-    },
-    onReplyClicked: (username, memoId, message) => {
-      dispatch(replyToMemo(username, memoId, message))
+    onEditClicked: (username, memoId, message) => {
+      dispatch(editMemo(username, memoId, message))
     }
   }
 }

@@ -144,6 +144,7 @@ exports[`<MemoActionsComponent /> should render memo with reply form 1`] = `
   <WithFormik(MemoFormComponent)
     buttonLabel="Add Reply"
     memoId={1}
+    onCanceled={[Function]}
     onSubmitted={[Function]}
     username="alice"
   />

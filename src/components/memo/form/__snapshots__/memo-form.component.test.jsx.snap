@@ -1,8 +1,9 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<MemoFormComponent /> renders without crashing 1`] = `
+exports[`<MemoFormComponent /> should render without crashing 1`] = `
 <Form
   as="form"
+  onClick={[Function]}
   reply={true}
 >
   <FormTextArea
@@ -20,10 +21,17 @@ exports[`<MemoFormComponent /> renders without crashing 1`] = `
     disabled={true}
     icon="edit"
     labelPosition="left"
-    onClick={[Function]}
     primary={true}
     role="button"
+    size="mini"
     type="submit"
+  />
+  <Button
+    as="button"
+    content="Cancel"
+    role="button"
+    size="mini"
+    type="reset"
   />
 </Form>
 `;

@@ -2,10 +2,11 @@ import { withFormik } from 'formik'
 import * as yup from 'yup'
 import MemoFormComponent from './memo-form.component'
 
-const mapPropsToValues = ({ username, memoId }) => ({
-  message: '',
+const mapPropsToValues = ({ username, memoId, message, onCanceled }) => ({
+  message,
   username,
-  memoId
+  memoId,
+  onCanceled
 })
 
 const validationSchema = yup.object().shape({

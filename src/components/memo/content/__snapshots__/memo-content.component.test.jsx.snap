@@ -1,5 +1,59 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`<MemoContentComponent /> should render edit button 1`] = `
+<CommentContent>
+  <Button
+    as="button"
+    basic={true}
+    color="grey"
+    floated="right"
+    icon="edit"
+    onClick={[Function]}
+    role="button"
+    size="mini"
+  />
+  <CommentAuthor
+    as="a"
+    onClick={[Function]}
+  />
+  <CommentMetadata>
+    <span>
+      a few seconds ago
+    </span>
+  </CommentMetadata>
+  <CommentText />
+</CommentContent>
+`;
+
+exports[`<MemoContentComponent /> should render edit form 1`] = `
+<CommentContent>
+  <Button
+    as="button"
+    basic={true}
+    color="grey"
+    floated="right"
+    icon="edit"
+    onClick={[Function]}
+    role="button"
+    size="mini"
+  />
+  <CommentAuthor
+    as="a"
+    onClick={[Function]}
+  />
+  <CommentMetadata>
+    <span>
+      a few seconds ago
+    </span>
+  </CommentMetadata>
+  <WithFormik(MemoFormComponent)
+    buttonLabel="Update Memo"
+    onCanceled={[Function]}
+    onSubmitted={[Function]}
+  />
+</CommentContent>
+`;
+
 exports[`<MemoContentComponent /> should render without crashing 1`] = `
 <CommentContent>
   <CommentAuthor
