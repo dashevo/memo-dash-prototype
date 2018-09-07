@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`<MemoActionsComponent /> should render foreign memo 1`] = `
-<React.Fragment>
+<Fragment>
   <CommentActions>
     <CommentAction
       as="a"
@@ -45,11 +45,11 @@ exports[`<MemoActionsComponent /> should render foreign memo 1`] = `
       </span>
     </CommentAction>
   </CommentActions>
-</React.Fragment>
+</Fragment>
 `;
 
 exports[`<MemoActionsComponent /> should render foreign memo liked by current user 1`] = `
-<React.Fragment>
+<Fragment>
   <CommentActions>
     <CommentAction
       as="a"
@@ -93,11 +93,11 @@ exports[`<MemoActionsComponent /> should render foreign memo liked by current us
       </span>
     </CommentAction>
   </CommentActions>
-</React.Fragment>
+</Fragment>
 `;
 
 exports[`<MemoActionsComponent /> should render memo with reply form 1`] = `
-<React.Fragment>
+<Fragment>
   <CommentActions>
     <CommentAction
       as="a"
@@ -148,11 +148,11 @@ exports[`<MemoActionsComponent /> should render memo with reply form 1`] = `
     onSubmitted={[Function]}
     username="alice"
   />
-</React.Fragment>
+</Fragment>
 `;
 
 exports[`<MemoActionsComponent /> should render own memo 1`] = `
-<React.Fragment>
+<Fragment>
   <CommentActions>
     <CommentAction
       as="span"
@@ -195,11 +195,11 @@ exports[`<MemoActionsComponent /> should render own memo 1`] = `
       </span>
     </CommentAction>
   </CommentActions>
-</React.Fragment>
+</Fragment>
 `;
 
 exports[`<MemoActionsComponent /> should render without crashing 1`] = `
-<React.Fragment>
+<Fragment>
   <CommentActions>
     <CommentAction
       as="a"
@@ -243,5 +243,5 @@ exports[`<MemoActionsComponent /> should render without crashing 1`] = `
       </span>
     </CommentAction>
   </CommentActions>
-</React.Fragment>
+</Fragment>
 `;
