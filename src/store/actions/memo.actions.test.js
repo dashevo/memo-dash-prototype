@@ -59,7 +59,8 @@ describe('memo actions', () => {
         postMemo: jest.fn(),
         getUsers: jest.fn(),
         getAllOwnLikes: jest.fn(),
-        deleteMemo: jest.fn()
+        deleteMemo: jest.fn(),
+        editMemo: jest.fn()
       }
       state = {
         root: {
@@ -280,6 +281,28 @@ describe('memo actions', () => {
 
           expect(await getAction(actions, MemoActionTypes.MEMO_DELETED)).toEqual(
             memoActions.memoDeleted(combineMemoId(memo.username, memo.idx))
+          )
+        })
+      })
+
+      describe('editMemo(username, memoId, message)', () => {
+        const alice = testUsers['alice']
+        const memo = testMemos[alice.memoIds[0]]
+        const newMessage = 'newMessage'
+
+        it('should call memoDashLib.editMemo', async () => {
+          await mockStoreAndDispatch(state, memoActions.editMemo(alice.username, memo.idx, newMessage))
+          expect(spies.editMemo).toHaveBeenCalledWith(memo.idx, newMessage)
+        })
+
+        it('should dispatch memoUpdated', async () => {
+          state.root.memoDashLib.getMemo.mockReturnValue(memo)
+          const actions = await mockStoreAndDispatch(
+            state,
+            memoActions.replyToMemo(alice.username, memo.idx, newMessage)
+          )
+          expect(await getAction(actions, MemoActionTypes.MEMO_UPDATED)).toEqual(
+            memoActions.memoUpdated(memo)
           )
         })
       })

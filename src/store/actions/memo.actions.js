@@ -111,3 +111,10 @@ export const memoDeleted = memoId => ({
   type: MemoActionTypes.MEMO_DELETED,
   payload: memoId
 })
+
+export const editMemo = (username, memoId, message) => async (dispatch, getState) => {
+  const lib = getMemoDashLib(getState())
+  await lib.editMemo(memoId, message)
+  const memo = await lib.getMemo(username, memoId)
+  dispatch(memoUpdated(memo))
+}
