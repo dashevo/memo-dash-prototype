@@ -165,7 +165,6 @@ export default class MemoDashLib {
    */
   async replyToMemo(username, memoId, message) {
     const answer = await this.memoDashClient.replyToMemo(username, memoId, message)
-    console.log(answer)
     return answer
   }
 
@@ -207,6 +206,17 @@ export default class MemoDashLib {
    */
   async deleteMemo(memoId) {
     await this.memoDashClient.deleteMemo(memoId)
+  }
+
+  /**
+   * Edit own memo at the given infex
+   * @param {string} idx
+   * @param {string} newMessage
+   * @return {Promise<boolean>}
+   * @memberof MemoDashLib
+   */
+  async editMemo(memoId, message) {
+    await this.memoDashClient.editMemo(memoId, message)
   }
 
   /**

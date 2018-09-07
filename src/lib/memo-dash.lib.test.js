@@ -18,6 +18,7 @@ describe('MemoDashLib', () => {
       getAllOwnLikes: jest.fn().mockReturnValue(alice.ownLikes),
       postMemo: jest.fn(),
       deleteMemo: jest.fn(),
+      editMemo: jest.fn(),
       getUserFollowers: jest.fn().mockReturnValue(
         alice.followers.map(follower => ({
           username: follower
@@ -101,6 +102,15 @@ describe('MemoDashLib', () => {
         const memoId = 1
         memoDashLib.deleteMemo(memoId)
         expect(memoDashLib.memoDashClient.deleteMemo).toHaveBeenCalledWith(memoId)
+      })
+    })
+
+    describe('editMemo(memoId, message)', () => {
+      it('should edit memo', () => {
+        const memoId = 1
+        const message = 'newMessage'
+        memoDashLib.editMemo(memoId, message)
+        expect(memoDashLib.memoDashClient.editMemo).toHaveBeenCalledWith(memoId, message)
       })
     })
   })
