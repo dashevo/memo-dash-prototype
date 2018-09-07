@@ -1,8 +1,8 @@
 import React from 'react'
 import { shallow } from 'enzyme'
-import ReplyFormComponent from './reply-form.component'
+import MemoFormComponent from './memo-form.component'
 
-describe('<ReplyFormComponent />', () => {
+describe('<MemoFormComponent />', () => {
   let wrapper
 
   beforeEach(() => {
@@ -12,10 +12,11 @@ describe('<ReplyFormComponent />', () => {
 
   it('renders without crashing', () => {
     wrapper = shallow(
-      <ReplyFormComponent
+      <MemoFormComponent
         values={{ message: 'replyMessage' }}
         errors={{ message: 'errorMessage' }}
         touched={{ message: 'touchedMessage' }}
+        buttonLabel="Add Reply"
       />
     )
     expect(wrapper).toMatchSnapshot()

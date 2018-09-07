@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<ReplyFormComponent /> renders without crashing 1`] = `
+exports[`<MemoFormComponent /> renders without crashing 1`] = `
 <Form
   as="form"
   reply={true}

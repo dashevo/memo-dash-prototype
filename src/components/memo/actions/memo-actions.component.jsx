@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from 'react'
 import { Comment, Icon } from 'semantic-ui-react'
-import ReplyFormContainer from '../reply/reply-form.container'
+import MemoFormContainer from '../form/memo-form.container'
 
 class MemoComponent extends Component {
   constructor(props) {
@@ -69,10 +69,11 @@ class MemoComponent extends Component {
           </Comment.Action>
         </Comment.Actions>
         {replyingToMemo ? (
-          <ReplyFormContainer
+          <MemoFormContainer
             memoId={memo.idx}
             username={memo.username}
-            onReplySubmitted={this.onReplySubmitted}
+            onSubmitted={this.onReplySubmitted}
+            buttonLabel="Add Reply"
           />
         ) : (
           ''

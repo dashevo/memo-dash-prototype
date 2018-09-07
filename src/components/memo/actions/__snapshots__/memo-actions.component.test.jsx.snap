@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`<MemoActionsComponent /> should render foreign memo 1`] = `
-<Fragment>
+<React.Fragment>
   <CommentActions>
     <CommentAction
       as="a"
@@ -45,11 +45,11 @@ exports[`<MemoActionsComponent /> should render foreign memo 1`] = `
       </span>
     </CommentAction>
   </CommentActions>
-</Fragment>
+</React.Fragment>
 `;
 
 exports[`<MemoActionsComponent /> should render foreign memo liked by current user 1`] = `
-<Fragment>
+<React.Fragment>
   <CommentActions>
     <CommentAction
       as="a"
@@ -93,11 +93,11 @@ exports[`<MemoActionsComponent /> should render foreign memo liked by current us
       </span>
     </CommentAction>
   </CommentActions>
-</Fragment>
+</React.Fragment>
 `;
 
 exports[`<MemoActionsComponent /> should render memo with reply form 1`] = `
-<Fragment>
+<React.Fragment>
   <CommentActions>
     <CommentAction
       as="a"
@@ -141,16 +141,17 @@ exports[`<MemoActionsComponent /> should render memo with reply form 1`] = `
       </span>
     </CommentAction>
   </CommentActions>
-  <WithFormik(ReplyFormComponent)
+  <WithFormik(MemoFormComponent)
+    buttonLabel="Add Reply"
     memoId={1}
-    onReplySubmitted={[Function]}
+    onSubmitted={[Function]}
     username="alice"
   />
-</Fragment>
+</React.Fragment>
 `;
 
 exports[`<MemoActionsComponent /> should render own memo 1`] = `
-<Fragment>
+<React.Fragment>
   <CommentActions>
     <CommentAction
       as="span"
@@ -193,11 +194,11 @@ exports[`<MemoActionsComponent /> should render own memo 1`] = `
       </span>
     </CommentAction>
   </CommentActions>
-</Fragment>
+</React.Fragment>
 `;
 
 exports[`<MemoActionsComponent /> should render without crashing 1`] = `
-<Fragment>
+<React.Fragment>
   <CommentActions>
     <CommentAction
       as="a"
@@ -241,5 +242,5 @@ exports[`<MemoActionsComponent /> should render without crashing 1`] = `
       </span>
     </CommentAction>
   </CommentActions>
-</Fragment>
+</React.Fragment>
 `;

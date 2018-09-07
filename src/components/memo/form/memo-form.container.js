@@ -1,6 +1,6 @@
 import { withFormik } from 'formik'
 import * as yup from 'yup'
-import ReplyFormComponent from './reply-form.component'
+import MemoFormComponent from './memo-form.component'
 
 const mapPropsToValues = ({ username, memoId }) => ({
   message: '',
@@ -12,12 +12,12 @@ const validationSchema = yup.object().shape({
   message: yup.string().required('Text is required!')
 })
 
-const handleSubmit = ({ username, memoId, message }, { setSubmitting, props: { onReplySubmitted } }) => {
-  onReplySubmitted(username, memoId, message)
+const handleSubmit = ({ username, memoId, message }, { setSubmitting, props: { onSubmitted } }) => {
+  onSubmitted(username, memoId, message)
 }
 
 export default withFormik({
   mapPropsToValues,
   validationSchema,
   handleSubmit
-})(ReplyFormComponent)
+})(MemoFormComponent)

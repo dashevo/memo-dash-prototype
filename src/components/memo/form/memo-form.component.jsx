@@ -1,8 +1,8 @@
 import React from 'react'
 import { Button, Form } from 'semantic-ui-react'
 
-const ReplyFormComponent = props => {
-  const { values, touched, errors, isSubmitting, handleBlur, handleSubmit, handleChange } = props
+const MemoFormComponent = props => {
+  const { values, touched, errors, isSubmitting, handleBlur, handleSubmit, handleChange, buttonLabel } = props
   return (
     <Form reply onSubmit={handleSubmit}>
       <Form.TextArea
@@ -17,7 +17,7 @@ const ReplyFormComponent = props => {
       />
       <Button
         type="submit"
-        content="Add Reply"
+        content={buttonLabel}
         labelPosition="left"
         icon="edit"
         primary
@@ -28,4 +28,4 @@ const ReplyFormComponent = props => {
   )
 }
 
-export default ReplyFormComponent
+export default MemoFormComponent
