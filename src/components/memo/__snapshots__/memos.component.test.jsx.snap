@@ -1,17 +1,17 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`<MemosComponent /> renders without crashing 1`] = `
-<Fragment>
+<React.Fragment>
   <CommentGroup
     size="large"
   >
     <Connect(MemoModalComponent) />
   </CommentGroup>
-</Fragment>
+</React.Fragment>
 `;
 
 exports[`<MemosComponent /> should render memos 1`] = `
-<Fragment>
+<React.Fragment>
   <CommentGroup
     size="large"
   >
@@ -89,5 +89,5 @@ exports[`<MemosComponent /> should render memos 1`] = `
     />
     <Connect(MemoModalComponent) />
   </CommentGroup>
-</Fragment>
+</React.Fragment>
 `;

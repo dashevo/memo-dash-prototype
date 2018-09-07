@@ -2,9 +2,7 @@
 
 exports[`<MemoContentContainer /> Shallow rendering renders without crashing 1`] = `
 <MemoComponent
+  onEditClicked={[Function]}
   onGoToProfileClicked={[Function]}
-  onLikeMemoClicked={[Function]}
-  onRemoveLikeClicked={[Function]}
-  onReplyClicked={[Function]}
 />
 `;

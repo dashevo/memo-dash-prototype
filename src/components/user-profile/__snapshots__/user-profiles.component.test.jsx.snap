@@ -1,15 +1,15 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`<UserProfilesComponent /> renders without crashing 1`] = `
-<Fragment>
+<React.Fragment>
   <CardGroup
     itemsPerRow={3}
   />
-</Fragment>
+</React.Fragment>
 `;
 
 exports[`<UserProfilesComponent /> should render memos 1`] = `
-<Fragment>
+<React.Fragment>
   <CardGroup
     itemsPerRow={3}
   >
@@ -40,5 +40,5 @@ exports[`<UserProfilesComponent /> should render memos 1`] = `
       }
     />
   </CardGroup>
-</Fragment>
+</React.Fragment>
 `;

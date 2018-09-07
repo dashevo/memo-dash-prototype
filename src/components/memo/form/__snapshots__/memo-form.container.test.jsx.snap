@@ -1,13 +1,14 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<ReplyFormContainer /> Shallow rendering renders without crashing 1`] = `
+exports[`<MemoFormContainer /> Shallow rendering renders without crashing 1`] = `
 <Formik
   enableReinitialize={false}
   handleSubmit={[Function]}
   initialValues={
     Object {
       "memoId": 1,
-      "message": "",
+      "message": undefined,
+      "onCanceled": undefined,
       "username": "alice",
     }
   }

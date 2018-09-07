@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`<ProfileViewComponent /> renders loader without crashing 1`] = `
-<Fragment>
+<React.Fragment>
   <Dimmer
     active={true}
     inverted={true}
@@ -12,11 +12,11 @@ exports[`<ProfileViewComponent /> renders loader without crashing 1`] = `
       Loading
     </Loader>
   </Dimmer>
-</Fragment>
+</React.Fragment>
 `;
 
 exports[`<ProfileViewComponent /> renders memos without crashing 1`] = `
-<Fragment>
+<React.Fragment>
   <Container
     style={
       Object {
@@ -109,5 +109,5 @@ exports[`<ProfileViewComponent /> renders memos without crashing 1`] = `
       </GridRow>
     </Grid>
   </Container>
-</Fragment>
+</React.Fragment>
 `;

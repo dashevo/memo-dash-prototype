@@ -1,10 +1,20 @@
 import React from 'react'
 import { Button, Form } from 'semantic-ui-react'
 
-const ReplyFormComponent = props => {
-  const { values, touched, errors, isSubmitting, handleBlur, handleSubmit, handleChange } = props
+const MemoFormComponent = props => {
+  const {
+    values,
+    touched,
+    errors,
+    isSubmitting,
+    handleBlur,
+    handleSubmit,
+    handleChange,
+    onCanceled,
+    buttonLabel
+  } = props
   return (
-    <Form reply onSubmit={handleSubmit}>
+    <Form reply onSubmit={handleSubmit} onClick={e => e.stopPropagation()}>
       <Form.TextArea
         autoFocus
         name="message"
@@ -17,15 +27,16 @@ const ReplyFormComponent = props => {
       />
       <Button
         type="submit"
-        content="Add Reply"
+        size="mini"
+        content={buttonLabel}
         labelPosition="left"
         icon="edit"
         primary
         disabled={isSubmitting || !!errors.message || !values.message}
-        onClick={e => e.stopPropagation()}
       />
+      <Button type="reset" size="mini" content="Cancel" onClick={onCanceled} />
     </Form>
   )
 }
 
-export default ReplyFormComponent
+export default MemoFormComponent

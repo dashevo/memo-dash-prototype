@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from 'react'
 import { Comment, Icon } from 'semantic-ui-react'
-import ReplyFormContainer from '../reply/reply-form.container'
+import MemoFormContainer from '../form/memo-form.container'
 
 class MemoComponent extends Component {
   constructor(props) {
@@ -33,8 +33,12 @@ class MemoComponent extends Component {
     this.setState({ modalOpened: true })
   }
 
-  onReplySubmitted = (username, memo, message) => {
-    this.props.onReplyClicked(username, memo, message)
+  onReplySubmitted = (username, memoId, message) => {
+    this.props.onReplyClicked(username, memoId, message)
+    this.setState({ replyingToMemo: false })
+  }
+
+  onReplyCanceled = () => {
     this.setState({ replyingToMemo: false })
   }
 
@@ -69,10 +73,12 @@ class MemoComponent extends Component {
           </Comment.Action>
         </Comment.Actions>
         {replyingToMemo ? (
-          <ReplyFormContainer
+          <MemoFormContainer
             memoId={memo.idx}
             username={memo.username}
-            onReplySubmitted={this.onReplySubmitted}
+            onSubmitted={this.onReplySubmitted}
+            onCanceled={this.onReplyCanceled}
+            buttonLabel="Add Reply"
           />
         ) : (
           ''
