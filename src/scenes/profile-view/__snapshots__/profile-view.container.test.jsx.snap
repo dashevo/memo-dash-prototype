@@ -2,95 +2,6 @@
 
 exports[`<ProfileViewContainer /> Shallow rendering renders without crashing 1`] = `
 <ProfileViewComponent
-  followers={
-    Array [
-      Object {
-        "followers": Array [
-          "alice",
-        ],
-        "following": Array [
-          "alice",
-        ],
-        "memoIds": Array [
-          "[bob][1]",
-          "[bob][2]",
-        ],
-        "ownLikes": Array [
-          Object {
-            "idx": 7,
-            "relation": Object {
-              "index": 1,
-              "userId": "f0fd479ba875bf2232a4043dbefff24e2af2ca5ccd50b3ba9e91673707336726",
-              "username": "alice",
-            },
-          },
-          Object {
-            "idx": 8,
-            "relation": Object {
-              "index": 2,
-              "userId": "f0fd479ba875bf2232a4043dbefff24e2af2ca5ccd50b3ba9e91673707336726",
-              "username": "alice",
-            },
-          },
-        ],
-        "profile": Object {
-          "avatarUrl": "https://s3.amazonaws.com/uifaces/faces/twitter/madcampos/129.jpg",
-          "bio": "Id qui nisi asperiores vel quo.",
-          "followersCount": 1,
-          "followingCount": 1,
-          "likesCount": 1,
-          "username": "bob",
-        },
-        "userId": "c6e5e284054bcbcd2cddea1ec36579e1fdf8e788d8a46d0351e276b4d0bb297c",
-        "username": "bob",
-      },
-    ]
-  }
-  following={
-    Array [
-      Object {
-        "followers": Array [
-          "alice",
-        ],
-        "following": Array [
-          "alice",
-        ],
-        "memoIds": Array [
-          "[bob][1]",
-          "[bob][2]",
-        ],
-        "ownLikes": Array [
-          Object {
-            "idx": 7,
-            "relation": Object {
-              "index": 1,
-              "userId": "f0fd479ba875bf2232a4043dbefff24e2af2ca5ccd50b3ba9e91673707336726",
-              "username": "alice",
-            },
-          },
-          Object {
-            "idx": 8,
-            "relation": Object {
-              "index": 2,
-              "userId": "f0fd479ba875bf2232a4043dbefff24e2af2ca5ccd50b3ba9e91673707336726",
-              "username": "alice",
-            },
-          },
-        ],
-        "profile": Object {
-          "avatarUrl": "https://s3.amazonaws.com/uifaces/faces/twitter/madcampos/129.jpg",
-          "bio": "Id qui nisi asperiores vel quo.",
-          "followersCount": 1,
-          "followingCount": 1,
-          "likesCount": 1,
-          "username": "bob",
-        },
-        "userId": "c6e5e284054bcbcd2cddea1ec36579e1fdf8e788d8a46d0351e276b4d0bb297c",
-        "username": "bob",
-      },
-    ]
-  }
-  getMemosForUser={[Function]}
   getUser={[Function]}
   match={
     Object {
@@ -99,16 +10,6 @@ exports[`<ProfileViewContainer /> Shallow rendering renders without crashing 1`]
       },
     }
   }
-  memos={
-    Array [
-      undefined,
-      undefined,
-    ]
-  }
-  onFollowersClicked={[Function]}
-  onFollowingClicked={[Function]}
-  onMemosClicked={[Function]}
-  pathname="/profile/alice/memos"
   profile={
     Object {
       "avatarUrl": "https://s3.amazonaws.com/uifaces/faces/twitter/madcampos/128.jpg",
@@ -125,95 +26,6 @@ exports[`<ProfileViewContainer /> Shallow rendering renders without crashing 1`]
 
 exports[`<ProfileViewContainer /> Shallow rendering should render user prfoile that different from current user 1`] = `
 <ProfileViewComponent
-  followers={
-    Array [
-      Object {
-        "followers": Array [
-          "bob",
-        ],
-        "following": Array [
-          "bob",
-        ],
-        "memoIds": Array [
-          "[alice][1]",
-          "[alice][2]",
-        ],
-        "ownLikes": Array [
-          Object {
-            "idx": 5,
-            "relation": Object {
-              "index": 1,
-              "userId": "c6e5e284054bcbcd2cddea1ec36579e1fdf8e788d8a46d0351e276b4d0bb297c",
-              "username": "bob",
-            },
-          },
-          Object {
-            "idx": 6,
-            "relation": Object {
-              "index": 2,
-              "userId": "c6e5e284054bcbcd2cddea1ec36579e1fdf8e788d8a46d0351e276b4d0bb297c",
-              "username": "bob",
-            },
-          },
-        ],
-        "profile": Object {
-          "avatarUrl": "https://s3.amazonaws.com/uifaces/faces/twitter/madcampos/128.jpg",
-          "bio": "Quod architecto molestias et.",
-          "followersCount": 1,
-          "followingCount": 1,
-          "likesCount": 1,
-          "username": "alice",
-        },
-        "userId": "f0fd479ba875bf2232a4043dbefff24e2af2ca5ccd50b3ba9e91673707336726",
-        "username": "alice",
-      },
-    ]
-  }
-  following={
-    Array [
-      Object {
-        "followers": Array [
-          "bob",
-        ],
-        "following": Array [
-          "bob",
-        ],
-        "memoIds": Array [
-          "[alice][1]",
-          "[alice][2]",
-        ],
-        "ownLikes": Array [
-          Object {
-            "idx": 5,
-            "relation": Object {
-              "index": 1,
-              "userId": "c6e5e284054bcbcd2cddea1ec36579e1fdf8e788d8a46d0351e276b4d0bb297c",
-              "username": "bob",
-            },
-          },
-          Object {
-            "idx": 6,
-            "relation": Object {
-              "index": 2,
-              "userId": "c6e5e284054bcbcd2cddea1ec36579e1fdf8e788d8a46d0351e276b4d0bb297c",
-              "username": "bob",
-            },
-          },
-        ],
-        "profile": Object {
-          "avatarUrl": "https://s3.amazonaws.com/uifaces/faces/twitter/madcampos/128.jpg",
-          "bio": "Quod architecto molestias et.",
-          "followersCount": 1,
-          "followingCount": 1,
-          "likesCount": 1,
-          "username": "alice",
-        },
-        "userId": "f0fd479ba875bf2232a4043dbefff24e2af2ca5ccd50b3ba9e91673707336726",
-        "username": "alice",
-      },
-    ]
-  }
-  getMemosForUser={[Function]}
   getUser={[Function]}
   match={
     Object {
@@ -222,16 +34,6 @@ exports[`<ProfileViewContainer /> Shallow rendering should render user prfoile t
       },
     }
   }
-  memos={
-    Array [
-      undefined,
-      undefined,
-    ]
-  }
-  onFollowersClicked={[Function]}
-  onFollowingClicked={[Function]}
-  onMemosClicked={[Function]}
-  pathname="/profile/bob/memos"
   profile={
     Object {
       "avatarUrl": "https://s3.amazonaws.com/uifaces/faces/twitter/madcampos/129.jpg",

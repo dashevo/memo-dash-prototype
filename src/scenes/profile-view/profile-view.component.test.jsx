@@ -21,11 +21,7 @@ describe('<ProfileViewComponent />', () => {
     match = { params: { username: 'username' } }
 
     spies = {
-      getUser: jest.fn(),
-      getMemosForUser: jest.fn(),
-      onMemosClicked: jest.fn(),
-      onFollowersClicked: jest.fn(),
-      onFollowingClicked: jest.fn()
+      getUser: jest.fn()
     }
   })
 
