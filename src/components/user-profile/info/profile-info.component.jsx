@@ -1,29 +1,26 @@
-import React, { Component, Fragment } from 'react'
-import { Image, Segment, Grid, Header } from 'semantic-ui-react'
+import React from 'react'
+import { Image, Button, Card } from 'semantic-ui-react'
 import FollowButtonContainer from '../../follow/follow-button.container'
 
-class ProfileInfoComponent extends Component {
-  render() {
-    const { profile } = this.props
+const ProfileInfoComponent = props => {
+  const { profile, ownProfile, onEditClicked } = props
 
-    return (
-      <Fragment>
-        <Image src={profile.avatarUrl} size="medium" circular />
-        <Segment>
-          <Grid stackable columns={2}>
-            <Grid.Column>
-              <Header as="h1">{profile.username}</Header>
-            </Grid.Column>
-            <Grid.Column>
-              <FollowButtonContainer userProfile={profile} />
-            </Grid.Column>
-          </Grid>
-        </Segment>
-
-        <Segment>{profile.bio}</Segment>
-      </Fragment>
-    )
-  }
+  return (
+    <Card>
+      <Image src={profile.avatarUrl} size="medium" />
+      <Card.Content>
+        <Card.Header>
+          {profile.username}
+          {ownProfile ? (
+            <Button icon="edit" size="mini" floated="right" basic onClick={onEditClicked} />
+          ) : (
+            <FollowButtonContainer userProfile={profile} />
+          )}
+        </Card.Header>
+        <Card.Description>{profile.bio}</Card.Description>
+      </Card.Content>
+    </Card>
+  )
 }
 
 export default ProfileInfoComponent

@@ -30,6 +30,7 @@ exports[`<ProfileViewComponent /> renders memos without crashing 1`] = `
           width={4}
         >
           <ProfileInfoComponent
+            onEditClicked={[Function]}
             profile={
               Object {
                 "avatarUrl": "AvatarUrl",

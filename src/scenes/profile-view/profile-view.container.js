@@ -1,7 +1,7 @@
 import { connect } from 'react-redux'
 import ProfileViewComponent from './profile-view.component'
-import { getUser } from '../../store/actions'
-import { getUserProfile } from '../../store/selectors'
+import { getUser, updateProfile } from '../../store/actions'
+import { getUserProfile, isProfileOfCurrentUser } from '../../store/selectors'
 
 const mapStateToProps = (state, ownProps) => {
   const {
@@ -10,9 +10,12 @@ const mapStateToProps = (state, ownProps) => {
     }
   } = ownProps
 
+  const profile = getUserProfile(username)(state)
+
   return {
     username,
-    profile: getUserProfile(username)(state)
+    profile,
+    isProfileOfCurrentUser: isProfileOfCurrentUser(profile)(state)
   }
 }
 
@@ -20,7 +23,8 @@ const mapDispatchToProps = dispatch => {
   return {
     getUser: username => {
       dispatch(getUser(username))
-    }
+    },
+    onEditSubmitted: bio => dispatch(updateProfile(bio))
   }
 }
 

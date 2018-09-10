@@ -3,6 +3,7 @@
 exports[`<ProfileViewContainer /> Shallow rendering renders without crashing 1`] = `
 <ProfileViewComponent
   getUser={[Function]}
+  isProfileOfCurrentUser={true}
   match={
     Object {
       "params": Object {
@@ -10,6 +11,7 @@ exports[`<ProfileViewContainer /> Shallow rendering renders without crashing 1`]
       },
     }
   }
+  onEditSubmitted={[Function]}
   profile={
     Object {
       "avatarUrl": "https://s3.amazonaws.com/uifaces/faces/twitter/madcampos/128.jpg",
@@ -27,6 +29,7 @@ exports[`<ProfileViewContainer /> Shallow rendering renders without crashing 1`]
 exports[`<ProfileViewContainer /> Shallow rendering should render user prfoile that different from current user 1`] = `
 <ProfileViewComponent
   getUser={[Function]}
+  isProfileOfCurrentUser={false}
   match={
     Object {
       "params": Object {
@@ -34,6 +37,7 @@ exports[`<ProfileViewContainer /> Shallow rendering should render user prfoile t
       },
     }
   }
+  onEditSubmitted={[Function]}
   profile={
     Object {
       "avatarUrl": "https://s3.amazonaws.com/uifaces/faces/twitter/madcampos/129.jpg",

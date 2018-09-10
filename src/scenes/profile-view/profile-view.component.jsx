@@ -2,15 +2,34 @@ import React, { Component } from 'react'
 import { Dimmer, Loader, Container, Grid } from 'semantic-ui-react'
 import ProfileInfoComponent from '../../components/user-profile/info/profile-info.component'
 import ProfileContentContainer from '../../components/user-profile/content/profile-content.container'
+import ProfileEditContainer from '../../components/user-profile/edit/profile-edit.container'
 
 export class ProfileViewComponent extends Component {
+  state = {
+    editing: false
+  }
+
   componentDidMount() {
     const { username, profile } = this.props
     if (!profile) this.props.getUser(username)
   }
 
+  onEdit = () => {
+    this.setState({ editing: true })
+  }
+
+  onEditSubmitted = bio => {
+    this.props.onEditSubmitted(bio)
+    this.setState({ editing: false })
+  }
+
+  onEditCanceled = () => {
+    this.setState({ editing: false })
+  }
+
   render() {
-    const { profile } = this.props
+    const { profile, isProfileOfCurrentUser } = this.props
+    const { editing } = this.state
 
     return (
       <React.Fragment>
@@ -23,7 +42,19 @@ export class ProfileViewComponent extends Component {
             <Grid>
               <Grid.Row>
                 <Grid.Column width={4}>
-                  <ProfileInfoComponent profile={profile} />
+                  {editing ? (
+                    <ProfileEditContainer
+                      profile={profile}
+                      onSubmitted={this.onEditSubmitted}
+                      onCanceled={this.onEditCanceled}
+                    />
+                  ) : (
+                    <ProfileInfoComponent
+                      profile={profile}
+                      ownProfile={isProfileOfCurrentUser}
+                      onEditClicked={this.onEdit}
+                    />
+                  )}
                 </Grid.Column>
                 <Grid.Column width={12}>
                   <ProfileContentContainer profile={profile} />
