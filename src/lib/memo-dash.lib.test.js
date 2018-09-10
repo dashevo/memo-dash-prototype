@@ -11,6 +11,7 @@ describe('MemoDashLib', () => {
     memoDashLib = new MemoDashLib()
     memoDashLib.memoDashClient = {
       getUserProfile: jest.fn().mockReturnValue(alice.profile),
+      updateProfile: jest.fn(),
       getUsername: jest.fn().mockReturnValue(alice.username),
       getUserId: jest.fn().mockReturnValue(alice.userId),
       getMemosByUsername: jest.fn().mockReturnValue(alice.memos),
@@ -40,7 +41,7 @@ describe('MemoDashLib', () => {
         expect(memoDashLib.memoDashClient.getUserProfile).toHaveBeenCalledWith(alice.username)
       })
 
-      it('should get user profile from client', () => {
+      it('should get user id from client', () => {
         memoDashLib.getUser(alice.username)
         expect(memoDashLib.memoDashClient.getUserId).toHaveBeenCalledWith(alice.username)
       })
@@ -71,9 +72,22 @@ describe('MemoDashLib', () => {
     })
   })
 
-  describe('Memos', () => {
-    const memos = alice.memos
+  describe('User profile', () => {
+    describe('getUserProfile(username', () => {
+      it('should get user profile from client', () => {
+        memoDashLib.getUserProfile(alice.username)
+        expect(memoDashLib.memoDashClient.getUserProfile).toHaveBeenCalledWith(alice.username)
+      })
 
+      it('should update user profile', () => {
+        const bio = 'bio'
+        memoDashLib.updateProfile(bio)
+        expect(memoDashLib.memoDashClient.updateProfile).toHaveBeenCalledWith({ text: bio })
+      })
+    })
+  })
+
+  describe('Memos', () => {
     describe('getMemosForUser(username)', () => {
       it('should get memos from client', () => {
         memoDashLib.getMemosForUser(alice.username)
