@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<UserProfileComponent /> should render my user 1`] = `
+exports[`<ProfileOverviewComponent /> should render my user 1`] = `
 <Card
   as="div"
   link={true}
@@ -51,7 +51,7 @@ exports[`<UserProfileComponent /> should render my user 1`] = `
 </Card>
 `;
 
-exports[`<UserProfileComponent /> should render user followed by me 1`] = `
+exports[`<ProfileOverviewComponent /> should render user followed by me 1`] = `
 <Card
   as="div"
   link={true}
@@ -102,7 +102,7 @@ exports[`<UserProfileComponent /> should render user followed by me 1`] = `
 </Card>
 `;
 
-exports[`<UserProfileComponent /> should render user not followed by me 1`] = `
+exports[`<ProfileOverviewComponent /> should render user not followed by me 1`] = `
 <Card
   as="div"
   link={true}
@@ -153,7 +153,7 @@ exports[`<UserProfileComponent /> should render user not followed by me 1`] = `
 </Card>
 `;
 
-exports[`<UserProfileComponent /> should render without crashing 1`] = `
+exports[`<ProfileOverviewComponent /> should render without crashing 1`] = `
 <Card
   as="div"
   link={true}

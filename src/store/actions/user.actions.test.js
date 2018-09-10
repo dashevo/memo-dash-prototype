@@ -4,12 +4,12 @@ import { verifyAction, mockStoreAndDispatch, getAction } from '../../test-utils/
 import { testUsers } from '../../test-utils/test-data'
 
 describe('user actions', () => {
-  const username = 'alice'
+  const alice = testUsers['alice']
 
   describe('should create an action', () => {
     it('to indicate the user was updated', () => {
-      verifyAction(UserActionTypes.USER_UPDATED, { username, props: '' }, () =>
-        userActions.userUpdated(username, '')
+      verifyAction(UserActionTypes.USER_UPDATED, { username: alice.username, props: '' }, () =>
+        userActions.userUpdated(alice.username, '')
       )
     })
 
@@ -30,7 +30,9 @@ describe('user actions', () => {
       spies = {
         getUser: jest.fn(),
         getUsers: jest.fn(),
-        getAllOwnLikes: jest.fn()
+        getAllOwnLikes: jest.fn(),
+        updateProfile: jest.fn(),
+        getUserProfile: jest.fn()
       }
       state = {
         root: {
@@ -38,7 +40,7 @@ describe('user actions', () => {
             ...spies
           }
         },
-        user: { currentUser: username, users: testUsers }
+        user: { currentUser: alice.username, users: { [alice.username]: alice } }
       }
     })
 
@@ -50,11 +52,10 @@ describe('user actions', () => {
         })
 
         it('should dispatch userReceived', async () => {
-          const user = testUsers['alice']
-          state.root.memoDashLib.getUser.mockReturnValue(user)
+          state.root.memoDashLib.getUser.mockReturnValue(alice)
           const actions = await mockStoreAndDispatch(state, userActions.getUser())
           expect(await getAction(actions, UserActionTypes.USER_RECEIVED)).toEqual(
-            userActions.userReceived(user)
+            userActions.userReceived(alice)
           )
         })
       })
@@ -66,7 +67,7 @@ describe('user actions', () => {
         })
 
         it('should dispatch usersReceived', async () => {
-          const users = [testUsers['alice'], testUsers['bob']]
+          const users = [alice, testUsers['bob']]
           state.root.memoDashLib.getUsers.mockReturnValue(users)
           const actions = await mockStoreAndDispatch(state, userActions.getUsers())
           expect(await getAction(actions, UserActionTypes.USERS_RECEIVED)).toEqual(
@@ -82,12 +83,35 @@ describe('user actions', () => {
         })
 
         it('should dispatch userUpdated', async () => {
-          const user = testUsers['alice']
-          const ownLikes = user.ownLikes
+          const ownLikes = alice.ownLikes
           state.root.memoDashLib.getAllOwnLikes.mockReturnValue(ownLikes)
           const actions = await mockStoreAndDispatch(state, userActions.getAllOwnLikes())
           expect(await getAction(actions, UserActionTypes.USER_UPDATED)).toEqual(
-            userActions.userUpdated(user.username, { ownLikes })
+            userActions.userUpdated(alice.username, { ownLikes })
+          )
+        })
+      })
+
+      describe('updateProfile', () => {
+        const bio = 'bio'
+
+        it('should call memoDashLib.updateProfile', async () => {
+          await mockStoreAndDispatch(state, userActions.updateProfile(bio))
+          expect(spies.updateProfile).toHaveBeenCalledWith(bio)
+        })
+
+        it('should call memoDashLib.getUserProfile', async () => {
+          await mockStoreAndDispatch(state, userActions.updateProfile(bio))
+          expect(spies.getUserProfile).toHaveBeenCalledWith(alice.username)
+        })
+
+        it('should dispatch userUpdated', async () => {
+          const newProfile = { ...alice.profile, bio }
+          state.root.memoDashLib.getUserProfile.mockReturnValue(newProfile)
+          const actions = await mockStoreAndDispatch(state, userActions.updateProfile(bio))
+
+          expect(await getAction(actions, UserActionTypes.USER_UPDATED)).toEqual(
+            userActions.userUpdated(alice.username, { profile: newProfile })
           )
         })
       })

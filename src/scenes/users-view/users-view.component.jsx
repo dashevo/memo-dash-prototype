@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import UserProfilesComponent from '../../components/user-profile/user-profiles.component'
+import ProfileOverviewsComponent from '../../components/user-profile/overview/profile-overviews.component'
 import { Container } from 'semantic-ui-react'
 
 export class UsersViewComponent extends Component {
@@ -18,7 +18,7 @@ export class UsersViewComponent extends Component {
 
     return (
       <Container style={{ marginTop: '7em' }}>
-        <UserProfilesComponent itemsPerRow={4} userProfiles={userProfilesWithoutMe} />
+        <ProfileOverviewsComponent itemsPerRow={4} userProfiles={userProfilesWithoutMe} />
       </Container>
     )
   }

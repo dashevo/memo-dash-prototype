@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`<ProfileViewComponent /> renders loader without crashing 1`] = `
-<React.Fragment>
+<Fragment>
   <Dimmer
     active={true}
     inverted={true}
@@ -12,11 +12,11 @@ exports[`<ProfileViewComponent /> renders loader without crashing 1`] = `
       Loading
     </Loader>
   </Dimmer>
-</React.Fragment>
+</Fragment>
 `;
 
 exports[`<ProfileViewComponent /> renders memos without crashing 1`] = `
-<React.Fragment>
+<Fragment>
   <Container
     style={
       Object {
@@ -29,85 +29,36 @@ exports[`<ProfileViewComponent /> renders memos without crashing 1`] = `
         <GridColumn
           width={4}
         >
-          <Image
-            as="img"
-            circular={true}
-            size="medium"
-            src="AvatarUrl"
-            ui={true}
+          <ProfileInfoComponent
+            onEditClicked={[Function]}
+            profile={
+              Object {
+                "avatarUrl": "AvatarUrl",
+                "bio": "Bio",
+                "followersCount": 1,
+                "followingCount": 1,
+                "username": "Username",
+              }
+            }
           />
-          <Segment>
-            <Grid
-              columns={2}
-              stackable={true}
-            >
-              <GridColumn>
-                <Header
-                  as="h1"
-                >
-                  Username
-                </Header>
-              </GridColumn>
-              <GridColumn>
-                <Connect(FollowButtonComponent)
-                  userProfile={
-                    Object {
-                      "avatarUrl": "AvatarUrl",
-                      "bio": "Bio",
-                      "followersCount": 1,
-                      "followingCount": 1,
-                      "username": "Username",
-                    }
-                  }
-                />
-              </GridColumn>
-            </Grid>
-          </Segment>
-          <Segment>
-            Bio
-          </Segment>
         </GridColumn>
         <GridColumn
           width={12}
         >
-          <Tab
-            grid={
+          <Connect(ProfileContentComponent)
+            profile={
               Object {
-                "paneWidth": 12,
-                "tabWidth": 4,
+                "avatarUrl": "AvatarUrl",
+                "bio": "Bio",
+                "followersCount": 1,
+                "followingCount": 1,
+                "username": "Username",
               }
             }
-            menu={
-              Object {
-                "attached": true,
-                "tabular": true,
-              }
-            }
-            onTabChange={[Function]}
-            panes={
-              Array [
-                Object {
-                  "active": false,
-                  "menuItem": "Memos (1)",
-                  "render": [Function],
-                },
-                Object {
-                  "active": false,
-                  "menuItem": "Followers (1)",
-                  "render": [Function],
-                },
-                Object {
-                  "active": false,
-                  "menuItem": "Following (1)",
-                  "render": [Function],
-                },
-              ]
-            }
-            renderActiveOnly={true}
           />
         </GridColumn>
       </GridRow>
     </Grid>
   </Container>
-</React.Fragment>
+</Fragment>
 `;

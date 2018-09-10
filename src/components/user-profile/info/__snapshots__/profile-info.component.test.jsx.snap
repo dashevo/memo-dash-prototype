@@ -1,0 +1,32 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<ProfileInfoComponent /> should render without crashing 1`] = `
+<Card>
+  <Image
+    as="img"
+    size="medium"
+    src="https://s3.amazonaws.com/uifaces/faces/twitter/madcampos/128.jpg"
+    ui={true}
+  />
+  <CardContent>
+    <CardHeader>
+      alice
+      <Connect(FollowButtonComponent)
+        userProfile={
+          Object {
+            "avatarUrl": "https://s3.amazonaws.com/uifaces/faces/twitter/madcampos/128.jpg",
+            "bio": "Quod architecto molestias et.",
+            "followersCount": 1,
+            "followingCount": 1,
+            "likesCount": 1,
+            "username": "alice",
+          }
+        }
+      />
+    </CardHeader>
+    <CardDescription>
+      Quod architecto molestias et.
+    </CardDescription>
+  </CardContent>
+</Card>
+`;

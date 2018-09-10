@@ -1,9 +1,9 @@
 import React from 'react'
 import { shallow } from 'enzyme'
-import UserProfilesComponent from './user-profiles.component'
-import { testUsers } from '../../test-utils/test-data'
+import ProfileOverviewsComponent from './profile-overviews.component'
+import { testUsers } from '../../../test-utils/test-data'
 
-describe('<UserProfilesComponent />', () => {
+describe('<ProfileOverviewsComponent />', () => {
   let wrapper
   let userProfiles
 
@@ -14,12 +14,12 @@ describe('<UserProfilesComponent />', () => {
   })
 
   it('renders without crashing', () => {
-    wrapper = shallow(<UserProfilesComponent userProfiles={[]} />)
+    wrapper = shallow(<ProfileOverviewsComponent userProfiles={[]} />)
     expect(wrapper).toMatchSnapshot()
   })
 
   it('should render memos', () => {
-    wrapper = shallow(<UserProfilesComponent userProfiles={userProfiles} />)
+    wrapper = shallow(<ProfileOverviewsComponent userProfiles={userProfiles} />)
     expect(wrapper).toMatchSnapshot()
   })
 })

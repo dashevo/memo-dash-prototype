@@ -1,10 +1,10 @@
 import React from 'react'
 import configureStore from 'redux-mock-store'
 import { shallow } from 'enzyme'
-import UserProfileContainer from './user-profile.container'
-import { testUsers } from '../../test-utils/test-data'
+import ProfileOverviewContainer from './profile-overview.container'
+import { testUsers } from '../../../test-utils/test-data'
 
-describe('<UserProfileContainer />', () => {
+describe('<ProfileOverviewContainer />', () => {
   let store
   const alice = testUsers['alice']
 
@@ -22,7 +22,9 @@ describe('<UserProfileContainer />', () => {
 
   describe('Shallow rendering', () => {
     it('renders without crashing', () => {
-      const wrapper = shallow(<UserProfileContainer userProfile={alice.profile} />, { context: { store } })
+      const wrapper = shallow(<ProfileOverviewContainer userProfile={alice.profile} />, {
+        context: { store }
+      })
       expect(wrapper).toMatchSnapshot()
     })
   })

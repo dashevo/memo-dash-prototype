@@ -19,13 +19,7 @@ describe('<ProfileViewContainer />', () => {
           [alice.username]: alice,
           [bob.username]: bob
         }
-      },
-      router: {
-        location: {
-          pathname: `/profile/${profileOfUser}/memos`
-        }
-      },
-      memo: { memos: {} }
+      }
     })
 
   const makeOwnProps = username => ({

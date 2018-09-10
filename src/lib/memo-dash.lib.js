@@ -102,6 +102,14 @@ export default class MemoDashLib {
     }
   }
 
+  async getUserProfile(username) {
+    return await this.memoDashClient.getUserProfile(username)
+  }
+
+  async updateProfile(bio) {
+    await this.memoDashClient.updateProfile({ text: bio })
+  }
+
   /**
    * Returns all memos for a user
    *

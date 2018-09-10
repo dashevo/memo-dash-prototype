@@ -11,7 +11,11 @@ const mapPropsToValues = () => ({
 })
 
 const validationSchema = yup.object().shape({
-  message: yup.string().required('Text is required!')
+  message: yup
+    .string()
+    .min(1)
+    .max(144)
+    .required('Text is required!')
 })
 
 const handleSubmit = async ({ message }, { props, resetForm }) => {

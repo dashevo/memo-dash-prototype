@@ -2,10 +2,10 @@ import React from 'react'
 import { shallow } from 'enzyme'
 import { Card } from 'semantic-ui-react'
 
-import { testUsers } from '../../test-utils/test-data'
-import UserProfileComponent from './user-profile.component'
+import { testUsers } from '../../../test-utils/test-data'
+import ProfileOverviewComponent from './profile-overview.component'
 
-describe('<UserProfileComponent />', () => {
+describe('<ProfileOverviewComponent />', () => {
   let wrapper
   const alice = testUsers['alice']
 
@@ -16,22 +16,24 @@ describe('<UserProfileComponent />', () => {
 
   describe('should render', () => {
     it('without crashing', () => {
-      wrapper = shallow(<UserProfileComponent userProfile={alice.profile} />)
+      wrapper = shallow(<ProfileOverviewComponent userProfile={alice.profile} />)
       expect(wrapper).toMatchSnapshot()
     })
 
     it('user followed by me', () => {
-      wrapper = shallow(<UserProfileComponent userProfile={alice.profile} following={true} />)
+      wrapper = shallow(<ProfileOverviewComponent userProfile={alice.profile} following={true} />)
       expect(wrapper).toMatchSnapshot()
     })
 
     it('user not followed by me', () => {
-      wrapper = shallow(<UserProfileComponent userProfile={alice.profile} following={false} />)
+      wrapper = shallow(<ProfileOverviewComponent userProfile={alice.profile} following={false} />)
       expect(wrapper).toMatchSnapshot()
     })
 
     it('my user', () => {
-      wrapper = shallow(<UserProfileComponent userProfile={alice.profile} isProfileOfCurrentUser={true} />)
+      wrapper = shallow(
+        <ProfileOverviewComponent userProfile={alice.profile} isProfileOfCurrentUser={true} />
+      )
       expect(wrapper).toMatchSnapshot()
     })
   })
@@ -43,7 +45,10 @@ describe('<UserProfileComponent />', () => {
     beforeEach(() => {
       onGoToProfileClickedSpy = jest.fn()
       wrapper = shallow(
-        <UserProfileComponent userProfile={alice.profile} onGoToProfileClicked={onGoToProfileClickedSpy} />
+        <ProfileOverviewComponent
+          userProfile={alice.profile}
+          onGoToProfileClicked={onGoToProfileClickedSpy}
+        />
       )
     })
 
