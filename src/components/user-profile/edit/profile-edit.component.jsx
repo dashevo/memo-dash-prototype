@@ -1,6 +1,7 @@
 import React from 'react'
 import { Image, Form, Button, Card } from 'semantic-ui-react'
 import FollowButtonContainer from '../../follow/follow-button.container'
+import TextAreaWithCharCounter from '../../common/textarea-with-char-counter/textarea-with-char-counter.component'
 
 const ProfileEditComponent = props => {
   const { profile, values, errors, handleBlur, handleSubmit, handleChange, onCanceled } = props
@@ -15,12 +16,13 @@ const ProfileEditComponent = props => {
             <FollowButtonContainer userProfile={profile} />
           </Card.Header>
           <Card.Description>
-            <Form.TextArea
+            <TextAreaWithCharCounter
               name="bio"
               autoHeight
               value={values.bio}
               onChange={handleChange}
               onBlur={handleBlur}
+              maxLength="144"
             />
           </Card.Description>
         </Card.Content>

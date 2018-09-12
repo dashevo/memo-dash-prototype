@@ -8,20 +8,34 @@ exports[`<PostMemoComponent /> renders without crashing 1`] = `
   <Form
     as="form"
   >
-    <FormTextArea
-      as={[Function]}
-      autoHeight={true}
-      className=" error"
-      control={[Function]}
-      name="message"
-      placeholder="Your Message"
-      style={
-        Object {
-          "minHeight": 20,
+    <div>
+      <Segment
+        style={
+          Object {
+            "border": "none",
+            "boxShadow": "none",
+            "margin": 0,
+            "padding": 0,
+          }
         }
-      }
-      value="message"
-    />
+      >
+        <TextAreaWithCharCounter
+          autoHeight={true}
+          className=" error"
+          key="message"
+          maxLength={144}
+          name="message"
+          placeholder="Your Message"
+          style={
+            Object {
+              "height": "100%",
+              "minHeight": 20,
+            }
+          }
+          value="message"
+        />
+      </Segment>
+    </div>
     <Button
       as="button"
       content="Post Memo"

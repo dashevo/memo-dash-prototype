@@ -6,11 +6,11 @@ exports[`<MemoFormComponent /> should render without crashing 1`] = `
   onClick={[Function]}
   reply={true}
 >
-  <FormTextArea
-    as={[Function]}
+  <TextAreaWithCharCounter
     autoFocus={true}
+    autoHeight={true}
     className=" error"
-    control={[Function]}
+    maxLength="144"
     name="message"
     onClick={[Function]}
     value="replyMessage"
