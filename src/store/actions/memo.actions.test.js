@@ -234,7 +234,7 @@ describe('memo actions', () => {
         const memo = testMemos[alice.memoIds[0]]
         const replyMessage = 'replyMessage'
 
-        it('should call memoDashLib.removeLike', async () => {
+        it('should call memoDashLib.replyToMemo', async () => {
           await mockStoreAndDispatch(state, memoActions.replyToMemo(alice.username, memo.idx, replyMessage))
           expect(spies.replyToMemo).toHaveBeenCalledWith(alice.username, memo.idx, replyMessage)
         })
@@ -242,6 +242,16 @@ describe('memo actions', () => {
         it('should call memoDashLib.getMemo', async () => {
           await mockStoreAndDispatch(state, memoActions.replyToMemo(alice.username, memo.idx, replyMessage))
           expect(spies.getMemo).toHaveBeenCalledWith(alice.username, memo.idx)
+        })
+
+        it('should call memoDashLib.getMemoReplies', async () => {
+          await mockStoreAndDispatch(state, memoActions.replyToMemo(alice.username, memo.idx, replyMessage))
+          expect(spies.getMemoReplies).toHaveBeenCalledWith(alice.username, memo.idx)
+        })
+
+        it('should call memoDashLib.getMemosForUser', async () => {
+          await mockStoreAndDispatch(state, memoActions.replyToMemo(alice.username, memo.idx, replyMessage))
+          expect(spies.getMemosForUser).toHaveBeenCalledWith(alice.username)
         })
 
         it('should dispatch memoUpdated', async () => {

@@ -30,9 +30,9 @@ export const getMemos = () => async (dispatch, getState) => {
     const usernames = getMissingUsers(memos.map(memo => memo.username))(state)
 
     if (usernames && usernames.length > 0) {
-    dispatch(getUsers(usernames))
+      dispatch(getUsers(usernames))
+    }
   }
-}
 }
 
 export const memosReceived = memos => ({
@@ -44,9 +44,9 @@ export const likeMemo = (username, memoId) => async (dispatch, getState) => {
   const lib = getMemoDashLib(getState())
   await lib.likeMemo(username, memoId)
 
-  const currentUser = getCurrentUsername(getState())
+  const currentUsername = getCurrentUsername(getState())
   const ownLikes = await lib.getAllOwnLikes()
-  dispatch(userUpdated(currentUser, { ownLikes }))
+  dispatch(userUpdated(currentUsername, { ownLikes }))
 
   const memo = await lib.getMemo(username, memoId)
   dispatch(memoUpdated(memo))
@@ -79,6 +79,9 @@ export const replyToMemo = (username, memoId, message) => async (dispatch, getSt
   const memo = await lib.getMemo(username, memoId)
   dispatch(memoUpdated(memo))
   dispatch(getMemoReplies(username, memoId))
+
+  const currentUsername = getCurrentUsername(getState())
+  dispatch(getMemosForUser(currentUsername))
 }
 
 export const memoUpdated = memo => ({
