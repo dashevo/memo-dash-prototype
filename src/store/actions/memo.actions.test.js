@@ -5,6 +5,8 @@ import { verifyAction, mockStoreAndDispatch, getAction } from '../../test-utils/
 import { testUsers, testMemos } from '../../test-utils/test-data'
 import { combineMemoId } from '../reducers/memo.reducer'
 
+import * as userSelectors from '../selectors/user.selector'
+
 jest.mock('./user.actions', () => {
   const lib = require.requireActual('./user.actions')
   return { ...lib, getUsers: jest.fn().mockReturnValue({ type: 'USERS_RECEIVED' }) }
@@ -114,7 +116,15 @@ describe('memo actions', () => {
 
           it('should dispatch getUsers', async () => {
             state.root.memoDashLib.getMemos.mockReturnValue(memos)
-            state.root.memoDashLib.getUsers.mockReturnValue([user])
+            userSelectors.getMissingUsers = jest.fn(() => jest.fn().mockReturnValue(['charlie']))
+            const actions = await mockStoreAndDispatch(state, memoActions.getMemos())
+            expect(await getAction(actions, userActions.UserActionTypes.USERS_RECEIVED)).toEqual(
+              userActions.getUsers([user.username])
+            )
+          })
+
+          it('should not dispatch getUsers if all users already available', async () => {
+            state.root.memoDashLib.getMemos.mockReturnValue(memos)
             const actions = await mockStoreAndDispatch(state, memoActions.getMemos())
             expect(await getAction(actions, userActions.UserActionTypes.USERS_RECEIVED)).toEqual(
               userActions.getUsers([user.username])

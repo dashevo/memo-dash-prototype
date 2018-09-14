@@ -28,8 +28,11 @@ export const getMemos = () => async (dispatch, getState) => {
   if (memos) {
     dispatch(memosReceived(memos))
     const usernames = getMissingUsers(memos.map(memo => memo.username))(state)
+
+    if (usernames && usernames.length > 0) {
     dispatch(getUsers(usernames))
   }
+}
 }
 
 export const memosReceived = memos => ({
