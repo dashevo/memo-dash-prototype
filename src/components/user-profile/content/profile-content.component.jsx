@@ -53,23 +53,27 @@ class ProfileContentComponent extends Component {
 
   renderFollowers = followers => (
     <Tab.Pane loading={!followers}>
-      {followers ? (
+      {followers && followers.length > 0 ? (
         <ProfileOverviewsComponent
           actualUsername={this.props.username}
           userProfiles={followers.map(user => user.profile)}
         />
-      ) : null}
+      ) : (
+        <Fragment>You have no followers</Fragment>
+      )}
     </Tab.Pane>
   )
 
   renderFollowing = following => (
-    <Tab.Pane loading={!following}>
-      {following ? (
+    <Tab.Pane>
+      {following && following.length > 0 ? (
         <ProfileOverviewsComponent
           actualUsername={this.props.username}
           userProfiles={following.map(user => user.profile)}
         />
-      ) : null}
+      ) : (
+        <Fragment>You do not follow anyone</Fragment>
+      )}
     </Tab.Pane>
   )
 
@@ -101,6 +105,8 @@ class ProfileContentComponent extends Component {
 
   render() {
     const { profile, memos, followers, following, pathname } = this.props
+
+    console.log(!!following)
 
     return (
       <Fragment>
