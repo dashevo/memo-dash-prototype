@@ -5,6 +5,8 @@ import { verifyAction, mockStoreAndDispatch, getAction } from '../../test-utils/
 import { testUsers, testMemos } from '../../test-utils/test-data'
 import { combineMemoId } from '../reducers/memo.reducer'
 
+import * as userSelectors from '../selectors/user.selector'
+
 jest.mock('./user.actions', () => {
   const lib = require.requireActual('./user.actions')
   return { ...lib, getUsers: jest.fn().mockReturnValue({ type: 'USERS_RECEIVED' }) }
@@ -114,7 +116,15 @@ describe('memo actions', () => {
 
           it('should dispatch getUsers', async () => {
             state.root.memoDashLib.getMemos.mockReturnValue(memos)
-            state.root.memoDashLib.getUsers.mockReturnValue([user])
+            userSelectors.getMissingUsers = jest.fn(() => jest.fn().mockReturnValue(['charlie']))
+            const actions = await mockStoreAndDispatch(state, memoActions.getMemos())
+            expect(await getAction(actions, userActions.UserActionTypes.USERS_RECEIVED)).toEqual(
+              userActions.getUsers([user.username])
+            )
+          })
+
+          it('should not dispatch getUsers if all users already available', async () => {
+            state.root.memoDashLib.getMemos.mockReturnValue(memos)
             const actions = await mockStoreAndDispatch(state, memoActions.getMemos())
             expect(await getAction(actions, userActions.UserActionTypes.USERS_RECEIVED)).toEqual(
               userActions.getUsers([user.username])
@@ -224,7 +234,7 @@ describe('memo actions', () => {
         const memo = testMemos[alice.memoIds[0]]
         const replyMessage = 'replyMessage'
 
-        it('should call memoDashLib.removeLike', async () => {
+        it('should call memoDashLib.replyToMemo', async () => {
           await mockStoreAndDispatch(state, memoActions.replyToMemo(alice.username, memo.idx, replyMessage))
           expect(spies.replyToMemo).toHaveBeenCalledWith(alice.username, memo.idx, replyMessage)
         })
@@ -232,6 +242,16 @@ describe('memo actions', () => {
         it('should call memoDashLib.getMemo', async () => {
           await mockStoreAndDispatch(state, memoActions.replyToMemo(alice.username, memo.idx, replyMessage))
           expect(spies.getMemo).toHaveBeenCalledWith(alice.username, memo.idx)
+        })
+
+        it('should call memoDashLib.getMemoReplies', async () => {
+          await mockStoreAndDispatch(state, memoActions.replyToMemo(alice.username, memo.idx, replyMessage))
+          expect(spies.getMemoReplies).toHaveBeenCalledWith(alice.username, memo.idx)
+        })
+
+        it('should call memoDashLib.getMemosForUser', async () => {
+          await mockStoreAndDispatch(state, memoActions.replyToMemo(alice.username, memo.idx, replyMessage))
+          expect(spies.getMemosForUser).toHaveBeenCalledWith(alice.username)
         })
 
         it('should dispatch memoUpdated', async () => {

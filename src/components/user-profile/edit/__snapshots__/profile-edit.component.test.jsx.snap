@@ -28,10 +28,9 @@ exports[`<ProfileEditComponent /> should render without crashing 1`] = `
         />
       </CardHeader>
       <CardDescription>
-        <FormTextArea
-          as={[Function]}
+        <TextAreaWithCharCounter
           autoHeight={true}
-          control={[Function]}
+          maxLength="144"
           name="bio"
           value="bio"
         />

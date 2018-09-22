@@ -3,8 +3,7 @@ import { getMemoDashLib, getCurrentUsername } from '../selectors'
 export const UserActionTypes = {
   USER_RECEIVED: 'USER_RECEIVED',
   USERS_RECEIVED: 'USERS_RECEIVED',
-  USER_UPDATED: 'USER_UPDATED',
-  LIKE_REMOVED: 'LIKE_REMOVED'
+  USER_UPDATED: 'USER_UPDATED'
 }
 
 export const getAllUsers = () => async (dispatch, getState) => {

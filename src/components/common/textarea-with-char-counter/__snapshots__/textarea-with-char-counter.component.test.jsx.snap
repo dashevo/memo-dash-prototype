@@ -1,0 +1,51 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<TextAreaWithCharCounter /> should render with content 1`] = `
+<div
+  className="text-area-with-char-counter"
+>
+  <Label
+    attached="bottom right"
+  >
+    5
+    /
+    10
+  </Label>
+  <FormTextArea
+    as={[Function]}
+    control={[Function]}
+    maxLength="10"
+    value="value"
+  />
+</div>
+`;
+
+exports[`<TextAreaWithCharCounter /> should render with max length 1`] = `
+<div
+  className="text-area-with-char-counter"
+>
+  <Label
+    attached="bottom right"
+  >
+    0
+    /
+    10
+  </Label>
+  <FormTextArea
+    as={[Function]}
+    control={[Function]}
+    maxLength="10"
+  />
+</div>
+`;
+
+exports[`<TextAreaWithCharCounter /> should render without crashing 1`] = `
+<div
+  className="text-area-with-char-counter"
+>
+  <FormTextArea
+    as={[Function]}
+    control={[Function]}
+  />
+</div>
+`;

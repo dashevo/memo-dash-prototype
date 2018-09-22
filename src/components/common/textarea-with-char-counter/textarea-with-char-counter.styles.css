@@ -1,0 +1,15 @@
+.text-area-with-char-counter {
+  position: relative;
+}
+
+.text-area-with-char-counter .ui[class*='bottom right attached'].label {
+  background-color: transparent;
+  margin-bottom: 1px;
+  margin-right: 1px;
+  user-select: none;
+  cursor: initial;
+}
+
+.text-area-with-char-counter .field > textarea {
+  padding-bottom: 30px;
+}

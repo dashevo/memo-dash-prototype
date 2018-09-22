@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<HeaderComponent /> renders without crashing 1`] = `
+exports[`<HeaderComponent /> should render without crashing 1`] = `
 <header>
   <Menu
     color="blue"
@@ -10,6 +10,7 @@ exports[`<HeaderComponent /> renders without crashing 1`] = `
       <MenuItem
         as="a"
         header={true}
+        onClick={[Function]}
       >
         <Logo />
         MemoDash

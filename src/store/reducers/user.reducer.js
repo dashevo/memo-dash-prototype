@@ -67,7 +67,7 @@ export default (state = initialState, action) => {
       }
     }
 
-    case UserActionTypes.LIKE_REMOVED:
+    case MemoActionTypes.LIKE_REMOVED:
       const user = getCurrentUser(state)
       if (user) {
         const updatedUser = { ...user, ownLikes: user.ownLikes.filter(like => like.idx !== action.payload) }
