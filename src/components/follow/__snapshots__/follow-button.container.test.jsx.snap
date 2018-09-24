@@ -12,7 +12,7 @@ exports[`<FollowButtonContainer /> Shallow rendering renders without crashing 1`
       "bio": "Quod architecto molestias et.",
       "followersCount": 1,
       "followingCount": 1,
-      "likesCount": 1,
+      "likesCount": 2,
       "username": "alice",
     }
   }
