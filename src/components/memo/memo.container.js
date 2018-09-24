@@ -7,7 +7,7 @@ import { getMemosByCombinedIds, isMemoOfCurrentUser } from '../../store/selector
 const mapStateToProps = (state, ownProps) => {
   const { memo, showReplies } = ownProps
 
-  if (!memo) return {}
+  if (!memo) return { memoNotAvailable: true }
 
   let replies = undefined
   if (showReplies) {
