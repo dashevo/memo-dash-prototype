@@ -16,25 +16,7 @@ exports[`<MemosComponent /> should render memos 1`] = `
     size="large"
   >
     <Connect(MemoComponent)
-      key="2bob"
-      memo={
-        Object {
-          "avatarUrl": "https://s3.amazonaws.com/uifaces/faces/twitter/rangafangs/128.jpg",
-          "idx": 2,
-          "memoDatetime": "2018-07-26T16:45:10.954Z",
-          "memoLikesCount": 0,
-          "memoRepliesCount": 0,
-          "memoText": "Quia est odio nemo deserunt.",
-          "memoTipTotal": 0,
-          "username": "bob",
-        }
-      }
-      openModalOnClick={true}
-      showBorders={true}
-      showReplies={false}
-    />
-    <Connect(MemoComponent)
-      key="1bob"
+      key="[bob][1]"
       memo={
         Object {
           "avatarUrl": "https://s3.amazonaws.com/uifaces/faces/twitter/rangafangs/128.jpg",
@@ -52,15 +34,33 @@ exports[`<MemosComponent /> should render memos 1`] = `
       showReplies={false}
     />
     <Connect(MemoComponent)
-      key="2alice"
+      key="[bob][2]"
+      memo={
+        Object {
+          "avatarUrl": "https://s3.amazonaws.com/uifaces/faces/twitter/rangafangs/128.jpg",
+          "idx": 2,
+          "memoDatetime": "2018-07-26T16:45:10.954Z",
+          "memoLikesCount": 0,
+          "memoRepliesCount": 0,
+          "memoText": "Quia est odio nemo deserunt.",
+          "memoTipTotal": 0,
+          "username": "bob",
+        }
+      }
+      openModalOnClick={true}
+      showBorders={true}
+      showReplies={false}
+    />
+    <Connect(MemoComponent)
+      key="[alice][1]"
       memo={
         Object {
           "avatarUrl": "https://s3.amazonaws.com/uifaces/faces/twitter/madcampos/128.jpg",
-          "idx": 2,
-          "memoDatetime": "2018-07-26T16:44:58.620Z",
-          "memoLikesCount": 0,
+          "idx": 1,
+          "memoDatetime": "2018-07-26T16:44:56.000Z",
+          "memoLikesCount": 1,
           "memoRepliesCount": 0,
-          "memoText": "Praesentium libero est repudiandae et repudiandae.",
+          "memoText": "Suscipit vel nobis.",
           "memoTipTotal": 0,
           "username": "alice",
         }
@@ -70,15 +70,15 @@ exports[`<MemosComponent /> should render memos 1`] = `
       showReplies={false}
     />
     <Connect(MemoComponent)
-      key="1alice"
+      key="[alice][2]"
       memo={
         Object {
           "avatarUrl": "https://s3.amazonaws.com/uifaces/faces/twitter/madcampos/128.jpg",
-          "idx": 1,
-          "memoDatetime": "2018-07-26T16:44:56.000Z",
-          "memoLikesCount": 1,
+          "idx": 2,
+          "memoDatetime": "2018-07-26T16:44:58.620Z",
+          "memoLikesCount": 0,
           "memoRepliesCount": 0,
-          "memoText": "Suscipit vel nobis.",
+          "memoText": "Praesentium libero est repudiandae et repudiandae.",
           "memoTipTotal": 0,
           "username": "alice",
         }

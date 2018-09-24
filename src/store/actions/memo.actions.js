@@ -7,6 +7,7 @@ export const MemoActionTypes = {
   MEMO_UPDATED: 'MEMO_UPDATED',
   MEMO_REPLIES_RECEIVED: 'MEMO_REPLIES_RECEIVED',
   LIKE_REMOVED: 'LIKE_REMOVED',
+  LIKE_ADDED: 'LIKE_ADDED',
   MEMO_DELETED: 'MEMO_DELETED'
 }
 
@@ -20,10 +21,10 @@ export const getMemosForUser = username => async (dispatch, getState) => {
   }
 }
 
-export const getMemos = () => async (dispatch, getState) => {
+export const getMemos = memoIds => async (dispatch, getState) => {
   const state = getState()
 
-  const memos = await getMemoDashLib(state).getMemos()
+  const memos = await getMemoDashLib(state).getMemos(memoIds)
 
   if (memos) {
     dispatch(memosReceived(memos))
@@ -45,8 +46,9 @@ export const likeMemo = (username, memoId) => async (dispatch, getState) => {
   await lib.likeMemo(username, memoId)
 
   const currentUsername = getCurrentUsername(getState())
-  const ownLikes = await lib.getAllOwnLikes()
-  dispatch(userUpdated(currentUsername, { ownLikes }))
+  const likes = await lib.getUserLikes(currentUsername)
+
+  await dispatch(likeAdded(likes))
 
   const memo = await lib.getMemo(username, memoId)
   dispatch(memoUpdated(memo))
@@ -57,7 +59,7 @@ export const removeLike = (username, memoId) => async (dispatch, getState) => {
   const currentUser = getCurrentUser(getState())
 
   if (currentUser) {
-    const like = currentUser.ownLikes.find(like => like.relation.index === memoId)
+    const like = currentUser.likes.find(like => like.relation.index === memoId)
     if (like) {
       await lib.removeLike(like.idx)
       await dispatch(likeRemoved(like.idx))
@@ -67,6 +69,11 @@ export const removeLike = (username, memoId) => async (dispatch, getState) => {
     }
   }
 }
+
+export const likeAdded = likeId => ({
+  type: MemoActionTypes.LIKE_ADDED,
+  payload: likeId
+})
 
 export const likeRemoved = likeId => ({
   type: MemoActionTypes.LIKE_REMOVED,

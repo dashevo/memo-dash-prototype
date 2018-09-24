@@ -55,12 +55,12 @@ describe('memo actions', () => {
         getMemos: jest.fn(),
         likeMemo: jest.fn(),
         removeLike: jest.fn(),
+        getUserLikes: jest.fn(),
         getMemo: jest.fn(),
         replyToMemo: jest.fn(),
         getMemoReplies: jest.fn(),
         postMemo: jest.fn(),
         getUsers: jest.fn(),
-        getAllOwnLikes: jest.fn(),
         deleteMemo: jest.fn(),
         editMemo: jest.fn()
       }
@@ -177,18 +177,15 @@ describe('memo actions', () => {
           )
         })
 
-        it('should dispatch userUpdated', async () => {
-          state.root.memoDashLib.getAllOwnLikes.mockReturnValue('ownLikes')
+        it('should dispatch likeAdded', async () => {
           const actions = await mockStoreAndDispatch(state, memoActions.likeMemo(username, memoId))
-          expect(await getAction(actions, userActions.UserActionTypes.USER_UPDATED)).toEqual(
-            userActions.userUpdated(username, { ownLikes: 'ownLikes' })
-          )
+          expect(await getAction(actions, MemoActionTypes.LIKE_ADDED)).toEqual(memoActions.likeAdded())
         })
       })
 
       describe('removeLike(likeId)', () => {
         const alice = testUsers['alice']
-        const likeToRemove = alice.ownLikes[0]
+        const likeToRemove = alice.likes[0]
 
         it('should call memoDashLib.removeLike', async () => {
           await mockStoreAndDispatch(
