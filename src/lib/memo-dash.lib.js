@@ -150,7 +150,25 @@ export default class MemoDashLib {
     return await this.memoDashClient.getMemo(username, memoId)
   }
 
-  async getMemos() {
+  /**
+   * Returns memos
+   *
+   * @param {Array<{username, idx}>} memoIds
+   * @return {Promise<Array<{
+   *   username,
+   *   memoDatetime,
+   *   memoText,
+   *   memoLikesCount,
+   *   memoTipTotal,
+   *   memoRepliesCount
+   * }>>}
+   * @memberof MemoDashLib
+   */
+  async getMemos(memoIds) {
+    if (memoIds) {
+      return await Promise.all(memoIds.map(memoId => this.getMemo(memoId.username, memoId.idx)))
+    }
+
     return await this.memoDashClient.getMemos()
   }
 
@@ -252,7 +270,7 @@ export default class MemoDashLib {
 
     return await Promise.all(
       likes.map(async like => {
-      like.relation.username = await this.memoDashClient.getUsername(like.relation.userId)
+        like.relation.username = await this.memoDashClient.getUsername(like.relation.userId)
         return like
       })
     )

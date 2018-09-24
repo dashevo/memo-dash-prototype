@@ -1,5 +1,6 @@
 import MemoDashLib from './memo-dash.lib'
 import { testUsers, testMemos } from '../test-utils/test-data'
+import { combineMemoId } from '../store/reducers/memo.reducer'
 
 jest.mock('@dashevo/dash-schema/dash-schema-lib')
 
@@ -95,6 +96,20 @@ describe('MemoDashLib', () => {
       it('should get memos from client', () => {
         memoDashLib.getMemosForUser(alice.username)
         expect(memoDashLib.memoDashClient.getMemosByUsername).toHaveBeenCalledWith(alice.username)
+      })
+    })
+
+    describe('getMemos()', () => {
+      it('should get all memos', () => {
+        memoDashLib.getMemos()
+        expect(memoDashLib.memoDashClient.getMemos).toHaveBeenCalled()
+      })
+    })
+
+    describe('getMemos(combinedMemoIds)', () => {
+      it('should get memos for passed ids', () => {
+        memoDashLib.getMemos([{ username: alice.username, idx: 1 }])
+        expect(memoDashLib.memoDashClient.getMemo).toHaveBeenCalledWith(alice.username, 1)
       })
     })
 
