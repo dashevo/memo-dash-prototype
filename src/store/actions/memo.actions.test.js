@@ -177,12 +177,9 @@ describe('memo actions', () => {
           )
         })
 
-        it('should dispatch userUpdated', async () => {
-          state.root.memoDashLib.getAllOwnLikes.mockReturnValue('ownLikes')
+        it('should dispatch likeAdded', async () => {
           const actions = await mockStoreAndDispatch(state, memoActions.likeMemo(username, memoId))
-          expect(await getAction(actions, userActions.UserActionTypes.USER_UPDATED)).toEqual(
-            userActions.userUpdated(username, { ownLikes: 'ownLikes' })
-          )
+          expect(await getAction(actions, MemoActionTypes.LIKE_ADDED)).toEqual(memoActions.likeAdded())
         })
       })
 

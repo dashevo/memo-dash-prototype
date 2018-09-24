@@ -67,6 +67,19 @@ export default (state = initialState, action) => {
       }
     }
 
+    case MemoActionTypes.LIKE_ADDED: {
+      const user = getCurrentUser(state)
+      if (user) {
+        const likes = action.payload
+        const updatedUser = { ...user, likes, profile: { ...user.profile, likesCount: likes.length } }
+        return {
+          ...state,
+          users: { ...state.users, [updatedUser.username]: updatedUser }
+        }
+      } else {
+        return state
+      }
+    }
     case MemoActionTypes.LIKE_REMOVED: {
       const user = getCurrentUser(state)
       if (user) {
