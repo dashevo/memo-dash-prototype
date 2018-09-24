@@ -20,10 +20,10 @@ export const getMemosForUser = username => async (dispatch, getState) => {
   }
 }
 
-export const getMemos = () => async (dispatch, getState) => {
+export const getMemos = memoIds => async (dispatch, getState) => {
   const state = getState()
 
-  const memos = await getMemoDashLib(state).getMemos()
+  const memos = await getMemoDashLib(state).getMemos(memoIds)
 
   if (memos) {
     dispatch(memosReceived(memos))
