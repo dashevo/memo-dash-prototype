@@ -36,12 +36,6 @@ export const usersReceived = users => ({
   payload: users
 })
 
-export const getAllOwnLikes = () => async (dispatch, getState) => {
-  const ownLikes = await getMemoDashLib(getState()).getAllOwnLikes()
-  const currentUser = getCurrentUsername(getState())
-  dispatch(userUpdated(currentUser, { ownLikes }))
-}
-
 export const updateProfile = bio => async (dispatch, getState) => {
   const lib = getMemoDashLib(getState())
   await lib.updateProfile(bio)

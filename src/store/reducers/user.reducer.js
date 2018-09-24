@@ -67,10 +67,11 @@ export default (state = initialState, action) => {
       }
     }
 
-    case MemoActionTypes.LIKE_REMOVED:
+    case MemoActionTypes.LIKE_REMOVED: {
       const user = getCurrentUser(state)
       if (user) {
-        const updatedUser = { ...user, ownLikes: user.ownLikes.filter(like => like.idx !== action.payload) }
+        const likes = user.likes.filter(like => like.idx !== action.payload)
+        const updatedUser = { ...user, likes, profile: { ...user.profile, likesCount: likes.length } }
         return {
           ...state,
           users: { ...state.users, [updatedUser.username]: updatedUser }
@@ -78,7 +79,7 @@ export default (state = initialState, action) => {
       } else {
         return state
       }
-
+    }
     case MemoActionTypes.MEMO_DELETED: {
       const user = getCurrentUser(state)
       if (user) {

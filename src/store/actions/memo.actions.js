@@ -45,8 +45,7 @@ export const likeMemo = (username, memoId) => async (dispatch, getState) => {
   await lib.likeMemo(username, memoId)
 
   const currentUsername = getCurrentUsername(getState())
-  const ownLikes = await lib.getAllOwnLikes()
-  dispatch(userUpdated(currentUsername, { ownLikes }))
+  const likes = await lib.getUserLikes(currentUsername)
 
   const memo = await lib.getMemo(username, memoId)
   dispatch(memoUpdated(memo))
@@ -57,7 +56,7 @@ export const removeLike = (username, memoId) => async (dispatch, getState) => {
   const currentUser = getCurrentUser(getState())
 
   if (currentUser) {
-    const like = currentUser.ownLikes.find(like => like.relation.index === memoId)
+    const like = currentUser.likes.find(like => like.relation.index === memoId)
     if (like) {
       await lib.removeLike(like.idx)
       await dispatch(likeRemoved(like.idx))
