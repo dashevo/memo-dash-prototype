@@ -7,6 +7,7 @@ export const MemoActionTypes = {
   MEMO_UPDATED: 'MEMO_UPDATED',
   MEMO_REPLIES_RECEIVED: 'MEMO_REPLIES_RECEIVED',
   LIKE_REMOVED: 'LIKE_REMOVED',
+  LIKE_ADDED: 'LIKE_ADDED',
   MEMO_DELETED: 'MEMO_DELETED'
 }
 
@@ -47,6 +48,8 @@ export const likeMemo = (username, memoId) => async (dispatch, getState) => {
   const currentUsername = getCurrentUsername(getState())
   const likes = await lib.getUserLikes(currentUsername)
 
+  await dispatch(likeAdded(likes))
+
   const memo = await lib.getMemo(username, memoId)
   dispatch(memoUpdated(memo))
 }
@@ -66,6 +69,11 @@ export const removeLike = (username, memoId) => async (dispatch, getState) => {
     }
   }
 }
+
+export const likeAdded = likeId => ({
+  type: MemoActionTypes.LIKE_ADDED,
+  payload: likeId
+})
 
 export const likeRemoved = likeId => ({
   type: MemoActionTypes.LIKE_REMOVED,
