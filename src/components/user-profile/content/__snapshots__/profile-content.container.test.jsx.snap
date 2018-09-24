@@ -12,6 +12,30 @@ exports[`<ProfileContentContainer /> Shallow rendering renders without crashing 
       undefined,
     ]
   }
+  likedMemos={
+    Object {
+      "[bob][1]": Object {
+        "avatarUrl": "https://s3.amazonaws.com/uifaces/faces/twitter/rangafangs/128.jpg",
+        "idx": 1,
+        "memoDatetime": "2018-07-26T16:45:08.218Z",
+        "memoLikesCount": 0,
+        "memoRepliesCount": 0,
+        "memoText": "Qui magnam maiores laboriosam animi sit aut.",
+        "memoTipTotal": 0,
+        "username": "bob",
+      },
+      "[bob][2]": Object {
+        "avatarUrl": "https://s3.amazonaws.com/uifaces/faces/twitter/rangafangs/128.jpg",
+        "idx": 2,
+        "memoDatetime": "2018-07-26T16:45:10.954Z",
+        "memoLikesCount": 0,
+        "memoRepliesCount": 0,
+        "memoText": "Quia est odio nemo deserunt.",
+        "memoTipTotal": 0,
+        "username": "bob",
+      },
+    }
+  }
   memos={
     Array [
       Object {
@@ -38,6 +62,7 @@ exports[`<ProfileContentContainer /> Shallow rendering renders without crashing 
   }
   onFollowersClicked={[Function]}
   onFollowingClicked={[Function]}
+  onLikedMemosClicked={[Function]}
   onMemosClicked={[Function]}
   pathname="/profile/alice/memos"
   profile={
