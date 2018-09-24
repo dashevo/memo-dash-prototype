@@ -1,6 +1,7 @@
 import { createSelector } from 'reselect'
 
 import { getMemos } from './memo.selector'
+import { combineMemoId } from '../reducers/memo.reducer'
 
 export const getUsers = state => state.user.users
 
@@ -39,6 +40,22 @@ export const getUserFollowers = username =>
 export const getUserFollowing = username =>
   createSelector([getUserByUsername(username), getUsers], (user, users) => {
     return user && user.following ? user.following.map(following => users[following]) : undefined
+  })
+
+export const getUserLikes = username =>
+  createSelector([getUserByUsername(username)], user => {
+    return user ? user.likes : undefined
+  })
+
+export const getUserLikedMemos = username =>
+  createSelector([getUserByUsername(username), getMemos], (user, memos) => {
+    return user && user.likes
+      ? user.likes.reduce((obj, like) => {
+          const combinedMemoId = combineMemoId(like.relation.username, like.relation.index)
+          obj[combinedMemoId] = memos[combinedMemoId]
+          return obj
+        }, {})
+      : undefined
   })
 
 export const getMissingUsers = usernames =>

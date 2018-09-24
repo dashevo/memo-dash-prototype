@@ -42,6 +42,11 @@ describe('user selector', () => {
     expect(selector.getUserMemos(alice.username)(state)).toEqual(aliceMemos)
   })
 
+  it('should return user liked memos', () => {
+    const likedMemos = { '[bob][1]': testMemos['[bob][1]'], '[bob][2]': testMemos['[bob][2]'] }
+    expect(selector.getUserLikedMemos(alice.username)(state)).toEqual(likedMemos)
+  })
+
   it('should return user followers', () => {
     expect(selector.getUserFollowers(alice.username)(state)).toEqual([bob])
   })
