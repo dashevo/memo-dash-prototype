@@ -125,7 +125,6 @@ describe('auth actions', () => {
             memoDashLib.searchBlockchainUsers.mockReturnValue([{ name: alice.username }])
 
             userActions.getUser = jest.fn(() => jest.fn())
-            userActions.getAllOwnLikes = jest.fn(() => jest.fn())
             memoActions.getMemosForUser = jest.fn(() => jest.fn())
 
             actions = await mockStoreAndDispatch(state, login('blockchainUsername'))
@@ -139,10 +138,6 @@ describe('auth actions', () => {
 
           it('should dispatch getUser', async () => {
             expect(userActions.getUser).toHaveBeenCalledWith(alice.username)
-          })
-
-          it('should dispatch getAllOwnLikes', async () => {
-            expect(userActions.getAllOwnLikes).toHaveBeenCalled()
           })
 
           it('should dispatch getMemosForUser', async () => {

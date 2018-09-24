@@ -6,11 +6,11 @@ export const testUsers = {
       bio: 'Quod architecto molestias et.',
       followersCount: 1,
       followingCount: 1,
-      likesCount: 1,
+      likesCount: 2,
       username: 'alice'
     },
     userId: 'f0fd479ba875bf2232a4043dbefff24e2af2ca5ccd50b3ba9e91673707336726',
-    ownLikes: [
+    likes: [
       {
         idx: 5,
         relation: {
@@ -43,7 +43,7 @@ export const testUsers = {
       username: 'bob'
     },
     userId: 'c6e5e284054bcbcd2cddea1ec36579e1fdf8e788d8a46d0351e276b4d0bb297c',
-    ownLikes: [
+    likes: [
       {
         idx: 7,
         relation: {
