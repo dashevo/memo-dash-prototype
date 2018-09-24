@@ -84,6 +84,7 @@ exports[`<MemoContainer /> Shallow rendering should render memo without replies 
 exports[`<MemoContainer /> Shallow rendering should render non existing memo  1`] = `
 <MemoComponent
   closeModal={[Function]}
+  memoNotAvailable={true}
   onLoadReplies={[Function]}
   onModalOpenClicked={[Function]}
 />
@@ -92,6 +93,7 @@ exports[`<MemoContainer /> Shallow rendering should render non existing memo  1`
 exports[`<MemoContainer /> Shallow rendering should render without crashing 1`] = `
 <MemoComponent
   closeModal={[Function]}
+  memoNotAvailable={true}
   onLoadReplies={[Function]}
   onModalOpenClicked={[Function]}
 />

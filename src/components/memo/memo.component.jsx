@@ -28,36 +28,39 @@ export default class MemoComponent extends Component {
       showDelete,
       showBorders,
       replies,
+      memoNotAvailable,
       openModalOnClick,
       onModalOpenClicked
     } = this.props
-
-    if (!memo) {
-      return null
-    }
 
     return (
       <Segment
         basic={!showBorders}
         className="memo"
-        onClick={!!openModalOnClick ? () => onModalOpenClicked(memo) : undefined}
+        onClick={!!openModalOnClick && !memoNotAvailable ? () => onModalOpenClicked(memo) : undefined}
       >
-        <Comment>
-          <MemoAvatarContainer memo={memo} />
-          <Comment.Content>
-            {showDelete ? <MemoDeleteContainer memo={memo} /> : null}
-            <MemoContentContainer memo={memo} />
-            <MemoActionsContainer memo={memo} />
-          </Comment.Content>
-          {showReplies &&
-            !!replies && (
-              <Comment.Group>
-                {replies.map(reply => (
-                  <MemoContainer showReplies={true} memo={reply} key={reply.idx} />
-                ))}
-              </Comment.Group>
-            )}
-        </Comment>
+        {memoNotAvailable ? (
+          <Comment>
+            <Comment.Content>Liked memo is no longer available</Comment.Content>
+          </Comment>
+        ) : (
+          <Comment>
+            <MemoAvatarContainer memo={memo} />
+            <Comment.Content>
+              {showDelete ? <MemoDeleteContainer memo={memo} /> : null}
+              <MemoContentContainer memo={memo} />
+              <MemoActionsContainer memo={memo} />
+            </Comment.Content>
+            {showReplies &&
+              !!replies && (
+                <Comment.Group>
+                  {replies.map(reply => (
+                    <MemoContainer showReplies={true} memo={reply} key={reply.idx} />
+                  ))}
+                </Comment.Group>
+              )}
+          </Comment>
+        )}
       </Segment>
     )
   }
