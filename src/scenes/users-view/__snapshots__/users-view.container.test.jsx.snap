@@ -13,11 +13,7 @@ exports[`<UsersViewContainer /> Shallow rendering renders without crashing 1`] =
         "following": Array [
           "bob",
         ],
-        "memoIds": Array [
-          "[alice][1]",
-          "[alice][2]",
-        ],
-        "ownLikes": Array [
+        "likes": Array [
           Object {
             "idx": 5,
             "relation": Object {
@@ -35,12 +31,16 @@ exports[`<UsersViewContainer /> Shallow rendering renders without crashing 1`] =
             },
           },
         ],
+        "memoIds": Array [
+          "[alice][1]",
+          "[alice][2]",
+        ],
         "profile": Object {
           "avatarUrl": "https://s3.amazonaws.com/uifaces/faces/twitter/madcampos/128.jpg",
           "bio": "Quod architecto molestias et.",
           "followersCount": 1,
           "followingCount": 1,
-          "likesCount": 1,
+          "likesCount": 2,
           "username": "alice",
         },
         "userId": "f0fd479ba875bf2232a4043dbefff24e2af2ca5ccd50b3ba9e91673707336726",
@@ -53,11 +53,7 @@ exports[`<UsersViewContainer /> Shallow rendering renders without crashing 1`] =
         "following": Array [
           "alice",
         ],
-        "memoIds": Array [
-          "[bob][1]",
-          "[bob][2]",
-        ],
-        "ownLikes": Array [
+        "likes": Array [
           Object {
             "idx": 7,
             "relation": Object {
@@ -74,6 +70,10 @@ exports[`<UsersViewContainer /> Shallow rendering renders without crashing 1`] =
               "username": "alice",
             },
           },
+        ],
+        "memoIds": Array [
+          "[bob][1]",
+          "[bob][2]",
         ],
         "profile": Object {
           "avatarUrl": "https://s3.amazonaws.com/uifaces/faces/twitter/madcampos/129.jpg",

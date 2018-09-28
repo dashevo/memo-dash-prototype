@@ -112,7 +112,7 @@ describe('user reducer', () => {
         })
 
         it('should overwrite an existing user', () => {
-          const receivedUser = { ownLikes: [{}], ...alice }
+          const receivedUser = { likes: [{}], ...alice }
 
           expect(
             reducer(
@@ -170,7 +170,7 @@ describe('user reducer', () => {
 
         it('should return original state if no user found', () => {
           const state = { users: {} }
-          expect(reducer(state, likeRemoved(alice.ownLikes[0].idx))).toEqual(state)
+          expect(reducer(state, likeRemoved(alice.likes[0].idx))).toEqual(state)
         })
 
         it('should remove a like', () => {
@@ -179,9 +179,16 @@ describe('user reducer', () => {
             users: { [alice.username]: alice }
           }
 
-          expect(reducer(state, likeRemoved(alice.ownLikes[0].idx))).toEqual({
+          expect(reducer(state, likeRemoved(alice.likes[0].idx))).toEqual({
             ...state,
-            users: { ...state.users, [alice.username]: { ...alice, ownLikes: [alice.ownLikes[1]] } }
+            users: {
+              ...state.users,
+              [alice.username]: {
+                ...alice,
+                likes: [alice.likes[1]],
+                profile: { ...alice.profile, likesCount: alice.profile.likesCount - 1 }
+              }
+            }
           })
         })
       })
