@@ -12,6 +12,7 @@ import { initialState } from './store/reducers/user.reducer'
 
 jest.mock('./scenes/home-view/home-view.container')
 jest.mock('./scenes/login-view/login-view.container')
+jest.mock('./components/search/search.container')
 
 describe('App', () => {
   let store
