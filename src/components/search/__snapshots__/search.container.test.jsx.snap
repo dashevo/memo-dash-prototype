@@ -1,0 +1,74 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<SearchContainer /> Shallow rendering renders without crashing 1`] = `
+<SearchComponent
+  getAllUsers={[Function]}
+  onGoToProfileClicked={[Function]}
+  onOpenMemoClicked={[Function]}
+  source={
+    Object {
+      "memos": Object {
+        "name": "memos",
+        "results": Array [
+          Object {
+            "category": "memos",
+            "childKey": "[bob][1]",
+            "image": null,
+            "title": "Qui magnam maiores laboriosam animi sit aut.",
+          },
+          Object {
+            "category": "memos",
+            "childKey": "[bob][2]",
+            "image": null,
+            "title": "Quia est odio nemo deserunt.",
+          },
+          Object {
+            "category": "memos",
+            "childKey": "[alice][1]",
+            "image": "https://s3.amazonaws.com/uifaces/faces/twitter/madcampos/128.jpg",
+            "title": "Suscipit vel nobis.",
+          },
+          Object {
+            "category": "memos",
+            "childKey": "[alice][2]",
+            "image": "https://s3.amazonaws.com/uifaces/faces/twitter/madcampos/128.jpg",
+            "title": "Praesentium libero est repudiandae et repudiandae.",
+          },
+        ],
+      },
+      "users": Object {
+        "name": "users",
+        "results": Array [
+          Object {
+            "category": "users",
+            "childKey": "alice",
+            "description": "Quod architecto molestias et.",
+            "image": "https://s3.amazonaws.com/uifaces/faces/twitter/madcampos/128.jpg",
+            "title": "alice",
+          },
+        ],
+      },
+    }
+  }
+/>
+`;
+
+exports[`<SearchContainer /> Shallow rendering renders without crashing if no data is available 1`] = `
+<SearchComponent
+  getAllUsers={[Function]}
+  onGoToProfileClicked={[Function]}
+  onOpenMemoClicked={[Function]}
+  source={
+    Object {
+      "memos": Object {
+        "name": "memos",
+        "results": Array [],
+      },
+      "users": Object {
+        "name": "users",
+        "results": Array [],
+      },
+    }
+  }
+/>
+`;
