@@ -105,9 +105,6 @@ class ProfileContentComponent extends Component {
 
   render() {
     const { profile, memos, followers, following, pathname } = this.props
-
-    console.log(!!following)
-
     return (
       <Fragment>
         {profile ? (
