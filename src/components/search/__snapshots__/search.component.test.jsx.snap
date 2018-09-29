@@ -1,0 +1,183 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<SearchComponent /> interaction should change value 1`] = `
+<Grid>
+  <GridColumn
+    width={8}
+  >
+    <Search
+      category={true}
+      icon="search"
+      input="text"
+      loading={false}
+      minCharacters={1}
+      noResultsMessage="No results found."
+      onResultSelect={[Function]}
+      onSearchChange={[Function]}
+      results={Object {}}
+      showNoResults={true}
+      value="My new value"
+    />
+  </GridColumn>
+</Grid>
+`;
+
+exports[`<SearchComponent /> interaction should find alice 1`] = `
+<Grid>
+  <GridColumn
+    width={8}
+  >
+    <Search
+      category={true}
+      icon="search"
+      input="text"
+      loading={false}
+      minCharacters={1}
+      noResultsMessage="No results found."
+      onResultSelect={[Function]}
+      onSearchChange={[Function]}
+      results={
+        Object {
+          "users": Object {
+            "name": "users",
+            "results": Array [
+              Object {
+                "category": "users",
+                "childKey": "alice",
+                "description": "Quod architecto molestias et.",
+                "image": "https://s3.amazonaws.com/uifaces/faces/twitter/madcampos/128.jpg",
+                "title": "alice",
+              },
+            ],
+          },
+        }
+      }
+      showNoResults={true}
+      value="al"
+    />
+  </GridColumn>
+</Grid>
+`;
+
+exports[`<SearchComponent /> interaction should find memo 1`] = `
+<Grid>
+  <GridColumn
+    width={8}
+  >
+    <Search
+      category={true}
+      icon="search"
+      input="text"
+      loading={false}
+      minCharacters={1}
+      noResultsMessage="No results found."
+      onResultSelect={[Function]}
+      onSearchChange={[Function]}
+      results={
+        Object {
+          "users": Object {
+            "name": "users",
+            "results": Array [
+              Object {
+                "category": "memos",
+                "childKey": "[alice][1]",
+                "image": "https://s3.amazonaws.com/uifaces/faces/twitter/madcampos/128.jpg",
+                "title": "Suscipit vel nobis.",
+              },
+            ],
+          },
+        }
+      }
+      showNoResults={true}
+      value="Suscipit vel nobis."
+    />
+  </GridColumn>
+</Grid>
+`;
+
+exports[`<SearchComponent /> should render with results 1`] = `
+<Grid>
+  <GridColumn
+    width={8}
+  >
+    <Search
+      category={true}
+      icon="search"
+      input="text"
+      loading={false}
+      minCharacters={1}
+      noResultsMessage="No results found."
+      onResultSelect={[Function]}
+      onSearchChange={[Function]}
+      results={
+        Object {
+          "users": Object {
+            "name": "users",
+            "results": Array [
+              Object {
+                "category": "memos",
+                "childKey": "[alice][1]",
+                "image": "https://s3.amazonaws.com/uifaces/faces/twitter/madcampos/128.jpg",
+                "title": "Suscipit vel nobis.",
+              },
+              Object {
+                "category": "users",
+                "childKey": "alice",
+                "description": "Quod architecto molestias et.",
+                "image": "https://s3.amazonaws.com/uifaces/faces/twitter/madcampos/128.jpg",
+                "title": "alice",
+              },
+            ],
+          },
+        }
+      }
+      showNoResults={true}
+      value=""
+    />
+  </GridColumn>
+</Grid>
+`;
+
+exports[`<SearchComponent /> should render with value 1`] = `
+<Grid>
+  <GridColumn
+    width={8}
+  >
+    <Search
+      category={true}
+      icon="search"
+      input="text"
+      loading={false}
+      minCharacters={1}
+      noResultsMessage="No results found."
+      onResultSelect={[Function]}
+      onSearchChange={[Function]}
+      results={Array []}
+      showNoResults={true}
+      value="test1"
+    />
+  </GridColumn>
+</Grid>
+`;
+
+exports[`<SearchComponent /> should render without crashing 1`] = `
+<Grid>
+  <GridColumn
+    width={8}
+  >
+    <Search
+      category={true}
+      icon="search"
+      input="text"
+      loading={false}
+      minCharacters={1}
+      noResultsMessage="No results found."
+      onResultSelect={[Function]}
+      onSearchChange={[Function]}
+      results={Array []}
+      showNoResults={true}
+      value=""
+    />
+  </GridColumn>
+</Grid>
+`;

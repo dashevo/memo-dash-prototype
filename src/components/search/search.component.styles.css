@@ -1,0 +1,4 @@
+.results {
+  max-height: 500px;
+  overflow: overlay;
+}
