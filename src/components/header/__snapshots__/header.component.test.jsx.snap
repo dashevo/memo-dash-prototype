@@ -31,6 +31,9 @@ exports[`<HeaderComponent /> should render without crashing 1`] = `
       <MenuMenu
         position="right"
       >
+        <MenuItem>
+          <Connect(SearchComponent) />
+        </MenuItem>
         <Connect(UserMenuComponent) />
       </MenuMenu>
     </Container>

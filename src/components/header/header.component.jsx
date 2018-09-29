@@ -2,6 +2,7 @@ import React from 'react'
 import { Menu, Container } from 'semantic-ui-react'
 import Logo from '../logo/logo.component'
 import UserMenuContainer from './user-menu/user-menu.container'
+import SearchContainer from '../search/search.container'
 
 const HeaderComponent = props => {
   const { onHomeClicked, onUsersClicked } = props
@@ -21,6 +22,9 @@ const HeaderComponent = props => {
             Users
           </Menu.Item>
           <Menu.Menu position="right">
+            <Menu.Item>
+              <SearchContainer />
+            </Menu.Item>
             <UserMenuContainer />
           </Menu.Menu>
         </Container>
