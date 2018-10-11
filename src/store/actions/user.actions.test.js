@@ -30,7 +30,6 @@ describe('user actions', () => {
       spies = {
         getUser: jest.fn(),
         getUsers: jest.fn(),
-        getAllOwnLikes: jest.fn(),
         updateProfile: jest.fn(),
         getUserProfile: jest.fn()
       }
@@ -72,22 +71,6 @@ describe('user actions', () => {
           const actions = await mockStoreAndDispatch(state, userActions.getUsers())
           expect(await getAction(actions, UserActionTypes.USERS_RECEIVED)).toEqual(
             userActions.usersReceived(users)
-          )
-        })
-      })
-
-      describe('getAllOwnLikes', () => {
-        it('should call memoDashLib.getAllOwnLikes', async () => {
-          await mockStoreAndDispatch(state, userActions.getAllOwnLikes())
-          expect(spies.getAllOwnLikes).toHaveBeenCalled()
-        })
-
-        it('should dispatch userUpdated', async () => {
-          const ownLikes = alice.ownLikes
-          state.root.memoDashLib.getAllOwnLikes.mockReturnValue(ownLikes)
-          const actions = await mockStoreAndDispatch(state, userActions.getAllOwnLikes())
-          expect(await getAction(actions, UserActionTypes.USER_UPDATED)).toEqual(
-            userActions.userUpdated(alice.username, { ownLikes })
           )
         })
       })

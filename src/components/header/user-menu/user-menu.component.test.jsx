@@ -8,9 +8,15 @@ describe('<UserMenuComponent />', () => {
   beforeEach(() => {
     const div = document.createElement('div')
     document.body.appendChild(div)
-    const user = { username: 'Alice', avatar: 'Avatar' }
+
     wrapper = shallow(
-      <UserMenuComponent user={user} location="/" onSignOutClicked={jest.fn()} onProfileClicked={jest.fn()} />
+      <UserMenuComponent
+        username={'Alice'}
+        avatarUrl={'avatarUrl'}
+        location="/"
+        onSignOutClicked={jest.fn()}
+        onProfileClicked={jest.fn()}
+      />
     )
   })
 

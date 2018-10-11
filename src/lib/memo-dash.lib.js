@@ -81,16 +81,17 @@ export default class MemoDashLib {
    * @returns
    * {
    *   username,
-   *   { username, bio, avatarUrl, followersCount, followingCount, likesCount },
+   *   { username, bio, avatarUrl, followers, following, likes },
    *   userId
    * }
    */
   async getUser(username) {
-    const [profile, userId, followers, following] = await Promise.all([
+    const [profile, userId, followers, following, likes] = await Promise.all([
       this.memoDashClient.getUserProfile(username),
       this.memoDashClient.getUserId(username),
       this.memoDashClient.getUserFollowers(username),
-      this.memoDashClient.getUserFollowing(username)
+      this.memoDashClient.getUserFollowing(username),
+      this.getUserLikes(username)
     ])
 
     return {
@@ -98,7 +99,8 @@ export default class MemoDashLib {
       profile,
       userId,
       followers: followers ? followers.map(user => user.username) : undefined,
-      following: following ? following.map(user => user.username) : undefined
+      following: following ? following.map(user => user.username) : undefined,
+      likes
     }
   }
 
@@ -148,7 +150,25 @@ export default class MemoDashLib {
     return await this.memoDashClient.getMemo(username, memoId)
   }
 
-  async getMemos() {
+  /**
+   * Returns memos
+   *
+   * @param {Array<{username, idx}>} memoIds
+   * @return {Promise<Array<{
+   *   username,
+   *   memoDatetime,
+   *   memoText,
+   *   memoLikesCount,
+   *   memoTipTotal,
+   *   memoRepliesCount
+   * }>>}
+   * @memberof MemoDashLib
+   */
+  async getMemos(memoIds) {
+    if (memoIds) {
+      return await Promise.all(memoIds.map(memoId => this.getMemo(memoId.username, memoId.idx)))
+    }
+
     return await this.memoDashClient.getMemos()
   }
 
@@ -238,21 +258,22 @@ export default class MemoDashLib {
   }
 
   /**
-   * Get all likes for the current user
-   *
+   * Get all likes of a user
    * @returns {Promise<Array<{
    *  idx,
    *  relation
    * }>>}
    * @memberof MemoDashLib
    */
-  async getAllOwnLikes() {
-    const likes = await this.memoDashClient.getAllOwnLikes()
+  async getUserLikes(username) {
+    const likes = await this.memoDashClient.getUserLikes(username)
 
-    for (const like of likes) {
-      like.relation.username = await this.memoDashClient.getUsername(like.relation.userId)
-    }
-    return likes
+    return await Promise.all(
+      likes.map(async like => {
+        like.relation.username = await this.memoDashClient.getUsername(like.relation.userId)
+        return like
+      })
+    )
   }
 
   /**

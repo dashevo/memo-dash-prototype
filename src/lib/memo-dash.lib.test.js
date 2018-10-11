@@ -1,5 +1,6 @@
 import MemoDashLib from './memo-dash.lib'
 import { testUsers, testMemos } from '../test-utils/test-data'
+import { combineMemoId } from '../store/reducers/memo.reducer'
 
 jest.mock('@dashevo/dash-schema/dash-schema-lib')
 
@@ -16,7 +17,8 @@ describe('MemoDashLib', () => {
       getUserId: jest.fn().mockReturnValue(alice.userId),
       getMemosByUsername: jest.fn().mockReturnValue(alice.memos),
       getMemo: jest.fn().mockReturnValue(memo),
-      getAllOwnLikes: jest.fn().mockReturnValue(alice.ownLikes),
+      getMemos: jest.fn(),
+      getUserLikes: jest.fn().mockReturnValue(alice.likes),
       postMemo: jest.fn(),
       deleteMemo: jest.fn(),
       editMemo: jest.fn(),
@@ -46,14 +48,15 @@ describe('MemoDashLib', () => {
         expect(memoDashLib.memoDashClient.getUserId).toHaveBeenCalledWith(alice.username)
       })
 
-      it('should return user with username, profile and userId', async () => {
+      it('should return user with all info', async () => {
         const user = await memoDashLib.getUser(alice.username)
         expect(user).toEqual({
           username: alice.username,
           profile: alice.profile,
           userId: alice.userId,
           followers: alice.followers,
-          following: alice.following
+          following: alice.following,
+          likes: alice.likes
         })
       })
 
@@ -65,7 +68,8 @@ describe('MemoDashLib', () => {
             profile: alice.profile,
             userId: alice.userId,
             followers: alice.followers,
-            following: alice.following
+            following: alice.following,
+            likes: alice.likes
           }
         ])
       })
@@ -92,6 +96,20 @@ describe('MemoDashLib', () => {
       it('should get memos from client', () => {
         memoDashLib.getMemosForUser(alice.username)
         expect(memoDashLib.memoDashClient.getMemosByUsername).toHaveBeenCalledWith(alice.username)
+      })
+    })
+
+    describe('getMemos()', () => {
+      it('should get all memos', () => {
+        memoDashLib.getMemos()
+        expect(memoDashLib.memoDashClient.getMemos).toHaveBeenCalled()
+      })
+    })
+
+    describe('getMemos(combinedMemoIds)', () => {
+      it('should get memos for passed ids', () => {
+        memoDashLib.getMemos([{ username: alice.username, idx: 1 }])
+        expect(memoDashLib.memoDashClient.getMemo).toHaveBeenCalledWith(alice.username, 1)
       })
     })
 
@@ -130,10 +148,10 @@ describe('MemoDashLib', () => {
   })
 
   describe('Likes', () => {
-    describe('getAllOwnLikes()', () => {
-      it('should get like for current user from client', () => {
-        memoDashLib.getAllOwnLikes()
-        expect(memoDashLib.memoDashClient.getAllOwnLikes).toHaveBeenCalled()
+    describe('getUserLikes(username)', () => {
+      it('should get like for a user from client', () => {
+        memoDashLib.getUserLikes(alice.username)
+        expect(memoDashLib.memoDashClient.getUserLikes).toHaveBeenCalled()
       })
     })
   })

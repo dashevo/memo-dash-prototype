@@ -6,7 +6,7 @@ import { MemoryRouter } from 'react-router-dom'
 // partial mock of react-router
 jest.mock('react-router', () => {
   const lib = require.requireActual('react-router')
-  return { ...lib, Redirect: 'redirectfake' }
+  return { ...lib, Redirect: 'RedirectFake' }
 })
 
 import PrivateRouteComponent from './private-route.component'
@@ -40,13 +40,13 @@ describe('<PrivateRouteComponent />', () => {
 
     it('should redirect to / if user is not logged in', () => {
       const wrapper = createWrapper(false)
-      expect(wrapper.find('redirectfake')).toHaveLength(1)
+      expect(wrapper.find('RedirectFake')).toHaveLength(1)
     })
 
     it('should redirect to / if user is not logged in', () => {
       const wrapper = createWrapper(true)
 
-      expect(wrapper.find('redirectfake')).toHaveLength(0)
+      expect(wrapper.find('RedirectFake')).toHaveLength(0)
       expect(wrapper.find(TestComponent)).toHaveLength(1)
     })
   })

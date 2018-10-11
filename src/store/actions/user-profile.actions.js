@@ -3,9 +3,14 @@ import {
   getMissingUsers,
   getUserFollowers,
   getUserFollowing,
-  getCurrentUsername
+  getCurrentUsername,
+  getUserLikes,
+  getMemosByCombinedIds,
+  getLikesOfMissingMemos
 } from '../selectors'
 import { getUsers } from './user.actions'
+import { getMemos } from './memo.actions'
+import { combineMemoId } from '../reducers/memo.reducer'
 
 export const getFollowersForUser = username => async (dispatch, getState) => {
   const state = getState()
@@ -24,6 +29,31 @@ export const getFollowingForUser = username => async (dispatch, getState) => {
   if (following && following.length > 0) {
     const missingUsernames = getMissingUsers(following)(state)
     if (missingUsernames && missingUsernames.length > 0) dispatch(getUsers(missingUsernames))
+  }
+}
+
+export const getLikedMemosForUser = username => async (dispatch, getState) => {
+  const state = getState()
+  const likes = getUserLikes(username)(state)
+
+  if (likes && likes.length > 0) {
+    const likesOfMissingMemos = getLikesOfMissingMemos(likes)(state)
+
+    if (likesOfMissingMemos && likesOfMissingMemos.length > 0)
+      await dispatch(
+        getMemos(
+          likesOfMissingMemos.map(like => {
+            return {
+              username: like.relation.username,
+              idx: like.relation.index
+            }
+          })
+        )
+      )
+
+    return getMemosByCombinedIds(
+      likes.map(like => combineMemoId(like.relation.username, like.relation.index))
+    )(state)
   }
 }
 

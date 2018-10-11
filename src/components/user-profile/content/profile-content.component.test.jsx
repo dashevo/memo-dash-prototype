@@ -2,7 +2,7 @@ import React from 'react'
 import { shallow } from 'enzyme'
 import { Card } from 'semantic-ui-react'
 
-import { testUsers } from '../../../test-utils/test-data'
+import { testUsers, testMemos } from '../../../test-utils/test-data'
 import ProfileContentComponent from './profile-content.component'
 
 describe('<ProfileContentComponent />', () => {
@@ -17,7 +17,8 @@ describe('<ProfileContentComponent />', () => {
     spies = {
       onMemosClicked: jest.fn(),
       onFollowersClicked: jest.fn(),
-      onFollowingClicked: jest.fn()
+      onFollowingClicked: jest.fn(),
+      onLikedMemosClicked: jest.fn()
     }
   })
 
@@ -28,6 +29,7 @@ describe('<ProfileContentComponent />', () => {
           onMemosClicked={spies.onMemosClicked}
           onFollowersClicked={spies.onFollowersClicked}
           onFollowingClicked={spies.onFollowingClicked}
+          onLikedMemosClicked={spies.onLikedMemosClicked}
         />
       )
       expect(wrapper).toMatchSnapshot()
@@ -39,6 +41,7 @@ describe('<ProfileContentComponent />', () => {
           onMemosClicked={spies.onMemosClicked}
           onFollowersClicked={spies.onFollowersClicked}
           onFollowingClicked={spies.onFollowingClicked}
+          onLikedMemosClicked={spies.onLikedMemosClicked}
           profile={alice.profile}
         />
       )
@@ -52,7 +55,9 @@ describe('<ProfileContentComponent />', () => {
             onMemosClicked={spies.onMemosClicked}
             onFollowersClicked={spies.onFollowersClicked}
             onFollowingClicked={spies.onFollowingClicked}
+            onLikedMemosClicked={spies.onLikedMemosClicked}
             profile={alice.profile}
+            likedMemos={testMemos}
             pathname={pathname}
           />
         )
@@ -69,6 +74,11 @@ describe('<ProfileContentComponent />', () => {
 
       it('following', () => {
         wrapper = createWrapper('following')
+        expect(wrapper).toMatchSnapshot()
+      })
+
+      it('liked memos', () => {
+        wrapper = createWrapper('likedMemos')
         expect(wrapper).toMatchSnapshot()
       })
     })

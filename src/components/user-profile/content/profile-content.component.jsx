@@ -2,17 +2,20 @@ import React, { Component, Fragment } from 'react'
 import { Tab, Container } from 'semantic-ui-react'
 import MemosContainer from '../../memo/memos.container'
 import ProfileOverviewsComponent from '../overview/profile-overviews.component'
+import MemosComponent from '../../memo/memos.component'
 
 const TABS = {
   MEMOS: 0,
   FOLLOWERS: 1,
-  FOLLOWING: 2
+  FOLLOWING: 2,
+  LIKED_MEMOS: 3
 }
 
 const PATHS = {
   MEMOS: 'memos',
   FOLLOWERS: 'followers',
-  FOLLOWING: 'following'
+  FOLLOWING: 'following',
+  LIKED_MEMOS: 'likedMemos'
 }
 
 const mapPathnameToTab = pathname => {
@@ -23,6 +26,8 @@ const mapPathnameToTab = pathname => {
       return TABS.FOLLOWERS
     case PATHS.FOLLOWING:
       return TABS.FOLLOWING
+    case PATHS.LIKED_MEMOS:
+      return TABS.LIKED_MEMOS
     default:
       return TABS.MEMOS
   }
@@ -77,15 +82,29 @@ class ProfileContentComponent extends Component {
     </Tab.Pane>
   )
 
+  renderLikedMemos = likedMemos => {
+    return (
+      <Tab.Pane>
+        {likedMemos && Object.values(likedMemos).length > 0 ? (
+          <MemosComponent memos={likedMemos} />
+        ) : (
+          <Fragment>You have not liked anyone yet</Fragment>
+        )}
+      </Tab.Pane>
+    )
+  }
+
   onTabChange = (event, data) => {
     const {
       memos,
       followers,
       following,
+      likedMemos,
       username,
       onMemosClicked,
       onFollowersClicked,
-      onFollowingClicked
+      onFollowingClicked,
+      onLikedMemosClicked
     } = this.props
 
     switch (data.activeIndex) {
@@ -98,13 +117,17 @@ class ProfileContentComponent extends Component {
       case TABS.FOLLOWING:
         onFollowingClicked(following, username)
         break
+      case TABS.LIKED_MEMOS:
+        onLikedMemosClicked(likedMemos, username)
+        break
       default:
         break
     }
   }
 
   render() {
-    const { profile, memos, followers, following, pathname } = this.props
+    const { profile, memos, followers, following, likedMemos, pathname } = this.props
+
     return (
       <Fragment>
         {profile ? (
@@ -125,6 +148,11 @@ class ProfileContentComponent extends Component {
                 active: pathname === PATHS.FOLLOWING,
                 menuItem: `Following (${profile.followingCount})`,
                 render: () => this.renderFollowing(following)
+              },
+              {
+                active: pathname === PATHS.LIKED_MEMOS,
+                menuItem: `Likes (${profile.likesCount})`,
+                render: () => this.renderLikedMemos(likedMemos)
               }
             ]}
           />
