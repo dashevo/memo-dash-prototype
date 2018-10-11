@@ -23,10 +23,11 @@ exports[`<UserMenuComponent /> renders without crashing 1`] = `
         circular={true}
         size="mini"
         spaced="right"
-        src={undefined}
+        src="avatarUrl"
         ui={true}
       />
       Hello, 
+      Alice
     </span>
   }
   wrapSelection={true}
@@ -40,7 +41,7 @@ exports[`<UserMenuComponent /> renders without crashing 1`] = `
     </DropdownItem>
     <DropdownDivider />
     <DropdownItem
-      onClick={[Function]}
+      onClick={[MockFunction]}
     >
       Sign Out
     </DropdownItem>
