@@ -96,7 +96,8 @@ export const testMemos = {
     memoRepliesCount: 0,
     memoText: 'Suscipit vel nobis.',
     memoTipTotal: 0,
-    username: 'alice'
+    username: 'alice',
+    replyIds: ['[bob][1]']
   },
   '[alice][2]': {
     avatarUrl: 'https://s3.amazonaws.com/uifaces/faces/twitter/madcampos/128.jpg',

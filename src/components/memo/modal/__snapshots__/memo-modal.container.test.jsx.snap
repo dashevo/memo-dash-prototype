@@ -11,6 +11,9 @@ exports[`<MemoModalContainer /> Shallow rendering should render opened modal 1`]
       "memoRepliesCount": 0,
       "memoText": "Suscipit vel nobis.",
       "memoTipTotal": 0,
+      "replyIds": Array [
+        "[bob][1]",
+      ],
       "username": "alice",
     }
   }

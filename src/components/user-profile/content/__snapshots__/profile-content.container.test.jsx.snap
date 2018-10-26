@@ -46,6 +46,9 @@ exports[`<ProfileContentContainer /> Shallow rendering renders without crashing 
         "memoRepliesCount": 0,
         "memoText": "Suscipit vel nobis.",
         "memoTipTotal": 0,
+        "replyIds": Array [
+          "[bob][1]",
+        ],
         "username": "alice",
       },
       Object {
