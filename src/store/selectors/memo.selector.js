@@ -31,3 +31,8 @@ export const getLikesOfMissingMemos = likes =>
       .filter((like, index, self) => self.indexOf(like) === index)
       .filter(like => !availableMemos[combineMemoId(like.relation.username, like.relation.index)])
   )
+
+export const getRepliedToMemos = combinedMemoId =>
+  createSelector([getMemos], availableMemos =>
+    Object.values(availableMemos).filter(memo => memo.replyIds && memo.replyIds.includes(combinedMemoId))
+  )

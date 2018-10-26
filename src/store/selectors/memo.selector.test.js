@@ -52,4 +52,12 @@ describe('router selector', () => {
     const memo = { ...testMemos[bob.memoIds[0]], idx: 3 }
     expect(selector.isMemoLikedByCurrentUser(memo)(state)).toEqual(false)
   })
+
+  it('should return memo the current replied to', () => {
+    const replyId = combineMemoId(bob.username, testMemos[bob.memoIds[0]].idx)
+    const repliedToMemo = testMemos[alice.memoIds[0]]
+    const memos = selector.getMemos(state)
+
+    expect(selector.getRepliedToMemos(replyId)(state)).toEqual([repliedToMemo])
+  })
 })
