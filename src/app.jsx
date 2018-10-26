@@ -4,6 +4,7 @@ import { withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
 import routes from './routes'
 import { initMemoDashClient } from './store/actions'
+import ErrorBoundaryComponent from './components/error/error-boundary.component'
 
 export class AppComponent extends Component {
   async componentDidMount() {
@@ -11,7 +12,7 @@ export class AppComponent extends Component {
   }
 
   render() {
-    return <React.Fragment>{routes}</React.Fragment>
+    return <ErrorBoundaryComponent>{routes}</ErrorBoundaryComponent>
   }
 }
 
