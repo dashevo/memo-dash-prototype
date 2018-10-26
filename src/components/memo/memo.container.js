@@ -10,7 +10,7 @@ const mapStateToProps = (state, ownProps) => {
   if (!memo) return { memoNotAvailable: true }
 
   let replies = undefined
-  if (showReplies) {
+  if (showReplies && memo.replyIds) {
     replies = getMemosByCombinedIds(memo.replyIds)(state)
   }
 

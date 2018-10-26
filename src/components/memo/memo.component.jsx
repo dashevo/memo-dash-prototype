@@ -54,9 +54,10 @@ export default class MemoComponent extends Component {
             {showReplies &&
               !!replies && (
                 <Comment.Group>
-                  {replies.map(reply => (
-                    <MemoContainer showReplies={true} memo={reply} key={reply.idx} />
-                  ))}
+                  {replies.map(
+                    reply =>
+                      reply ? <MemoContainer showReplies={true} memo={reply} key={reply.idx} /> : null
+                  )}
                 </Comment.Group>
               )}
           </Comment>
