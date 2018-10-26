@@ -7,7 +7,7 @@ import thunk from 'redux-thunk'
 import appReducer from './reducers'
 import { AuthActionTypes } from './actions'
 
-const history = createBrowserHistory()
+const history = createBrowserHistory({ basename: process.env.PUBLIC_URL })
 const middlewares = [routerMiddleware(history), thunk, logger]
 const initialState = {}
 
