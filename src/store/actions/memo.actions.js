@@ -1,4 +1,10 @@
-import { getMemoDashLib, getCurrentUser, getMissingUsers, getCurrentUsername } from '../selectors'
+import {
+  getMemoDashLib,
+  getCurrentUser,
+  getMissingUsers,
+  getCurrentUsername,
+  getRepliedToMemos
+} from '../selectors'
 import { userUpdated, getUsers } from './user.actions'
 import { combineMemoId } from '../reducers/memo.reducer'
 
@@ -91,6 +97,13 @@ export const replyToMemo = (username, memoId, message) => async (dispatch, getSt
   dispatch(getMemosForUser(currentUsername))
 }
 
+export const removeReply = (username, memoId) => async (dispatch, getState) => {
+  const memos = getRepliedToMemos(combineMemoId(username, memoId))(getState())
+  if (memos) {
+    memos.forEach(memo => dispatch(getMemoReplies(memo.username, memo.idx)))
+  }
+}
+
 export const memoUpdated = memo => ({
   type: MemoActionTypes.MEMO_UPDATED,
   payload: memo
@@ -118,6 +131,7 @@ export const deleteMemo = (username, memoId) => async (dispatch, getState) => {
   const lib = getMemoDashLib(getState())
   await lib.deleteMemo(memoId)
   dispatch(memoDeleted(combineMemoId(username, memoId)))
+  dispatch(removeReply(username, memoId))
 }
 
 export const memoDeleted = memoId => ({

@@ -58,6 +58,7 @@ describe('memo actions', () => {
         getUserLikes: jest.fn(),
         getMemo: jest.fn(),
         replyToMemo: jest.fn(),
+        removeReply: jest.fn(),
         getMemoReplies: jest.fn(),
         postMemo: jest.fn(),
         getUsers: jest.fn(),
@@ -260,6 +261,19 @@ describe('memo actions', () => {
           expect(await getAction(actions, MemoActionTypes.MEMO_UPDATED)).toEqual(
             memoActions.memoUpdated(memo)
           )
+        })
+      })
+
+      describe('removeReply(username, memoId)', () => {
+        const alice = testUsers['alice']
+        const bob = testUsers['bob']
+
+        const reply = testMemos[bob.memoIds[0]]
+        const memo = testMemos[alice.memoIds[0]]
+
+        it('should call memoDashLib.getMemoReplies', async () => {
+          await mockStoreAndDispatch(state, memoActions.removeReply(bob.username, reply.idx))
+          expect(spies.getMemoReplies).toHaveBeenCalledWith(alice.username, memo.idx)
         })
       })
 
