@@ -5,7 +5,6 @@ import { LoginViewContainer, HomeViewContainer, ProfileViewContainer } from '../
 import PrivateRoute from '../components/private-route/private-route.container'
 import NoMatch from '../components/no-match/no-match.component'
 import HeaderContainer from '../components/header/header.container'
-import FooterContainer from '../components/footer/footer.container'
 import UsersViewContainer from '../scenes/users-view/users-view.container'
 
 const withHeader = WrappedComponent => props => (
@@ -15,22 +14,15 @@ const withHeader = WrappedComponent => props => (
   </React.Fragment>
 )
 
-const withFooter = WrappedComponent => props => (
-  <React.Fragment>
-    <WrappedComponent {...props} />
-    <FooterContainer />
-  </React.Fragment>
-)
-
 const routes = (
   <div>
     <Switch>
-      <Route exact path="/" component={withFooter(LoginViewContainer)} />
-      <Route path="/login" component={withFooter(LoginViewContainer)} />
-      <PrivateRoute path="/home" component={withHeader(withFooter(HomeViewContainer))} />
-      <PrivateRoute path="/users" component={withHeader(withFooter(UsersViewContainer))} />
+      <Route exact path="/" component={LoginViewContainer} />
+      <Route path="/login" component={LoginViewContainer} />
+      <PrivateRoute path="/home" component={withHeader(HomeViewContainer)} />
+      <PrivateRoute path="/users" component={withHeader(UsersViewContainer)} />
       <Redirect exact from="/profile/:username" to="/profile/:username/memos" />
-      <PrivateRoute path="/profile/:username/*" component={withHeader(withFooter(ProfileViewContainer))} />
+      <PrivateRoute path="/profile/:username/*" component={withHeader(ProfileViewContainer)} />
       <Route component={NoMatch} />
     </Switch>
   </div>
