@@ -11,8 +11,8 @@ exports[`<ProfileContentComponent /> should render profile 1`] = `
     }
     menu={
       Object {
-        "attached": true,
-        "tabular": true,
+        "pointing": true,
+        "secondary": true,
       }
     }
     onTabChange={[Function]}
@@ -56,8 +56,8 @@ exports[`<ProfileContentComponent /> should render tabs followers 1`] = `
     }
     menu={
       Object {
-        "attached": true,
-        "tabular": true,
+        "pointing": true,
+        "secondary": true,
       }
     }
     onTabChange={[Function]}
@@ -101,8 +101,8 @@ exports[`<ProfileContentComponent /> should render tabs following 1`] = `
     }
     menu={
       Object {
-        "attached": true,
-        "tabular": true,
+        "pointing": true,
+        "secondary": true,
       }
     }
     onTabChange={[Function]}
@@ -146,8 +146,8 @@ exports[`<ProfileContentComponent /> should render tabs liked memos 1`] = `
     }
     menu={
       Object {
-        "attached": true,
-        "tabular": true,
+        "pointing": true,
+        "secondary": true,
       }
     }
     onTabChange={[Function]}
@@ -191,8 +191,8 @@ exports[`<ProfileContentComponent /> should render tabs memos 1`] = `
     }
     menu={
       Object {
-        "attached": true,
-        "tabular": true,
+        "pointing": true,
+        "secondary": true,
       }
     }
     onTabChange={[Function]}
