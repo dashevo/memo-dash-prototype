@@ -12,9 +12,8 @@ const MemoModalComponent = props => {
   return (
     <Segment className="memo">
       <Comment.Group threaded>
-        <Modal open={opened} onClose={onModalCloseClicked} centered={false} closeIcon className="memo-modal">
-          <Modal.Header>Memo</Modal.Header>
-          <Modal.Content>
+        <Modal open={opened} onClose={onModalCloseClicked} closeIcon className="memo-modal" size="small">
+          <Modal.Content scrolling>
             <Comment.Group>
               <MemoContainer showReplies={true} memo={memo} />
             </Comment.Group>

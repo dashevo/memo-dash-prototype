@@ -1,14 +1,14 @@
 import React, { Fragment } from 'react'
 import MemoContainer from './memo.container'
-import { Comment } from 'semantic-ui-react'
+import { Comment, Segment } from 'semantic-ui-react'
 import MemoModalContainer from './modal/memo-modal.container'
 
 const MemosComponent = props => {
   const { memos } = props
   return (
-    <Fragment>
+    <Segment basic center>
       {memos ? (
-        <Comment.Group size="large">
+        <Comment.Group>
           {Object.keys(memos)
             .sort((a, b) => a.memoDatetime < b.memoDatetime)
             .map(memoId => (
@@ -25,7 +25,7 @@ const MemosComponent = props => {
       ) : (
         'No memos available'
       )}
-    </Fragment>
+    </Segment>
   )
 }
 
