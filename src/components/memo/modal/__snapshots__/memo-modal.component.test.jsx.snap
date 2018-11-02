@@ -10,7 +10,7 @@ exports[`<MemoModalComponent /> should render render memo if opened 1`] = `
     threaded={true}
   >
     <Modal
-      centered={false}
+      centered={true}
       className="memo-modal"
       closeIcon={true}
       closeOnDimmerClick={true}
@@ -18,11 +18,11 @@ exports[`<MemoModalComponent /> should render render memo if opened 1`] = `
       dimmer={true}
       eventPool="Modal"
       open={true}
+      size="small"
     >
-      <ModalHeader>
-        Memo
-      </ModalHeader>
-      <ModalContent>
+      <ModalContent
+        scrolling={true}
+      >
         <CommentGroup>
           <Connect(MemoComponent)
             memo={
