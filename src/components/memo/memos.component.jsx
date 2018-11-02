@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react'
+import React from 'react'
 import MemoContainer from './memo.container'
 import { Comment, Segment } from 'semantic-ui-react'
 import MemoModalContainer from './modal/memo-modal.container'
