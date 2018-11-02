@@ -1,5 +1,5 @@
 import React from 'react'
-import { Menu, Container } from 'semantic-ui-react'
+import { Menu, Container, Popup, Icon } from 'semantic-ui-react'
 import Logo from '../logo/logo.component'
 import UserMenuContainer from './user-menu/user-menu.container'
 import SearchContainer from '../search/search.container'
@@ -21,11 +21,30 @@ const HeaderComponent = props => {
           <Menu.Item as="a" onClick={onUsersClicked} active={props.location === '/users'}>
             Users
           </Menu.Item>
+
           <Menu.Menu position="right">
             <Menu.Item>
               <SearchContainer />
             </Menu.Item>
-            <UserMenuContainer />
+            <UserMenuContainer position="right" />
+            <Popup
+              trigger={
+                <Menu.Item as="a" onClick={props.resetVMN}>
+                  <Icon name="erase" color="grey" />
+                </Menu.Item>
+              }
+              content="Reset VMN"
+              position="bottom left"
+            />
+            <Popup
+              trigger={
+                <Menu.Item as="a" href="/block-explorer.html" target="_blank">
+                  <Icon name="block layout" color="grey" />
+                </Menu.Item>
+              }
+              content="Block Explorer"
+              position="bottom left"
+            />
           </Menu.Menu>
         </Container>
       </Menu>

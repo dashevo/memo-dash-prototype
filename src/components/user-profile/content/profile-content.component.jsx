@@ -132,6 +132,7 @@ class ProfileContentComponent extends Component {
       <Fragment>
         {profile ? (
           <Tab
+            menu={{ secondary: true, pointing: true }}
             onTabChange={this.onTabChange}
             panes={[
               {
