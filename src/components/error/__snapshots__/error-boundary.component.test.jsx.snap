@@ -1,0 +1,33 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<ErrorBoundaryComponent /> should render without crashing when error happend 1`] = `
+<Container>
+  <Grid
+    centered={true}
+    columns={2}
+  >
+    <GridRow>
+      <GridColumn
+        style={
+          Object {
+            "textAlign": "center",
+          }
+        }
+      >
+        <h1
+          style={
+            Object {
+              "marginBottom": 100,
+              "marginTop": 100,
+            }
+          }
+        >
+          Oops, something went wrong.
+        </h1>
+      </GridColumn>
+    </GridRow>
+  </Grid>
+</Container>
+`;
+
+exports[`<ErrorBoundaryComponent /> should render without crashing when no error happend 1`] = `""`;

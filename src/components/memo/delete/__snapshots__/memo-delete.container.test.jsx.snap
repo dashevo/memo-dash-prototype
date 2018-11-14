@@ -11,6 +11,9 @@ exports[`<MemoDeleteContainer /> Shallow rendering should render without crashin
       "memoRepliesCount": 0,
       "memoText": "Suscipit vel nobis.",
       "memoTipTotal": 0,
+      "replyIds": Array [
+        "[bob][1]",
+      ],
       "username": "alice",
     }
   }

@@ -72,6 +72,9 @@ exports[`<MemoContainer /> Shallow rendering should render memo without replies 
       "memoRepliesCount": 0,
       "memoText": "Suscipit vel nobis.",
       "memoTipTotal": 0,
+      "replyIds": Array [
+        "[bob][1]",
+      ],
       "username": "alice",
     }
   }

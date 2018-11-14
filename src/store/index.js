@@ -8,7 +8,12 @@ import appReducer from './reducers'
 import { AuthActionTypes } from './actions'
 
 const history = createBrowserHistory({ basename: process.env.PUBLIC_URL })
-const middlewares = [routerMiddleware(history), thunk, logger]
+const middlewares = [routerMiddleware(history), thunk]
+
+if (process.env.NODE_ENV !== 'production') {
+  middlewares.push(logger)
+}
+
 const initialState = {}
 
 const logoutReducer = (state, action) => {
