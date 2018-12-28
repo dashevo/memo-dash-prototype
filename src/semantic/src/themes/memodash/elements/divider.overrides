@@ -1,0 +1,7 @@
+/*******************************
+         Site Overrides
+*******************************/
+
+.ui.dropdown .menu > div.divider {
+  margin: 0;
+}
