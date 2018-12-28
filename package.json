@@ -28,7 +28,7 @@
   },
   "scripts": {
     "build-semantic": "cd src/semantic && gulp build-css build-assets",
-    "watch-semantic": "cd src/semantic && yarn run build-semantic && gulp watch",
+    "watch-semantic": "cd src/semantic && npm run build-semantic && gulp watch",
     "start": "npm run build-semantic && react-app-rewired start",
     "start:prod": "node ./server.js",
     "build": "npm run build-semantic &&react-app-rewired build",
