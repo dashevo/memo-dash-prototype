@@ -1,3 +1,7 @@
 .segment.post-memo {
   margin: 15px;
 }
+
+.segment.post-memo form {
+  text-align: right;
+}

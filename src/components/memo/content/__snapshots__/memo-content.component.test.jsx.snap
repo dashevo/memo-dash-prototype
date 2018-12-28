@@ -3,21 +3,33 @@
 exports[`<MemoContentComponent /> should render edit button 1`] = `
 <CommentContent>
   <Button
-    as="button"
-    basic={true}
-    color="grey"
+    as="div"
+    className="edit-button"
     floated="right"
-    icon="edit"
+    labelPosition="right"
     onClick={[Function]}
     role="button"
     size="mini"
-  />
+  >
+    <Button
+      as="button"
+      basic={true}
+      role="button"
+    >
+      <Icon
+        as="i"
+        name="pencil"
+      />
+      Edit
+    </Button>
+  </Button>
   <CommentAuthor
     as="a"
     onClick={[Function]}
   />
   <CommentMetadata>
     <span>
+      posted 
       a few seconds ago
     </span>
   </CommentMetadata>
@@ -28,21 +40,33 @@ exports[`<MemoContentComponent /> should render edit button 1`] = `
 exports[`<MemoContentComponent /> should render edit form 1`] = `
 <CommentContent>
   <Button
-    as="button"
-    basic={true}
-    color="grey"
+    as="div"
+    className="edit-button"
     floated="right"
-    icon="edit"
+    labelPosition="right"
     onClick={[Function]}
     role="button"
     size="mini"
-  />
+  >
+    <Button
+      as="button"
+      basic={true}
+      role="button"
+    >
+      <Icon
+        as="i"
+        name="pencil"
+      />
+      Edit
+    </Button>
+  </Button>
   <CommentAuthor
     as="a"
     onClick={[Function]}
   />
   <CommentMetadata>
     <span>
+      posted 
       a few seconds ago
     </span>
   </CommentMetadata>
@@ -62,6 +86,7 @@ exports[`<MemoContentComponent /> should render without crashing 1`] = `
   />
   <CommentMetadata>
     <span>
+      posted 
       a few seconds ago
     </span>
   </CommentMetadata>

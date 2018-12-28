@@ -20,13 +20,12 @@ exports[`<UserMenuComponent /> renders without crashing 1`] = `
     <span>
       <Image
         as="img"
-        circular={true}
+        className="user-menu-avatar"
         size="mini"
         spaced="right"
         src="avatarUrl"
         ui={true}
       />
-      Hello, 
       Alice
     </span>
   }

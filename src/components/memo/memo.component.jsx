@@ -38,6 +38,7 @@ export default class MemoComponent extends Component {
         basic={!showBorders}
         className="memo"
         onClick={!!openModalOnClick && !memoNotAvailable ? () => onModalOpenClicked(memo) : undefined}
+        padded
       >
         {memoNotAvailable ? (
           <Comment>
@@ -51,14 +52,13 @@ export default class MemoComponent extends Component {
               <MemoContentContainer memo={memo} />
               <MemoActionsContainer memo={memo} />
             </Comment.Content>
-            {showReplies &&
-              !!replies && (
-                <Comment.Group>
-                  {replies.map(reply => (
-                    <MemoContainer showReplies={true} memo={reply} key={reply.idx} />
-                  ))}
-                </Comment.Group>
-              )}
+            {showReplies && !!replies && (
+              <Comment.Group>
+                {replies.map(reply => (
+                  <MemoContainer showReplies={true} memo={reply} key={reply.idx} />
+                ))}
+              </Comment.Group>
+            )}
           </Comment>
         )}
       </Segment>

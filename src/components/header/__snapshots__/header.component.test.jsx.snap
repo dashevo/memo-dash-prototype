@@ -1,80 +1,83 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`<HeaderComponent /> should render without crashing 1`] = `
-<header>
-  <Menu
-    color="blue"
-    fixed="top"
-  >
-    <Container>
-      <MenuItem
-        as="a"
-        header={true}
-        onClick={[MockFunction]}
+<Menu
+  color="blue"
+  fixed="top"
+  size="tiny"
+>
+  <Container>
+    <MenuItem
+      as="a"
+      header={true}
+      onClick={[MockFunction]}
+    >
+      <Logo />
+      <div
+        className="active"
       >
-        <Logo />
         MemoDash
+      </div>
+    </MenuItem>
+    <MenuItem
+      active={false}
+      as="a"
+      onClick={[MockFunction]}
+    >
+      Home
+    </MenuItem>
+    <MenuItem
+      active={false}
+      as="a"
+    >
+      Users
+    </MenuItem>
+    <MenuMenu
+      position="right"
+    >
+      <MenuItem>
+        <Connect(SearchComponent) />
       </MenuItem>
-      <MenuItem
-        active={false}
-        as="a"
-        onClick={[MockFunction]}
-      >
-        Home
-      </MenuItem>
-      <MenuItem
-        active={false}
-        as="a"
-      >
-        Users
-      </MenuItem>
-      <MenuMenu
+      <Connect(UserMenuComponent)
         position="right"
-      >
-        <MenuItem>
-          <Connect(SearchComponent) />
-        </MenuItem>
-        <Connect(UserMenuComponent)
-          position="right"
-        />
-        <Popup
-          content="Reset VMN"
-          keepInViewPort={true}
-          on="hover"
-          position="bottom left"
-          trigger={
-            <MenuItem
-              as="a"
-            >
-              <Icon
-                as="i"
-                color="grey"
-                name="erase"
-              />
-            </MenuItem>
-          }
-        />
-        <Popup
-          content="Block Explorer"
-          keepInViewPort={true}
-          on="hover"
-          position="bottom left"
-          trigger={
-            <MenuItem
-              as="a"
-              href="/block-explorer.html"
-              target="_blank"
-            >
-              <Icon
-                as="i"
-                color="grey"
-                name="block layout"
-              />
-            </MenuItem>
-          }
-        />
-      </MenuMenu>
-    </Container>
-  </Menu>
-</header>
+      />
+      <Popup
+        content="Reset VMN"
+        keepInViewPort={true}
+        on="hover"
+        position="bottom left"
+        trigger={
+          <MenuItem
+            as="a"
+          >
+            <Icon
+              as="i"
+              color="black"
+              name="erase"
+            />
+          </MenuItem>
+        }
+      />
+      <Popup
+        content="Block Explorer"
+        keepInViewPort={true}
+        on="hover"
+        position="bottom left"
+        trigger={
+          <MenuItem
+            as="a"
+            href="/block-explorer.html"
+            target="_blank"
+          >
+            <Icon
+              as="i"
+              color="black"
+              name="block layout"
+            />
+          </MenuItem>
+        }
+      />
+    </MenuMenu>
+  </Container>
+</Menu>
 `;

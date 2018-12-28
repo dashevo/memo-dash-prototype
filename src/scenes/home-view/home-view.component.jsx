@@ -12,7 +12,7 @@ export class HomeViewComponent extends Component {
   render() {
     return (
       <React.Fragment>
-        <Container text style={{ marginTop: '7em' }}>
+        <Container text style={{ paddingTop: '7em' }}>
           <PostMemoContainer />
           <MemosContainer memos={this.props.memos} />
         </Container>

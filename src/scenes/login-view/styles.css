@@ -1,15 +1,22 @@
-/* body > div,
-body > div > div,
-body > div > div > div.login-form,
-.login-form-grid {
-  height: 100%;
-}
- */
-
 .login-form {
   position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 450px;
+}
+
+.login-form .ui.header {
+  font-size: 4rem;
+  margin-bottom: 4rem;
+}
+
+.login-form .ui.segment {
+  border: none;
+}
+
+.login-form .ui.input > input {
+  font-size: 1.6rem;
+  font-weight: 700;
+  padding-top: 0.5em;
+  padding-bottom: 0.5em;
 }

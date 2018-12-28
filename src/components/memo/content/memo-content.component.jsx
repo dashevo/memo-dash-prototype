@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Comment, Button } from 'semantic-ui-react'
+import { Comment, Button, Icon } from 'semantic-ui-react'
 import dayjs from 'dayjs'
 import relativeTime from 'dayjs/plugin/relativeTime'
 import MemoFormContainer from '../form/memo-form.container'
@@ -42,13 +42,25 @@ class MemoComponent extends Component {
     return (
       <Comment.Content>
         {showEdit ? (
-          <Button icon="edit" size="mini" floated="right" color="grey" basic onClick={this.edit} />
+          <Button
+            as="div"
+            className="edit-button"
+            labelPosition="right"
+            size="mini"
+            floated="right"
+            onClick={this.edit}
+          >
+            <Button basic>
+              <Icon name="pencil" />
+              Edit
+            </Button>
+          </Button>
         ) : null}
         <Comment.Author as="a" onClick={this.goToProfile}>
           {memo.username}
         </Comment.Author>
         <Comment.Metadata>
-          <span>{dayjs(memo.memoDatetime).from()}</span>
+          <span>posted {dayjs(memo.memoDatetime).from()}</span>
         </Comment.Metadata>
         {editing ? (
           <MemoFormContainer

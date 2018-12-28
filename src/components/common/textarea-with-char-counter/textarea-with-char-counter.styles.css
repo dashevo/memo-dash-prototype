@@ -8,6 +8,8 @@
   margin-right: 1px;
   user-select: none;
   cursor: initial;
+  font-size: 1rem;
+  font-weight: bold;
 }
 
 .text-area-with-char-counter .field > textarea {

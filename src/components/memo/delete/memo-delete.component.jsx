@@ -1,5 +1,5 @@
 import React, { Fragment, Component } from 'react'
-import { Button, Modal } from 'semantic-ui-react'
+import { Button, Modal, Icon } from 'semantic-ui-react'
 
 export default class MemoDeleteComponent extends Component {
   state = {
@@ -26,7 +26,13 @@ export default class MemoDeleteComponent extends Component {
 
     return (
       <Fragment>
-        <Button icon="trash" size="mini" floated="right" color="red" basic onClick={this.show} />
+        <Button as="div" labelPosition="right" size="mini" floated="right" onClick={this.show}>
+          <Button basic>
+            <Icon name="trash" />
+            Delete
+          </Button>
+        </Button>
+
         {opened ? (
           <Modal size="mini" open={opened} onClose={e => this.close(e)}>
             <Modal.Header>Delete Memo</Modal.Header>

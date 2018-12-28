@@ -1,0 +1,8 @@
+.memo-form {
+  text-align: right;
+  margin-bottom: 5px;
+}
+
+.memo-form .ui.button {
+  margin-left: 5px;
+}

@@ -1,165 +1,159 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`<LoginViewComponent /> renders error message if login failed 1`] = `
-<div
-  className="login-form"
->
-  <Grid
-    className="login-form-grid"
-    textAlign="center"
-    verticalAlign="middle"
+<Fragment>
+  <Menu
+    borderless={true}
+    color="blue"
+    fixed="top"
+    size="tiny"
+    stackable={true}
   >
-    <GridColumn
-      style={
-        Object {
-          "maxWidth": 450,
-        }
-      }
+    <Container>
+      <MenuItem
+        as="a"
+        header={true}
+      >
+        <Logo />
+        <div
+          className="active"
+        >
+          MemoDash
+        </div>
+      </MenuItem>
+    </Container>
+  </Menu>
+  <div
+    className="login-form"
+  >
+    <Form
+      as="form"
+      onSubmit={[Function]}
+      size="large"
     >
-      <Grid>
-        <GridRow
-          columns={2}
+      <Segment>
+        <Header
+          as="h2"
+          color="blue"
         >
-          <GridColumn
-            textAlign="right"
-            verticalAlign="middle"
-            width={4}
+          <Responsive
+            getWidth={[Function]}
+            maxWidth={767}
+            minWidth={320}
           >
-            <Logo />
-          </GridColumn>
-          <GridColumn
-            textAlign="left"
-            verticalAlign="middle"
-            width={12}
+            Log-in
+          </Responsive>
+          <Responsive
+            getWidth={[Function]}
+            minWidth={768}
           >
-            <Header
-              as="h2"
-              color="blue"
-            >
-              Log-in to your account
-            </Header>
-          </GridColumn>
-        </GridRow>
-      </Grid>
-      <Form
-        as="form"
-        onSubmit={[Function]}
-        size="large"
-      >
-        <Segment
-          stacked={true}
+            Log-in to your account
+          </Responsive>
+        </Header>
+        <FormInput
+          as={[Function]}
+          control={[Function]}
+          name="username"
+          onChange={[Function]}
+          placeholder="Username"
+          required={true}
+          value="alice"
+        />
+        <br />
+        <Button
+          as="button"
+          color="blue"
+          role="button"
+          size="large"
         >
-          <FormInput
-            as={[Function]}
-            control={[Function]}
-            fluid={true}
-            icon="user"
-            iconPosition="left"
-            name="username"
-            onChange={[Function]}
-            placeholder="Username"
-            required={true}
-            value="alice"
-          />
-          <Button
-            as="button"
-            color="blue"
-            fluid={true}
-            role="button"
-            size="large"
-          >
-            Login
-          </Button>
-        </Segment>
-      </Form>
-      <Message
-        hidden={false}
-        negative={true}
-      >
-        LoginError
-      </Message>
-    </GridColumn>
-  </Grid>
-</div>
+          Login
+        </Button>
+      </Segment>
+    </Form>
+    <Message
+      hidden={false}
+      negative={true}
+    >
+      LoginError
+    </Message>
+  </div>
+</Fragment>
 `;
 
 exports[`<LoginViewComponent /> renders without crashing 1`] = `
-<div
-  className="login-form"
->
-  <Grid
-    className="login-form-grid"
-    textAlign="center"
-    verticalAlign="middle"
+<Fragment>
+  <Menu
+    borderless={true}
+    color="blue"
+    fixed="top"
+    size="tiny"
+    stackable={true}
   >
-    <GridColumn
-      style={
-        Object {
-          "maxWidth": 450,
-        }
-      }
-    >
-      <Grid>
-        <GridRow
-          columns={2}
-        >
-          <GridColumn
-            textAlign="right"
-            verticalAlign="middle"
-            width={4}
-          >
-            <Logo />
-          </GridColumn>
-          <GridColumn
-            textAlign="left"
-            verticalAlign="middle"
-            width={12}
-          >
-            <Header
-              as="h2"
-              color="blue"
-            >
-              Log-in to your account
-            </Header>
-          </GridColumn>
-        </GridRow>
-      </Grid>
-      <Form
-        as="form"
-        onSubmit={[Function]}
-        size="large"
+    <Container>
+      <MenuItem
+        as="a"
+        header={true}
       >
-        <Segment
-          stacked={true}
+        <Logo />
+        <div
+          className="active"
         >
-          <FormInput
-            as={[Function]}
-            control={[Function]}
-            fluid={true}
-            icon="user"
-            iconPosition="left"
-            name="username"
-            onChange={[Function]}
-            placeholder="Username"
-            required={true}
-            value="alice"
-          />
-          <Button
-            as="button"
-            color="blue"
-            fluid={true}
-            role="button"
-            size="large"
+          MemoDash
+        </div>
+      </MenuItem>
+    </Container>
+  </Menu>
+  <div
+    className="login-form"
+  >
+    <Form
+      as="form"
+      onSubmit={[Function]}
+      size="large"
+    >
+      <Segment>
+        <Header
+          as="h2"
+          color="blue"
+        >
+          <Responsive
+            getWidth={[Function]}
+            maxWidth={767}
+            minWidth={320}
           >
-            Login
-          </Button>
-        </Segment>
-      </Form>
-      <Message
-        hidden={true}
-        negative={true}
-      />
-    </GridColumn>
-  </Grid>
-</div>
+            Log-in
+          </Responsive>
+          <Responsive
+            getWidth={[Function]}
+            minWidth={768}
+          >
+            Log-in to your account
+          </Responsive>
+        </Header>
+        <FormInput
+          as={[Function]}
+          control={[Function]}
+          name="username"
+          onChange={[Function]}
+          placeholder="Username"
+          required={true}
+          value="alice"
+        />
+        <br />
+        <Button
+          as="button"
+          color="blue"
+          role="button"
+          size="large"
+        >
+          Login
+        </Button>
+      </Segment>
+    </Form>
+    <Message
+      hidden={true}
+      negative={true}
+    />
+  </div>
+</Fragment>
 `;

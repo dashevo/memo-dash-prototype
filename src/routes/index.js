@@ -8,10 +8,10 @@ import HeaderContainer from '../components/header/header.container'
 import UsersViewContainer from '../scenes/users-view/users-view.container'
 
 const withHeader = WrappedComponent => props => (
-  <React.Fragment>
+  <div style={{ backgroundColor: '#f1f1f1' }}>
     <HeaderContainer />
     <WrappedComponent {...props} />
-  </React.Fragment>
+  </div>
 )
 
 const routes = (

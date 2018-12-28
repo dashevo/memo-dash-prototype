@@ -3,6 +3,7 @@
 exports[`<MemoFormComponent /> should render without crashing 1`] = `
 <Form
   as="form"
+  className="memo-form"
   onClick={[Function]}
   reply={true}
 >
@@ -19,8 +20,6 @@ exports[`<MemoFormComponent /> should render without crashing 1`] = `
     as="button"
     content="Add Reply"
     disabled={true}
-    icon="edit"
-    labelPosition="left"
     primary={true}
     role="button"
     size="mini"

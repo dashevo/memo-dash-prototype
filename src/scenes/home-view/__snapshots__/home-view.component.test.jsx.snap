@@ -5,7 +5,7 @@ exports[`<HomeViewComponent /> renders without crashing 1`] = `
   <Container
     style={
       Object {
-        "marginTop": "7em",
+        "paddingTop": "7em",
       }
     }
     text={true}
