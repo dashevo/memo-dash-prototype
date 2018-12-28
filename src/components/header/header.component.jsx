@@ -1,5 +1,5 @@
 import React from 'react'
-import { Menu, Container, Popup, Icon, Responsive, Button } from 'semantic-ui-react'
+import { Menu, Container, Popup, Icon } from 'semantic-ui-react'
 import Logo from '../logo/logo.component'
 import UserMenuContainer from './user-menu/user-menu.container'
 import SearchContainer from '../search/search.container'

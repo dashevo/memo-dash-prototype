@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Button, Form, Grid, Header, Message, Segment, Menu, Container, Responsive } from 'semantic-ui-react'
+import { Button, Form, Header, Message, Segment, Menu, Container, Responsive } from 'semantic-ui-react'
 import Logo from '../../components/logo/logo.component'
 import './styles.css'
 
