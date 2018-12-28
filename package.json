@@ -23,14 +23,15 @@
     "redux-logger": "^3.0.6",
     "redux-thunk": "^2.3.0",
     "reselect": "^4.0.0",
-    "semantic-ui-css": "^2.4.1",
     "semantic-ui-react": "^0.83.0",
     "yup": "0.26.6"
   },
   "scripts": {
-    "start": "react-app-rewired start",
+    "build-semantic": "cd src/semantic && gulp build-css build-assets",
+    "watch-semantic": "cd src/semantic && npm run build-semantic && gulp watch",
+    "start": "npm run build-semantic && react-app-rewired start",
     "start:prod": "node ./server.js",
-    "build": "react-app-rewired build",
+    "build": "npm run build-semantic &&react-app-rewired build",
     "test": "react-app-rewired test --env=jsdom",
     "eject": "react-scripts eject",
     "predeploy": "npm run build",
@@ -41,9 +42,11 @@
     "enzyme-adapter-react-16": "^1.6.0",
     "express": "^4.16.4",
     "gh-pages": "^2.0.1",
+    "gulp": "^3.9.1",
     "jest-enzyme": "^7.0.0",
     "jest-localstorage-mock": "^2.2.0",
-    "redux-mock-store": "^1.5.3"
+    "redux-mock-store": "^1.5.3",
+    "semantic-ui": "^2.4.2"
   },
   "browserslist": [
     ">0.2%",

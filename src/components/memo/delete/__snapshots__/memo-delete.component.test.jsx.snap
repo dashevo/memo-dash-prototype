@@ -3,15 +3,25 @@
 exports[`<MemoDeleteComponent /> should render button and modal if opened 1`] = `
 <Fragment>
   <Button
-    as="button"
-    basic={true}
-    color="red"
+    as="div"
     floated="right"
-    icon="trash"
+    labelPosition="right"
     onClick={[Function]}
     role="button"
     size="mini"
-  />
+  >
+    <Button
+      as="button"
+      basic={true}
+      role="button"
+    >
+      <Icon
+        as="i"
+        name="trash"
+      />
+      Delete
+    </Button>
+  </Button>
   <Modal
     centered={true}
     closeOnDimmerClick={true}
@@ -56,29 +66,49 @@ exports[`<MemoDeleteComponent /> should render button and modal if opened 1`] = 
 exports[`<MemoDeleteComponent /> should render only button if not opened 1`] = `
 <Fragment>
   <Button
-    as="button"
-    basic={true}
-    color="red"
+    as="div"
     floated="right"
-    icon="trash"
+    labelPosition="right"
     onClick={[Function]}
     role="button"
     size="mini"
-  />
+  >
+    <Button
+      as="button"
+      basic={true}
+      role="button"
+    >
+      <Icon
+        as="i"
+        name="trash"
+      />
+      Delete
+    </Button>
+  </Button>
 </Fragment>
 `;
 
 exports[`<MemoDeleteComponent /> should render without crashing 1`] = `
 <Fragment>
   <Button
-    as="button"
-    basic={true}
-    color="red"
+    as="div"
     floated="right"
-    icon="trash"
+    labelPosition="right"
     onClick={[Function]}
     role="button"
     size="mini"
-  />
+  >
+    <Button
+      as="button"
+      basic={true}
+      role="button"
+    >
+      <Icon
+        as="i"
+        name="trash"
+      />
+      Delete
+    </Button>
+  </Button>
 </Fragment>
 `;

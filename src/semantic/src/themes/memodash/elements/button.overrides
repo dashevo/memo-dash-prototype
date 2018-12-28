@@ -1,0 +1,12 @@
+.ui.button,
+.ui.basic.button {
+  border-top-left-radius: 13px;
+  border-bottom-right-radius: 13px;
+  border-top-right-radius: 1px;
+  border-bottom-left-radius: 1px;
+}
+
+.ui.basic.button {
+  padding: 0 @horizontalBasicPadding 0;
+  font-size: 0.9rem;
+}

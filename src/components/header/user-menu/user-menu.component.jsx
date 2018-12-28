@@ -1,9 +1,11 @@
 import React from 'react'
 import { Dropdown, Image } from 'semantic-ui-react'
+import './user-menu.component.styles.css'
 
 const trigger = (username, avatarUrl) => (
   <span>
-    <Image src={avatarUrl} size="mini" spaced="right" circular />Hello, {username}
+    <Image src={avatarUrl} size="mini" spaced="right" className="user-menu-avatar" />
+    {username}
   </span>
 )
 

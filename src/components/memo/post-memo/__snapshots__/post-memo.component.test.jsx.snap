@@ -3,49 +3,35 @@
 exports[`<PostMemoComponent /> renders without crashing 1`] = `
 <Segment
   className="post-memo"
-  color="blue"
 >
   <Form
     as="form"
   >
     <div>
-      <Segment
+      <TextAreaWithCharCounter
+        autoHeight={true}
+        className=" error"
+        key="message"
+        maxLength={144}
+        name="message"
+        placeholder="Your Message"
         style={
           Object {
-            "border": "none",
-            "boxShadow": "none",
-            "margin": 0,
-            "padding": 0,
+            "height": "100%",
+            "minHeight": 20,
           }
         }
-      >
-        <TextAreaWithCharCounter
-          autoHeight={true}
-          className=" error"
-          key="message"
-          maxLength={144}
-          name="message"
-          placeholder="Your Message"
-          style={
-            Object {
-              "height": "100%",
-              "minHeight": 20,
-            }
-          }
-          value="message"
-        />
-      </Segment>
+        value="message"
+      />
+      <Button
+        as="button"
+        content="Post Memo"
+        disabled={true}
+        primary={true}
+        role="button"
+        type="submit"
+      />
     </div>
-    <Button
-      as="button"
-      content="Post Memo"
-      disabled={true}
-      icon="edit"
-      labelPosition="left"
-      primary={true}
-      role="button"
-      type="submit"
-    />
   </Form>
 </Segment>
 `;

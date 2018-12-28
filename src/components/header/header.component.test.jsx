@@ -48,7 +48,10 @@ describe('<HeaderComponent />', () => {
     })
 
     it('should call onHomeClicked when clicked on logo', () => {
-      findMenuItem(wrapper, 'MemoDash').simulate('click')
+      wrapper
+        .find(Menu.Item)
+        .filter({ header: true })
+        .simulate('click')
       expect(spies.onHomeClicked).toHaveBeenCalled()
     })
 

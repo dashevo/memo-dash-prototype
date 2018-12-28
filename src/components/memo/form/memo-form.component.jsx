@@ -2,6 +2,8 @@ import React from 'react'
 import { Button, Form } from 'semantic-ui-react'
 import TextAreaWithCharCounter from '../../common/textarea-with-char-counter/textarea-with-char-counter.component'
 
+import './memo-form.component.styles.css'
+
 const MemoFormComponent = props => {
   const {
     values,
@@ -15,7 +17,7 @@ const MemoFormComponent = props => {
     buttonLabel
   } = props
   return (
-    <Form reply onSubmit={handleSubmit} onClick={e => e.stopPropagation()}>
+    <Form reply onSubmit={handleSubmit} onClick={e => e.stopPropagation()} className="memo-form">
       <TextAreaWithCharCounter
         autoFocus
         autoHeight
@@ -32,8 +34,6 @@ const MemoFormComponent = props => {
         type="submit"
         size="mini"
         content={buttonLabel}
-        labelPosition="left"
-        icon="edit"
         primary
         disabled={isSubmitting || !!errors.message || !values.message}
       />

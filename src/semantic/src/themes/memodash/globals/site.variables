@@ -1,0 +1,38 @@
+/*-------------------
+      Site Colors
+--------------------*/
+
+/*-------------------
+       Fonts
+--------------------*/
+
+// @fontName : 'Roboto Condensed';
+// @headerFont : 'Montserrat', 'Helvetica Neue', Arial, Helvetica, sans-serif;
+// @pageFont : @fontName, 'Helvetica Neue', Arial, Helvetica, sans-serif;
+// @googleFontname : @fontName;
+
+/*---  Colors  ---*/
+@dashBlue : #008de4;
+@deepBlue : #012060;
+@midnightBlue : #0b0f3b;
+@white : #FFFFFF;
+@gray : #787878; 
+@black : #111921;
+
+@lighterGray: #f1f1f1;
+@lightGray: #E8E8E8;
+@mediumGray: #A6A6A6;
+
+
+/*-------------------
+    Brand Colors
+--------------------*/
+
+@primaryColor : @dashBlue;
+@secondaryColor : @gray;
+
+/*-------------------
+        Page
+--------------------*/
+
+@pageBackground : @lighterGray;

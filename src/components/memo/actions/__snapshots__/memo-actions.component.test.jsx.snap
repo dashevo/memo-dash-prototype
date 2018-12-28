@@ -23,7 +23,7 @@ exports[`<MemoActionsComponent /> should render foreign memo 1`] = `
     >
       <Icon
         as="i"
-        color="grey"
+        color=""
         name="like"
       />
       <span>
@@ -35,10 +35,9 @@ exports[`<MemoActionsComponent /> should render foreign memo 1`] = `
       name="tipAction"
       onClick={[Function]}
     >
-      <Icon
-        as="i"
-        color="grey"
-        name="btc"
+      <_default
+        backgroundColor="gray"
+        color="white"
       />
       <span>
         0
@@ -83,10 +82,9 @@ exports[`<MemoActionsComponent /> should render foreign memo liked by current us
       name="tipAction"
       onClick={[Function]}
     >
-      <Icon
-        as="i"
-        color="grey"
-        name="btc"
+      <_default
+        backgroundColor="gray"
+        color="white"
       />
       <span>
         0
@@ -119,7 +117,7 @@ exports[`<MemoActionsComponent /> should render memo with reply form 1`] = `
     >
       <Icon
         as="i"
-        color="grey"
+        color=""
         name="like"
       />
       <span>
@@ -131,10 +129,9 @@ exports[`<MemoActionsComponent /> should render memo with reply form 1`] = `
       name="tipAction"
       onClick={[Function]}
     >
-      <Icon
-        as="i"
-        color="grey"
-        name="btc"
+      <_default
+        backgroundColor="gray"
+        color="white"
       />
       <span>
         0
@@ -173,7 +170,7 @@ exports[`<MemoActionsComponent /> should render own memo 1`] = `
     >
       <Icon
         as="i"
-        color="grey"
+        color=""
         name="like"
       />
       <span>
@@ -185,10 +182,9 @@ exports[`<MemoActionsComponent /> should render own memo 1`] = `
       name="tipAction"
       onClick={[Function]}
     >
-      <Icon
-        as="i"
-        color="grey"
-        name="btc"
+      <_default
+        backgroundColor="gray"
+        color="white"
       />
       <span>
         0
@@ -221,7 +217,7 @@ exports[`<MemoActionsComponent /> should render without crashing 1`] = `
     >
       <Icon
         as="i"
-        color="grey"
+        color=""
         name="like"
       />
       <span>
@@ -233,10 +229,9 @@ exports[`<MemoActionsComponent /> should render without crashing 1`] = `
       name="tipAction"
       onClick={[Function]}
     >
-      <Icon
-        as="i"
-        color="grey"
-        name="btc"
+      <_default
+        backgroundColor="gray"
+        color="white"
       />
       <span>
         0

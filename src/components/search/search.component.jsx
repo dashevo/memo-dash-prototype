@@ -72,6 +72,8 @@ export default class SearchComponent extends Component {
             onSearchChange={_.debounce(this.handleSearchChange, 500, { leading: true })}
             results={results}
             value={value}
+            placeholder="Search MemoDash"
+            size="tiny"
           />
         </Grid.Column>
       </Grid>

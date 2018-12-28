@@ -1,6 +1,7 @@
 import React, { Component, Fragment } from 'react'
 import { Comment, Icon } from 'semantic-ui-react'
 import MemoFormContainer from '../form/memo-form.container'
+import DashIcon from '../../icons/DashIcon'
 
 class MemoComponent extends Component {
   constructor(props) {
@@ -64,11 +65,12 @@ class MemoComponent extends Component {
             </Comment.Action>
           )}
           <Comment.Action name="likeAction" as={!isMemoOfCurrentUser ? 'a' : 'span'} onClick={this.likeMemo}>
-            <Icon name="like" color={likedByCurrentUser ? 'red' : 'grey'} />
+            <Icon name="like" color={likedByCurrentUser ? 'red' : ''} />
             <span>{memo.memoLikesCount}</span>
           </Comment.Action>
           <Comment.Action name="tipAction" onClick={e => e.stopPropagation()}>
-            <Icon name="btc" color="grey" />
+            {/* <Icon name="btc" /> */}
+            <DashIcon color="white" backgroundColor="gray" />
             <span>{memo.memoTipTotal}</span>
           </Comment.Action>
         </Comment.Actions>

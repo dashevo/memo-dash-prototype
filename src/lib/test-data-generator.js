@@ -50,7 +50,7 @@ const createUsers = async (client, ...users) => {
 
     // post memos
     for (let i = 0; i < 3; i++) {
-      await client.postMemo(faker.lorem.sentence())
+      await client.postMemo(faker.lorem.sentence(faker.random.number({ min: 13, max: 20 })))
     }
 
     client.logout()

@@ -59,7 +59,7 @@ describe('<MemoContentComponent />', () => {
       expect(wrapper.state().editing).toEqual(false)
       wrapper
         .find(Button)
-        .filter({ icon: 'edit' })
+        .filter({ className: 'edit-button' })
         .simulate('click', fakeClickEvent)
 
       expect(wrapper.state().editing).toEqual(true)
