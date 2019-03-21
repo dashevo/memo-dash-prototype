@@ -1,8 +1,8 @@
 import { InitActionTypes, initMemoDashClient, initFinished } from './init.actions'
 import { verifyAction, mockStoreAndDispatch, getAction } from '../../test-utils/actions.test-helper'
 
-import MemoDashLib from '../../lib/memo-dash.lib'
-jest.mock('../../lib/memo-dash.lib')
+import MemoDashLib from '../../lib/memo-dash.lib.vmn'
+jest.mock('../../lib/memo-dash.lib.vmn')
 
 describe('init actions', () => {
   beforeEach(() => {

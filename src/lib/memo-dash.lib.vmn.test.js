@@ -1,4 +1,4 @@
-import MemoDashLib from './memo-dash.lib'
+import MemoDashLib from './memo-dash.lib.vmn'
 import { testUsers, testMemos } from '../test-utils/test-data'
 import { combineMemoId } from '../store/reducers/memo.reducer'
 

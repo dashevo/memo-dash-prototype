@@ -1,4 +1,4 @@
-import MemoDashLib from '../../lib/memo-dash.lib'
+import MemoDashLib from '../../lib/memo-dash.lib.vmn'
 
 const InitActionTypes = {
   INIT_FINISHED: 'INIT_FINISHED'
