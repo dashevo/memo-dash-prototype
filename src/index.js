@@ -1,7 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import { Provider } from 'react-redux'
-import './semantic/dist/semantic.min.css'
 import registerServiceWorker from './registerServiceWorker'
 import { history, store } from './store'
 import App from './app'

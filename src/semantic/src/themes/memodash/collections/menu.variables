@@ -1,7 +1,0 @@
-@dropdownItemFontSize: 16px;
-
-/* Menu Item */
-@itemVerticalPadding: @relativeMassive * 0.5;
-@itemHorizontalPadding: @relativeMassive;
-
-@boxShadow: none;
