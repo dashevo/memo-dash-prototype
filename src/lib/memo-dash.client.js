@@ -1,4 +1,25 @@
-class MemoDashClient {
+import DAPIClient from '@dashevo/dapi-client'
+import DashPlatformProtocol, { entropy } from '@dashevo/dpp'
+import { PrivateKey, PublicKey, Address } from '@dashevo/dashcore-lib'
+
+import memoDashContract from './memo-dash.contract'
+
+export class MemoDashClient {
+  constructor(networkType, seeds, privateKey) {
+    this.dpp = new DashPlatformProtocol()
+    this.dapiClient = new DAPIClient({ seeds })
+
+    faucetPrivateKey = new PrivateKey(privateKey)
+    const faucetPublicKey = PublicKey.fromPrivateKey(faucetPrivateKey)
+    faucetAddress = Address.fromPublicKey(
+      faucetPublicKey,
+      networkType === 'devnet' ? 'testnet' : networkType
+    ).toString()
+
+    const contract = dpp.contract.create(entropy.generate(), memoDashContract)
+    dpp.setContract(contract)
+  }
+
   /**
    * Returns user id for the given username.
    * @param {string} username
@@ -229,5 +250,3 @@ class MemoDashClient {
    *
    */
 }
-
-module.exports = MemoDashClient
