@@ -1,4 +1,4 @@
-// https://github.com/dashevo/js-dpp/blob/master/lib/test/fixtures/getDPContractFixture.js
+// https://github.com/dashevo/js-dpp/blob/master/lib/test/fixtures/getContractFixture.js
 
 export default {
   profile: {
