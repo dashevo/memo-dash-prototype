@@ -5,9 +5,9 @@
   "homepage": "https://dashevo.github.io/memo-dash",
   "dependencies": {
     "@dashevo/dash-schema": "dashevo/dash-platform.git#v3_develop",
-    "@dashevo/dashcore-lib": "^0.17.0",
-    "@dashevo/dapi-client": "github:dashevo/dapi-client#v0.3.0",
-    "@dashevo/dpp": "github:dashevo/js-dpp#v0.4.7",
+    "@dashevo/dashcore-lib": "^0.17.4",
+    "@dashevo/dapi-client": "^0.4.3",
+    "@dashevo/dpp": "^0.7.1",
     "connected-react-router": "^4.5.0",
     "dayjs": "^1.7.7",
     "debug": "^4.1.0",

@@ -1,78 +1,208 @@
-import { MemoDashClient } from './memo-dash.client'
+/**
+ * @jest-environment node
+ */
 
-describe('MemoDashClient', () => {
-  const DAPI_CLIENT_SEEDS = 'devnet-porto.thephez.com'
-  const DAPI_CLIENT_PORT = 3000
+import { MemoDashClient } from "./memo-dash.client";
+
+const randomString = () =>
+  Math.random()
+    .toString(36)
+    .substring(7);
+
+describe("MemoDashClient", () => {
+  const MEMO_DASH_USER_PRIVATE_KEY =
+    process.env.REACT_APP_MEMO_DASH_USER_PRIVATE_KEY;
+
+  const DAPI_CLIENT_SEEDS = process.env.REACT_APP_DAPI_CLIENT_SEEDS;
+  const DAPI_CLIENT_PORT = process.env.REACT_APP_DAPI_CLIENT_PORT;
   // https://github.com/dashevo/dash-network-configs/blob/master/devnet-porto/devnet-porto.yml#L11
-  const FAUCET_PRIVATE_KEY = 'cR4t6evwVZoCp1JsLk4wURK4UmBCZzZotNzn9T1mhBT19SH9JtNt'
-  const NETWORK = 'devnet'
+  const FAUCET_PRIVATE_KEY = process.env.REACT_APP_FAUCET_PRIVATE_KEY;
+  const NETWORK = process.env.REACT_APP_NETWORK;
 
-  let client = null
-  // let bobClient = null
+  let client = null;
+  let seeds = null;
+
+  let alice = null;
+  let bob = null;
+  let charlie = null;
 
   // Create DPP
-  beforeAll(() => {})
-
-  // Prepare clients
   beforeAll(() => {
-    const seeds = DAPI_CLIENT_SEEDS.split(',').map(ip => ({
-      service: `${ip}:${DAPI_CLIENT_PORT}`
-    }))
+    jest.setTimeout(50000);
+  });
 
-    client = new MemoDashClient(NETWORK, seeds, FAUCET_PRIVATE_KEY)
-    // bobClient = new MemoDashClient(NETWORK, seeds, FAUCET_PRIVATE_KEY)
-  })
+  // Prepare memo-dash client
+  beforeAll(async () => {
+    seeds = DAPI_CLIENT_SEEDS.split(",").map(ip => ({
+      service: `${ip}:${DAPI_CLIENT_PORT}`
+    }));
+
+    client = new MemoDashClient(
+      NETWORK,
+      seeds,
+      "memo-dash",
+      FAUCET_PRIVATE_KEY,
+      MEMO_DASH_USER_PRIVATE_KEY
+    );
+
+    await client.publishContract();
+    await client.dapiClient.generate(1);
+  });
 
   // Create Blockchain Users
-  beforeAll(() => {
-    // Register Alice's Blockchain User
-    // aliceClient.
-    // aliceClient.DAPI.CreateUser(data.alice_subtx_1);
-    // aliceClient.DAPI.DashCore.mineBlock();
-    // let bu = aliceClient.DAPI.GetUserByName(data.alice_subtx_1.subtx.uname);
-    // let {valid} = Schema.validate.blockchainuser(bu);
-    // expect(valid).to.be.true();
-  })
+  beforeAll(async () => {
+    alice = {
+      username: randomString(),
+      name: "Alice",
+      address: "Alices Address"
+    };
 
-  before("Register Alice's DAP in the Platform DAP", async () => {})
+    bob = {
+      username: randomString(),
+      name: "Bob",
+      address: "Bobs Address"
+    };
 
-  describe('init', () => {
-    it('should create the contract', () => {})
-  })
+    charlie = {
+      username: randomString(),
+      name: "Charlie",
+      address: "Charlies Address"
+    };
+  });
 
-  describe('Profile', function() {
-    it.only('should be able to signup', async () => {})
-    it('should not be able to signup twice', async () => {})
-    it('should be able to update profile', async () => {})
-    it('should be able to list profiles', async () => {})
-  })
+  describe.skip("User", () => {
+    it.only("should be able to signup user", async () => {
+      await client.signup(alice.username, alice.name, alice.address);
+      await client.signup(bob.username, bob.name, bob.address);
+      await client.signup(charlie.username, charlie.name, charlie.address);
 
-  describe.skip('Memo', function() {
-    it('should be able to post memo', async () => {})
-    it("should be able to read other user's memo", async () => {})
-    it('should be able to edit memo', async () => {})
-    it('should be able to list all memos', async () => {})
-    it('should be able to delete memo', async () => {})
-  })
+      await client.dapiClient.generate(1);
+      await new Promise(res => setTimeout(res, 5000));
 
-  describe.skip('MemoReply', function() {
-    it('should reply to memo', async () => {})
-    it('should read replies to memo', async () => {})
-    it('should delete reply to memo', async () => {})
-  })
+      expect(
+        (await client.dapiClient.getUserByName(alice.username)).uname
+      ).toEqual(alice.username);
+      expect(
+        (await client.dapiClient.getUserByName(bob.username)).uname
+      ).toEqual(bob.username);
+      expect(
+        (await client.dapiClient.getUserByName(charlie.username)).uname
+      ).toEqual(charlie.username);
+    });
 
-  describe.skip('Like', function() {
-    it('should like memo', async () => {})
-    it('should not be able to like one memo twice', async () => {})
-    it('should remove like', async () => {})
-    it('should tip memo', async () => {})
-  })
+    it.only("should not be able to signup twice", async () => {
+      try {
+        await client.signup(alice.username);
+        // Fail test if above expression doesn't throw anything.
+        expect(true).toBe(false);
+      } catch (e) {
+        expect(e.message).toBe(`User ${alice.username} already exists`);
+      }
+    });
+  });
 
-  describe.skip('Follow', function() {
-    it('should follow another user', async () => {})
-    it("shouldn't follow user twice", async () => {})
-    it('should list user followers', async () => {})
-    it('should list users that you are following', async () => {})
-    it('should unfollow another user', async () => {})
-  })
-})
+  describe("Contract", () => {
+    it.only("should create and publish contract", async () => {
+      const contractName = randomString();
+
+      try {
+        await client.dapiClient.fetchContract(contractName);
+        // Fail test if above expression doesn't throw anything.
+        expect(true).toBe(false);
+      } catch (e) {}
+
+      const newClient = new MemoDashClient(
+        NETWORK,
+        seeds,
+        contractName,
+        FAUCET_PRIVATE_KEY,
+        MEMO_DASH_USER_PRIVATE_KEY
+      );
+
+      await newClient.publishContract();
+
+      const contract = await newClient.dapiClient.fetchContract(contractName);
+      expect(contract).toBeDefined();
+      //await client.signup("alice.username", alice.name, alice.address);
+      //const userId = client.dpp.getUserId();
+      //client._createContract(userId);
+    });
+  });
+
+  describe.skip("unsorted", () => {
+    it("should be able to login user", async () => {
+      await client.login(alice.username);
+      expect(client.currentUser).toMatchSnapshot();
+
+      const userId = await client.getUserId(alice.username);
+      expect(client.dpp.getUserId()).toBe(userId);
+      expect(client.isAuthed).toBeTruthy();
+    });
+
+    it("should be able to logout user", async () => {
+      await client.logout(alice.username);
+      expect(client.currentUser).toBe(undefined);
+      expect(client.dpp.getUserId()).toBe(undefined);
+      expect(client.isAuthed).toBeFalsy();
+    });
+
+    it("should be able to search for users", async () => {
+      const users = await client.searchBlockchainUsers(
+        alice.username.substring(0, 3)
+      );
+      expect(users).toMatchSnapshot();
+    });
+
+    it("should be able to get multiple users", async () => {
+      const users = await client.getUsers([alice.username, bob.username]);
+      expect(users).toMatchSnapshot();
+    });
+
+    it("should be able to get all users", async () => {
+      const users = await client.getAllUsers();
+      expect(users.totalCount).toBeGreaterThan(2);
+    });
+
+    describe("Profile", function() {
+      it("should be able to get user profile", async () => {
+        const userId = await client.getUserId(alice.username);
+        const profile = await client.getUserProfile(userId);
+
+        expect(profile).toMatchSnapshot();
+      });
+      it.skip("should be able to update profile", async () => {});
+      it.skip("should be able to list profiles", async () => {});
+    });
+
+    /*
+  
+      describe.skip('Memo', function() {
+      it('should be able to post memo', async () => {})
+      it("should be able to read other user's memo", async () => {})
+      it('should be able to edit memo', async () => {})
+      it('should be able to list all memos', async () => {})
+      it('should be able to delete memo', async () => {})
+    })
+  
+    describe.skip('MemoReply', function() {
+      it('should reply to memo', async () => {})
+      it('should read replies to memo', async () => {})
+      it('should delete reply to memo', async () => {})
+    })
+  
+    describe.skip('Like', function() {
+      it('should like memo', async () => {})
+      it('should not be able to like one memo twice', async () => {})
+      it('should remove like', async () => {})
+      it('should tip memo', async () => {})
+    })
+  
+    describe.skip('Follow', function() {
+      it('should follow another user', async () => {})
+      it("shouldn't follow user twice", async () => {})
+      it('should list user followers', async () => {})
+      it('should list users that you are following', async () => {})
+      it('should unfollow another user', async () => {})
+    }) */
+  });
+});

@@ -1,0 +1,442 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="3350ec51-b897-4454-9938-e0151b673fb3" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/lib/memo-dash.client.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/lib/memo-dash.client.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/lib/memo-dash.client.test.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/lib/memo-dash.client.test.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/lib/memo-dash.contract.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/lib/memo-dash.contract.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/lib/memo-dash.lib.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/lib/memo-dash.lib.js" afterDir="false" />
+    </list>
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileEditorManager">
+    <splitter split-orientation="horizontal" split-proportion="0.5">
+      <split-first>
+        <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+          <file pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/src/lib/memo-dash.client.js">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="380">
+                  <caret line="35" column="43" selection-start-line="35" selection-start-column="43" selection-end-line="35" selection-end-column="43" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/package.json">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="152">
+                  <caret line="8" column="34" selection-start-line="8" selection-start-column="34" selection-end-line="8" selection-end-column="35" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/lib/memo-dash.contract.js">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="676">
+                  <caret line="49" column="20" selection-start-line="49" selection-start-column="20" selection-end-line="49" selection-end-column="20" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+        </leaf>
+      </split-first>
+      <split-second>
+        <leaf>
+          <file pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/src/lib/memo-dash.client.test.js">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="936">
+                  <caret line="121" column="12" selection-start-line="121" selection-start-column="12" selection-end-line="121" selection-end-column="12" />
+                  <folding>
+                    <element signature="n#!!doc" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+        </leaf>
+      </split-second>
+    </splitter>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="package.json" />
+      </list>
+    </option>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>seeds</find>
+      <find>MEMO_DASH</find>
+      <find>private</find>
+      <find>getId</find>
+      <find>Could not create user</find>
+      <find>getUserByName</find>
+      <find>expect</find>
+    </findStrings>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/src/lib/memo-dash.contract.js" />
+        <option value="$PROJECT_DIR$/src/lib/package.json" />
+        <option value="$PROJECT_DIR$/package.json" />
+        <option value="$PROJECT_DIR$/src/lib/memo-dash.client.js" />
+        <option value="$PROJECT_DIR$/src/lib/memo-dash.client.test.js" />
+      </list>
+    </option>
+  </component>
+  <component name="JsFlowSettings">
+    <service-enabled>true</service-enabled>
+    <exe-path />
+    <other-services-enabled>true</other-services-enabled>
+    <auto-save>true</auto-save>
+  </component>
+  <component name="ProjectConfigurationFiles">
+    <option name="files">
+      <list>
+        <option value="$PROJECT_DIR$/.idea/.idea.memo-dash.dir/.idea/vcs.xml" />
+        <option value="$PROJECT_DIR$/.idea/.idea.memo-dash.dir/.idea/indexLayout.xml" />
+        <option value="$PROJECT_DIR$/.idea/.idea.memo-dash.dir/.idea/misc.xml" />
+        <option value="$PROJECT_DIR$/.idea/.idea.memo-dash.dir/.idea/watcherTasks.xml" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectFrameBounds" extendedState="6" fullScreen="true">
+    <option name="width" value="1920" />
+    <option name="height" value="1200" />
+  </component>
+  <component name="ProjectView">
+    <navigator currentView="FileSystemExplorer" proportions="" version="1">
+      <autoscrollToSource FileSystemExplorer="true" />
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="AssemblyExplorer" />
+      <pane id="FileSystemExplorer">
+        <subPane>
+          <expand>
+            <path>
+              <item name="" type="161ac34:FileSystemExplorerRootNode" />
+              <item name="memo-dash" type="34e6ba20:FileSystemExplorerNode" />
+            </path>
+            <path>
+              <item name="" type="161ac34:FileSystemExplorerRootNode" />
+              <item name="memo-dash" type="34e6ba20:FileSystemExplorerNode" />
+              <item name="src" type="34e6ba20:FileSystemExplorerNode" />
+            </path>
+            <path>
+              <item name="" type="161ac34:FileSystemExplorerRootNode" />
+              <item name="memo-dash" type="34e6ba20:FileSystemExplorerNode" />
+              <item name="src" type="34e6ba20:FileSystemExplorerNode" />
+              <item name="lib" type="34e6ba20:FileSystemExplorerNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="JavaScriptWeakerCompletionTypeGuess" value="true" />
+    <property name="NewWatcherDialog.advanced.open" value="true" />
+    <property name="Rider.DefaultBreakpoints.AreToggled" value="true" />
+    <property name="Rider.ProjectViewActivator.IsNotFirstRun" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="editor.config.ad.shown" value="true" />
+    <property name="nodejs.jest.jest_package" value="$PROJECT_DIR$/node_modules/react-scripts" />
+    <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
+    <property name="nodejs_npm_path_reset_for_default_project" value="true" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="prettierjs.PrettierConfiguration.NodeInterpreter" value="project" />
+    <property name="prettierjs.PrettierConfiguration.Package" value="$PROJECT_DIR$/node_modules/prettier" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager" selected="Jest.MemoDashClient.Contract.should create and publish contract">
+    <configuration name="MemoDashClient.Contract.should create and publish contract" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
+      <node-interpreter value="project" />
+      <node-options value="" />
+      <jest-package value="$PROJECT_DIR$/node_modules/react-scripts" />
+      <working-dir value="$PROJECT_DIR$" />
+      <envs />
+      <scope-kind value="TEST" />
+      <test-file value="$PROJECT_DIR$/src/lib/memo-dash.client.test.js" />
+      <test-names>
+        <test-name value="MemoDashClient" />
+        <test-name value="Contract" />
+        <test-name value="should create and publish contract" />
+      </test-names>
+      <method v="2" />
+    </configuration>
+    <configuration name="MemoDashClient.User" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
+      <node-interpreter value="project" />
+      <node-options value="" />
+      <jest-package value="$PROJECT_DIR$/node_modules/react-scripts" />
+      <working-dir value="$PROJECT_DIR$" />
+      <envs />
+      <scope-kind value="SUITE" />
+      <test-file value="$PROJECT_DIR$/src/lib/memo-dash.client.test.js" />
+      <test-names>
+        <test-name value="MemoDashClient" />
+        <test-name value="User" />
+      </test-names>
+      <method v="2" />
+    </configuration>
+    <configuration name="MemoDashClient.User.should be able to signup user" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
+      <node-interpreter value="project" />
+      <node-options value="" />
+      <jest-package value="$PROJECT_DIR$/node_modules/react-scripts" />
+      <working-dir value="$PROJECT_DIR$" />
+      <envs />
+      <scope-kind value="TEST" />
+      <test-file value="$PROJECT_DIR$/src/lib/memo-dash.client.test.js" />
+      <test-names>
+        <test-name value="MemoDashClient" />
+        <test-name value="User" />
+        <test-name value="should be able to signup user" />
+      </test-names>
+      <method v="2" />
+    </configuration>
+    <configuration name="memo-dash.client.test.js" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
+      <node-interpreter value="project" />
+      <node-options value="" />
+      <jest-package value="$PROJECT_DIR$/node_modules/react-scripts" />
+      <working-dir value="$PROJECT_DIR$" />
+      <envs />
+      <scope-kind value="TEST_FILE" />
+      <test-file value="$PROJECT_DIR$/src/lib/memo-dash.client.test.js" />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Jest.MemoDashClient.Contract.should create and publish contract" />
+        <item itemvalue="Jest.MemoDashClient.User" />
+        <item itemvalue="Jest.MemoDashClient.User.should be able to signup user" />
+        <item itemvalue="Jest.memo-dash.client.test.js" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="3350ec51-b897-4454-9938-e0151b673fb3" name="Default Changelist" comment="" />
+      <created>1559738612748</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1559738612748</updated>
+      <workItem from="1559738613893" duration="491000" />
+      <workItem from="1559739128214" duration="46000" />
+      <workItem from="1559739188991" duration="346000" />
+      <workItem from="1559739832585" duration="1150000" />
+      <workItem from="1559741019027" duration="34000" />
+      <workItem from="1559741069881" duration="731000" />
+      <workItem from="1559742398071" duration="1257000" />
+      <workItem from="1559746541205" duration="2000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TestHistory">
+    <history-entry file="MemoDashClient_User_should_be_able_to_signup_user - 2019.06.06 at 16h 38m 02s.xml">
+      <configuration name="MemoDashClient.User.should be able to signup user" configurationId="JavaScriptTestRunnerJest" />
+    </history-entry>
+    <history-entry file="MemoDashClient_User_should_be_able_to_signup_user - 2019.06.06 at 16h 39m 04s.xml">
+      <configuration name="MemoDashClient.User.should be able to signup user" configurationId="JavaScriptTestRunnerJest" />
+    </history-entry>
+    <history-entry file="MemoDashClient_User - 2019.06.06 at 16h 40m 40s.xml">
+      <configuration name="MemoDashClient.User" configurationId="JavaScriptTestRunnerJest" />
+    </history-entry>
+    <history-entry file="MemoDashClient_User - 2019.06.06 at 16h 44m 01s.xml">
+      <configuration name="MemoDashClient.User" configurationId="JavaScriptTestRunnerJest" />
+    </history-entry>
+    <history-entry file="MemoDashClient_User - 2019.06.06 at 16h 45m 30s.xml">
+      <configuration name="MemoDashClient.User" configurationId="JavaScriptTestRunnerJest" />
+    </history-entry>
+    <history-entry file="MemoDashClient_Contract_should_create_and_publish_contract - 2019.06.06 at 16h 59m 32s.xml">
+      <configuration name="MemoDashClient.Contract.should create and publish contract" configurationId="JavaScriptTestRunnerJest" />
+    </history-entry>
+    <history-entry file="MemoDashClient_Contract_should_create_and_publish_contract - 2019.06.06 at 17h 00m 15s.xml">
+      <configuration name="MemoDashClient.Contract.should create and publish contract" configurationId="JavaScriptTestRunnerJest" />
+    </history-entry>
+    <history-entry file="MemoDashClient_Contract_should_create_and_publish_contract - 2019.06.06 at 17h 00m 29s.xml">
+      <configuration name="MemoDashClient.Contract.should create and publish contract" configurationId="JavaScriptTestRunnerJest" />
+    </history-entry>
+    <history-entry file="MemoDashClient_Contract_should_create_and_publish_contract - 2019.06.06 at 17h 01m 35s.xml">
+      <configuration name="MemoDashClient.Contract.should create and publish contract" configurationId="JavaScriptTestRunnerJest" />
+    </history-entry>
+    <history-entry file="MemoDashClient_Contract_should_create_and_publish_contract - 2019.06.06 at 17h 03m 06s.xml">
+      <configuration name="MemoDashClient.Contract.should create and publish contract" configurationId="JavaScriptTestRunnerJest" />
+    </history-entry>
+  </component>
+  <component name="TimeTrackingManager">
+    <option name="totallyTimeSpent" value="4057000" />
+  </component>
+  <component name="TodoView">
+    <todo-panel id="selected-file">
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+    <todo-panel id="all">
+      <are-packages-shown value="true" />
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="0" y="0" width="3008" height="1692" extended-state="6" />
+    <editor active="true" />
+    <layout>
+      <window_info content_ui="combo" id="Project" order="0" weight="0.23162939" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info id="npm" order="2" side_tool="true" />
+      <window_info id="Favorites" order="3" side_tool="true" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" />
+      <window_info anchor="bottom" id="Debug" order="2" sideWeight="0.49946752" visible="true" weight="0.20945542" />
+      <window_info anchor="bottom" id="Cvs" order="3" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="4" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="5" weight="0.32994062" />
+      <window_info anchor="bottom" id="NuGet" order="6" />
+      <window_info anchor="bottom" id="Performance Profiler" order="7" />
+      <window_info anchor="bottom" id="Docker" order="8" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Version Control" order="9" />
+      <window_info anchor="bottom" id="Database Changes" order="10" />
+      <window_info anchor="bottom" id="Unit Tests" order="11" />
+      <window_info anchor="bottom" id="Event Log" order="12" side_tool="true" />
+      <window_info anchor="bottom" id="Terminal" order="13" sideWeight="0.5005325" side_tool="true" weight="0.29686174" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="Errors In Solution" order="3" />
+      <window_info anchor="right" id="GfmBrowser" order="4" />
+      <window_info anchor="right" id="Key Promoter X" order="5" />
+      <window_info anchor="right" id="Database" order="6" />
+      <window_info anchor="right" id="Unit Tests Coverage" order="7" />
+      <window_info active="true" anchor="right" id="Run" order="8" side_tool="true" visible="true" weight="0.25185436" />
+    </layout>
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <breakpoint enabled="true" suspend="NONE" type="DotNet Exception Breakpoints">
+          <properties exception="System.Threading.ThreadAbortException" displayValue="System.Threading.ThreadAbortException" />
+          <option name="timeStamp" value="1" />
+        </breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+  <component name="debuggerHistoryManager">
+    <expressions id="evaluateExpression">
+      <expression>
+        <expression-string>this.dpp.getContract().getId()</expression-string>
+        <language-id>JavaScript</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+    </expressions>
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/node_modules/@dashevo/dpp/lib/DashPlatformProtocol.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="214">
+          <caret line="52" column="2" selection-start-line="52" selection-start-column="2" selection-end-line="52" selection-end-column="2" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/node_modules/jest-jasmine2/build/jasmine_async.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1178">
+          <caret line="62" column="36" selection-start-line="62" selection-start-column="36" selection-end-line="62" selection-end-column="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/lib/memo-dash.contract.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="676">
+          <caret line="49" column="20" selection-start-line="49" selection-start-column="20" selection-end-line="49" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/lib/package.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="19">
+          <caret line="1" column="14" selection-start-line="1" selection-start-column="11" selection-end-line="1" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/jsLanguageServicesImpl/external/lib.es5.d.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="507">
+          <caret line="983" column="22" lean-forward="true" selection-start-line="983" selection-start-column="22" selection-end-line="983" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/node_modules/@dashevo/dapi-client/src/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="372">
+          <caret line="50" column="60" selection-start-line="50" selection-start-column="60" selection-end-line="50" selection-end-column="60" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/node_modules/@dashevo/dapi-client/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="19">
+          <caret line="1" lean-forward="true" selection-start-line="1" selection-end-line="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/node_modules/@dashevo/dapi-client/package.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="639">
+          <caret line="94" column="20" lean-forward="true" selection-start-line="94" selection-start-column="20" selection-end-line="94" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/package.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="152">
+          <caret line="8" column="34" selection-start-line="8" selection-start-column="34" selection-end-line="8" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/lib/memo-dash.client.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="380">
+          <caret line="35" column="43" selection-start-line="35" selection-start-column="43" selection-end-line="35" selection-end-column="43" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/lib/memo-dash.client.test.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="936">
+          <caret line="121" column="12" selection-start-line="121" selection-start-column="12" selection-end-line="121" selection-end-column="12" />
+          <folding>
+            <element signature="n#!!doc" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+  </component>
+</project>

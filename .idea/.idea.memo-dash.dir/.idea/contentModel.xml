@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ContentModelStore">
+    <e p="$PROJECT_DIR$" t="IncludeFlat">
+      <e p="node_modules/@dashevo/dapi-client" t="IncludeRecursive" />
+      <e p="node_modules/@dashevo/dash-schema" t="IncludeRecursive" />
+      <e p="node_modules/@dashevo/dashcore-lib" t="IncludeRecursive" />
+      <e p="node_modules/@dashevo/dpp" t="IncludeRecursive" />
+      <e p="node_modules/@types" t="IncludeRecursive" />
+      <e p="node_modules/connected-react-router" t="IncludeRecursive" />
+      <e p="node_modules/dayjs" t="IncludeRecursive" />
+      <e p="node_modules/debug" t="IncludeRecursive" />
+      <e p="node_modules/enzyme" t="IncludeRecursive" />
+      <e p="node_modules/enzyme-adapter-react-16" t="IncludeRecursive" />
+      <e p="node_modules/express" t="IncludeRecursive" />
+      <e p="node_modules/faker" t="IncludeRecursive" />
+      <e p="node_modules/formik" t="IncludeRecursive" />
+      <e p="node_modules/gh-pages" t="IncludeRecursive" />
+      <e p="node_modules/gulp" t="IncludeRecursive" />
+      <e p="node_modules/jest-enzyme" t="IncludeRecursive" />
+      <e p="node_modules/jest-localstorage-mock" t="IncludeRecursive" />
+      <e p="node_modules/react" t="IncludeRecursive" />
+      <e p="node_modules/react-app-rewire-hot-loader" t="IncludeRecursive" />
+      <e p="node_modules/react-app-rewired" t="IncludeRecursive" />
+      <e p="node_modules/react-dom" t="IncludeRecursive" />
+      <e p="node_modules/react-hot-loader" t="IncludeRecursive" />
+      <e p="node_modules/react-redux" t="IncludeRecursive" />
+      <e p="node_modules/react-router-dom" t="IncludeRecursive" />
+      <e p="node_modules/react-scripts" t="IncludeRecursive" />
+      <e p="node_modules/redux" t="IncludeRecursive" />
+      <e p="node_modules/redux-devtools-extension" t="IncludeRecursive" />
+      <e p="node_modules/redux-logger" t="IncludeRecursive" />
+      <e p="node_modules/redux-mock-store" t="IncludeRecursive" />
+      <e p="node_modules/redux-thunk" t="IncludeRecursive" />
+      <e p="node_modules/reselect" t="IncludeRecursive" />
+      <e p="node_modules/semantic-ui" t="IncludeRecursive" />
+      <e p="node_modules/semantic-ui-react" t="IncludeRecursive" />
+      <e p="node_modules/yup" t="IncludeRecursive" />
+    </e>
+    <e p="$USER_HOME$/Library/Caches/Rider2019.1/extResources" t="IncludeRecursive" />
+    <e p="$USER_HOME$/Library/Caches/Rider2019.1/resharper-host/local/Transient/ReSharperHost/v191/SolutionCaches/_.19.00" t="ExcludeRecursive" />
+    <e p="$APPLICATION_CONFIG_DIR$/consoles/db" t="IncludeRecursive" />
+    <e p="$APPLICATION_CONFIG_DIR$/extensions" t="IncludeRecursive" />
+  </component>
+</project>

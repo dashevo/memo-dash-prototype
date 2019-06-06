@@ -1,0 +1,35 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`MemoDashClient Profile should be able to get user profile 1`] = `Array []`;
+
+exports[`MemoDashClient User should be able to get multiple users 1`] = `
+Array [
+  Object {
+    "profile": Array [],
+    "userId": "31610f1ec689b1cd5091689d0f9c671e261f887775e71048dcebde39414100c6",
+    "username": "alice",
+  },
+  Object {
+    "profile": Array [],
+    "userId": "460df059972d3dcdf88fd3a0a23b5c917ad8e78a4c73267538f912959a0466fb",
+    "username": "bob",
+  },
+]
+`;
+
+exports[`MemoDashClient User should be able to login user 1`] = `
+Object {
+  "profile": Array [],
+  "userId": "31610f1ec689b1cd5091689d0f9c671e261f887775e71048dcebde39414100c6",
+  "username": "alice",
+}
+`;
+
+exports[`MemoDashClient User should be able to search for users 1`] = `
+Object {
+  "results": Array [
+    "alice",
+  ],
+  "totalCount": 1,
+}
+`;
