@@ -1,6 +1,6 @@
 import { connect } from 'react-redux'
 import { push } from 'connected-react-router'
-import { Schema } from '@dashevo/dash-schema/dash-vmn'
+// import { Schema } from '@dashevo/dash-schema/dash-vmn'
 
 import HeaderComponent from './header.component'
 import { getPathname } from '../../store/selectors'
@@ -20,8 +20,8 @@ const mapDispatchToProps = dispatch => {
       dispatch(push('/users'))
     },
     resetVMN: () => {
-      Schema.VMN.Util.reset()
-      window.location.reload()
+      // Schema.VMN.Util.reset()
+      // window.location.reload()
     }
   }
 }

@@ -1,5 +1,5 @@
-import { AuthActionTypes, MemoActionTypes } from '../actions'
-import { UserActionTypes } from '../actions/user.actions'
+import { AuthActionTypes, MemoActionTypes } from "../actions"
+import { UserActionTypes } from "../actions/user.actions"
 
 export const initialState = {
   currentUser: undefined,
@@ -29,7 +29,10 @@ export default (state = initialState, action) => {
       const users = { ...state.users }
       const receivedUser = action.payload
 
-      users[receivedUser.username] = { ...users[receivedUser.username], ...receivedUser }
+      users[receivedUser.uname] = {
+        ...users[receivedUser.uname],
+        ...receivedUser
+      }
 
       return {
         ...state,
@@ -37,13 +40,16 @@ export default (state = initialState, action) => {
       }
     }
     case UserActionTypes.USERS_RECEIVED: {
-      const users = { ...state.users }
+      const users = { ...state.uname }
       const receivedUsers = action.payload
 
       if (receivedUsers) {
         receivedUsers.forEach(
           receivedUser =>
-            (users[receivedUser.username] = { ...users[receivedUser.username], ...receivedUser })
+            (users[receivedUser.uname] = {
+              ...users[receivedUser.uname],
+              ...receivedUser
+            })
         )
       }
 
@@ -54,13 +60,13 @@ export default (state = initialState, action) => {
     }
     case UserActionTypes.USER_UPDATED: {
       const users = { ...state.users }
-      const { username, props } = action.payload
+      const { uname, props } = action.payload
 
-      if (users[username]) {
-        const updatedUser = { ...users[username], ...props }
+      if (users[uname]) {
+        const updatedUser = { ...users[uname], ...props }
         return {
           ...state,
-          users: { ...state.users, [username]: updatedUser }
+          users: { ...state.users, [uname]: updatedUser }
         }
       } else {
         return state
@@ -71,10 +77,14 @@ export default (state = initialState, action) => {
       const user = getCurrentUser(state)
       if (user) {
         const likes = action.payload
-        const updatedUser = { ...user, likes, profile: { ...user.profile, likesCount: likes.length } }
+        const updatedUser = {
+          ...user,
+          likes,
+          profile: { ...user.profile, likesCount: likes.length }
+        }
         return {
           ...state,
-          users: { ...state.users, [updatedUser.username]: updatedUser }
+          users: { ...state.users, [updatedUser.uname]: updatedUser }
         }
       } else {
         return state
@@ -84,10 +94,14 @@ export default (state = initialState, action) => {
       const user = getCurrentUser(state)
       if (user) {
         const likes = user.likes.filter(like => like.idx !== action.payload)
-        const updatedUser = { ...user, likes, profile: { ...user.profile, likesCount: likes.length } }
+        const updatedUser = {
+          ...user,
+          likes,
+          profile: { ...user.profile, likesCount: likes.length }
+        }
         return {
           ...state,
-          users: { ...state.users, [updatedUser.username]: updatedUser }
+          users: { ...state.users, [updatedUser.uname]: updatedUser }
         }
       } else {
         return state
@@ -96,10 +110,13 @@ export default (state = initialState, action) => {
     case MemoActionTypes.MEMO_DELETED: {
       const user = getCurrentUser(state)
       if (user) {
-        const updatedUser = { ...user, memoIds: user.memoIds.filter(memoId => memoId !== action.payload) }
+        const updatedUser = {
+          ...user,
+          memoIds: user.memoIds.filter(memoId => memoId !== action.payload)
+        }
         return {
           ...state,
-          users: { ...state.users, [updatedUser.username]: updatedUser }
+          users: { ...state.users, [updatedUser.uname]: updatedUser }
         }
       } else {
         return state

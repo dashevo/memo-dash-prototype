@@ -1,14 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="3350ec51-b897-4454-9938-e0151b673fb3" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/lib/memo-dash.client.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/lib/memo-dash.client.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/lib/memo-dash.client.test.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/lib/memo-dash.client.test.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/lib/memo-dash.contract.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/lib/memo-dash.contract.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/lib/memo-dash.lib.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/lib/memo-dash.lib.js" afterDir="false" />
-    </list>
+    <list default="true" id="3350ec51-b897-4454-9938-e0151b673fb3" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -53,8 +46,8 @@
           <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/lib/memo-dash.client.test.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="936">
-                  <caret line="121" column="12" selection-start-line="121" selection-start-column="12" selection-end-line="121" selection-end-column="12" />
+                <state relative-caret-position="187">
+                  <caret line="112" lean-forward="true" selection-start-line="112" selection-end-line="112" />
                   <folding>
                     <element signature="n#!!doc" />
                   </folding>
@@ -154,6 +147,7 @@
     <property name="NewWatcherDialog.advanced.open" value="true" />
     <property name="Rider.DefaultBreakpoints.AreToggled" value="true" />
     <property name="Rider.ProjectViewActivator.IsNotFirstRun" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="editor.config.ad.shown" value="true" />
     <property name="nodejs.jest.jest_package" value="$PROJECT_DIR$/node_modules/react-scripts" />
@@ -259,9 +253,6 @@
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="MemoDashClient_User_should_be_able_to_signup_user - 2019.06.06 at 16h 38m 02s.xml">
-      <configuration name="MemoDashClient.User.should be able to signup user" configurationId="JavaScriptTestRunnerJest" />
-    </history-entry>
     <history-entry file="MemoDashClient_User_should_be_able_to_signup_user - 2019.06.06 at 16h 39m 04s.xml">
       <configuration name="MemoDashClient.User.should be able to signup user" configurationId="JavaScriptTestRunnerJest" />
     </history-entry>
@@ -289,6 +280,9 @@
     <history-entry file="MemoDashClient_Contract_should_create_and_publish_contract - 2019.06.06 at 17h 03m 06s.xml">
       <configuration name="MemoDashClient.Contract.should create and publish contract" configurationId="JavaScriptTestRunnerJest" />
     </history-entry>
+    <history-entry file="MemoDashClient_Contract_should_create_and_publish_contract - 2019.06.06 at 17h 03m 57s.xml">
+      <configuration name="MemoDashClient.Contract.should create and publish contract" configurationId="JavaScriptTestRunnerJest" />
+    </history-entry>
   </component>
   <component name="TimeTrackingManager">
     <option name="totallyTimeSpent" value="4057000" />
@@ -304,7 +298,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="3008" height="1692" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" weight="0.23162939" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -312,18 +305,18 @@
       <window_info id="Favorites" order="3" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Debug" order="2" sideWeight="0.49946752" visible="true" weight="0.20945542" />
+      <window_info anchor="bottom" id="Debug" order="2" sideWeight="0.49946752" weight="0.20945542" />
       <window_info anchor="bottom" id="Cvs" order="3" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="4" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="5" weight="0.32994062" />
       <window_info anchor="bottom" id="NuGet" order="6" />
       <window_info anchor="bottom" id="Performance Profiler" order="7" />
       <window_info anchor="bottom" id="Docker" order="8" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Version Control" order="9" />
+      <window_info anchor="bottom" id="Version Control" order="9" sideWeight="0.4993257" visible="true" weight="0.32974267" />
       <window_info anchor="bottom" id="Database Changes" order="10" />
       <window_info anchor="bottom" id="Unit Tests" order="11" />
       <window_info anchor="bottom" id="Event Log" order="12" side_tool="true" />
-      <window_info anchor="bottom" id="Terminal" order="13" sideWeight="0.5005325" side_tool="true" weight="0.29686174" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="13" sideWeight="0.5006743" side_tool="true" visible="true" weight="0.32974267" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -332,7 +325,7 @@
       <window_info anchor="right" id="Key Promoter X" order="5" />
       <window_info anchor="right" id="Database" order="6" />
       <window_info anchor="right" id="Unit Tests Coverage" order="7" />
-      <window_info active="true" anchor="right" id="Run" order="8" side_tool="true" visible="true" weight="0.25185436" />
+      <window_info anchor="right" id="Run" order="8" side_tool="true" weight="0.25185436" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -430,8 +423,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/lib/memo-dash.client.test.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="936">
-          <caret line="121" column="12" selection-start-line="121" selection-start-column="12" selection-end-line="121" selection-end-column="12" />
+        <state relative-caret-position="187">
+          <caret line="112" lean-forward="true" selection-start-line="112" selection-end-line="112" />
           <folding>
             <element signature="n#!!doc" />
           </folding>

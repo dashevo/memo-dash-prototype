@@ -1,16 +1,30 @@
-import MemoDashLib from '../../lib/memo-dash.lib.vmn'
+// import MemoDashLib from '../../lib/memo-dash.lib.vmn.js_'
+
+import MemoDashLib from "../../lib/memo-dash.lib"
 
 const InitActionTypes = {
-  INIT_FINISHED: 'INIT_FINISHED'
+  INIT_FINISHED: "INIT_FINISHED"
 }
 
 const initMemoDashClient = () => async dispatch => {
-  const memoDashLib = new MemoDashLib()
-  await memoDashLib.init()
+  const seeds = process.env.REACT_APP_DAPI_CLIENT_SEEDS.split(",").map(ip => ({
+    service: `${ip}:${process.env.REACT_APP_DAPI_CLIENT_PORT}`
+  }))
+
+  const memoDashLib = new MemoDashLib(
+    process.env.REACT_APP_NETWORK_TYPE,
+    seeds,
+    "memo-dash",
+    process.env.REACT_APP_FAUCET_PRIVATE_KEY
+  )
+  // await memoDashLib.init()
 
   dispatch(initFinished(memoDashLib))
 }
 
-const initFinished = memoDashLib => ({ type: InitActionTypes.INIT_FINISHED, payload: memoDashLib })
+const initFinished = memoDashLib => ({
+  type: InitActionTypes.INIT_FINISHED,
+  payload: memoDashLib
+})
 
 export { InitActionTypes, initMemoDashClient, initFinished }

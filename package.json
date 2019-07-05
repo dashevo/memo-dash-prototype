@@ -4,9 +4,9 @@
   "private": true,
   "homepage": "https://dashevo.github.io/memo-dash",
   "dependencies": {
-    "@dashevo/dash-schema": "dashevo/dash-platform.git#v3_develop",
-    "@dashevo/dashcore-lib": "^0.17.4",
-    "@dashevo/dapi-client": "^0.4.3",
+    "@dashevo/dapi-client": "^0.5.0",
+    "@dashevo/dashcore-lib": "^0.17.6",
+    "@dashevo/dpa-lib": "file:../dpa-lib",
     "@dashevo/dpp": "^0.7.1",
     "connected-react-router": "^4.5.0",
     "dayjs": "^1.7.7",

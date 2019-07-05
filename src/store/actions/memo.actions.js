@@ -1,14 +1,19 @@
-import { getMemoDashLib, getCurrentUser, getMissingUsers, getCurrentUsername } from '../selectors'
-import { userUpdated, getUsers } from './user.actions'
-import { combineMemoId } from '../reducers/memo.reducer'
+import {
+  getMemoDashLib,
+  getCurrentUser,
+  getMissingUsers,
+  getCurrentUsername
+} from "../selectors"
+import { userUpdated, getUsers } from "./user.actions"
+import { combineMemoId } from "../reducers/memo.reducer"
 
 export const MemoActionTypes = {
-  MEMOS_RECEIVED: 'MEMOS_RECEIVED',
-  MEMO_UPDATED: 'MEMO_UPDATED',
-  MEMO_REPLIES_RECEIVED: 'MEMO_REPLIES_RECEIVED',
-  LIKE_REMOVED: 'LIKE_REMOVED',
-  LIKE_ADDED: 'LIKE_ADDED',
-  MEMO_DELETED: 'MEMO_DELETED'
+  MEMOS_RECEIVED: "MEMOS_RECEIVED",
+  MEMO_UPDATED: "MEMO_UPDATED",
+  MEMO_REPLIES_RECEIVED: "MEMO_REPLIES_RECEIVED",
+  LIKE_REMOVED: "LIKE_REMOVED",
+  LIKE_ADDED: "LIKE_ADDED",
+  MEMO_DELETED: "MEMO_DELETED"
 }
 
 export const getMemosForUser = username => async (dispatch, getState) => {
@@ -80,7 +85,10 @@ export const likeRemoved = likeId => ({
   payload: likeId
 })
 
-export const replyToMemo = (username, memoId, message) => async (dispatch, getState) => {
+export const replyToMemo = (username, memoId, message) => async (
+  dispatch,
+  getState
+) => {
   const lib = getMemoDashLib(getState())
   await lib.replyToMemo(username, memoId, message)
   const memo = await lib.getMemo(username, memoId)
@@ -96,7 +104,10 @@ export const memoUpdated = memo => ({
   payload: memo
 })
 
-export const getMemoReplies = (username, memoId) => async (dispatch, getState) => {
+export const getMemoReplies = (username, memoId) => async (
+  dispatch,
+  getState
+) => {
   const lib = getMemoDashLib(getState())
   const replies = await lib.getMemoReplies(username, memoId)
 
@@ -125,7 +136,10 @@ export const memoDeleted = memoId => ({
   payload: memoId
 })
 
-export const editMemo = (username, memoId, message) => async (dispatch, getState) => {
+export const editMemo = (username, memoId, message) => async (
+  dispatch,
+  getState
+) => {
   const lib = getMemoDashLib(getState())
   await lib.editMemo(memoId, message)
   const memo = await lib.getMemo(username, memoId)

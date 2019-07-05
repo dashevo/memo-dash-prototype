@@ -1,9 +1,9 @@
-import { getMemoDashLib, getCurrentUsername } from '../selectors'
+import { getMemoDashLib, getCurrentUsername } from "../selectors"
 
 export const UserActionTypes = {
-  USER_RECEIVED: 'USER_RECEIVED',
-  USERS_RECEIVED: 'USERS_RECEIVED',
-  USER_UPDATED: 'USER_UPDATED'
+  USER_RECEIVED: "USER_RECEIVED",
+  USERS_RECEIVED: "USERS_RECEIVED",
+  USER_UPDATED: "USER_UPDATED"
 }
 
 export const getAllUsers = () => async (dispatch, getState) => {
@@ -17,8 +17,12 @@ export const getUsers = usernames => async (dispatch, getState) => {
 }
 
 export const getUser = username => async (dispatch, getState) => {
-  const user = await getMemoDashLib(getState()).getUser(username)
-  await dispatch(userReceived(user))
+  const memoDashLib = getMemoDashLib(getState())
+
+  if (memoDashLib) {
+    const user = await memoDashLib.getUser(username)
+    await dispatch(userReceived(user))
+  }
 }
 
 export const userUpdated = (username, props) => ({

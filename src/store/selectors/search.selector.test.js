@@ -1,22 +1,25 @@
-import { testUsers, testMemos } from '../../test-utils/test-data'
-import * as selector from './search.selector'
+import { testUsers, testMemos } from "../../test-utils/test-data"
+import * as selector from "./search.selector"
 
-describe('search selector', () => {
-  const category = 'category'
+describe("search selector", () => {
+  const category = "category"
 
-  const alice = testUsers['alice']
-  const bob = testUsers['bob']
+  const alice = testUsers["alice"]
+  const bob = testUsers["bob"]
 
   const state = {
     user: {
       users: { [alice.username]: alice, [bob.username]: bob }
     },
     memo: {
-      memos: { [alice.memoIds[0]]: testMemos[alice.memoIds[0]], [bob.memoIds[0]]: testMemos[bob.memoIds[0]] }
+      memos: {
+        [alice.memoIds[0]]: testMemos[alice.memoIds[0]],
+        [bob.memoIds[0]]: testMemos[bob.memoIds[0]]
+      }
     }
   }
 
-  it('should return users', () => {
+  it("should return users", () => {
     const result = [
       {
         category,
@@ -37,7 +40,7 @@ describe('search selector', () => {
     expect(selector.getUsersForSearch(category)(state)).toEqual(result)
   })
 
-  it('should return memos', () => {
+  it("should return memos", () => {
     const result = [
       {
         category,
