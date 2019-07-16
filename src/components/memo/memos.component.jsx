@@ -5,6 +5,11 @@ import MemoModalContainer from './modal/memo-modal.container'
 
 const MemosComponent = props => {
   const { memos } = props
+
+  if(!memos){
+    return null;
+  }
+
   return (
     <Segment basic center>
       {memos ? (

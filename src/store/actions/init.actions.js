@@ -1,6 +1,7 @@
 // import MemoDashLib from '../../lib/memo-dash.lib.vmn.js_'
 
 import MemoDashLib from "../../lib/memo-dash.lib"
+import memoDashContract from "../../lib/memo-dash.contract"
 
 const InitActionTypes = {
   INIT_FINISHED: "INIT_FINISHED"
@@ -15,8 +16,10 @@ const initMemoDashClient = () => async dispatch => {
     process.env.REACT_APP_NETWORK_TYPE,
     seeds,
     "memo-dash",
+    memoDashContract,
     process.env.REACT_APP_FAUCET_PRIVATE_KEY
   )
+
   // await memoDashLib.init()
 
   dispatch(initFinished(memoDashLib))

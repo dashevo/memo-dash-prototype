@@ -12,7 +12,7 @@ import memoDashContract from "./memo-dash.contract"
 import DPALib from "@dashevo/dpa-lib"
 
 export default class MemoDashLib {
-  constructor(networkType, seeds, contractName, faucetPrivateKey) {
+  constructor(networkType, seeds, contractName, contract, faucetPrivateKey) {
     this.faucetPrivateKey = new PrivateKey(faucetPrivateKey)
     const faucetPublicKey = PublicKey.fromPrivateKey(this.faucetPrivateKey)
     this.faucetAddress = Address.fromPublicKey(
@@ -20,7 +20,11 @@ export default class MemoDashLib {
       networkType === "devnet" ? "testnet" : networkType
     ).toString()
 
-    this.dpaLib = new DPALib(this.faucetPrivateKey, { seeds })
+    this.dpaLib = new DPALib(this.faucetPrivateKey, {
+      seeds,
+      contractName,
+      contract
+    })
 
     // this.dpp = new DashPlatformProtocol();
     // this.dapiClient = new DAPIClient({
@@ -38,6 +42,10 @@ export default class MemoDashLib {
     //   this.dpp.contract.create(contractName, memoDashContract)
     // );
   }
+
+  // async init() {
+  //   await this.dpaLib.init()
+  // }
 
   async createProfile(regTxId, userPrivateKey, name, address) {
     const profile = this.dpp.document.create("profile", {
@@ -116,38 +124,29 @@ export default class MemoDashLib {
    * @memberof MemoDashLib
    */
   async getAllUsers() {
-    return await this.dapiClient.searchUsers("")
+    const result = await this.dpaLib.searchUsers()
+    return result.users
   }
 
-  /**
-   * Returns user id for the given username.
-   * @param {string} username
-   * @return {Promise<string>}
-   */
-  async getUserId(username) {
-    const user = await this.dapiClient.getUserByName(username)
-    return user ? user.regtxid : undefined
-  }
-
-  async getUserProfile(username) {
-    // const profile = await this.dpaLib.getDocum
-    // const [profile, userId, followers, following, likes] = await Promise.all([
-    //   this.memoDashClient.getUserProfile(username),
-    //   this.memoDashClient.getUserId(username),
-    //   this.memoDashClient.getUserFollowers(username),
-    //   this.memoDashClient.getUserFollowing(username),
-    //   this.getUserLikes(username)
-    // ])
-    //
-    // return {
-    //   username,
-    //   profile,
-    //   userId,
-    //   followers: followers ? followers.map(user => user.username) : undefined,
-    //   following: following ? following.map(user => user.username) : undefined,
-    //   likes
-    // }
-  }
+  // async getUserProfile(username) {
+  // const profile = await this.dpaLib.getDocum
+  // const [profile, userId, followers, following, likes] = await Promise.all([
+  //   this.memoDashClient.getUserProfile(username),
+  //   this.memoDashClient.getUserId(username),
+  //   this.memoDashClient.getUserFollowers(username),
+  //   this.memoDashClient.getUserFollowing(username),
+  //   this.getUserLikes(username)
+  // ])
+  //
+  // return {
+  //   username,
+  //   profile,
+  //   userId,
+  //   followers: followers ? followers.map(user => user.username) : undefined,
+  //   following: following ? following.map(user => user.username) : undefined,
+  //   likes
+  // }
+  // }
 
   /**
    * Get a single user
@@ -161,18 +160,18 @@ export default class MemoDashLib {
    * }
    */
   async getUser(username) {
-    const userId = await this.getUserId(username)
+    const user = await this.dpaLib.getUserByName(username)
 
-    if (!userId) {
+    if (!user) {
       throw new Error("User not found")
     }
 
-    const [profile] = await Promise.all([this.getUserProfile(userId)])
+    const [profile] = await Promise.all([this.getUserProfile(user.regtxid)])
 
     return {
       username,
       profile,
-      userId
+      userId: user.regtxid
       //   followers: followers ? followers.map(user => user.username) : undefined,
       //   following: following ? following.map(user => user.username) : undefined,
       //   likes
@@ -196,13 +195,17 @@ export default class MemoDashLib {
   }
 
   async getUserProfile(userId) {
-    return await this.dapiClient.fetchDocuments(
-      this.dpp.getContract().getId(),
-      "profile",
-      {
-        where: { _id: userId }
-      }
-    )
+    const prof = await this.dpaLib.getDocumentsByType("profile")
+
+    return prof
+
+    // this.dapiClient.fetchDocuments(
+    //   this.dpp.getContract().getId(),
+    //   "profile",
+    //   {
+    //     where: { _id: userId }
+    //   }
+    // )
   }
 
   async getUserFollowers(userId) {}

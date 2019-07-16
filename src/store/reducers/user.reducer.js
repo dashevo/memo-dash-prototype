@@ -29,8 +29,8 @@ export default (state = initialState, action) => {
       const users = { ...state.users }
       const receivedUser = action.payload
 
-      users[receivedUser.uname] = {
-        ...users[receivedUser.uname],
+      users[receivedUser.username] = {
+        ...users[receivedUser.username],
         ...receivedUser
       }
 
@@ -40,14 +40,14 @@ export default (state = initialState, action) => {
       }
     }
     case UserActionTypes.USERS_RECEIVED: {
-      const users = { ...state.uname }
+      const users = { ...state.users }
       const receivedUsers = action.payload
 
       if (receivedUsers) {
         receivedUsers.forEach(
           receivedUser =>
-            (users[receivedUser.uname] = {
-              ...users[receivedUser.uname],
+            (users[receivedUser.username] = {
+              ...users[receivedUser.username],
               ...receivedUser
             })
         )
@@ -60,13 +60,13 @@ export default (state = initialState, action) => {
     }
     case UserActionTypes.USER_UPDATED: {
       const users = { ...state.users }
-      const { uname, props } = action.payload
+      const { username, props } = action.payload
 
-      if (users[uname]) {
-        const updatedUser = { ...users[uname], ...props }
+      if (users[username]) {
+        const updatedUser = { ...users[username], ...props }
         return {
           ...state,
-          users: { ...state.users, [uname]: updatedUser }
+          users: { ...state.users, [username]: updatedUser }
         }
       } else {
         return state

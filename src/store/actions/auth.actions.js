@@ -34,6 +34,7 @@ const login = blockchainUsername => async (dispatch, getState) => {
     // await dispatch(getMemosForUser(blockchainUser.name))
     dispatch(push("/home"))
   } catch (error) {
+    console.log(error)
     dispatch(loginError(error.message))
   }
 }
