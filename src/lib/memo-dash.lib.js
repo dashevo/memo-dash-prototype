@@ -25,43 +25,6 @@ export default class MemoDashLib {
       contractName,
       contract
     })
-
-    // this.dpp = new DashPlatformProtocol();
-    // this.dapiClient = new DAPIClient({
-    //   seeds,
-    //   timeout: 30000
-    // });
-    //
-    //
-    //
-    // // this.dpaUserPrivateKey = dpaUserPrivateKey;
-    // this.dpaUserPrivateKey = "9b932e4951a5a3d5d04b38783397e5de04fb1a06407a6255bd489d4ad3f4ff95";
-    //
-    //
-    // this.dpp.setContract(
-    //   this.dpp.contract.create(contractName, memoDashContract)
-    // );
-  }
-
-  // async init() {
-  //   await this.dpaLib.init()
-  // }
-
-  async createProfile(regTxId, userPrivateKey, name, address) {
-    const profile = this.dpp.document.create("profile", {
-      name,
-      address
-    })
-
-    const result = this.dpp.document.validate(profile)
-    if (!result.isValid()) {
-      throw new Error(`The profile is not valid ${JSON.stringify(result)}`)
-    }
-
-    profile.removeMetadata()
-
-    const stPacket = this.dpp.packet.create([profile])
-    // await this.dapiClientWrapper.publishUserProfile(stPacket);
   }
 
   /**
@@ -71,7 +34,6 @@ export default class MemoDashLib {
    */
   async getUserByName(username) {
     return await this.dpaLib.getUserByName(username)
-    // return await this.dapiClient.searchUsers(pattern);
   }
 
   /**
@@ -80,13 +42,14 @@ export default class MemoDashLib {
    */
   async login(user) {
     this.currentUser = user
-    // await this.dpp.setUserId(this.currentUser.userId)
+    this.dpaLib.dpp.setUserId(this.currentUser.userId)
     this.isAuthed = true
   }
 
   async logout() {
     this.currentUser = undefined
-    this.dpp.setUserId(undefined)
+    // this.dpp.setUserId(undefined)
+    this.dpaLib.dpp.setUserId(undefined)
     this.isAuthed = false
   }
 
@@ -324,6 +287,11 @@ export default class MemoDashLib {
    * @memberof MemoDashLib
    */
   async postMemo(message) {
+    const memo = {
+      message,
+      createdAt: new Date().toJSON()
+    }
+    this.dpaLib.publishDocument(memo, this.dpp.getContract(), this.currentUser)
     // await this.memoDashClient.postMemo(message)
   }
 

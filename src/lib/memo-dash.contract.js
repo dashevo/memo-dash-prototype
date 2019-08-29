@@ -26,13 +26,6 @@ export default {
     additionalProperties: false
   },
   memo: {
-    // type: "object",
-    // allOf: [
-    //   {
-    //     $ref: 'http://dash.org/schemas/sys#/definitions/dapobjectbase'
-    //   }
-    // ],
-
     properties: {
       message: {
         type: "string",
@@ -47,9 +40,6 @@ export default {
         type: "string",
         format: "date-time"
       }
-      // relation: {
-      //   $ref: 'http://dash.org/schemas/sys#/definitions/relation'
-      // }
     },
     required: ["message", "createdAt"],
     additionalProperties: false
@@ -88,4 +78,4 @@ export default {
     // required: ['relation'],
     additionalProperties: false
   } */
-};
+}

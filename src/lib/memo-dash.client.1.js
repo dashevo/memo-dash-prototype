@@ -1,29 +1,29 @@
-import DAPIClient from "@dashevo/dapi-client";
-import DashPlatformProtocol from "@dashevo/dpp";
-import { PrivateKey, PublicKey, Address } from "@dashevo/dashcore-lib";
+import DAPIClient from "@dashevo/dapi-client"
+import DashPlatformProtocol from "@dashevo/dpp"
+import { PrivateKey, PublicKey, Address } from "@dashevo/dashcore-lib"
 
-import memoDashContract from "./memo-dash.contract";
+import memoDashContract from "./memo-dash.contract"
 
 export class MemoDashClient {
   constructor(networkType, seeds, privateKey) {
-    this.dpp = new DashPlatformProtocol();
+    this.dpp = new DashPlatformProtocol()
     this.dapiClient = new DAPIClient({
       seeds,
       timeout: 30000
-    });
+    })
 
-    faucetPrivateKey = new PrivateKey(privateKey);
-    const faucetPublicKey = PublicKey.fromPrivateKey(faucetPrivateKey);
+    faucetPrivateKey = new PrivateKey(privateKey)
+    const faucetPublicKey = PublicKey.fromPrivateKey(faucetPrivateKey)
     faucetAddress = Address.fromPublicKey(
       faucetPublicKey,
       networkType === "devnet" ? "testnet" : networkType
-    ).toString();
+    ).toString()
 
-    const contract = dpp.contract.create("memo-dash", memoDashContract);
+    const contract = dpp.contract.create("memo-dash", memoDashContract)
 
-    const result = dpp.contract.validate(contract);
-    console.log(`MemoDash contract is valid: ${result.isValid()}`);
-    dpp.setContract(contract);
+    const result = dpp.contract.validate(contract)
+    console.log(`MemoDash contract is valid: ${result.isValid()}`)
+    dpp.setContract(contract)
   }
 
   /**
@@ -32,8 +32,8 @@ export class MemoDashClient {
    * @return {Promise<string>}
    */
   async getUserId(username) {
-    const user = await this.dapiClient.getUserByName(username);
-    return user ? user.uname : undefined;
+    const user = await this.dapiClient.getUserByName(username)
+    return user ? user.uname : undefined
   }
 
   /**
@@ -42,8 +42,8 @@ export class MemoDashClient {
    * @return {Promise<string>}
    */
   async getUsername(userId) {
-    const user = await this.dapiClient.getUserById(userId);
-    return user ? user.uname : undefined;
+    const user = await this.dapiClient.getUserById(userId)
+    return user ? user.uname : undefined
   }
 
   /**
@@ -205,13 +205,13 @@ export class MemoDashClient {
    * }]
    */
   async getUserFollowers(username) {
-    const { related } = await this.getDapContext(username);
+    const { related } = await this.getDapContext(username)
     if (related) {
       return this.filterObjectsByType(related, "follow").map(follower => ({
         username: follower.meta.uname
-      }));
+      }))
     }
-    return [];
+    return []
   }
 
   /**
