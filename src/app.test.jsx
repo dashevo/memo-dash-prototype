@@ -21,8 +21,8 @@ describe('App', () => {
   const createMockStore = (username = undefined) => {
     let user = initialState
     if (username) {
-      const testUser = testUsers[username]
-      user = { currentUser: testUser.username, users: { [testUser.username]: testUser } }
+      const testUser = Object.values(testUsers).find(user => user.uname === username)
+      user = { currentUser: testUser.regtxid, users: { [testUser.regtxid]: testUser } }
     }
 
     return mockStore({

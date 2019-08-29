@@ -3,7 +3,7 @@ import {
   getMissingUsers,
   getUserFollowers,
   getUserFollowing,
-  getCurrentUsername,
+  getCurrentUserId,
   getUserLikes,
   getMemosByCombinedIds,
   getLikesOfMissingMemos
@@ -63,10 +63,10 @@ export const getLikedMemosForUser = username => async (dispatch, getState) => {
 
 export const followUser = username => async (dispatch, getState) => {
   await getMemoDashLib(getState()).followUser(username)
-  dispatch(getUsers([username, getCurrentUsername(getState())]))
+  dispatch(getUsers([username, getCurrentUserId(getState())]))
 }
 
 export const unFollowUser = username => async (dispatch, getState) => {
   await getMemoDashLib(getState()).unFollowUser(username)
-  dispatch(getUsers([username, getCurrentUsername(getState())]))
+  dispatch(getUsers([username, getCurrentUserId(getState())]))
 }

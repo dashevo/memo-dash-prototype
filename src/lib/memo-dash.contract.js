@@ -1,7 +1,7 @@
 // https://github.com/dashevo/js-dpp/blob/master/lib/test/fixtures/getContractFixture.js
 
 export default {
-  profile: {
+  userProfile: {
     indices: [{ properties: [{ $userId: "asc" }], unique: true }],
     properties: {
       name: {

@@ -8,7 +8,8 @@ export default class LoginViewComponent extends Component {
     super()
 
     this.state = {
-      username: 'pxxt1v'
+      // username: 'x11lhe'
+      username: 'f52vt6e'
     }
   }
 

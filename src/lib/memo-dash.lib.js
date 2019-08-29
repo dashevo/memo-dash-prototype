@@ -10,6 +10,7 @@ import {
 import memoDashContract from "./memo-dash.contract"
 
 import DPALib from "@dashevo/dpa-lib"
+import { getMemosForSearch } from "../store/selectors/search.selector"
 
 export default class MemoDashLib {
   constructor(networkType, seeds, contractName, contract, faucetPrivateKey) {
@@ -129,16 +130,17 @@ export default class MemoDashLib {
       throw new Error("User not found")
     }
 
-    const [profile] = await Promise.all([this.getUserProfile(user.regtxid)])
+    // const [profile] = await Promise.all([this.getUserProfile(user.regtxid)])
 
-    return {
-      username,
-      profile,
-      userId: user.regtxid
-      //   followers: followers ? followers.map(user => user.username) : undefined,
-      //   following: following ? following.map(user => user.username) : undefined,
-      //   likes
-    }
+    return user
+    // return {
+    //   username,
+    //   profile,
+    //   userId: user.regtxid
+    //   followers: followers ? followers.map(user => user.username) : undefined,
+    //   following: following ? following.map(user => user.username) : undefined,
+    //   likes
+    // }
 
     // const [profile, userId, followers, following, likes] = await Promise.all([
     //   this.memoDashClient.getUserProfile(username),
@@ -158,17 +160,9 @@ export default class MemoDashLib {
   }
 
   async getUserProfile(userId) {
-    const prof = await this.dpaLib.getDocumentsByType("profile")
-
-    return prof
-
-    // this.dapiClient.fetchDocuments(
-    //   this.dpp.getContract().getId(),
-    //   "profile",
-    //   {
-    //     where: { _id: userId }
-    //   }
-    // )
+    const [profile] = await this.dpaLib.getDocuments("userProfile", userId)
+    console.log(`Got profile for user ${userId}`, profile)
+    return profile
   }
 
   async getUserFollowers(userId) {}
@@ -178,7 +172,7 @@ export default class MemoDashLib {
   }
 
   /**
-   * Returns all memos for a user
+   * Returns memos for a user
    *
    * @param {string} username
    * @return {Promise<Array<{
@@ -191,8 +185,10 @@ export default class MemoDashLib {
    * }>>}
    * @memberof MemoDashLib
    */
-  async getMemosForUser(username) {
-    // return await this.memoDashClient.getMemosByUsername(username)
+  async getMemosForUser(userId, limit) {
+    const memos = await this.dpaLib.getDocuments("memo", userId, limit)
+    console.log(`getMemosForUser for ${userId} limited by ${limit}`, memos)
+    return memos
   }
 
   /**

@@ -1,5 +1,5 @@
-import { getMemoByCombinedId } from '../selectors/memo.selector'
-import { MemoActionTypes } from '../actions'
+import { getMemoByScopeId } from "../selectors/memo.selector"
+import { MemoActionTypes } from "../actions"
 
 export const combineMemoId = (username, memoId) => `[${username}][${memoId}]`
 
@@ -10,11 +10,10 @@ export const initialState = {
 export default (state = initialState, action) => {
   switch (action.type) {
     case MemoActionTypes.MEMO_UPDATED: {
-      const { username, idx } = action.payload
-      const combinedMemoId = combineMemoId(username, idx)
+      const { $scopeId } = action.payload
       const memos = { ...state.memos }
 
-      memos[combinedMemoId] = { ...memos[combinedMemoId], ...action.payload }
+      memos[$scopeId] = { ...memos[$scopeId], ...action.payload }
 
       return {
         ...state,
@@ -27,7 +26,7 @@ export default (state = initialState, action) => {
 
       if (receivedMemos) {
         receivedMemos.forEach(
-          receivedMemo => (memos[combineMemoId(receivedMemo.username, receivedMemo.idx)] = receivedMemo)
+          receivedMemo => (memos[receivedMemo.$scopeId] = receivedMemo)
         )
 
         return {
@@ -39,20 +38,21 @@ export default (state = initialState, action) => {
     }
 
     case MemoActionTypes.MEMO_REPLIES_RECEIVED: {
-      const { username, memoId, replies } = action.payload
+      const { $scopeId, replies } = action.payload
 
       const replyIds = []
       const memos = { ...state.memos }
 
       if (replies) {
         replies.forEach(reply => {
-          const combinedMemoId = combineMemoId(reply.username, reply.idx)
-          memos[combinedMemoId] = { ...memos[combinedMemoId], ...reply }
-          replyIds.push(combinedMemoId)
+          memos[reply.$scopeId] = { ...memos[reply.$scopeId], ...reply }
+          replyIds.push(reply.$scopeId)
         })
 
-        const memo = getMemoByCombinedId(combineMemoId(username, memoId))({ memo: state })
-        memos[combineMemoId(username, memoId)] = { ...memo, replyIds }
+        const memo = getMemoByScopeId($scopeId)({
+          memo: state
+        })
+        memos[$scopeId] = { ...memo, replyIds }
 
         return {
           ...state,
@@ -64,7 +64,7 @@ export default (state = initialState, action) => {
     case MemoActionTypes.MEMO_DELETED: {
       const memos = { ...state.memos }
 
-      if (memos) {
+      if (memos && memos[action.payload]) {
         delete memos[action.payload]
         return {
           ...state,

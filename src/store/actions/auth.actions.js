@@ -1,5 +1,5 @@
 import { push } from "connected-react-router"
-import { getUser, userReceived } from "./user.actions"
+import { getUser, getUserProfile, userReceived } from "./user.actions"
 import { getMemosForUser } from "./memo.actions"
 
 const AuthActionTypes = {
@@ -27,11 +27,13 @@ const login = blockchainUsername => async (dispatch, getState) => {
   // blockchainUser = blockchainUser[0]
 
   try {
+    console.log(`Login user`, blockchainUser)
     await memoDashLib.login(blockchainUser)
     await dispatch(loginSuccessfull(blockchainUser.uname))
     // await dispatch(userReceived(blockchainUser))
     await dispatch(getUser(blockchainUser.uname))
-    // await dispatch(getMemosForUser(blockchainUser.name))
+    await dispatch(getUserProfile(blockchainUser.regtxid))
+    await dispatch(getMemosForUser(undefined, 10))
     dispatch(push("/home"))
   } catch (error) {
     console.log(error)

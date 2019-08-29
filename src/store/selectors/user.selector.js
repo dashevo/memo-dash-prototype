@@ -1,45 +1,64 @@
-import { createSelector } from 'reselect'
+import { createSelector } from "reselect"
 
-import { getMemos } from './memo.selector'
-import { combineMemoId } from '../reducers/memo.reducer'
+import { getMemos } from "./memo.selector"
+import { combineMemoId } from "../reducers/memo.reducer"
 
 export const getUsers = state => state.user.users
+export const getProfiles = state => state.user.profiles
 
 export const isAuthenticated = state => Boolean(getCurrentUser(state))
-export const getCurrentUsername = state => state.user.currentUser
+export const getCurrentUserId = state => state.user.currentUser
 
-export const getCurrentUser = createSelector([getCurrentUsername, getUsers], (currentUser, users) => {
-  return users ? users[currentUser] : undefined
-})
+export const getCurrentUser = createSelector(
+  [getCurrentUserId, getUsers],
+  (currentUser, users) => {
+    return users ? users[currentUser] : undefined
+  }
+)
 
-export const getUserByUsername = username => {
-  return createSelector(getUsers, users => users[username])
+export const getUserByUserId = userId => {
+  return createSelector(getUsers, users => users[userId])
 }
 
-export const getAvatarUrl = username =>
-  createSelector([getUsers], users => {
-    const user = users[username]
-    return user && user.profile ? user.profile.avatarUrl : undefined
+export const getUserByUserName = username => {
+  return createSelector(getUsers, users =>
+    Object.values(users).find(user => user.uname === username)
+  )
+}
+
+export const getUserProfile = userId =>
+  createSelector(getProfiles, profiles => profiles[userId])
+
+export const getUserProfileByUserName = username =>
+  createSelector(
+    [getProfiles, getUserByUserName(username)],
+    (profiles, user) => profiles[user.regtxid]
+  )
+
+export const getAvatarUrl = userId =>
+  createSelector([getUserProfile(userId)], profile => {
+    return profile ? profile.avatarUrl : undefined
   })
 
-export const getUserProfile = username =>
-  createSelector([getUserByUsername(username)], user => {
-    return user ? user.profile : undefined
-  })
-
-export const getUserMemos = username =>
-  createSelector([getUserByUsername(username), getMemos], (user, memos) => {
-    return user && user.memoIds ? user.memoIds.map(memoId => memos[memoId]) : undefined
+export const getUserMemos = userId =>
+  createSelector([getMemos], memos => {
+    return memos
+      ? Object.values(memos).filter(memo => memo.$meta.userId === userId)
+      : undefined
   })
 
 export const getUserFollowers = username =>
   createSelector([getUserByUsername(username), getUsers], (user, users) => {
-    return user && user.followers ? user.followers.map(follower => users[follower]) : undefined
+    return user && user.followers
+      ? user.followers.map(follower => users[follower])
+      : undefined
   })
 
 export const getUserFollowing = username =>
   createSelector([getUserByUsername(username), getUsers], (user, users) => {
-    return user && user.following ? user.following.map(following => users[following]) : undefined
+    return user && user.following
+      ? user.following.map(following => users[following])
+      : undefined
   })
 
 export const getUserLikes = username =>
@@ -51,26 +70,31 @@ export const getUserLikedMemos = username =>
   createSelector([getUserByUsername(username), getMemos], (user, memos) => {
     return user && user.likes
       ? user.likes.reduce((obj, like) => {
-          const combinedMemoId = combineMemoId(like.relation.username, like.relation.index)
+          const combinedMemoId = combineMemoId(
+            like.relation.username,
+            like.relation.index
+          )
           obj[combinedMemoId] = memos[combinedMemoId]
           return obj
         }, {})
       : undefined
   })
 
-export const getMissingUsers = usernames =>
+export const getMissingUsers = userIds =>
   createSelector([getUsers], availableUsers =>
-    usernames
-      .filter((username, index, self) => self.indexOf(username) === index)
-      .filter(username => !availableUsers[username])
+    userIds
+      .filter((userId, index, self) => self.indexOf(userId) === index)
+      .filter(userId => !availableUsers[userId])
   )
 
 export const amIFollowing = username =>
   createSelector([getCurrentUser], currentUser => {
-    return currentUser.following ? currentUser.following.some(following => following === username) : undefined
+    return currentUser.following
+      ? currentUser.following.some(following => following === username)
+      : undefined
   })
 
 export const isProfileOfCurrentUser = userProfile =>
-  createSelector([getCurrentUsername], currentUser => {
-    return userProfile.username === currentUser
+  createSelector([getCurrentUserId], currentUser => {
+    return userProfile.$meta.userId === currentUser
   })

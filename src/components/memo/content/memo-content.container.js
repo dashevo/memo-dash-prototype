@@ -1,14 +1,19 @@
-import { connect } from 'react-redux'
-import { push } from 'connected-react-router'
+import { connect } from "react-redux"
+import { push } from "connected-react-router"
 
-import MemoContentComponent from './memo-content.component'
-import { editMemo } from '../../../store/actions'
-import { getCurrentUser, isMemoOfCurrentUser } from '../../../store/selectors'
+import MemoContentComponent from "./memo-content.component"
+import { editMemo } from "../../../store/actions"
+import {
+  getCurrentUser,
+  getUserByUserId,
+  isMemoOfCurrentUser
+} from "../../../store/selectors"
 
 const mapStateToProps = (state, ownProps) => {
   const { memo } = ownProps
 
   return {
+    memoUser: getUserByUserId(memo.$meta.userId)(state),
     currentUser: getCurrentUser(state),
     showEdit: isMemoOfCurrentUser(memo)(state)
   }

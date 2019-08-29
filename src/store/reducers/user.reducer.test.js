@@ -5,16 +5,29 @@ import {
   logoutError,
   logoutSuccessfull,
   likeRemoved,
-  memoDeleted
+  memoDeleted,
+  userProfileReceived
 } from "../actions"
 import {
   userReceived,
   usersReceived,
   userUpdated
 } from "../actions/user.actions"
-import { testUsers, testMemos } from "../../test-utils/test-data"
+import { testUsers, testProfiles, testMemos } from "../../test-utils/test-data"
 
 describe("user reducer", () => {
+  let alice
+  let aliceMemos
+  let bob
+
+  beforeEach(() => {
+    alice = Object.values(testUsers).find(user => user.uname === "alice")
+    aliceMemos = Object.values(testMemos).filter(
+      memo => memo.$meta.userId === alice.regtxid
+    )
+    bob = Object.values(testUsers).find(user => user.uname === "bob")
+  })
+
   it("should return the initial state", () => {
     expect(reducer(undefined, {})).toEqual(initialState)
   })
@@ -27,6 +40,19 @@ describe("user reducer", () => {
   })
 
   describe("relevant actions", () => {
+    let alice
+    let aliceProfile
+    let bob
+    let bobProfile
+
+    beforeEach(() => {
+      alice = Object.values(testUsers).find(user => user.uname === "alice")
+      aliceProfile = testProfiles[alice.regtxid]
+
+      bob = Object.values(testUsers).find(user => user.uname === "bob")
+      bobProfile = testProfiles[bob.regtxid]
+    })
+
     describe("Auth", () => {
       it("should handle LOGIN_ERROR", () => {
         const error = "LoginError"
@@ -53,14 +79,58 @@ describe("user reducer", () => {
       })
     })
 
-    describe("User", () => {
-      const alice = testUsers["alice"]
-      const bob = testUsers["bob"]
+    describe("Profile", () => {
+      it("should add profile", () => {
+        const availableProfiles = {
+          [alice.regtxid]: aliceProfile
+        }
 
+        expect(
+          reducer(
+            {
+              ...initialState,
+              profiles: availableProfiles
+            },
+            userProfileReceived(bobProfile)
+          )
+        ).toEqual({
+          ...initialState,
+          profiles: {
+            ...availableProfiles,
+            [bob.regtxid]: bobProfile
+          }
+        })
+      })
+
+      it("should update profile", () => {
+        const availableProfiles = {
+          [alice.regtxid]: aliceProfile,
+          [bob.regtxid]: { ...bobProfile, address: "Nowhere" }
+        }
+
+        expect(
+          reducer(
+            {
+              ...initialState,
+              profiles: availableProfiles
+            },
+            userProfileReceived(bobProfile)
+          )
+        ).toEqual({
+          ...initialState,
+          profiles: {
+            ...availableProfiles,
+            [bob.regtxid]: bobProfile
+          }
+        })
+      })
+    })
+
+    describe("User", () => {
       describe("should handle USERS_RECEIVED", () => {
         it("should add a new user", () => {
           const availableUsers = {
-            [alice.username]: alice
+            [alice.regtxid]: alice
           }
 
           const newUsers = [bob]
@@ -76,15 +146,15 @@ describe("user reducer", () => {
             ...initialState,
             users: {
               ...availableUsers,
-              [bob.username]: bob
+              [bob.regtxid]: bob
             }
           })
         })
 
         it("should overwrite an existing user", () => {
           const availableUsers = {
-            [alice.username]: alice,
-            [bob.username]: { ...bob, profile: { ...bob.profile, bio: "test" } }
+            [alice.regtxid]: alice,
+            [bob.regtxid]: { ...bob, credits: bob.credits + 100 }
           }
 
           const newUsers = [bob]
@@ -99,8 +169,8 @@ describe("user reducer", () => {
           ).toEqual({
             ...initialState,
             users: {
-              [alice.username]: alice,
-              [bob.username]: bob
+              [alice.regtxid]: alice,
+              [bob.regtxid]: bob
             }
           })
         })
@@ -108,23 +178,22 @@ describe("user reducer", () => {
 
       describe("should handle USER_RECEIVED", () => {
         it("add a new user", () => {
-          const user = testUsers["alice"]
-          expect(reducer(undefined, userReceived(user))).toEqual({
+          expect(reducer(undefined, userReceived(alice))).toEqual({
             ...initialState,
-            users: { [alice.username]: user }
+            users: { [alice.regtxid]: alice }
           })
         })
 
         it("should overwrite an existing user", () => {
-          const receivedUser = { likes: [{}], ...alice }
+          const receivedUser = { ...alice, credits: alice.credits + 100 }
 
           expect(
             reducer(
               {
                 ...initialState,
                 users: {
-                  [alice.username]: alice,
-                  [bob.username]: bob
+                  [alice.regtxid]: alice,
+                  [bob.regtxid]: bob
                 }
               },
               userReceived(receivedUser)
@@ -132,8 +201,8 @@ describe("user reducer", () => {
           ).toEqual({
             ...initialState,
             users: {
-              [alice.username]: receivedUser,
-              [bob.username]: bob
+              [alice.regtxid]: receivedUser,
+              [bob.regtxid]: bob
             }
           })
         })
@@ -141,36 +210,34 @@ describe("user reducer", () => {
 
       describe("should handle USER_UPDATED", () => {
         it("should update an existing user", () => {
-          const user = testUsers["alice"]
           const availableUsers = {
-            [user.username]: user
+            [alice.regtxid]: alice
           }
-          const bio = "testBio"
+          const credits = alice.credits + 100
           expect(
             reducer(
               {
                 ...initialState,
                 users: availableUsers
               },
-              userUpdated(user.username, { bio })
+              userUpdated(alice.regtxid, { credits })
             )
           ).toEqual({
             ...initialState,
-            users: { [user.username]: { ...user, bio } }
+            users: { [alice.regtxid]: { ...alice, credits } }
           })
         })
 
         it("should return original state if the user is not available", () => {
-          const user = testUsers["alice"]
-          const bio = "testBio"
+          const credits = 1024
           expect(
-            reducer(initialState, userUpdated(user.username, { bio }))
+            reducer(initialState, userUpdated(alice.regtxid, { credits }))
           ).toEqual(initialState)
         })
       })
     })
 
-    describe("Likes", () => {
+    describe.skip("Likes", () => {
       describe("handle LIKE_REMOVED", () => {
         const alice = testUsers["alice"]
 
@@ -196,38 +263,6 @@ describe("user reducer", () => {
                   ...alice.profile,
                   likesCount: alice.profile.likesCount - 1
                 }
-              }
-            }
-          })
-        })
-      })
-    })
-
-    describe("Memos", () => {
-      describe("handle MEMO_DELETED", () => {
-        const alice = testUsers["alice"]
-        const deletedMemoId = alice.memoIds[0]
-
-        it("should return original state if no user found", () => {
-          const state = { users: {} }
-          expect(reducer(state, memoDeleted(alice.memoIds[0]))).toEqual(state)
-        })
-
-        it("should delete a memo", () => {
-          const state = {
-            currentUser: alice.username,
-            users: { [alice.username]: alice }
-          }
-
-          expect(reducer(state, memoDeleted(deletedMemoId))).toEqual({
-            ...state,
-            users: {
-              ...state.users,
-              [alice.username]: {
-                ...alice,
-                memoIds: alice.memoIds.filter(
-                  memoId => memoId !== deletedMemoId
-                )
               }
             }
           })

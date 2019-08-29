@@ -1,41 +1,43 @@
-import { getUsers } from "./user.selector"
+import { getProfiles, getUsers } from "./user.selector"
 import { createSelector } from "reselect"
 import { getMemos } from "./memo.selector"
 
 export const getUsersForSearch = category =>
-  createSelector([getUsers], users => {
-    return Object.entries(users).map(entry => {
-      const username = entry[0]
-      const user = entry[1]
+  createSelector([getUsers, getProfiles], (users, profiles) => {
+    return Object.values(users).map(user => {
+      if (user) {
+        const profile = profiles[user.regtxid]
 
-      return user
-        ? {
-            childKey: username,
-            category,
-            title: user.uname,
-            description: user.profile ? user.profile.bio : "",
-            image: user.profile ? user.profile.avatarUrl : ""
-          }
-        : {}
+        return {
+          childKey: user.regtxid,
+          category,
+          title: user.uname,
+          description: profile ? profile.text : "",
+          image: profile ? profile.avatarUrl : ""
+        }
+      }
+      return {}
     })
   })
 
 export const getMemosForSearch = category =>
-  createSelector([getMemos, getUsers], (memos, users) => {
-    return memos && memos.length > 0
-      ? Object.entries(memos).map(entry => {
-          const memoId = entry[0]
-          const memo = entry[1]
-          const user = users[memo.username]
+  createSelector(
+    [getMemos, getUsers, getProfiles],
+    (memos, users, profiles) => {
+      return memos
+        ? Object.values(memos).map(memo => {
+            const user = users[memo.$meta.userId]
+            const profile = profiles[memo.$meta.userId]
 
-          return user && memo
-            ? {
-                childKey: memoId,
-                category,
-                title: memo.memoText,
-                image: user ? user.profile.avatarUrl : null
-              }
-            : {}
-        })
-      : []
-  })
+            return user && memo
+              ? {
+                  childKey: memo.$scopeId,
+                  category,
+                  title: memo.message,
+                  image: profile ? profile.avatarUrl : null
+                }
+              : {}
+          })
+        : []
+    }
+  )

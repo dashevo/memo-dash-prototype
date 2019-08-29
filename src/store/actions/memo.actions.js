@@ -2,10 +2,9 @@ import {
   getMemoDashLib,
   getCurrentUser,
   getMissingUsers,
-  getCurrentUsername
+  getCurrentUserId
 } from "../selectors"
 import { userUpdated, getUsers } from "./user.actions"
-import { combineMemoId } from "../reducers/memo.reducer"
 
 export const MemoActionTypes = {
   MEMOS_RECEIVED: "MEMOS_RECEIVED",
@@ -16,13 +15,18 @@ export const MemoActionTypes = {
   MEMO_DELETED: "MEMO_DELETED"
 }
 
-export const getMemosForUser = username => async (dispatch, getState) => {
-  const memos = await getMemoDashLib(getState()).getMemosForUser(username)
+export const getMemosForUser = (username, limit) => async (
+  dispatch,
+  getState
+) => {
+  const lib = getMemoDashLib(getState())
+  const memos = await lib.getMemosForUser(username, limit)
 
   if (memos) {
     dispatch(memosReceived(memos))
-    const memoIds = memos.map(memo => combineMemoId(memo.username, memo.idx))
-    dispatch(userUpdated(username, { memoIds }))
+    dispatch(
+      userUpdated(username, { memoIds: memos.map(memo => memo.$scopeId) })
+    )
   }
 }
 
@@ -50,7 +54,7 @@ export const likeMemo = (username, memoId) => async (dispatch, getState) => {
   const lib = getMemoDashLib(getState())
   await lib.likeMemo(username, memoId)
 
-  const currentUsername = getCurrentUsername(getState())
+  const currentUsername = getCurrentUserId(getState())
   const likes = await lib.getUserLikes(currentUsername)
 
   await dispatch(likeAdded(likes))
@@ -95,7 +99,7 @@ export const replyToMemo = (username, memoId, message) => async (
   dispatch(memoUpdated(memo))
   dispatch(getMemoReplies(username, memoId))
 
-  const currentUsername = getCurrentUsername(getState())
+  const currentUsername = getCurrentUserId(getState())
   dispatch(getMemosForUser(currentUsername))
 }
 
@@ -128,7 +132,7 @@ export const postMemo = message => async (dispatch, getState) => {
 export const deleteMemo = (username, memoId) => async (dispatch, getState) => {
   const lib = getMemoDashLib(getState())
   await lib.deleteMemo(memoId)
-  dispatch(memoDeleted(combineMemoId(username, memoId)))
+  dispatch(memoDeleted(memoId))
 }
 
 export const memoDeleted = memoId => ({

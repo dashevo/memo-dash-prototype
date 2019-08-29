@@ -1,12 +1,15 @@
-import { getMemoByCombinedId } from '../selectors'
+import { getMemoByScopeId } from "../selectors"
 
 export const MemoModalActionTypes = {
-  OPEN_MODAL: 'OPEN_MODAL',
-  CLOSE_MODAL: 'CLOSE_MODAL'
+  OPEN_MODAL: "OPEN_MODAL",
+  CLOSE_MODAL: "CLOSE_MODAL"
 }
 
-export const openMemoModalByCombinedId = memoId => async (dispatch, getState) => {
-  const memo = getMemoByCombinedId(memoId)(getState())
+export const openMemoModalByCombinedId = scopeId => async (
+  dispatch,
+  getState
+) => {
+  const memo = getMemoByScopeId(scopeId)(getState())
   dispatch(openMemoModal(memo))
 }
 

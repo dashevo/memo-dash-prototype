@@ -15,7 +15,7 @@ const initMemoDashClient = () => async dispatch => {
   const memoDashLib = new MemoDashLib(
     process.env.REACT_APP_NETWORK_TYPE,
     seeds,
-    "memo-dash",
+    process.env.REACT_APP_CONTRACT_NAME,
     memoDashContract,
     process.env.REACT_APP_FAUCET_PRIVATE_KEY
   )

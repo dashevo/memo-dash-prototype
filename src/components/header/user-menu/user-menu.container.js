@@ -1,16 +1,20 @@
-import { push } from 'connected-react-router'
+import { push } from "connected-react-router"
 
-import { logout } from '../../../store/actions'
+import { logout } from "../../../store/actions"
 
-import UserMenuComponent from './user-menu.component'
-import { getCurrentUser } from '../../../store/selectors/user.selector'
-import { connect } from 'react-redux'
+import UserMenuComponent from "./user-menu.component"
+import {
+  getCurrentUser,
+  getUserProfile
+} from "../../../store/selectors/user.selector"
+import { connect } from "react-redux"
 
 const mapStateToProps = state => {
   const user = getCurrentUser(state)
+  const profile = getUserProfile(user.regtxid)(state)
   return {
-    username: user.username,
-    avatarUrl: user.profile.avatarUrl
+    username: user.uname,
+    avatarUrl: profile.avatarUrl
   }
 }
 

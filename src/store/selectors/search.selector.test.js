@@ -1,39 +1,57 @@
-import { testUsers, testMemos } from "../../test-utils/test-data"
+import { testUsers, testMemos, testProfiles } from "../../test-utils/test-data"
 import * as selector from "./search.selector"
 
 describe("search selector", () => {
   const category = "category"
 
-  const alice = testUsers["alice"]
-  const bob = testUsers["bob"]
+  let alice
+  let aliceProfile
+  let aliceMemos
+  let bob
+  let bobProfile
+  let bobMemos
+  let state
 
-  const state = {
-    user: {
-      users: { [alice.username]: alice, [bob.username]: bob }
-    },
-    memo: {
-      memos: {
-        [alice.memoIds[0]]: testMemos[alice.memoIds[0]],
-        [bob.memoIds[0]]: testMemos[bob.memoIds[0]]
+  beforeEach(() => {
+    alice = Object.values(testUsers).find(user => user.uname === "alice")
+    aliceProfile = testProfiles[alice.regtxid]
+    aliceMemos = Object.values(testMemos).filter(
+      memo => memo.$meta.userId === alice.regtxid
+    )
+
+    bob = Object.values(testUsers).find(user => user.uname === "bob")
+    bobProfile = testProfiles[bob.regtxid]
+    bobMemos = Object.values(testMemos).filter(
+      memo => memo.$meta.userId === bob.regtxid
+    )
+
+    state = {
+      user: {
+        currentUser: alice.regtxid,
+        users: testUsers,
+        profiles: testProfiles
+      },
+      memo: {
+        memos: testMemos
       }
     }
-  }
+  })
 
   it("should return users", () => {
     const result = [
       {
         category,
-        childKey: alice.username,
-        description: alice.profile.bio,
-        image: alice.profile.avatarUrl,
-        title: alice.username
+        childKey: alice.regtxid,
+        description: aliceProfile.text,
+        image: aliceProfile.avatarUrl,
+        title: alice.uname
       },
       {
         category,
-        childKey: bob.username,
-        description: bob.profile.bio,
-        image: bob.profile.avatarUrl,
-        title: bob.username
+        childKey: bob.regtxid,
+        description: bobProfile.text,
+        image: bobProfile.avatarUrl,
+        title: bob.uname
       }
     ]
 
@@ -44,15 +62,21 @@ describe("search selector", () => {
     const result = [
       {
         category,
-        childKey: alice.memoIds[0],
-        image: alice.profile.avatarUrl,
-        title: testMemos[alice.memoIds[0]].memoText
+        childKey: aliceMemos[0].$scopeId,
+        image: aliceProfile.avatarUrl,
+        title: aliceMemos[0].message
       },
       {
         category,
-        childKey: bob.memoIds[0],
-        image: bob.profile.avatarUrl,
-        title: testMemos[bob.memoIds[0]].memoText
+        childKey: aliceMemos[1].$scopeId,
+        image: aliceProfile.avatarUrl,
+        title: aliceMemos[1].message
+      },
+      {
+        category,
+        childKey: bobMemos[0].$scopeId,
+        image: bobProfile.avatarUrl,
+        title: bobMemos[0].message
       }
     ]
 

@@ -1,14 +1,18 @@
-import React from 'react'
-import { Route, Switch, Redirect } from 'react-router'
+import React from "react"
+import { Route, Switch, Redirect } from "react-router"
 
-import { LoginViewContainer, HomeViewContainer, ProfileViewContainer } from '../scenes/'
-import PrivateRoute from '../components/private-route/private-route.container'
-import NoMatch from '../components/no-match/no-match.component'
-import HeaderContainer from '../components/header/header.container'
-import UsersViewContainer from '../scenes/users-view/users-view.container'
+import {
+  LoginViewContainer,
+  HomeViewContainer,
+  ProfileViewContainer
+} from "../scenes/"
+import PrivateRoute from "../components/private-route/private-route.container"
+import NoMatch from "../components/no-match/no-match.component"
+import HeaderContainer from "../components/header/header.container"
+import UsersViewContainer from "../scenes/users-view/users-view.container"
 
 const withHeader = WrappedComponent => props => (
-  <div style={{ backgroundColor: '#f1f1f1' }}>
+  <div style={{ backgroundColor: "#f1f1f1" }}>
     <HeaderContainer />
     <WrappedComponent {...props} />
   </div>
@@ -22,7 +26,10 @@ const routes = (
       <PrivateRoute path="/home" component={withHeader(HomeViewContainer)} />
       <PrivateRoute path="/users" component={withHeader(UsersViewContainer)} />
       <Redirect exact from="/profile/:username" to="/profile/:username/memos" />
-      <PrivateRoute path="/profile/:username/*" component={withHeader(ProfileViewContainer)} />
+      <PrivateRoute
+        path="/profile/:username/*"
+        component={withHeader(ProfileViewContainer)}
+      />
       <Route component={NoMatch} />
     </Switch>
   </div>

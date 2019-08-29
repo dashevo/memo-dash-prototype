@@ -1,7 +1,10 @@
-import { connect } from 'react-redux'
-import ProfileViewComponent from './profile-view.component'
-import { getUser, updateProfile } from '../../store/actions'
-import { getUserProfile, isProfileOfCurrentUser } from '../../store/selectors'
+import { connect } from "react-redux"
+import ProfileViewComponent from "./profile-view.component"
+import { getUser, updateProfile } from "../../store/actions"
+import {
+  getUserProfileByUserName,
+  isProfileOfCurrentUser
+} from "../../store/selectors"
 
 const mapStateToProps = (state, ownProps) => {
   const {
@@ -10,7 +13,7 @@ const mapStateToProps = (state, ownProps) => {
     }
   } = ownProps
 
-  const profile = getUserProfile(username)(state)
+  const profile = getUserProfileByUserName(username)(state)
 
   return {
     username,

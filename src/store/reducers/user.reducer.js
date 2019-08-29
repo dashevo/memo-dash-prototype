@@ -5,7 +5,8 @@ export const initialState = {
   currentUser: undefined,
   memoIds: undefined,
   authError: undefined,
-  users: undefined
+  users: undefined,
+  profiles: undefined
 }
 
 const getCurrentUser = state => state.users[state.currentUser]
@@ -29,8 +30,8 @@ export default (state = initialState, action) => {
       const users = { ...state.users }
       const receivedUser = action.payload
 
-      users[receivedUser.username] = {
-        ...users[receivedUser.username],
+      users[receivedUser.regtxid] = {
+        ...users[receivedUser.regtxid],
         ...receivedUser
       }
 
@@ -46,8 +47,8 @@ export default (state = initialState, action) => {
       if (receivedUsers) {
         receivedUsers.forEach(
           receivedUser =>
-            (users[receivedUser.username] = {
-              ...users[receivedUser.username],
+            (users[receivedUser.regtxid] = {
+              ...users[receivedUser.regtxid],
               ...receivedUser
             })
         )
@@ -70,6 +71,23 @@ export default (state = initialState, action) => {
         }
       } else {
         return state
+      }
+    }
+
+    case UserActionTypes.USER_PROFILE_RECEIVED: {
+      const profiles = { ...state.profiles }
+      const receivedProfile = action.payload
+
+      if (receivedProfile) {
+        profiles[receivedProfile.$meta.userId] = {
+          ...profiles[receivedProfile.$meta.userId],
+          ...receivedProfile
+        }
+
+        return {
+          ...state,
+          profiles
+        }
       }
     }
 

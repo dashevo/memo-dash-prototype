@@ -1,9 +1,9 @@
-import * as selector from './memo-modal.selector'
-import { testUsers, testMemos } from '../../test-utils/test-data'
-import { combineMemoId } from '../reducers/memo.reducer'
+import * as selector from "./memo-modal.selector"
+import { testUsers, testMemos } from "../../test-utils/test-data"
+import { combineMemoId } from "../reducers/memo.reducer"
 
-describe('memo-modal selector', () => {
-  const alice = testUsers['alice']
+describe("memo-modal selector", () => {
+  const alice = testUsers["alice"]
   const memo = testMemos[alice.memoIds[0]]
 
   const state = {
@@ -18,16 +18,19 @@ describe('memo-modal selector', () => {
     }
   }
 
-  it('should return true if memo modal is opened', () => {
+  it("should return true if memo modal is opened", () => {
     expect(selector.isMemoModalOpened(state)).toEqual(true)
   })
 
-  it('should return false if memo modal is opened', () => {
-    const changedState = { ...state, memoModal: { ...state.memoModal, opened: false } }
+  it("should return false if memo modal is opened", () => {
+    const changedState = {
+      ...state,
+      memoModal: { ...state.memoModal, opened: false }
+    }
     expect(selector.isMemoModalOpened(changedState)).toEqual(false)
   })
 
-  it('should return opened memo', () => {
+  it("should return opened memo", () => {
     expect(selector.getOpenedMemo(state)).toEqual(memo)
   })
 })

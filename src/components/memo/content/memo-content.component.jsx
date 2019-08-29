@@ -34,10 +34,10 @@ class MemoComponent extends Component {
   }
 
   render() {
-    const { memo, showEdit } = this.props
+    const { memo, memoUser, showEdit } = this.props
     const { editing } = this.state
 
-    if (!memo) return null
+    if (!memo ||!memoUser) return null
 
     return (
       <Comment.Content>
@@ -57,22 +57,22 @@ class MemoComponent extends Component {
           </Button>
         ) : null}
         <Comment.Author as="a" onClick={this.goToProfile}>
-          {memo.username}
+          {memoUser.uname}
         </Comment.Author>
         <Comment.Metadata>
-          <span>posted {dayjs(memo.memoDatetime).from()}</span>
+          <span>posted {dayjs(memo.createdAt).from()}</span>
         </Comment.Metadata>
         {editing ? (
           <MemoFormContainer
-            memoId={memo.idx}
+            memoId={memo.$scopeId}
             username={memo.username}
             buttonLabel="Update Memo"
-            message={memo.memoText}
+            message={memo.message}
             onSubmitted={this.onEditSubmitted}
             onCanceled={this.onEditCanceled}
           />
         ) : (
-          <Comment.Text>{memo.memoText}</Comment.Text>
+          <Comment.Text>{memo.message}</Comment.Text>
         )}
       </Comment.Content>
     )
