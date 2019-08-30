@@ -207,7 +207,7 @@ export default class MemoDashLib {
    *   avatarUrl
    * }>
    */
-  async getMemo(username, memoId) {
+  async getMemo(userId, memoId) {
     // return await this.memoDashClient.getMemo(username, memoId)
   }
 

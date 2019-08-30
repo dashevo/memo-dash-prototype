@@ -33,7 +33,7 @@ const login = blockchainUsername => async (dispatch, getState) => {
     // await dispatch(userReceived(blockchainUser))
     await dispatch(getUser(blockchainUser.uname))
     await dispatch(getUserProfile(blockchainUser.regtxid))
-    await dispatch(getMemosForUser(undefined, 10))
+    await dispatch(getMemosForUser(blockchainUser.regtxid, 10))
     dispatch(push("/home"))
   } catch (error) {
     console.log(error)

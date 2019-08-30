@@ -35,6 +35,9 @@ export const getUserProfileByUserName = username =>
     (profiles, user) => profiles[user.regtxid]
   )
 
+export const getUserIdByUserName = username =>
+  createSelector([getUserByUserName(username)], user => user.regtxid)
+
 export const getAvatarUrl = userId =>
   createSelector([getUserProfile(userId)], profile => {
     return profile ? profile.avatarUrl : undefined

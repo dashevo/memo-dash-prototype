@@ -58,6 +58,12 @@ describe("user selector", () => {
     expect(selector.getUserProfile(alice.regtxid)(state)).toEqual(aliceProfile)
   })
 
+  it("should return user id", () => {
+    expect(selector.getUserIdByUserName(alice.uname)(state)).toEqual(
+      alice.regtxid
+    )
+  })
+
   it("should return user profile by username", () => {
     expect(selector.getUserProfileByUserName(alice.uname)(state)).toEqual(
       aliceProfile

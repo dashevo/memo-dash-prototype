@@ -14,8 +14,8 @@ describe("user actions", () => {
     it("to indicate the user was updated", () => {
       verifyAction(
         UserActionTypes.USER_UPDATED,
-        { username: alice.username, props: "" },
-        () => userActions.userUpdated(alice.username, "")
+        { username: alice.regtxid, props: "" },
+        () => userActions.userUpdated(alice.regtxid, "")
       )
     })
 
@@ -118,7 +118,7 @@ describe("user actions", () => {
           expect(
             await getAction(actions, UserActionTypes.USER_UPDATED)
           ).toEqual(
-            userActions.userUpdated(alice.username, { profile: newProfile })
+            userActions.userUpdated(alice.regtxid, { profile: newProfile })
           )
         })
       })

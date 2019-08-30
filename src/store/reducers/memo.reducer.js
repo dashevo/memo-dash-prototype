@@ -1,8 +1,6 @@
 import { getMemoByScopeId } from "../selectors/memo.selector"
 import { MemoActionTypes } from "../actions"
 
-export const combineMemoId = (username, memoId) => `[${username}][${memoId}]`
-
 export const initialState = {
   memos: undefined
 }

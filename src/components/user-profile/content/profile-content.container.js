@@ -1,19 +1,21 @@
-import { connect } from 'react-redux'
+import { connect } from "react-redux"
 import {
   getMemosForUser,
   getFollowersForUser,
   getFollowingForUser,
   getLikedMemosForUser
-} from '../../../store/actions'
+} from "../../../store/actions"
 import {
   getUserMemos,
   getPathname,
   getUserFollowers,
   getUserFollowing,
-  getUserLikedMemos
-} from '../../../store/selectors'
-import { push } from 'connected-react-router'
-import ProfileContentComponent from './profile-content.component'
+  getUserLikedMemos,
+  getUserByUserId,
+  getUserIdByUserName
+} from "../../../store/selectors"
+import { push } from "connected-react-router"
+import ProfileContentComponent from "./profile-content.component"
 
 const mapStateToProps = (state, ownProps) => {
   const {
@@ -33,7 +35,11 @@ const mapStateToProps = (state, ownProps) => {
 const mapDispatchToProps = dispatch => {
   return {
     onMemosClicked: (memos, username) => {
-      if (!memos) dispatch(getMemosForUser(username))
+      if (!memos) {
+        const userId = getUserIdByUserName(username)
+        dispatch(getMemosForUser(userId))
+      }
+
       dispatch(push(`/profile/${username}/memos`))
     },
     onFollowersClicked: (followers, username) => {

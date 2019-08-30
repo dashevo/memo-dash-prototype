@@ -35,9 +35,9 @@ export const getUserProfile = userId => async (dispatch, getState) => {
   }
 }
 
-export const userUpdated = (username, props) => ({
+export const userUpdated = (userId, props) => ({
   type: UserActionTypes.USER_UPDATED,
-  payload: { username, props }
+  payload: { username: userId, props }
 })
 
 export const userReceived = user => ({
@@ -58,8 +58,8 @@ export const usersReceived = users => ({
 export const updateProfile = bio => async (dispatch, getState) => {
   const lib = getMemoDashLib(getState())
   await lib.updateProfile(bio)
-  const currentUser = getCurrentUserId(getState())
-  const profile = await lib.getUserProfile(currentUser)
+  const currentUserId = getCurrentUserId(getState())
+  const profile = await lib.getUserProfile(currentUserId)
 
-  await dispatch(userUpdated(currentUser, { profile }))
+  await dispatch(userUpdated(currentUserId, { profile }))
 }

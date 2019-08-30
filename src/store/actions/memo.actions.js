@@ -15,18 +15,16 @@ export const MemoActionTypes = {
   MEMO_DELETED: "MEMO_DELETED"
 }
 
-export const getMemosForUser = (username, limit) => async (
+export const getMemosForUser = (userId, limit) => async (
   dispatch,
   getState
 ) => {
   const lib = getMemoDashLib(getState())
-  const memos = await lib.getMemosForUser(username, limit)
+  const memos = await lib.getMemosForUser(userId, limit)
 
   if (memos) {
     dispatch(memosReceived(memos))
-    dispatch(
-      userUpdated(username, { memoIds: memos.map(memo => memo.$scopeId) })
-    )
+    dispatch(userUpdated(userId, { memoIds: memos.map(memo => memo.$scopeId) }))
   }
 }
 
@@ -37,10 +35,10 @@ export const getMemos = memoIds => async (dispatch, getState) => {
 
   if (memos) {
     dispatch(memosReceived(memos))
-    const usernames = getMissingUsers(memos.map(memo => memo.username))(state)
+    const userIds = getMissingUsers(memos.map(memo => memo.$meta.userId))(state)
 
-    if (usernames && usernames.length > 0) {
-      dispatch(getUsers(usernames))
+    if (userIds && userIds.length > 0) {
+      dispatch(getUsers(userIds))
     }
   }
 }
@@ -89,18 +87,18 @@ export const likeRemoved = likeId => ({
   payload: likeId
 })
 
-export const replyToMemo = (username, memoId, message) => async (
+export const replyToMemo = (userId, memoId, message) => async (
   dispatch,
   getState
 ) => {
   const lib = getMemoDashLib(getState())
-  await lib.replyToMemo(username, memoId, message)
-  const memo = await lib.getMemo(username, memoId)
+  await lib.replyToMemo(userId, memoId, message)
+  const memo = await lib.getMemo(userId, memoId)
   dispatch(memoUpdated(memo))
-  dispatch(getMemoReplies(username, memoId))
+  dispatch(getMemoReplies(userId, memoId))
 
-  const currentUsername = getCurrentUserId(getState())
-  dispatch(getMemosForUser(currentUsername))
+  const currentUserId = getCurrentUserId(getState())
+  dispatch(getMemosForUser(currentUserId))
 }
 
 export const memoUpdated = memo => ({
@@ -129,7 +127,7 @@ export const postMemo = message => async (dispatch, getState) => {
   dispatch(getMemos())
 }
 
-export const deleteMemo = (username, memoId) => async (dispatch, getState) => {
+export const deleteMemo = memoId => async (dispatch, getState) => {
   const lib = getMemoDashLib(getState())
   await lib.deleteMemo(memoId)
   dispatch(memoDeleted(memoId))
@@ -140,12 +138,12 @@ export const memoDeleted = memoId => ({
   payload: memoId
 })
 
-export const editMemo = (username, memoId, message) => async (
+export const editMemo = (userId, memoId, message) => async (
   dispatch,
   getState
 ) => {
   const lib = getMemoDashLib(getState())
   await lib.editMemo(memoId, message)
-  const memo = await lib.getMemo(username, memoId)
+  const memo = await lib.getMemo(userId, memoId)
   dispatch(memoUpdated(memo))
 }
