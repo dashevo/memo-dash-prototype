@@ -16,10 +16,11 @@ import {
 import * as userActions from "./user.actions"
 import * as memoActions from "./memo.actions"
 
-import { testUsers } from "../../test-utils/test-data"
+import { getAlice, testUsers } from "../../test-utils/test-data"
 
 describe("auth actions", () => {
-  const alice = testUsers["alice"]
+  const alice = getAlice()
+  const uname = "blockchainUsername"
 
   describe("should create an action", () => {
     it("to indicate a login error", () => {
@@ -49,10 +50,7 @@ describe("auth actions", () => {
         const errorMessage = "MemoDashLib isnt initialized yet"
         const state = { root: { memoDashLib: undefined } }
 
-        const actions = await mockStoreAndDispatch(
-          state,
-          login("blockchainUsername")
-        )
+        const actions = await mockStoreAndDispatch(state, login(alice.uname))
         expect(await getAction(actions, AuthActionTypes.LOGIN_ERROR)).toEqual(
           loginError(errorMessage)
         )
@@ -78,7 +76,8 @@ describe("auth actions", () => {
 
     beforeEach(() => {
       memoDashLib = {
-        searchBlockchainUsers: jest.fn(),
+        getUserByName: jest.fn(),
+        getUserProfile: jest.fn(),
         login: jest.fn(),
         logout: jest.fn(),
         getUser: jest.fn()
@@ -112,25 +111,22 @@ describe("auth actions", () => {
     })
 
     describe("when dispatching login action", () => {
-      it("should call memoDashLib.searchBlockchainUsers", async () => {
-        await mockStoreAndDispatch(state, login("blockchainUsername"))
-        expect(memoDashLib.searchBlockchainUsers).toHaveBeenCalled()
+      it("should call memoDashLib.getUserByName", async () => {
+        await mockStoreAndDispatch(state, login(uname))
+        expect(memoDashLib.getUserByName).toHaveBeenCalled()
       })
 
       describe("no user found", () => {
         it("should not call memoDashLib.login", async () => {
-          await mockStoreAndDispatch(state, login("blockchainUsername"))
+          await mockStoreAndDispatch(state, login(uname))
           expect(memoDashLib.login).not.toHaveBeenCalled()
         })
 
         it("should dispatch loginError", async () => {
           const errorMessage = `User blockchainUsername not found on blockchain`
-          memoDashLib.searchBlockchainUsers.mockReturnValue([])
+          memoDashLib.getUserByName.mockReturnValue(undefined)
 
-          const actions = await mockStoreAndDispatch(
-            state,
-            login("blockchainUsername")
-          )
+          const actions = await mockStoreAndDispatch(state, login(uname))
           expect(await getAction(actions, AuthActionTypes.LOGIN_ERROR)).toEqual(
             loginError(errorMessage)
           )
@@ -139,8 +135,8 @@ describe("auth actions", () => {
 
       describe("user was found", () => {
         it("should call memoDashLib.login", async () => {
-          memoDashLib.searchBlockchainUsers.mockReturnValue([{}])
-          await mockStoreAndDispatch(state, login("blockchainUsername"))
+          memoDashLib.getUserByName.mockReturnValue(alice)
+          await mockStoreAndDispatch(state, login(alice.uname))
           expect(memoDashLib.login).toHaveBeenCalled()
         })
 
@@ -148,27 +144,22 @@ describe("auth actions", () => {
           let actions
 
           beforeEach(async () => {
-            memoDashLib.searchBlockchainUsers.mockReturnValue([
-              { name: alice.username }
-            ])
+            memoDashLib.getUserByName.mockReturnValue(alice)
 
             userActions.getUser = jest.fn(() => jest.fn())
             memoActions.getMemosForUser = jest.fn(() => jest.fn())
 
-            actions = await mockStoreAndDispatch(
-              state,
-              login("blockchainUsername")
-            )
+            actions = await mockStoreAndDispatch(state, login(alice.uname))
           })
 
           it("should dispatch loginSuccessfull", async () => {
             expect(
               await getAction(actions, AuthActionTypes.LOGIN_SUCCESSFULL)
-            ).toEqual(loginSuccessfull(alice.username))
+            ).toEqual(loginSuccessfull(alice.uname))
           })
 
           it("should dispatch getUser", async () => {
-            expect(userActions.getUser).toHaveBeenCalledWith(alice.username)
+            expect(userActions.getUser).toHaveBeenCalledWith(alice.uname)
           })
 
           it("should dispatch getMemosForUser", async () => {
@@ -178,26 +169,20 @@ describe("auth actions", () => {
       })
 
       it("should dispatch loginSuccessfull if the login was successfull", async () => {
-        memoDashLib.searchBlockchainUsers.mockReturnValue([{ name: "Name" }])
-        const actions = await mockStoreAndDispatch(
-          state,
-          login("blockchainUsername")
-        )
+        memoDashLib.getUserByName.mockReturnValue(alice)
+        const actions = await mockStoreAndDispatch(state, login(alice.uname))
         expect(
           await getAction(actions, AuthActionTypes.LOGIN_SUCCESSFULL)
-        ).toEqual(loginSuccessfull("Name"))
+        ).toEqual(loginSuccessfull(alice.uname))
       })
 
       it("should dispatch loginError if the login was not successfull", async () => {
-        memoDashLib.searchBlockchainUsers.mockReturnValue([{ name: "Name" }])
+        memoDashLib.getUserByName.mockReturnValue(alice)
         memoDashLib.login = jest
           .fn()
           .mockImplementation(() => Promise.reject(new Error("LoginError")))
 
-        const actions = await mockStoreAndDispatch(
-          state,
-          login("blockchainUsername")
-        )
+        const actions = await mockStoreAndDispatch(state, login(alice.uname))
         expect(await getAction(actions, AuthActionTypes.LOGIN_ERROR)).toEqual(
           loginError("LoginError")
         )

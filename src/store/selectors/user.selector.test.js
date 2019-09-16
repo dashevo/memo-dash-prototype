@@ -1,4 +1,11 @@
-import { testUsers, testMemos, testProfiles } from "../../test-utils/test-data"
+import {
+  testUsers,
+  testMemos,
+  testProfiles,
+  getBob,
+  getAlice,
+  getAliceMemos
+} from "../../test-utils/test-data"
 import * as selector from "./user.selector"
 
 describe("user selector", () => {
@@ -10,18 +17,16 @@ describe("user selector", () => {
   let state
 
   beforeEach(() => {
-    alice = Object.values(testUsers).find(user => user.uname === "alice")
-    aliceProfile = testProfiles[alice.regtxid]
-    aliceMemos = Object.values(testMemos).filter(
-      memo => memo.$meta.userId === alice.regtxid
-    )
+    alice = getAlice()
+    aliceProfile = testProfiles[alice.uname]
+    aliceMemos = getAliceMemos()
 
-    bob = Object.values(testUsers).find(user => user.uname === "bob")
-    bobProfile = testProfiles[bob.regtxid]
+    bob = getBob()
+    bobProfile = testProfiles[bob.uname]
 
     state = {
       user: {
-        currentUser: alice.regtxid,
+        currentUser: alice.uname,
         authError: undefined,
         users: testUsers,
         profiles: testProfiles
@@ -33,7 +38,7 @@ describe("user selector", () => {
   })
 
   it("should return current user id", () => {
-    expect(selector.getCurrentUserId(state)).toEqual(alice.regtxid)
+    expect(selector.getCurrentUserName(state)).toEqual(alice.uname)
   })
 
   it("should return current user", () => {
@@ -49,13 +54,13 @@ describe("user selector", () => {
   })
 
   it("should return avatar url", () => {
-    expect(selector.getAvatarUrl(alice.regtxid)(state)).toEqual(
+    expect(selector.getAvatarUrl(alice.uname)(state)).toEqual(
       aliceProfile.avatarUrl
     )
   })
 
   it("should return user profile", () => {
-    expect(selector.getUserProfile(alice.regtxid)(state)).toEqual(aliceProfile)
+    expect(selector.getUserProfile(alice.uname)(state)).toEqual(aliceProfile)
   })
 
   it("should return user id", () => {
@@ -118,16 +123,16 @@ describe("user selector", () => {
 
   describe("missing users", () => {
     it("should return an empty array if all users are available", () => {
-      expect(
-        selector.getMissingUsers([alice.regtxid, bob.regtxid])(state)
-      ).toEqual([])
+      expect(selector.getMissingUsers([alice.uname, bob.uname])(state)).toEqual(
+        []
+      )
     })
 
     it("should return an array with the missing user", () => {
-      const missingUser = { regtxid: "charlie" }
+      const missingUser = { uname: "charlie" }
       expect(
-        selector.getMissingUsers([alice.regtxid, missingUser.regtxid])(state)
-      ).toEqual([missingUser.regtxid])
+        selector.getMissingUsers([alice.uname, missingUser.uname])(state)
+      ).toEqual([missingUser.uname])
     })
   })
 })

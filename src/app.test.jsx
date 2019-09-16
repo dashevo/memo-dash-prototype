@@ -7,7 +7,7 @@ import HomeViewContainer from './scenes/home-view/home-view.container'
 import LoginViewContainer from './scenes/login-view/login-view.container'
 import App, { AppComponent } from './app'
 import NoMatchComponent from './components/no-match/no-match.component'
-import { testUsers } from './test-utils/test-data'
+import { getAlice, testProfiles, testUsers } from "./test-utils/test-data"
 import { initialState } from './store/reducers/user.reducer'
 
 jest.mock('./scenes/home-view/home-view.container')
@@ -18,11 +18,11 @@ describe('App', () => {
   let store
   let mockStore
 
-  const createMockStore = (username = undefined) => {
+  const createMockStore = (testUser = undefined) => {
     let user = initialState
-    if (username) {
-      const testUser = Object.values(testUsers).find(user => user.uname === username)
-      user = { currentUser: testUser.regtxid, users: { [testUser.regtxid]: testUser } }
+    if (testUser) {
+      const username = testUser.uname
+      user = { currentUser: username, users: { [username]: testUser }, profiles: {[username]: testProfiles[username]}}
     }
 
     return mockStore({
@@ -68,7 +68,7 @@ describe('App', () => {
     })
 
     it('should not redirect to login if user is logged in', () => {
-      store = createMockStore('alice')
+      store = createMockStore(getAlice())
       const wrapper = createWrapper(['/home'])
       expect(wrapper.find(HomeViewContainer)).toHaveLength(1)
       expect(wrapper.find(LoginViewContainer)).toHaveLength(0)

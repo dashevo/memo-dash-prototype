@@ -13,7 +13,14 @@ import {
   usersReceived,
   userUpdated
 } from "../actions/user.actions"
-import { testUsers, testProfiles, testMemos } from "../../test-utils/test-data"
+import {
+  testUsers,
+  testProfiles,
+  testMemos,
+  getBob,
+  getAlice,
+  getAliceMemos
+} from "../../test-utils/test-data"
 
 describe("user reducer", () => {
   let alice
@@ -21,11 +28,9 @@ describe("user reducer", () => {
   let bob
 
   beforeEach(() => {
-    alice = Object.values(testUsers).find(user => user.uname === "alice")
-    aliceMemos = Object.values(testMemos).filter(
-      memo => memo.$meta.userId === alice.regtxid
-    )
-    bob = Object.values(testUsers).find(user => user.uname === "bob")
+    alice = getAlice()
+    aliceMemos = getAliceMemos()
+    bob = getBob()
   })
 
   it("should return the initial state", () => {
@@ -46,11 +51,11 @@ describe("user reducer", () => {
     let bobProfile
 
     beforeEach(() => {
-      alice = Object.values(testUsers).find(user => user.uname === "alice")
-      aliceProfile = testProfiles[alice.regtxid]
+      alice = getAlice()
+      aliceProfile = testProfiles[alice.uname]
 
-      bob = Object.values(testUsers).find(user => user.uname === "bob")
-      bobProfile = testProfiles[bob.regtxid]
+      bob = getBob()
+      bobProfile = testProfiles[bob.uname]
     })
 
     describe("Auth", () => {
@@ -82,7 +87,7 @@ describe("user reducer", () => {
     describe("Profile", () => {
       it("should add profile", () => {
         const availableProfiles = {
-          [alice.regtxid]: aliceProfile
+          [alice.uname]: aliceProfile
         }
 
         expect(
@@ -97,15 +102,15 @@ describe("user reducer", () => {
           ...initialState,
           profiles: {
             ...availableProfiles,
-            [bob.regtxid]: bobProfile
+            [bob.uname]: bobProfile
           }
         })
       })
 
       it("should update profile", () => {
         const availableProfiles = {
-          [alice.regtxid]: aliceProfile,
-          [bob.regtxid]: { ...bobProfile, address: "Nowhere" }
+          [alice.uname]: aliceProfile,
+          [bob.uname]: { ...bobProfile, address: "Nowhere" }
         }
 
         expect(
@@ -120,7 +125,7 @@ describe("user reducer", () => {
           ...initialState,
           profiles: {
             ...availableProfiles,
-            [bob.regtxid]: bobProfile
+            [bob.uname]: bobProfile
           }
         })
       })
@@ -130,7 +135,7 @@ describe("user reducer", () => {
       describe("should handle USERS_RECEIVED", () => {
         it("should add a new user", () => {
           const availableUsers = {
-            [alice.regtxid]: alice
+            [alice.uname]: alice
           }
 
           const newUsers = [bob]
@@ -146,15 +151,15 @@ describe("user reducer", () => {
             ...initialState,
             users: {
               ...availableUsers,
-              [bob.regtxid]: bob
+              [bob.uname]: bob
             }
           })
         })
 
         it("should overwrite an existing user", () => {
           const availableUsers = {
-            [alice.regtxid]: alice,
-            [bob.regtxid]: { ...bob, credits: bob.credits + 100 }
+            [alice.uname]: alice,
+            [bob.uname]: { ...bob, credits: bob.credits + 100 }
           }
 
           const newUsers = [bob]
@@ -169,8 +174,8 @@ describe("user reducer", () => {
           ).toEqual({
             ...initialState,
             users: {
-              [alice.regtxid]: alice,
-              [bob.regtxid]: bob
+              [alice.uname]: alice,
+              [bob.uname]: bob
             }
           })
         })
@@ -180,7 +185,7 @@ describe("user reducer", () => {
         it("add a new user", () => {
           expect(reducer(undefined, userReceived(alice))).toEqual({
             ...initialState,
-            users: { [alice.regtxid]: alice }
+            users: { [alice.uname]: alice }
           })
         })
 
@@ -192,8 +197,8 @@ describe("user reducer", () => {
               {
                 ...initialState,
                 users: {
-                  [alice.regtxid]: alice,
-                  [bob.regtxid]: bob
+                  [alice.uname]: alice,
+                  [bob.uname]: bob
                 }
               },
               userReceived(receivedUser)
@@ -201,8 +206,8 @@ describe("user reducer", () => {
           ).toEqual({
             ...initialState,
             users: {
-              [alice.regtxid]: receivedUser,
-              [bob.regtxid]: bob
+              [alice.uname]: receivedUser,
+              [bob.uname]: bob
             }
           })
         })
@@ -211,7 +216,7 @@ describe("user reducer", () => {
       describe("should handle USER_UPDATED", () => {
         it("should update an existing user", () => {
           const availableUsers = {
-            [alice.regtxid]: alice
+            [alice.uname]: alice
           }
           const credits = alice.credits + 100
           expect(
@@ -220,18 +225,18 @@ describe("user reducer", () => {
                 ...initialState,
                 users: availableUsers
               },
-              userUpdated(alice.regtxid, { credits })
+              userUpdated(alice.uname, { credits })
             )
           ).toEqual({
             ...initialState,
-            users: { [alice.regtxid]: { ...alice, credits } }
+            users: { [alice.uname]: { ...alice, credits } }
           })
         })
 
         it("should return original state if the user is not available", () => {
           const credits = 1024
           expect(
-            reducer(initialState, userUpdated(alice.regtxid, { credits }))
+            reducer(initialState, userUpdated(alice.uname, { credits }))
           ).toEqual(initialState)
         })
       })
@@ -239,7 +244,7 @@ describe("user reducer", () => {
 
     describe.skip("Likes", () => {
       describe("handle LIKE_REMOVED", () => {
-        const alice = testUsers["alice"]
+        const alice = getAlice()
 
         it("should return original state if no user found", () => {
           const state = { users: {} }

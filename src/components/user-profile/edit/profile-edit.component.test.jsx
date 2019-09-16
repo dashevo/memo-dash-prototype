@@ -1,14 +1,17 @@
 import React from 'react'
 import { shallow } from 'enzyme'
 import ProfileEditComponent from './profile-edit.component'
-import { testUsers, testMemos } from '../../../test-utils/test-data'
+import { testUsers, testMemos, getAlice, testProfiles } from "../../../test-utils/test-data"
 import { Button, Form } from 'semantic-ui-react'
 
 describe('<ProfileEditComponent />', () => {
   let wrapper
-  const alice = testUsers['alice']
+  let alice
+  let aliceProfile
 
   beforeEach(() => {
+    alice = getAlice()
+    aliceProfile = testProfiles[alice.uname]
     const div = document.createElement('div')
     document.body.appendChild(div)
   })
@@ -17,8 +20,9 @@ describe('<ProfileEditComponent />', () => {
     it('without crashing', () => {
       wrapper = shallow(
         <ProfileEditComponent
-          profile={alice.profile}
-          values={{ username: 'alice', bio: 'bio' }}
+          username={alice.uname}
+          profile={aliceProfile}
+          values={{ username: 'alice', text: 'text' }}
           errors={{}}
         />
       )
@@ -30,8 +34,9 @@ describe('<ProfileEditComponent />', () => {
     const createWrapper = spies =>
       shallow(
         <ProfileEditComponent
-          profile={alice.profile}
-          values={{ username: 'alice', bio: 'bio' }}
+          username={alice.uname}
+          profile={aliceProfile}
+          values={{ username: 'alice', text: 'text' }}
           errors={{}}
           handleSubmit={spies.handleSubmit}
           onCanceled={spies.onCanceled}

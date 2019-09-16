@@ -18,16 +18,14 @@ import { push } from "connected-react-router"
 import ProfileContentComponent from "./profile-content.component"
 
 const mapStateToProps = (state, ownProps) => {
-  const {
-    profile: { username }
-  } = ownProps
-
+  const { profile } = ownProps
+  const userId = profile.$meta.userId
   return {
     username,
-    memos: getUserMemos(username)(state),
-    followers: getUserFollowers(username)(state),
-    following: getUserFollowing(username)(state),
-    likedMemos: getUserLikedMemos(username)(state),
+    memos: getUserMemos(userId)(state),
+    followers: getUserFollowers(userId)(state),
+    following: getUserFollowing(userId)(state),
+    likedMemos: getUserLikedMemos(userId)(state),
     pathname: getPathname(state)
   }
 }

@@ -2,14 +2,14 @@ import { connect } from "react-redux"
 import UsersViewComponent from "./users-view.component"
 import {
   getUsers as getUsersFromState,
-  getCurrentUserId
+  getCurrentUserName
 } from "../../store/selectors"
 import { getAllUsers } from "../../store/actions"
 
 const mapStateToProps = state => {
   return {
     users: getUsersFromState(state),
-    currentUser: getCurrentUserId(state)
+    currentUser: getCurrentUserName(state)
   }
 }
 

@@ -4,7 +4,7 @@ import FollowButtonContainer from '../../follow/follow-button.container'
 import TextAreaWithCharCounter from '../../common/textarea-with-char-counter/textarea-with-char-counter.component'
 
 const ProfileEditComponent = props => {
-  const { profile, values, errors, handleBlur, handleSubmit, handleChange, onCanceled } = props
+  const { username, profile, values, errors, handleBlur, handleSubmit, handleChange, onCanceled } = props
 
   return (
     <Form onSubmit={handleSubmit}>
@@ -12,14 +12,14 @@ const ProfileEditComponent = props => {
         <Image src={profile.avatarUrl} size="medium" />
         <Card.Content>
           <Card.Header>
-            {profile.username}
+            {username}
             <FollowButtonContainer userProfile={profile} />
           </Card.Header>
           <Card.Description>
             <TextAreaWithCharCounter
-              name="bio"
+              name="text"
               autoHeight
-              value={values.bio}
+              value={values.text}
               onChange={handleChange}
               onBlur={handleBlur}
               maxLength="144"
@@ -27,7 +27,7 @@ const ProfileEditComponent = props => {
           </Card.Description>
         </Card.Content>
         <Card.Content extra textAlign="right">
-          <Button type="submit" size="mini" content="Update" primary disabled={!!errors.bio} />
+          <Button type="submit" size="mini" content="Update" primary disabled={!!errors.text} />
           <Button type="reset" size="mini" content="Cancel" onClick={onCanceled} />
         </Card.Content>
       </Card>

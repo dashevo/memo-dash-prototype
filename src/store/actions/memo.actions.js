@@ -2,7 +2,7 @@ import {
   getMemoDashLib,
   getCurrentUser,
   getMissingUsers,
-  getCurrentUserId
+  getCurrentUserName
 } from "../selectors"
 import { userUpdated, getUsers } from "./user.actions"
 
@@ -52,7 +52,7 @@ export const likeMemo = (username, memoId) => async (dispatch, getState) => {
   const lib = getMemoDashLib(getState())
   await lib.likeMemo(username, memoId)
 
-  const currentUsername = getCurrentUserId(getState())
+  const currentUsername = getCurrentUserName(getState())
   const likes = await lib.getUserLikes(currentUsername)
 
   await dispatch(likeAdded(likes))
@@ -97,7 +97,7 @@ export const replyToMemo = (userId, memoId, message) => async (
   dispatch(memoUpdated(memo))
   dispatch(getMemoReplies(userId, memoId))
 
-  const currentUserId = getCurrentUserId(getState())
+  const currentUserId = getCurrentUserName(getState())
   dispatch(getMemosForUser(currentUserId))
 }
 

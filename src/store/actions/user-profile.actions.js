@@ -3,29 +3,28 @@ import {
   getMissingUsers,
   getUserFollowers,
   getUserFollowing,
-  getCurrentUserId,
+  getCurrentUserName,
   getUserLikes,
   getMemosByCombinedIds,
   getLikesOfMissingMemos
 } from "../selectors"
 import { getUsers } from "./user.actions"
 import { getMemos } from "./memo.actions"
-import { combineMemoId } from "../reducers/memo.reducer"
 
-export const getFollowersForUser = username => async (dispatch, getState) => {
+export const getFollowersForUser = userId => async (dispatch, getState) => {
   const state = getState()
-  const followers = getUserFollowers(username)(state)
+  const followers = getUserFollowers(userId)(state)
 
   if (followers && followers.length > 0) {
-    const missingUsernames = getMissingUsers(followers)(state)
-    if (missingUsernames && missingUsernames.length > 0)
-      dispatch(getUsers(missingUsernames))
+    const missingUserIds = getMissingUsers(followers)(state)
+    if (missingUserIds && missingUserIds.length > 0)
+      dispatch(getUsers(missingUserIds))
   }
 }
 
-export const getFollowingForUser = username => async (dispatch, getState) => {
+export const getFollowingForUser = userId => async (dispatch, getState) => {
   const state = getState()
-  const following = getUserFollowing(username)(state)
+  const following = getUserFollowing(userId)(state)
 
   if (following && following.length > 0) {
     const missingUsernames = getMissingUsers(following)(state)
@@ -34,9 +33,9 @@ export const getFollowingForUser = username => async (dispatch, getState) => {
   }
 }
 
-export const getLikedMemosForUser = username => async (dispatch, getState) => {
+export const getLikedMemosForUser = userId => async (dispatch, getState) => {
   const state = getState()
-  const likes = getUserLikes(username)(state)
+  const likes = getUserLikes(userId)(state)
 
   if (likes && likes.length > 0) {
     const likesOfMissingMemos = getLikesOfMissingMemos(likes)(state)
@@ -53,20 +52,18 @@ export const getLikedMemosForUser = username => async (dispatch, getState) => {
         )
       )
 
-    return getMemosByCombinedIds(
-      likes.map(like =>
-        combineMemoId(like.relation.username, like.relation.index)
-      )
-    )(state)
+    return getMemosByCombinedIds(likes.map(like => like.relation.$scopeId))(
+      state
+    )
   }
 }
 
-export const followUser = username => async (dispatch, getState) => {
-  await getMemoDashLib(getState()).followUser(username)
-  dispatch(getUsers([username, getCurrentUserId(getState())]))
+export const followUser = userId => async (dispatch, getState) => {
+  await getMemoDashLib(getState()).followUser(userId)
+  dispatch(getUsers([username, getCurrentUserName(getState())]))
 }
 
 export const unFollowUser = username => async (dispatch, getState) => {
   await getMemoDashLib(getState()).unFollowUser(username)
-  dispatch(getUsers([username, getCurrentUserId(getState())]))
+  dispatch(getUsers([username, getCurrentUserName(getState())]))
 }

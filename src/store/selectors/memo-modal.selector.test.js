@@ -1,19 +1,17 @@
 import * as selector from "./memo-modal.selector"
-import { testUsers, testMemos } from "../../test-utils/test-data"
-import { combineMemoId } from "../reducers/memo.reducer"
+import { getAliceMemos } from "../../test-utils/test-data"
 
 describe("memo-modal selector", () => {
-  const alice = testUsers["alice"]
-  const memo = testMemos[alice.memoIds[0]]
+  const memo = getAliceMemos()[0]
 
   const state = {
     memoModal: {
       opened: true,
-      openedMemo: combineMemoId(memo.username, memo.idx)
+      openedMemo: memo.$scopeId
     },
     memo: {
       memos: {
-        [combineMemoId(memo.username, memo.idx)]: memo
+        [memo.$scopeId]: memo
       }
     }
   }

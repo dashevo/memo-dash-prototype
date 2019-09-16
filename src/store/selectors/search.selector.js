@@ -1,4 +1,9 @@
-import { getProfiles, getUsers } from "./user.selector"
+import {
+  getProfiles,
+  getUserByUserId,
+  getUserProfile,
+  getUsers
+} from "./user.selector"
 import { createSelector } from "reselect"
 import { getMemos } from "./memo.selector"
 
@@ -6,10 +11,10 @@ export const getUsersForSearch = category =>
   createSelector([getUsers, getProfiles], (users, profiles) => {
     return Object.values(users).map(user => {
       if (user) {
-        const profile = profiles[user.regtxid]
+        const profile = profiles[user.uname]
 
         return {
-          childKey: user.regtxid,
+          childKey: user.uname,
           category,
           title: user.uname,
           description: profile ? profile.text : "",
@@ -21,23 +26,20 @@ export const getUsersForSearch = category =>
   })
 
 export const getMemosForSearch = category =>
-  createSelector(
-    [getMemos, getUsers, getProfiles],
-    (memos, users, profiles) => {
-      return memos
-        ? Object.values(memos).map(memo => {
-            const user = users[memo.$meta.userId]
-            const profile = profiles[memo.$meta.userId]
+  createSelector([state => state, getMemos], (state, memos) => {
+    return memos
+      ? Object.values(memos).map(memo => {
+          const user = getUserByUserId(memo.$meta.userId)(state)
+          const profile = user ? getUserProfile(user.uname)(state) : undefined
 
-            return user && memo
-              ? {
-                  childKey: memo.$scopeId,
-                  category,
-                  title: memo.message,
-                  image: profile ? profile.avatarUrl : null
-                }
-              : {}
-          })
-        : []
-    }
-  )
+          return memo && profile
+            ? {
+                childKey: memo.$scopeId,
+                category,
+                title: memo.message,
+                image: profile.avatarUrl
+              }
+            : {}
+        })
+      : []
+  })

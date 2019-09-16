@@ -1,22 +1,24 @@
-import React from 'react'
-import { shallow } from 'enzyme'
-import { Card } from 'semantic-ui-react'
+import React from "react"
+import { shallow } from "enzyme"
 
-import { testUsers } from '../../../test-utils/test-data'
-import ProfileInfoComponent from './profile-info.component'
+import { getAlice, testProfiles } from "../../../test-utils/test-data"
+import ProfileInfoComponent from "./profile-info.component"
 
 describe('<ProfileInfoComponent />', () => {
   let wrapper
-  const alice = testUsers['alice']
+  let alice
 
   beforeEach(() => {
+
+    alice = getAlice()
+
     const div = document.createElement('div')
     document.body.appendChild(div)
   })
 
   describe('should render', () => {
     it('without crashing', () => {
-      wrapper = shallow(<ProfileInfoComponent profile={alice.profile} />)
+      wrapper = shallow(<ProfileInfoComponent username={alice.uname} profile={testProfiles[alice.uname]} />)
       expect(wrapper).toMatchSnapshot()
     })
   })

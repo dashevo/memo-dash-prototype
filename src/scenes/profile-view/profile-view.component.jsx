@@ -18,8 +18,8 @@ export class ProfileViewComponent extends Component {
     this.setState({ editing: true })
   }
 
-  onEditSubmitted = bio => {
-    this.props.onEditSubmitted(bio)
+  onEditSubmitted = text => {
+    this.props.onEditSubmitted(text)
     this.setState({ editing: false })
   }
 
@@ -28,7 +28,7 @@ export class ProfileViewComponent extends Component {
   }
 
   render() {
-    const { profile, isProfileOfCurrentUser } = this.props
+    const { username, profile, isProfileOfCurrentUser } = this.props
     const { editing } = this.state
 
     return (
@@ -44,12 +44,14 @@ export class ProfileViewComponent extends Component {
                 <Grid.Column width={4}>
                   {editing ? (
                     <ProfileEditContainer
+                      username={username}
                       profile={profile}
                       onSubmitted={this.onEditSubmitted}
                       onCanceled={this.onEditCanceled}
                     />
                   ) : (
                     <ProfileInfoComponent
+                      username={username}
                       profile={profile}
                       ownProfile={isProfileOfCurrentUser}
                       onEditClicked={this.onEdit}

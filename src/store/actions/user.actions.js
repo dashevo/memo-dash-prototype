@@ -1,4 +1,4 @@
-import { getMemoDashLib, getCurrentUserId } from "../selectors"
+import { getMemoDashLib, getCurrentUserName } from "../selectors"
 
 export const UserActionTypes = {
   USER_RECEIVED: "USER_RECEIVED",
@@ -12,8 +12,8 @@ export const getAllUsers = () => async (dispatch, getState) => {
   dispatch(usersReceived(users))
 }
 
-export const getUsers = usernames => async (dispatch, getState) => {
-  const users = await getMemoDashLib(getState()).getUsers(usernames)
+export const getUsers = userIds => async (dispatch, getState) => {
+  const users = await getMemoDashLib(getState()).getUsers(userIds)
   dispatch(usersReceived(users))
 }
 
@@ -55,10 +55,10 @@ export const usersReceived = users => ({
   payload: users
 })
 
-export const updateProfile = bio => async (dispatch, getState) => {
+export const updateProfile = text => async (dispatch, getState) => {
   const lib = getMemoDashLib(getState())
-  await lib.updateProfile(bio)
-  const currentUserId = getCurrentUserId(getState())
+  await lib.updateProfile(text)
+  const currentUserId = getCurrentUserName(getState())
   const profile = await lib.getUserProfile(currentUserId)
 
   await dispatch(userUpdated(currentUserId, { profile }))

@@ -1,41 +1,39 @@
-import React from 'react'
-import { shallow } from 'enzyme'
-import { Card } from 'semantic-ui-react'
+import React from "react"
+import { shallow } from "enzyme"
+import { Card } from "semantic-ui-react"
 
-import { testUsers } from '../../../test-utils/test-data'
-import ProfileOverviewComponent from './profile-overview.component'
+import { getAlice, testProfiles } from "../../../test-utils/test-data"
+import ProfileOverviewComponent from "./profile-overview.component"
 
 describe('<ProfileOverviewComponent />', () => {
   let wrapper
-  const alice = testUsers['alice']
+  let alice
+  let aliceProfile
 
   beforeEach(() => {
+    alice = getAlice()
+    aliceProfile = testProfiles[alice.uname]
+
     const div = document.createElement('div')
     document.body.appendChild(div)
   })
 
   describe('should render', () => {
     it('without crashing', () => {
-      wrapper = shallow(<ProfileOverviewComponent userProfile={alice.profile} />)
+      wrapper = shallow(<ProfileOverviewComponent username={alice.uname} userProfile={aliceProfile} />)
       expect(wrapper).toMatchSnapshot()
     })
 
-    it('user followed by me', () => {
-      wrapper = shallow(<ProfileOverviewComponent userProfile={alice.profile} following={true} />)
+    it('without profile', () => {
+      wrapper = shallow(<ProfileOverviewComponent userProfile={undefined} />)
       expect(wrapper).toMatchSnapshot()
     })
 
-    it('user not followed by me', () => {
-      wrapper = shallow(<ProfileOverviewComponent userProfile={alice.profile} following={false} />)
+    it('without username', () => {
+      wrapper = shallow(<ProfileOverviewComponent username={undefined} userProfile={aliceProfile} />)
       expect(wrapper).toMatchSnapshot()
     })
 
-    it('my user', () => {
-      wrapper = shallow(
-        <ProfileOverviewComponent userProfile={alice.profile} isProfileOfCurrentUser={true} />
-      )
-      expect(wrapper).toMatchSnapshot()
-    })
   })
 
   describe('interaction', () => {
@@ -46,7 +44,8 @@ describe('<ProfileOverviewComponent />', () => {
       onGoToProfileClickedSpy = jest.fn()
       wrapper = shallow(
         <ProfileOverviewComponent
-          userProfile={alice.profile}
+          username={alice.uname}
+          userProfile={aliceProfile}
           onGoToProfileClicked={onGoToProfileClickedSpy}
         />
       )

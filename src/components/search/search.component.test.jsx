@@ -23,7 +23,7 @@ describe('<SearchComponent />', () => {
           childKey: alice.username,
           image: alice.profile.avatarUrl,
           title: alice.username,
-          description: alice.profile.bio
+          description: alice.profile.text
         }
       ]
     }

@@ -27,7 +27,7 @@ const mapDispatchToProps = dispatch => {
     getUser: username => {
       dispatch(getUser(username))
     },
-    onEditSubmitted: bio => dispatch(updateProfile(bio))
+    onEditSubmitted: text => dispatch(updateProfile(text))
   }
 }
 

@@ -1,6 +1,5 @@
 import { createSelector } from "reselect"
-import { getCurrentUser, getCurrentUserId } from "./user.selector"
-import { combineMemoId } from "../reducers/memo.reducer"
+import { getCurrentUser, getCurrentUserName } from "./user.selector"
 
 export const getMemos = state => state.memo.memos
 
@@ -16,8 +15,11 @@ export const getMemosByCombinedIds = memoIds =>
 
 export const isMemoOfCurrentUser = memo =>
   createSelector(
-    [getCurrentUserId],
-    currentUserId => (memo ? currentUserId === memo.$meta.userId : undefined)
+    [getCurrentUser],
+    currentUser =>
+      memo
+        ? currentUser && currentUser.regtxid === memo.$meta.userId
+        : undefined
   )
 
 export const isMemoLikedByCurrentUser = memo =>
@@ -37,10 +39,5 @@ export const getLikesOfMissingMemos = likes =>
   createSelector([getMemos], availableMemos =>
     likes
       .filter((like, index, self) => self.indexOf(like) === index)
-      .filter(
-        like =>
-          !availableMemos[
-            combineMemoId(like.relation.username, like.relation.index)
-          ]
-      )
+      .filter(like => !availableMemos[like.relation.$scopeId])
   )

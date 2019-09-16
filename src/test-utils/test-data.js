@@ -1,5 +1,5 @@
 export const testUsers = {
-  d4a093ed4e56c8c2411281d829715d9ab552c0bb762065c9ca1d96d3fd07866d: {
+  alice: {
     uname: "alice",
     regtxid: "d4a093ed4e56c8c2411281d829715d9ab552c0bb762065c9ca1d96d3fd07866d",
     pubkeyid: "5eab9ad2816c2109c89520f0e8375dbe04fffcb0",
@@ -12,7 +12,7 @@ export const testUsers = {
       "b1b34f744c3eeef058b5cfffccaab5524c3aba34866a56eba9fbfcec464767fa"
     ]
   },
-  c56d7036d14071f7c2f16a64ea71fcdd41c90e9f2691de406e1847065267679f: {
+  bob: {
     uname: "bob",
     regtxid: "c56d7036d14071f7c2f16a64ea71fcdd41c90e9f2691de406e1847065267679f",
     pubkeyid: "0cb374838abe15cb96450121e400cfdbafcca2d1",
@@ -21,78 +21,6 @@ export const testUsers = {
     state: "open",
     subtx: ["c56d7036d14071f7c2f16a64ea71fcdd41c90e9f2691de406e1847065267679f"]
   }
-  // alice: {
-  //   username: "alice",
-  //   profile: {
-  //     avatarUrl:
-  //       "https://s3.amazonaws.com/uifaces/faces/twitter/madcampos/128.jpg",
-  //     bio: "Quod architecto molestias et.",
-  //     followersCount: 1,
-  //     followingCount: 1,
-  //     likesCount: 2,
-  //     username: "alice"
-  //   },
-  //   userId: "f0fd479ba875bf2232a4043dbefff24e2af2ca5ccd50b3ba9e91673707336726",
-  //   likes: [
-  //     {
-  //       idx: 5,
-  //       relation: {
-  //         username: "bob",
-  //         userId:
-  //           "c6e5e284054bcbcd2cddea1ec36579e1fdf8e788d8a46d0351e276b4d0bb297c",
-  //         index: 1
-  //       }
-  //     },
-  //     {
-  //       idx: 6,
-  //       relation: {
-  //         username: "bob",
-  //         userId:
-  //           "c6e5e284054bcbcd2cddea1ec36579e1fdf8e788d8a46d0351e276b4d0bb297c",
-  //         index: 2
-  //       }
-  //     }
-  //   ],
-  //   memoIds: ["[alice][1]", "[alice][2]"],
-  //   followers: ["bob"],
-  //   following: ["bob"]
-  // },
-  // bob: {
-  //   username: "bob",
-  //   profile: {
-  //     avatarUrl:
-  //       "https://s3.amazonaws.com/uifaces/faces/twitter/madcampos/129.jpg",
-  //     bio: "Id qui nisi asperiores vel quo.",
-  //     followersCount: 1,
-  //     followingCount: 1,
-  //     likesCount: 1,
-  //     username: "bob"
-  //   },
-  //   userId: "c6e5e284054bcbcd2cddea1ec36579e1fdf8e788d8a46d0351e276b4d0bb297c",
-  //   likes: [
-  //     {
-  //       idx: 7,
-  //       relation: {
-  //         username: "alice",
-  //         userId:
-  //           "f0fd479ba875bf2232a4043dbefff24e2af2ca5ccd50b3ba9e91673707336726",
-  //         index: 1
-  //       }
-  //     },
-  //     {
-  //       idx: 8,
-  //       relation: {
-  //         username: "alice",
-  //         userId:
-  //           "f0fd479ba875bf2232a4043dbefff24e2af2ca5ccd50b3ba9e91673707336726",
-  //         index: 2
-  //       }
-  //     }
-  //   ],
-  //   memoIds: ["[bob][1]", "[bob][2]"],
-  //   followers: ["alice"],
-  //   following: ["alice"]
-  // }
 }
 
 export const testMemos = {
@@ -135,7 +63,7 @@ export const testMemos = {
 }
 
 export const testProfiles = {
-  d4a093ed4e56c8c2411281d829715d9ab552c0bb762065c9ca1d96d3fd07866d: {
+  alice: {
     $type: "userProfile",
     $scope: "ac431f268fc8044d6baa36eb58eab96d3efd4ef32a354e57fd04f17c52de947c",
     $scopeId: "yWzpUT3PNNo24Pa2maCMUXdBMBVKGBKkHH",
@@ -149,7 +77,7 @@ export const testProfiles = {
       userId: "d4a093ed4e56c8c2411281d829715d9ab552c0bb762065c9ca1d96d3fd07866d"
     }
   },
-  c56d7036d14071f7c2f16a64ea71fcdd41c90e9f2691de406e1847065267679f: {
+  bob: {
     $type: "userProfile",
     $scope: "uuuuuf268fc8044d6baa36eb58eab96d3efd4ef32a354e57fd04f17c52de947c",
     $scopeId: "qwEpUT3PNNo24Pa2maCMUXdBMBVKGBKkHH",
@@ -164,6 +92,92 @@ export const testProfiles = {
     }
   }
 }
+
+export const getBob = () => testUsers["bob"]
+export const getAlice = () => testUsers["alice"]
+
+export const getAliceMemos = () =>
+  Object.values(testMemos).filter(
+    memo => memo.$meta.userId === getAlice().regtxid
+  )
+
+export const getBobMemos = () =>
+  Object.values(testMemos).filter(
+    memo => memo.$meta.userId === testUsers["bob"].regtxid
+  )
+
+// alice: {
+//   username: "alice",
+//   profile: {
+//     avatarUrl:
+//       "https://s3.amazonaws.com/uifaces/faces/twitter/madcampos/128.jpg",
+//     bio: "Quod architecto molestias et.",
+//     followersCount: 1,
+//     followingCount: 1,
+//     likesCount: 2,
+//     username: "alice"
+//   },
+//   userId: "f0fd479ba875bf2232a4043dbefff24e2af2ca5ccd50b3ba9e91673707336726",
+//   likes: [
+//     {
+//       idx: 5,
+//       relation: {
+//         username: "bob",
+//         userId:
+//           "c6e5e284054bcbcd2cddea1ec36579e1fdf8e788d8a46d0351e276b4d0bb297c",
+//         index: 1
+//       }
+//     },
+//     {
+//       idx: 6,
+//       relation: {
+//         username: "bob",
+//         userId:
+//           "c6e5e284054bcbcd2cddea1ec36579e1fdf8e788d8a46d0351e276b4d0bb297c",
+//         index: 2
+//       }
+//     }
+//   ],
+//   memoIds: ["[alice][1]", "[alice][2]"],
+//   followers: ["bob"],
+//   following: ["bob"]
+// },
+// bob: {
+//   username: "bob",
+//   profile: {
+//     avatarUrl:
+//       "https://s3.amazonaws.com/uifaces/faces/twitter/madcampos/129.jpg",
+//     bio: "Id qui nisi asperiores vel quo.",
+//     followersCount: 1,
+//     followingCount: 1,
+//     likesCount: 1,
+//     username: "bob"
+//   },
+//   userId: "c6e5e284054bcbcd2cddea1ec36579e1fdf8e788d8a46d0351e276b4d0bb297c",
+//   likes: [
+//     {
+//       idx: 7,
+//       relation: {
+//         username: "alice",
+//         userId:
+//           "f0fd479ba875bf2232a4043dbefff24e2af2ca5ccd50b3ba9e91673707336726",
+//         index: 1
+//       }
+//     },
+//     {
+//       idx: 8,
+//       relation: {
+//         username: "alice",
+//         userId:
+//           "f0fd479ba875bf2232a4043dbefff24e2af2ca5ccd50b3ba9e91673707336726",
+//         index: 2
+//       }
+//     }
+//   ],
+//   memoIds: ["[bob][1]", "[bob][2]"],
+//   followers: ["alice"],
+//   following: ["alice"]
+// }
 
 // export const testMemos = {
 //   "[bob][1]": {

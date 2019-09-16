@@ -6,7 +6,13 @@ import {
   mockStoreAndDispatch,
   verifyAction
 } from "../../test-utils/actions.test-helper"
-import { testMemos, testUsers } from "../../test-utils/test-data"
+import {
+  getAlice,
+  getAliceMemos,
+  getBob,
+  testMemos,
+  testUsers
+} from "../../test-utils/test-data"
 
 import * as userSelectors from "../selectors/user.selector"
 
@@ -103,11 +109,9 @@ describe("memo actions", () => {
       let bob
 
       beforeEach(() => {
-        alice = Object.values(testUsers).find(user => user.uname === "alice")
-        aliceMemos = Object.values(testMemos).filter(
-          memo => memo.$meta.userId === alice.regtxid
-        )
-        bob = Object.values(testUsers).find(user => user.uname === "bob")
+        alice = getAlice()
+        aliceMemos = getAliceMemos()
+        bob = getBob()
       })
 
       describe("getMemosForUser(userId)", () => {
@@ -120,12 +124,12 @@ describe("memo actions", () => {
           state.root.memoDashLib.getMemosForUser.mockReturnValue(aliceMemos)
           const actions = await mockStoreAndDispatch(
             state,
-            memoActions.getMemosForUser(alice.regtxid)
+            memoActions.getMemosForUser(alice.uname)
           )
           expect(
             await getAction(actions, userActions.UserActionTypes.USER_UPDATED)
           ).toEqual(
-            userActions.userUpdated(alice.regtxid, {
+            userActions.userUpdated(alice.uname, {
               memoIds: aliceMemos.map(memo => memo.$scopeId)
             })
           )
@@ -139,7 +143,7 @@ describe("memo actions", () => {
         })
 
         describe("received memos", () => {
-          const user = testUsers["alice"]
+          const user = getAlice()
 
           it("should dispatch memosReceived", async () => {
             state.root.memoDashLib.getMemos.mockReturnValue(aliceMemos)
@@ -155,7 +159,7 @@ describe("memo actions", () => {
           it("should dispatch getUsers if some are missing", async () => {
             state.root.memoDashLib.getMemos.mockReturnValue(aliceMemos)
             userSelectors.getMissingUsers = jest.fn(() =>
-              jest.fn().mockReturnValue([bob.regtxid])
+              jest.fn().mockReturnValue([bob.uname])
             )
             const actions = await mockStoreAndDispatch(
               state,
@@ -166,7 +170,7 @@ describe("memo actions", () => {
                 actions,
                 userActions.UserActionTypes.USERS_RECEIVED
               )
-            ).toEqual(userActions.getUsers([bob.regtxid]))
+            ).toEqual(userActions.getUsers([bob.uname]))
           })
         })
 
@@ -288,7 +292,7 @@ describe("memo actions", () => {
       })
 
       describe.skip("replyToMemo(username, memoId, message)", () => {
-        const alice = testUsers["alice"]
+        const alice = getAlice()
         const memo = testMemos[alice.memoIds[0]]
         const replyMessage = "replyMessage"
 
@@ -326,9 +330,9 @@ describe("memo actions", () => {
         it("should call memoDashLib.getMemosForUser", async () => {
           await mockStoreAndDispatch(
             state,
-            memoActions.replyToMemo(alice.username, memo.idx, replyMessage)
+            memoActions.replyToMemo(alice.uname, memo.idx, replyMessage)
           )
-          expect(spies.getMemosForUser).toHaveBeenCalledWith(alice.regtxid)
+          expect(spies.getMemosForUser).toHaveBeenCalledWith(alice.uname)
         })
 
         it("should dispatch memoUpdated", async () => {
@@ -344,7 +348,7 @@ describe("memo actions", () => {
       })
 
       describe.skip("getMemoReplies(username, memoId)", () => {
-        const alice = testUsers["alice"]
+        const alice = getAlice()
         const memo = testMemos[alice.memoIds[0]]
 
         it("should call memoDashLib.getMemoReplies", async () => {
@@ -409,7 +413,7 @@ describe("memo actions", () => {
         it("should call memoDashLib.editMemo", async () => {
           await mockStoreAndDispatch(
             state,
-            memoActions.editMemo(alice.regtxid, memo.$scopeId, newMessage)
+            memoActions.editMemo(alice.uname, memo.$scopeId, newMessage)
           )
           expect(spies.editMemo).toHaveBeenCalledWith(memo.$scopeId, newMessage)
         })
@@ -418,7 +422,7 @@ describe("memo actions", () => {
           state.root.memoDashLib.getMemo.mockReturnValue(memo)
           const actions = await mockStoreAndDispatch(
             state,
-            memoActions.replyToMemo(alice.regtxid, memo.$scopeId, newMessage)
+            memoActions.replyToMemo(alice.uname, memo.$scopeId, newMessage)
           )
           expect(
             await getAction(actions, MemoActionTypes.MEMO_UPDATED)

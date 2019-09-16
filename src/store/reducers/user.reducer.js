@@ -30,8 +30,8 @@ export default (state = initialState, action) => {
       const users = { ...state.users }
       const receivedUser = action.payload
 
-      users[receivedUser.regtxid] = {
-        ...users[receivedUser.regtxid],
+      users[receivedUser.uname] = {
+        ...users[receivedUser.uname],
         ...receivedUser
       }
 
@@ -47,8 +47,8 @@ export default (state = initialState, action) => {
       if (receivedUsers) {
         receivedUsers.forEach(
           receivedUser =>
-            (users[receivedUser.regtxid] = {
-              ...users[receivedUser.regtxid],
+            (users[receivedUser.uname] = {
+              ...users[receivedUser.uname],
               ...receivedUser
             })
         )

@@ -4,7 +4,7 @@ import { Card } from 'semantic-ui-react'
 import ProfileOverviewContainer from './profile-overview.container'
 
 const ProfileOverviewsComponent = props => {
-  const { actualUsername, userProfiles, itemsPerRow } = props
+  const { userProfiles, itemsPerRow } = props
 
   return (
     <Fragment>
@@ -13,7 +13,6 @@ const ProfileOverviewsComponent = props => {
           {Object.values(userProfiles).map(userProfile => (
             <ProfileOverviewContainer
               key={userProfile.username}
-              actualUsername={actualUsername}
               userProfile={userProfile}
             />
           ))}

@@ -1,4 +1,12 @@
-import { testUsers, testMemos, testProfiles } from "../../test-utils/test-data"
+import {
+  testUsers,
+  testMemos,
+  testProfiles,
+  getBob,
+  getAlice,
+  getAliceMemos,
+  getBobMemos
+} from "../../test-utils/test-data"
 import * as selector from "./search.selector"
 
 describe("search selector", () => {
@@ -13,21 +21,17 @@ describe("search selector", () => {
   let state
 
   beforeEach(() => {
-    alice = Object.values(testUsers).find(user => user.uname === "alice")
-    aliceProfile = testProfiles[alice.regtxid]
-    aliceMemos = Object.values(testMemos).filter(
-      memo => memo.$meta.userId === alice.regtxid
-    )
+    alice = getAlice()
+    aliceProfile = testProfiles[alice.uname]
+    aliceMemos = getAliceMemos()
 
-    bob = Object.values(testUsers).find(user => user.uname === "bob")
-    bobProfile = testProfiles[bob.regtxid]
-    bobMemos = Object.values(testMemos).filter(
-      memo => memo.$meta.userId === bob.regtxid
-    )
+    bob = getBob()
+    bobProfile = testProfiles[bob.uname]
+    bobMemos = getBobMemos()
 
     state = {
       user: {
-        currentUser: alice.regtxid,
+        currentUser: alice.uname,
         users: testUsers,
         profiles: testProfiles
       },
@@ -41,14 +45,14 @@ describe("search selector", () => {
     const result = [
       {
         category,
-        childKey: alice.regtxid,
+        childKey: alice.uname,
         description: aliceProfile.text,
         image: aliceProfile.avatarUrl,
         title: alice.uname
       },
       {
         category,
-        childKey: bob.regtxid,
+        childKey: bob.uname,
         description: bobProfile.text,
         image: bobProfile.avatarUrl,
         title: bob.uname

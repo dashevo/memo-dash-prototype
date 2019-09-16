@@ -2,7 +2,6 @@ import React from 'react'
 import configureStore from 'redux-mock-store'
 import { shallow } from 'enzyme'
 import MemoDeleteContainer from './memo-delete.container'
-import { combineMemoId } from '../../../store/reducers/memo.reducer'
 
 import { testUsers, testMemos } from '../../../test-utils/test-data'
 

@@ -9,8 +9,8 @@ import {
   getAction
 } from "../../test-utils/actions.test-helper"
 
-import MemoDashLib from "../../lib/memo-dash.lib.vmn.js_"
-jest.mock("../../lib/memo-dash.lib.vmn")
+import MemoDashLib from "../../lib/memo-dash.lib"
+jest.mock("../../lib/memo-dash.lib")
 
 describe("init actions", () => {
   beforeEach(() => {
@@ -32,8 +32,6 @@ describe("init actions", () => {
 
     it("should initialize the MemoDashLib", () => {
       expect(MemoDashLib).toHaveBeenCalledTimes(1)
-      const memoDashLibInstance = MemoDashLib.mock.instances[0]
-      expect(memoDashLibInstance.init).toHaveBeenCalledTimes(1)
     })
 
     it("should dispatch initFinished action", async () => {

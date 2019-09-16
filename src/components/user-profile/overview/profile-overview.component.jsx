@@ -3,9 +3,9 @@ import { Card, Image, Label } from 'semantic-ui-react'
 import FollowButtonContainer from '../../follow/follow-button.container'
 
 const ProfileOverviewComponent = props => {
-  const { userProfile } = props
+  const { username, userProfile } = props
 
-  if (!userProfile) return null
+  if (!username || !userProfile) return null
 
   const { onGoToProfileClicked } = props
 
@@ -14,10 +14,10 @@ const ProfileOverviewComponent = props => {
       <Image fluid src={userProfile.avatarUrl} />
       <Card.Content>
         <Card.Header>
-          {userProfile.username}
+          {username}
           <FollowButtonContainer userProfile={userProfile} />
         </Card.Header>
-        <Card.Description>{userProfile.bio}</Card.Description>
+        <Card.Description>{userProfile.text}</Card.Description>
       </Card.Content>
       <Card.Content extra>
         <Label>

@@ -1,4 +1,12 @@
-import { testUsers, testMemos, testProfiles } from "../../test-utils/test-data"
+import {
+  testUsers,
+  testMemos,
+  testProfiles,
+  getBob,
+  getAlice,
+  getAliceMemos,
+  getBobMemos
+} from "../../test-utils/test-data"
 import * as selector from "./memo.selector"
 
 describe("memo selector", () => {
@@ -10,21 +18,17 @@ describe("memo selector", () => {
   let memo
 
   beforeEach(() => {
-    alice = Object.values(testUsers).find(user => user.uname === "alice")
-    aliceMemos = Object.values(testMemos).filter(
-      memo => memo.$meta.userId === alice.regtxid
-    )
+    alice = getAlice()
+    aliceMemos = getAliceMemos()
     memo = aliceMemos[0]
 
-    bob = Object.values(testUsers).find(user => user.uname === "bob")
-    bobMemos = Object.values(testMemos).filter(
-      memo => memo.$meta.userId === bob.regtxid
-    )
+    bob = getBob()
+    bobMemos = getBobMemos()
 
     state = {
       user: {
-        currentUser: alice.regtxid,
-        users: { [alice.regtxid]: alice, [bob.regtxid]: bob }
+        currentUser: alice.uname,
+        users: { [alice.uname]: alice, [bob.uname]: bob }
       },
       memo: {
         memos: testMemos

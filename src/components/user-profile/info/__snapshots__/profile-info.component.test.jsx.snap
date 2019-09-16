@@ -5,7 +5,7 @@ exports[`<ProfileInfoComponent /> should render without crashing 1`] = `
   <Image
     as="img"
     size="medium"
-    src="https://s3.amazonaws.com/uifaces/faces/twitter/madcampos/128.jpg"
+    src="https://robohash.org/set_set2/bgset_bg2/ppkQqaIfGqx"
     ui={true}
   />
   <CardContent>
@@ -14,18 +14,24 @@ exports[`<ProfileInfoComponent /> should render without crashing 1`] = `
       <Connect(FollowButtonComponent)
         userProfile={
           Object {
-            "avatarUrl": "https://s3.amazonaws.com/uifaces/faces/twitter/madcampos/128.jpg",
-            "bio": "Quod architecto molestias et.",
-            "followersCount": 1,
-            "followingCount": 1,
-            "likesCount": 2,
-            "username": "alice",
+            "$action": 0,
+            "$meta": Object {
+              "userId": "d4a093ed4e56c8c2411281d829715d9ab552c0bb762065c9ca1d96d3fd07866d",
+            },
+            "$rev": 1,
+            "$scope": "ac431f268fc8044d6baa36eb58eab96d3efd4ef32a354e57fd04f17c52de947c",
+            "$scopeId": "yWzpUT3PNNo24Pa2maCMUXdBMBVKGBKkHH",
+            "$type": "userProfile",
+            "address": "Wonderland",
+            "avatarUrl": "https://robohash.org/set_set2/bgset_bg2/ppkQqaIfGqx",
+            "name": "Alice",
+            "text": "Hey, I'm Alice",
           }
         }
       />
     </CardHeader>
     <CardDescription>
-      Quod architecto molestias et.
+      Hey, I'm Alice
     </CardDescription>
   </CardContent>
 </Card>

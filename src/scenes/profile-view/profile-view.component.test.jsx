@@ -14,7 +14,7 @@ describe('<ProfileViewComponent />', () => {
     profile = {
       avatarUrl: 'AvatarUrl',
       username: 'Username',
-      bio: 'Bio',
+      text: 'Text',
       followersCount: 1,
       followingCount: 1
     }

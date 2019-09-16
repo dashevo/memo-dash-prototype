@@ -4,14 +4,16 @@ exports[`<MemoModalContainer /> Shallow rendering should render opened modal 1`]
 <MemoModalComponent
   memo={
     Object {
-      "avatarUrl": "https://s3.amazonaws.com/uifaces/faces/twitter/madcampos/128.jpg",
-      "idx": 1,
-      "memoDatetime": "2018-07-26T16:44:56.000Z",
-      "memoLikesCount": 1,
-      "memoRepliesCount": 0,
-      "memoText": "Suscipit vel nobis.",
-      "memoTipTotal": 0,
-      "username": "alice",
+      "$action": 0,
+      "$meta": Object {
+        "userId": "d4a093ed4e56c8c2411281d829715d9ab552c0bb762065c9ca1d96d3fd07866d",
+      },
+      "$rev": 1,
+      "$scope": "b626a31be85752ee925a8d1aacf6a89d1cf7ec6b3e70824ce142c2f679cfe820",
+      "$scopeId": "yPyxJ3ppBYhMWgCGrLXPGtEhfbAG6XP6WL",
+      "$type": "memo",
+      "createdAt": "2019-08-29T07:32:26.641Z",
+      "message": "Qui magnam maiores laboriosam animi sit aut.",
     }
   }
   onModalCloseClicked={[Function]}
