@@ -4,6 +4,8 @@
 
 > Prototype for the MemoDash app on Dash Platform
 
+*Note: This is based on an old version of Dash Platform code and the code is heavily intertwined with the obsolete version. It is left here as an example / historical artifact for the moment.* **It will not work as-is, and the Platform dependencies will need to be integrated.**
+
 ## Getting Started
 
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
