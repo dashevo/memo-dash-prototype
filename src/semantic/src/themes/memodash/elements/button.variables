@@ -1,9 +1,0 @@
-/* Basic */
-
-@basicBoxShadow: none;
-@basicHoverBoxShadow: none;
-@basicDownBoxShadow: none;
-@basicDownBackground: @basicBackground;
-
-@basicTextColor: @mediumGray;
-@horizontalBasicPadding : 0.8em;

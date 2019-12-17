@@ -1,3 +1,0 @@
-@border: @borderWidth solid @lightGray;
-
-@borderRadius: @relative5px;

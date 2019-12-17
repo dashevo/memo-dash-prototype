@@ -1,7 +1,0 @@
-/*-------------------
-   Form Variables
---------------------*/
-
-/* Input */
-@textAreaBorder: none;
-@inputFontSize: 1.2em;
